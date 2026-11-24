@@ -1,0 +1,2206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e51d35">
+<title>Gaming Article | Foster Gaming</title>
+
+<style>
+:root{
+--red:#e51d35;
+--red-dark:#bd1026;
+--green:#16a36a;
+--bg:#090a0e;
+--surface:#111319;
+--surface2:#191c25;
+--text:#f5f5f7;
+--muted:#a2a5b0;
+--border:rgba(255,255,255,.09);
+--header:rgba(9,10,14,.95);
+}
+
+body.light{
+--bg:#f5f6f9;
+--surface:#fff;
+--surface2:#eceef3;
+--text:#171923;
+--muted:#656b79;
+--border:rgba(0,0,0,.09);
+--header:rgba(255,255,255,.95);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+transition:.3s;
+overflow-x:hidden;
+}
+
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+
+.container{width:min(1150px,92%);margin:auto}
+
+.announcement{
+background:var(--red);
+color:white;
+text-align:center;
+padding:10px;
+font-size:11px;
+font-weight:800;
+letter-spacing:.5px;
+}
+
+header{
+background:var(--header);
+backdrop-filter:blur(18px);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.navbar{
+height:76px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:19px;
+font-weight:900;
+}
+
+.brand img{
+width:42px;
+height:42px;
+border-radius:9px;
+object-fit:contain;
+}
+
+.brand span{color:var(--red)}
+
+.desktop-nav{display:flex;gap:25px}
+
+.desktop-nav a{
+font-size:13px;
+color:var(--muted);
+font-weight:700;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active{color:var(--red)}
+
+.nav-actions{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.icon-btn{
+width:39px;
+height:39px;
+background:var(--surface);
+color:var(--text);
+border:1px solid var(--border);
+border-radius:10px;
+font-size:17px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+.cart-count{
+position:absolute;
+top:-7px;
+right:-7px;
+background:var(--red);
+color:white;
+border-radius:50%;
+width:19px;
+height:19px;
+font-size:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+}
+
+.cart-count:empty{display:none}
+.menu-btn{display:none}
+
+/* MOBILE MENU */
+
+.menu-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:1100;
+opacity:0;
+visibility:hidden;
+transition:.3s;
+}
+
+.menu-overlay.show{
+opacity:1;
+visibility:visible;
+}
+
+.side-menu{
+position:fixed;
+top:0;
+right:-360px;
+width:min(340px,88%);
+height:100vh;
+background:var(--surface);
+z-index:1200;
+padding:25px;
+transition:.35s;
+overflow-y:auto;
+border-left:1px solid var(--border);
+}
+
+.side-menu.open{right:0}
+
+.menu-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-bottom:22px;
+border-bottom:1px solid var(--border);
+}
+
+.close-menu{
+background:var(--surface2);
+color:var(--text);
+border:0;
+width:38px;
+height:38px;
+border-radius:9px;
+font-size:20px;
+}
+
+.menu-links{
+display:grid;
+gap:5px;
+padding:20px 0;
+}
+
+.menu-links a{
+padding:13px;
+border-radius:9px;
+font-size:14px;
+font-weight:700;
+}
+
+.menu-links a:hover{
+background:var(--surface2);
+color:var(--red);
+}
+
+.menu-setting{
+border-top:1px solid var(--border);
+padding:20px 0;
+}
+
+.menu-setting label{
+display:block;
+font-size:12px;
+color:var(--muted);
+margin-bottom:10px;
+font-weight:700;
+}
+
+.menu-setting select{
+width:100%;
+padding:13px;
+border-radius:9px;
+border:1px solid var(--border);
+background:var(--surface2);
+color:var(--text);
+}
+
+.menu-theme{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:14px;
+font-weight:700;
+}
+
+.social-links{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.social-links a{
+background:var(--surface2);
+padding:9px;
+border-radius:8px;
+font-size:11px;
+}
+
+/* BUTTONS */
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+padding:14px 20px;
+border-radius:9px;
+font-size:12px;
+font-weight:800;
+border:1px solid transparent;
+transition:.2s;
+}
+
+.btn-primary{
+background:var(--red);
+color:white;
+}
+
+.btn-primary:hover{
+background:var(--red-dark);
+transform:translateY(-2px);
+}
+
+.btn-outline{
+background:transparent;
+border-color:var(--border);
+color:var(--text);
+}
+
+/* BREADCRUMB */
+
+.breadcrumb{
+padding:25px 0;
+font-size:11px;
+color:var(--muted);
+}
+
+.breadcrumb a{color:var(--red)}
+
+/* ARTICLE HEADER */
+
+.article-header{
+max-width:850px;
+margin:25px auto 30px;
+text-align:center;
+}
+
+.article-category{
+display:inline-block;
+background:rgba(229,29,53,.12);
+border:1px solid rgba(229,29,53,.25);
+color:var(--red);
+padding:9px 13px;
+border-radius:30px;
+font-size:10px;
+font-weight:900;
+letter-spacing:.8px;
+margin-bottom:20px;
+}
+
+.article-header h1{
+font-size:clamp(29px,5vw,50px);
+line-height:1.16;
+letter-spacing:-1.5px;
+margin-bottom:20px;
+}
+
+.article-description{
+font-size:14px;
+line-height:1.9;
+color:var(--muted);
+max-width:700px;
+margin:0 auto 23px;
+}
+
+.article-meta{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:18px;
+flex-wrap:wrap;
+font-size:11px;
+color:var(--muted);
+}
+
+.author{
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.author-avatar{
+width:29px;
+height:29px;
+border-radius:50%;
+background:var(--red);
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:900;
+font-size:11px;
+}
+
+/* FEATURE IMAGE */
+
+.article-cover{
+width:100%;
+height:460px;
+object-fit:cover;
+border-radius:15px;
+display:block;
+margin-bottom:45px;
+background:var(--surface2);
+}
+
+/* ARTICLE LAYOUT */
+
+.article-layout{
+display:grid;
+grid-template-columns:minmax(0,760px) 280px;
+gap:55px;
+align-items:start;
+justify-content:center;
+padding-bottom:80px;
+}
+
+.article-content{
+font-size:14px;
+line-height:2;
+color:var(--text);
+}
+
+.article-content h2{
+font-size:25px;
+letter-spacing:-.5px;
+margin:38px 0 15px;
+line-height:1.4;
+}
+
+.article-content h3{
+font-size:18px;
+margin:27px 0 12px;
+}
+
+.article-content p{
+margin-bottom:19px;
+color:var(--muted);
+}
+
+.article-content ul,
+.article-content ol{
+padding-left:25px;
+margin-bottom:22px;
+color:var(--muted);
+}
+
+.article-content li{margin-bottom:10px}
+
+.article-content strong{color:var(--text)}
+
+.article-content blockquote{
+border-left:4px solid var(--red);
+background:var(--surface);
+padding:22px;
+border-radius:0 10px 10px 0;
+margin:27px 0;
+color:var(--muted);
+font-style:italic;
+}
+
+.article-content .content-note{
+background:var(--surface);
+border:1px solid var(--border);
+border-left:4px solid var(--green);
+padding:20px;
+border-radius:10px;
+margin:25px 0;
+}
+
+.article-content .content-note strong{
+display:block;
+margin-bottom:8px;
+}
+
+/* SIDEBAR */
+
+.article-sidebar{
+position:sticky;
+top:110px;
+display:grid;
+gap:20px;
+}
+
+.sidebar-card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:12px;
+padding:22px;
+}
+
+.sidebar-card h3{
+font-size:15px;
+margin-bottom:17px;
+}
+
+.sidebar-card p{
+font-size:11px;
+line-height:1.8;
+color:var(--muted);
+}
+
+.sidebar-links{
+display:grid;
+gap:13px;
+}
+
+.sidebar-links a{
+font-size:11px;
+font-weight:700;
+color:var(--muted);
+line-height:1.6;
+}
+
+.sidebar-links a:hover{color:var(--red)}
+
+.sidebar-contact{
+background:linear-gradient(145deg,#e51d35,#a80e25);
+color:white;
+border-radius:12px;
+padding:22px;
+}
+
+.sidebar-contact h3{
+font-size:16px;
+margin-bottom:10px;
+}
+
+.sidebar-contact p{
+font-size:11px;
+line-height:1.8;
+color:#ffe0e4;
+margin-bottom:18px;
+}
+
+.sidebar-contact .btn{
+background:white;
+color:#bd1026;
+width:100%;
+}
+
+/* SHARE */
+
+.share-section{
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+padding:22px 0;
+margin-top:45px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.share-section strong{font-size:12px}
+
+.share-buttons{
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+}
+
+.share-btn{
+background:var(--surface);
+border:1px solid var(--border);
+color:var(--text);
+padding:10px 13px;
+border-radius:8px;
+font-size:10px;
+font-weight:800;
+}
+
+.share-btn:hover{
+border-color:var(--red);
+color:var(--red);
+}
+
+/* RELATED ARTICLES */
+
+.related-section{
+background:var(--surface2);
+padding:70px 0;
+}
+
+.section-heading{
+margin-bottom:25px;
+}
+
+.section-heading small{
+color:var(--red);
+font-size:10px;
+font-weight:900;
+letter-spacing:1px;
+}
+
+.section-heading h2{
+font-size:28px;
+margin-top:9px;
+}
+
+.related-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.related-card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:12px;
+overflow:hidden;
+transition:.2s;
+}
+
+.related-card:hover{
+transform:translateY(-4px);
+border-color:var(--red);
+}
+
+.related-card img{
+width:100%;
+height:170px;
+object-fit:cover;
+}
+
+.related-body{padding:17px}
+
+.related-body small{
+font-size:9px;
+color:var(--red);
+font-weight:900;
+}
+
+.related-body h3{
+font-size:14px;
+line-height:1.5;
+margin:10px 0 15px;
+}
+
+.related-body a{
+font-size:10px;
+font-weight:900;
+color:var(--red);
+}
+
+/* NOT FOUND */
+
+.not-found{
+max-width:650px;
+margin:70px auto;
+text-align:center;
+background:var(--surface);
+border:1px solid var(--border);
+padding:55px 25px;
+border-radius:15px;
+}
+
+.not-found .emoji{
+font-size:55px;
+margin-bottom:17px;
+}
+
+.not-found h2{
+font-size:25px;
+margin-bottom:10px;
+}
+
+.not-found p{
+font-size:12px;
+line-height:1.8;
+color:var(--muted);
+margin-bottom:20px;
+}
+
+/* FOOTER */
+
+footer{
+background:#08090c;
+color:white;
+padding:60px 0 0;
+border-top:1px solid var(--border);
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+gap:35px;
+padding-bottom:40px;
+}
+
+.footer-brand p{
+font-size:12px;
+line-height:1.9;
+color:#999eaa;
+margin-top:16px;
+}
+
+.footer-col h3{
+font-size:13px;
+margin-bottom:20px;
+}
+
+.footer-col a{
+display:block;
+color:#999eaa;
+font-size:12px;
+margin-bottom:13px;
+}
+
+.footer-col a:hover{color:var(--red)}
+
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,.09);
+padding:23px 0;
+display:flex;
+justify-content:space-between;
+gap:15px;
+flex-wrap:wrap;
+color:#858994;
+font-size:11px;
+}
+
+.footer-bottom strong{color:white}
+
+.toast{
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translate(-50%,20px);
+background:var(--green);
+color:white;
+padding:13px 20px;
+border-radius:8px;
+font-size:12px;
+font-weight:800;
+opacity:0;
+visibility:hidden;
+transition:.25s;
+z-index:2000;
+}
+
+.toast.show{
+opacity:1;
+visibility:visible;
+transform:translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+.desktop-nav{display:none}
+.menu-btn{display:flex}
+.article-layout{
+grid-template-columns:1fr;
+gap:35px;
+}
+.article-sidebar{
+position:static;
+grid-template-columns:repeat(2,1fr);
+}
+.article-cover{height:380px}
+.footer-grid{grid-template-columns:repeat(2,1fr)}
+
+}
+
+@media(max-width:700px){
+
+.navbar{height:67px}
+.brand{font-size:16px}
+.brand img{width:36px;height:36px}
+.icon-btn{width:35px;height:35px}
+
+.article-header{margin-top:15px}
+
+.article-cover{
+height:260px;
+border-radius:10px;
+margin-bottom:30px;
+}
+
+.article-layout{padding-bottom:55px}
+
+.article-content{font-size:13px}
+
+.article-content h2{font-size:22px}
+
+.article-sidebar{grid-template-columns:1fr}
+
+.related-section{padding:55px 0}
+
+.related-grid{grid-template-columns:1fr}
+
+.related-card img{height:210px}
+
+.footer-grid{grid-template-columns:1fr 1fr;gap:25px}
+
+.footer-brand{grid-column:1/-1}
+
+}
+
+@media(max-width:430px){
+
+.article-meta{gap:10px}
+
+.article-header h1{font-size:29px}
+
+.share-section{
+align-items:flex-start;
+flex-direction:column;
+}
+
+.footer-grid{grid-template-columns:1fr}
+
+.footer-brand{grid-column:auto}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+🔥 FOSTER GAMING — PREMIUM POKÉMON GO ACCOUNTS
+</div>
+
+<header>
+<div class="container navbar">
+
+<a href="index.html" class="brand">
+<img src="https://placehold.co/100x100/e51d35/ffffff?text=FG" alt="Foster Gaming Logo">
+<div>FOSTER <span>GAMING</span></div>
+</a>
+
+<nav class="desktop-nav">
+<a href="index.html">Home</a>
+<a href="accounts.html">Accounts</a>
+<a href="blog.html" class="active">Blog</a>
+<a href="about.html">About Us</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="nav-actions">
+
+<button class="icon-btn" id="themeButton" aria-label="Change theme">☀</button>
+
+<a href="cart.html" class="icon-btn" aria-label="Shopping cart">
+🛒<span class="cart-count" id="cartCount"></span>
+</a>
+
+<button class="icon-btn menu-btn" id="openMenu" aria-label="Open menu">☰</button>
+
+</div>
+
+</div>
+</header>
+
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<aside class="side-menu" id="sideMenu">
+
+<div class="menu-head">
+<h3>Foster Gaming</h3>
+<button class="close-menu" id="closeMenu">×</button>
+</div>
+
+<div class="menu-links">
+<a href="index.html">🏠 Home</a>
+<a href="accounts.html">🎮 Browse Accounts</a>
+<a href="cart.html">🛒 Shopping Cart</a>
+<a href="blog.html">📰 Gaming Blog</a>
+<a href="about.html">ℹ️ About Us</a>
+<a href="reviews.html">⭐ Customer Reviews</a>
+<a href="contact.html">📩 Contact Us</a>
+</div>
+
+<div class="menu-setting">
+<label for="languageSelect">SELECT LANGUAGE</label>
+<select id="languageSelect">
+<option value="en">🇬🇧 English</option>
+<option value="es">🇪🇸 Español</option>
+<option value="fr">🇫🇷 Français</option>
+<option value="de">🇩🇪 Deutsch</option>
+<option value="pt">🇵🇹 Português</option>
+<option value="ar">🇸🇦 العربية</option>
+<option value="zh">🇨🇳 中文</option>
+<option value="ja">🇯🇵 日本語</option>
+</select>
+</div>
+
+<div class="menu-setting">
+<div class="menu-theme">
+<span>Appearance</span>
+<button class="icon-btn" id="menuThemeButton">☀</button>
+</div>
+</div>
+
+<div class="menu-setting">
+<label>FOLLOW FOSTER GAMING</label>
+<div class="social-links">
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok 1</a>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
+</div>
+</div>
+
+</aside>
+
+
+<main>
+
+<div class="container">
+
+<div class="breadcrumb">
+<a href="index.html">Home</a> /
+<a href="blog.html">Blog</a> /
+<span id="breadcrumbTitle">Article</span>
+</div>
+
+
+<div id="articlePage">
+
+<header class="article-header">
+
+<div class="article-category" id="articleCategory">POKÉMON GO GUIDE</div>
+
+<h1 id="articleTitle">Loading Article...</h1>
+
+<p class="article-description" id="articleDescription"></p>
+
+<div class="article-meta">
+
+<div class="author">
+<div class="author-avatar">FG</div>
+<span>Foster Gaming</span>
+</div>
+
+<span id="articleDate"></span>
+
+<span id="articleReadTime"></span>
+
+</div>
+
+</header>
+
+
+<img
+class="article-cover"
+id="articleCover"
+src=""
+alt="Article cover"
+>
+
+
+<div class="article-layout">
+
+<article class="article-content" id="articleContent"></article>
+
+
+<aside class="article-sidebar">
+
+<div class="sidebar-card">
+
+<h3>About Foster Gaming</h3>
+
+<p>
+Foster Gaming is a marketplace focused on Pokémon GO accounts.
+We provide a place for visitors to explore available listings,
+read gaming information and contact our team.
+</p>
+
+</div>
+
+
+<div class="sidebar-card">
+
+<h3>Explore Our Website</h3>
+
+<div class="sidebar-links">
+<a href="accounts.html">🎮 Browse Pokémon GO Accounts</a>
+<a href="reviews.html">⭐ Customer Reviews</a>
+<a href="blog.html">📰 More Gaming Articles</a>
+<a href="about.html">ℹ️ About Foster Gaming</a>
+<a href="contact.html">📩 Contact Our Team</a>
+</div>
+
+</div>
+
+
+<div class="sidebar-contact">
+
+<h3>Need Assistance?</h3>
+
+<p>
+Have questions about an account or something in our marketplace?
+Get in touch with Foster Gaming.
+</p>
+
+<a href="contact.html" class="btn">CONTACT US →</a>
+
+</div>
+
+</aside>
+
+</div>
+
+
+<div class="share-section">
+
+<strong>Enjoyed this article? Share it:</strong>
+
+<div class="share-buttons">
+
+<button class="share-btn" id="shareFacebook">Facebook</button>
+
+<button class="share-btn" id="shareWhatsApp">WhatsApp</button>
+
+<button class="share-btn" id="shareX">X / Twitter</button>
+
+<button class="share-btn" id="copyLink">Copy Link</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="not-found hidden" id="notFound">
+
+<div class="emoji">📄</div>
+
+<h2>Article Not Found</h2>
+
+<p>
+The article you're looking for may have been moved or is not available.
+Visit our blog to explore other articles.
+</p>
+
+<a href="blog.html" class="btn btn-primary">BACK TO BLOG</a>
+
+</div>
+
+</div>
+
+
+<!-- RELATED ARTICLES -->
+
+<section class="related-section" id="relatedSection">
+
+<div class="container">
+
+<div class="section-heading">
+<small>KEEP EXPLORING</small>
+<h2>Related Articles</h2>
+</div>
+
+<div class="related-grid" id="relatedGrid"></div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div class="footer-brand">
+
+<a href="index.html" class="brand">
+<img src="https://placehold.co/100x100/e51d35/ffffff?text=FG" alt="Foster Gaming">
+<div>FOSTER <span>GAMING</span></div>
+</a>
+
+<p>
+Foster Gaming specializes in buying, selling and swapping
+stacked Pokémon GO accounts. Explore our marketplace and
+discover your next account.
+</p>
+
+<div class="social-links">
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok</a>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
+</div>
+
+</div>
+
+
+<div class="footer-col">
+<h3>QUICK LINKS</h3>
+<a href="index.html">Home</a>
+<a href="accounts.html">Browse Accounts</a>
+<a href="cart.html">Shopping Cart</a>
+<a href="blog.html">Gaming Blog</a>
+<a href="about.html">About Us</a>
+<a href="contact.html">Contact</a>
+</div>
+
+
+<div class="footer-col">
+<h3>ACCOUNT LEVELS</h3>
+<a href="accounts.html?level=65">Level 65–68</a>
+<a href="accounts.html?level=69">Level 69–72</a>
+<a href="accounts.html?level=73">Level 73–76</a>
+<a href="accounts.html?level=77">Level 77–80</a>
+<a href="accounts.html?status=sold">Sold Accounts</a>
+</div>
+
+
+<div class="footer-col">
+<h3>CONTACT</h3>
+<a href="mailto:harishwilliams010@gmail.com">📧 Business Email</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">💬 Discord</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">👻 Snapchat</a>
+<a href="contact.html">📩 Contact Us</a>
+</div>
+
+</div>
+
+
+<div class="footer-bottom">
+
+<div>© <span id="currentYear"></span> Foster Gaming. All Rights Reserved.</div>
+
+<div>Website developed by <strong>BITBRIDGE TECHNOLOGIES INC.</strong></div>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =====================================
+   ARTICLE DATABASE
+===================================== */
+
+const articles=[
+
+{
+id:"FG-BLOG-001",
+title:"Everything You Should Know Before Buying a Pokémon GO Account",
+category:"Pokémon GO Guide",
+image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1400&q=85",
+description:"Learn what to inspect before purchasing a Pokémon GO account, including levels, Pokémon collections, items and important account details.",
+date:"November 24, 2026",
+readTime:"6 min read",
+
+content:`
+
+<p>
+Buying a Pokémon GO account is a decision that requires careful consideration.
+Different accounts can have different levels, collections, achievements and features.
+Before making a purchase, it is important to understand what you are being offered.
+</p>
+
+<h2>1. Understand the Account Level</h2>
+
+<p>
+Account level is one of the first details many buyers look at.
+A higher level can indicate substantial gameplay progression, but level alone
+does not tell you everything about an account.
+</p>
+
+<p>
+Look at the overall account information and consider whether its progression,
+available resources and collection match what you are looking for.
+</p>
+
+<h2>2. Review the Pokémon Collection</h2>
+
+<p>
+The Pokémon collection can be an important part of an account's appeal.
+Consider the variety and quality of Pokémon included in the listing.
+</p>
+
+<ul>
+<li>Look at the Pokémon included in the collection.</li>
+<li>Review their CP and other available information.</li>
+<li>Check whether rare or special Pokémon are included.</li>
+<li>Ask for clear screenshots of important features.</li>
+</ul>
+
+<h2>3. Check the Account Information</h2>
+
+<p>
+Before purchasing, ask the seller to explain the account's login arrangement
+and any relevant access or recovery limitations.
+</p>
+
+<p>
+Never assume that an account is transferable simply because it is advertised
+for sale. Account transfers may be restricted by the game provider's terms.
+</p>
+
+<h2>4. Ask for Clear Screenshots</h2>
+
+<p>
+A good listing should provide enough visual information for a buyer to
+understand what is included.
+</p>
+
+<p>
+Ask for screenshots that show the account level, Pokémon collection,
+items and other features relevant to the listing.
+</p>
+
+<h2>5. Understand the Seller's Conditions</h2>
+
+<p>
+Make sure you understand the seller's delivery process, payment requirements,
+support arrangements and any applicable limitations before proceeding.
+</p>
+
+<div class="content-note">
+<strong>Important Reminder</strong>
+Always review the applicable Pokémon GO terms and conditions.
+Buying, selling or transferring accounts may violate the game's rules
+and could result in account restrictions or loss of access.
+</div>
+
+<h2>Final Thoughts</h2>
+
+<p>
+A careful buyer takes time to understand a listing before making a decision.
+Review the available information, ask questions and avoid rushing into a transaction.
+</p>
+
+<p>
+Explore the Foster Gaming marketplace to see the account listings currently available.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-002",
+title:"What Makes a Pokémon GO Account Valuable?",
+category:"Account Tips",
+image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=85",
+description:"Discover some of the factors that may influence the value of a Pokémon GO account.",
+date:"November 20, 2026",
+readTime:"5 min read",
+
+content:`
+
+<p>
+Not all Pokémon GO accounts have the same features or progression.
+Some accounts may have larger collections, more resources or different achievements.
+Understanding these differences can help buyers evaluate listings.
+</p>
+
+<h2>Account Progression</h2>
+
+<p>
+The account level can provide an indication of gameplay progression.
+However, level should be considered alongside the account's other features.
+</p>
+
+<h2>Pokémon Collection</h2>
+
+<p>
+The Pokémon available on an account can be an important consideration.
+Collectors may be interested in different Pokémon, forms, statistics and collections.
+</p>
+
+<h2>Items and Resources</h2>
+
+<p>
+Available items and resources may also influence how a buyer evaluates an account.
+A listing should clearly explain what resources are included.
+</p>
+
+<h2>Achievements and Gameplay History</h2>
+
+<p>
+Achievements and other gameplay information can help describe an account's history.
+Buyers should ask for accurate information rather than relying on unsupported claims.
+</p>
+
+<h2>Seller Transparency</h2>
+
+<p>
+Clear screenshots, honest descriptions and responsive communication make it easier
+for buyers to understand what a listing contains.
+</p>
+
+<div class="content-note">
+<strong>Remember</strong>
+An account's advertised features do not guarantee its future value.
+Always review the game's account policies and understand the risks involved.
+</div>
+
+<h2>Conclusion</h2>
+
+<p>
+The best way to evaluate a listing is to consider all the available information
+rather than focusing on one number or feature.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-003",
+title:"Understanding Pokémon GO Account Levels",
+category:"Guides",
+image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1400&q=85",
+description:"A beginner-friendly introduction to account progression and the importance of account levels.",
+date:"November 18, 2026",
+readTime:"4 min read",
+
+content:`
+
+<p>
+Account levels are one of the most visible indicators of progression in Pokémon GO.
+They help describe how far a player has advanced through the game's progression system.
+</p>
+
+<h2>Why Account Levels Matter</h2>
+
+<p>
+Levels can give buyers an initial idea of an account's progression.
+However, two accounts at the same level may have very different collections,
+achievements and resources.
+</p>
+
+<h2>Look Beyond the Number</h2>
+
+<p>
+When evaluating an account, do not consider level in isolation.
+Review the Pokémon collection, items and other features included in the listing.
+</p>
+
+<h2>Compare Listings Carefully</h2>
+
+<ul>
+<li>Check the advertised account level.</li>
+<li>Review the account screenshots.</li>
+<li>Compare the included Pokémon and resources.</li>
+<li>Ask questions about unclear listing details.</li>
+</ul>
+
+<h2>Conclusion</h2>
+
+<p>
+Account level is useful information, but it is only one part of a complete
+account description.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-004",
+title:"Things to Check Before Trading Pokémon",
+category:"Trading",
+image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=85",
+description:"Understand important trading considerations, restrictions and preparation before making a trade.",
+date:"November 15, 2026",
+readTime:"5 min read",
+
+content:`
+
+<p>
+Pokémon trading is an important feature of Pokémon GO.
+Before arranging a trade, players should understand the game's trading requirements
+and the conditions that apply to their accounts.
+</p>
+
+<h2>Understand Trading Requirements</h2>
+
+<p>
+Trading is subject to in-game requirements and restrictions.
+Review the current rules inside the game before arranging a transaction.
+</p>
+
+<h2>Check the Pokémon Details</h2>
+
+<p>
+Make sure you understand which Pokémon are involved in the trade.
+Consider their availability, CP, forms and any other relevant information.
+</p>
+
+<h2>Discuss the Arrangement Clearly</h2>
+
+<p>
+Both parties should understand exactly what is being exchanged.
+Avoid vague agreements or assumptions.
+</p>
+
+<div class="content-note">
+<strong>Important</strong>
+Some Pokémon GO trading features have eligibility requirements and limitations.
+Check the current official game rules before proceeding.
+</div>
+
+<h2>Final Thoughts</h2>
+
+<p>
+Clear communication and understanding the game mechanics can help prevent
+misunderstandings when arranging trades.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-005",
+title:"How to Keep Your Gaming Account Information Safe",
+category:"Gaming Tips",
+image:"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=85",
+description:"Learn basic digital security practices that help protect your account information and personal details.",
+date:"November 12, 2026",
+readTime:"6 min read",
+
+content:`
+
+<p>
+Digital security is important whenever you use online gaming services.
+Your login information, email account and personal details should be protected.
+</p>
+
+<h2>Use Strong Passwords</h2>
+
+<p>
+Choose unique passwords that are difficult to guess.
+Avoid using the same password across multiple services.
+</p>
+
+<h2>Protect Your Email Account</h2>
+
+<p>
+Your email account may be connected to important gaming services.
+Secure it with a strong password and available additional security measures.
+</p>
+
+<h2>Be Careful With Links</h2>
+
+<p>
+Avoid opening suspicious links or entering your credentials on websites
+you do not trust.
+</p>
+
+<h2>Do Not Share Sensitive Information</h2>
+
+<p>
+Never share passwords, verification codes or recovery credentials with
+untrusted people.
+</p>
+
+<h2>Review Account Access</h2>
+
+<p>
+Check the security settings and available account activity features
+offered by your service provider.
+</p>
+
+<div class="content-note">
+<strong>Security Reminder</strong>
+Only use official account-management and recovery channels.
+Be cautious of anyone promising guaranteed account recovery.
+</div>
+
+<h2>Conclusion</h2>
+
+<p>
+Good digital security habits can reduce unnecessary risks when using
+online gaming services.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-006",
+title:"Important Pokémon GO Account Features to Understand",
+category:"Account Tips",
+image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1400&q=85",
+description:"Explore account features and information worth understanding before evaluating an account.",
+date:"November 10, 2026",
+readTime:"4 min read",
+
+content:`
+
+<p>
+A Pokémon GO account contains several features that may be relevant
+when reviewing an account listing.
+</p>
+
+<h2>Pokémon Storage</h2>
+
+<p>
+Understand the collection included and whether the available storage
+matches the advertised information.
+</p>
+
+<h2>Item Storage</h2>
+
+<p>
+Items can be part of an account's overall gameplay resources.
+Ask for accurate information about the items included.
+</p>
+
+<h2>Progression</h2>
+
+<p>
+Account progression includes more than just the displayed level.
+Achievements and other available information may provide additional context.
+</p>
+
+<h2>Account Access</h2>
+
+<p>
+Understand how account access is managed and what limitations may apply.
+Never assume that access can be transferred without restrictions.
+</p>
+
+<h2>Conclusion</h2>
+
+<p>
+Review the account as a complete package and ask for evidence of any
+features that are important to your decision.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-007",
+title:"A Beginner's Guide to Pokémon GO",
+category:"Guides",
+image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1400&q=85",
+description:"An introductory guide to understanding the gameplay, progression and basic features.",
+date:"November 7, 2026",
+readTime:"7 min read",
+
+content:`
+
+<p>
+Pokémon GO is a location-based mobile game that combines digital gameplay
+with real-world exploration.
+Players can discover Pokémon, collect items and participate in different
+in-game activities.
+</p>
+
+<h2>Exploring the Game</h2>
+
+<p>
+The game uses a map-based experience that connects gameplay to real-world
+locations.
+Players can explore different areas and encounter Pokémon.
+</p>
+
+<h2>Collecting Pokémon</h2>
+
+<p>
+Collecting Pokémon is one of the central activities.
+Different Pokémon may appear in different environments and circumstances.
+</p>
+
+<h2>Progression and Levels</h2>
+
+<p>
+Players progress through the game by earning experience and completing
+various activities.
+</p>
+
+<h2>Items and Resources</h2>
+
+<p>
+Items help players participate in different gameplay activities.
+Understanding how these items work can improve the overall experience.
+</p>
+
+<h2>Keep Learning</h2>
+
+<p>
+The game changes over time through updates, events and feature adjustments.
+Check official announcements to stay informed.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-008",
+title:"Understanding Account Recovery and Security",
+category:"Gaming Tips",
+image:"https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1400&q=85",
+description:"Important considerations around account access, recovery information and digital security.",
+date:"November 4, 2026",
+readTime:"5 min read",
+
+content:`
+
+<p>
+Account access and recovery information are important considerations
+for anyone using an online gaming service.
+</p>
+
+<h2>Keep Recovery Information Updated</h2>
+
+<p>
+Make sure the recovery information associated with your account is accurate
+and accessible to you.
+</p>
+
+<h2>Understand Login Providers</h2>
+
+<p>
+Some gaming accounts use external login providers.
+Understand which services are connected and how they affect account access.
+</p>
+
+<h2>Use Official Support</h2>
+
+<p>
+If you experience access problems, consult the official support channels
+provided by the game publisher or relevant login provider.
+</p>
+
+<h2>Be Careful With Third Parties</h2>
+
+<p>
+Do not provide account credentials or verification codes to people
+who claim they can recover accounts without authorization.
+</p>
+
+<h2>Conclusion</h2>
+
+<p>
+Understanding account recovery procedures is an important part of
+responsible online account management.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-009",
+title:"What to Know About Pokémon GO Updates",
+category:"Gaming News",
+image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=85",
+description:"A general guide to following game updates, announcements and new features.",
+date:"November 1, 2026",
+readTime:"4 min read",
+
+content:`
+
+<p>
+Pokémon GO receives changes and updates that can affect gameplay,
+features and events.
+Keeping up with announcements can help players understand what is changing.
+</p>
+
+<h2>Follow Official Announcements</h2>
+
+<p>
+Use official Pokémon GO channels for accurate information about upcoming events
+and game updates.
+</p>
+
+<h2>Check Game Version Information</h2>
+
+<p>
+Keeping your app updated can help ensure that you have access to supported
+features and important fixes.
+</p>
+
+<h2>Understand Feature Changes</h2>
+
+<p>
+Game mechanics and availability can change.
+Review official explanations when a feature is adjusted.
+</p>
+
+<h2>Conclusion</h2>
+
+<p>
+Following official announcements is a reliable way to stay informed
+about Pokémon GO.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-010",
+title:"How to Evaluate a Stacked Pokémon GO Account",
+category:"Account Tips",
+image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1400&q=85",
+description:"A practical checklist for evaluating account information, collections and other account features.",
+date:"October 28, 2026",
+readTime:"6 min read",
+
+content:`
+
+<p>
+The term stacked account is commonly used to describe an account with
+a substantial collection of Pokémon, resources or gameplay progression.
+However, the meaning can vary between sellers.
+</p>
+
+<h2>Review the Account Description</h2>
+
+<p>
+Read the complete listing and understand what the seller claims is included.
+</p>
+
+<h2>Check the Screenshots</h2>
+
+<p>
+Request clear screenshots that support the advertised features.
+Look for consistency between the description and the evidence provided.
+</p>
+
+<h2>Ask Questions</h2>
+
+<ul>
+<li>What is the account level?</li>
+<li>What Pokémon are included?</li>
+<li>What items and resources are available?</li>
+<li>What account access limitations apply?</li>
+</ul>
+
+<h2>Understand the Risks</h2>
+
+<p>
+Account buying and selling may violate the game's terms.
+Buyers should understand the possibility of restrictions or loss of access.
+</p>
+
+<h2>Conclusion</h2>
+
+<p>
+A careful review helps buyers understand what is being advertised.
+Avoid making decisions based only on promotional descriptions.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-011",
+title:"Gaming Marketplace: What Buyers Should Know",
+category:"Guides",
+image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?auto=format&fit=crop&w=1400&q=85",
+description:"Learn how to assess listings, understand seller information and ask useful questions.",
+date:"October 25, 2026",
+readTime:"5 min read",
+
+content:`
+
+<p>
+Online marketplaces make it possible to browse listings and compare
+different offers.
+However, buyers should take time to understand the information
+provided by sellers.
+</p>
+
+<h2>Read the Listing Carefully</h2>
+
+<p>
+Review the description, images and any stated limitations.
+Do not assume that an advertised feature is included unless it is clearly stated.
+</p>
+
+<h2>Compare Available Options</h2>
+
+<p>
+Compare account features and other relevant information.
+A higher price does not automatically mean that an account is better.
+</p>
+
+<h2>Understand Payment Conditions</h2>
+
+<p>
+Know what payment methods are accepted and how the seller handles
+payment confirmation and delivery.
+</p>
+
+<h2>Keep Transaction Records</h2>
+
+<p>
+Save order references and relevant communication.
+These details may be useful if you need to contact the seller.
+</p>
+
+<div class="content-note">
+<strong>Important</strong>
+Always consider the platform's policies and the risks associated with
+third-party account transactions.
+</div>
+
+<h2>Final Thoughts</h2>
+
+<p>
+Good marketplace decisions start with accurate information,
+clear communication and realistic expectations.
+</p>
+
+`
+
+},
+
+{
+id:"FG-BLOG-012",
+title:"Preparing for a Pokémon GO Account Purchase",
+category:"Gaming Tips",
+image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1400&q=85",
+description:"A useful checklist for reviewing an account listing and preparing questions before purchase.",
+date:"October 21, 2026",
+readTime:"4 min read",
+
+content:`
+
+<p>
+Before considering a Pokémon GO account purchase, it is useful to
+prepare a list of questions and review the available information.
+</p>
+
+<h2>Set Your Requirements</h2>
+
+<p>
+Decide which features are important to you.
+This may include account level, Pokémon collection or other gameplay information.
+</p>
+
+<h2>Review the Listing</h2>
+
+<p>
+Check the description and available screenshots.
+Make sure the information is clear and consistent.
+</p>
+
+<h2>Contact the Seller</h2>
+
+<p>
+Ask questions about unclear details before making any payment.
+</p>
+
+<h2>Understand Account Restrictions</h2>
+
+<p>
+Review the game provider's account policies and understand any risks
+associated with account transfers or sales.
+</p>
+
+<h2>Make an Informed Decision</h2>
+
+<p>
+Take your time, consider the available information and avoid pressure
+to make an immediate purchase.
+</p>
+
+`
+
+}
+
+];
+
+
+/* =====================================
+   LOAD SELECTED ARTICLE
+===================================== */
+
+const params=new URLSearchParams(window.location.search);
+
+const articleId=params.get("id")||"FG-BLOG-001";
+
+const article=articles.find(item=>item.id===articleId);
+
+const articlePage=document.getElementById("articlePage");
+
+const notFound=document.getElementById("notFound");
+
+
+if(!article){
+
+articlePage.classList.add("hidden");
+
+notFound.classList.remove("hidden");
+
+document.getElementById("relatedSection").classList.add("hidden");
+
+document.title="Article Not Found | Foster Gaming";
+
+}else{
+
+document.title=article.title+" | Foster Gaming";
+
+document.getElementById("articleCategory").textContent=
+article.category.toUpperCase();
+
+document.getElementById("articleTitle").textContent=
+article.title;
+
+document.getElementById("articleDescription").textContent=
+article.description;
+
+document.getElementById("articleDate").textContent=
+"📅 "+article.date;
+
+document.getElementById("articleReadTime").textContent=
+"⏱ "+article.readTime;
+
+document.getElementById("breadcrumbTitle").textContent=
+article.title;
+
+document.getElementById("articleCover").src=article.image;
+
+document.getElementById("articleCover").alt=article.title;
+
+document.getElementById("articleContent").innerHTML=
+article.content;
+
+renderRelatedArticles();
+
+}
+
+
+/* =====================================
+   RELATED ARTICLES
+===================================== */
+
+function renderRelatedArticles(){
+
+const relatedGrid=document.getElementById("relatedGrid");
+
+const related=articles
+.filter(item=>item.id!==article.id)
+.sort((a,b)=>{
+
+return (b.category===article.category)-
+(a.category===article.category);
+
+})
+.slice(0,3);
+
+relatedGrid.innerHTML="";
+
+related.forEach(item=>{
+
+const card=document.createElement("article");
+
+card.className="related-card";
+
+const image=document.createElement("img");
+
+image.src=item.image;
+
+image.alt=item.title;
+
+image.loading="lazy";
+
+const body=document.createElement("div");
+
+body.className="related-body";
+
+const category=document.createElement("small");
+
+category.textContent=item.category.toUpperCase();
+
+const title=document.createElement("h3");
+
+title.textContent=item.title;
+
+const link=document.createElement("a");
+
+link.href="article.html?id="+encodeURIComponent(item.id);
+
+link.textContent="READ ARTICLE →";
+
+body.append(category,title,link);
+
+card.append(image,body);
+
+relatedGrid.appendChild(card);
+
+});
+
+}
+
+
+/* =====================================
+   SHARE FUNCTIONS
+===================================== */
+
+function getArticleUrl(){
+
+return window.location.href;
+
+}
+
+function shareOn(platform){
+
+const url=encodeURIComponent(getArticleUrl());
+
+const title=encodeURIComponent(article?article.title:"Foster Gaming Article");
+
+let destination="";
+
+if(platform==="facebook"){
+
+destination="https://www.facebook.com/sharer/sharer.php?u="+url;
+
+}
+
+if(platform==="whatsapp"){
+
+destination="https://wa.me/?text="+title+"%20"+url;
+
+}
+
+if(platform==="x"){
+
+destination="https://twitter.com/intent/tweet?text="+title+"&url="+url;
+
+}
+
+if(destination){
+
+window.open(destination,"_blank","noopener,noreferrer");
+
+}
+
+}
+
+document.getElementById("shareFacebook").addEventListener("click",()=>shareOn("facebook"));
+
+document.getElementById("shareWhatsApp").addEventListener("click",()=>shareOn("whatsapp"));
+
+document.getElementById("shareX").addEventListener("click",()=>shareOn("x"));
+
+
+document.getElementById("copyLink").addEventListener("click",async()=>{
+
+try{
+
+await navigator.clipboard.writeText(getArticleUrl());
+
+showToast("Article link copied!");
+
+}catch(error){
+
+const input=document.createElement("textarea");
+
+input.value=getArticleUrl();
+
+document.body.appendChild(input);
+
+input.select();
+
+document.execCommand("copy");
+
+input.remove();
+
+showToast("Article link copied!");
+
+}
+
+});
+
+
+/* =====================================
+   TOAST
+===================================== */
+
+function showToast(message){
+
+const toast=document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2500);
+
+}
+
+
+/* =====================================
+   THEME MANAGEMENT
+===================================== */
+
+function applyTheme(theme){
+
+document.body.classList.toggle("light",theme==="light");
+
+localStorage.setItem("fosterGamingTheme",theme);
+
+const icon=theme==="light"?"🌙":"☀";
+
+document.getElementById("themeButton").textContent=icon;
+
+document.getElementById("menuThemeButton").textContent=icon;
+
+}
+
+applyTheme(localStorage.getItem("fosterGamingTheme")||"dark");
+
+function toggleTheme(){
+
+const current=localStorage.getItem("fosterGamingTheme")||"dark";
+
+applyTheme(current==="dark"?"light":"dark");
+
+}
+
+document.getElementById("themeButton").addEventListener("click",toggleTheme);
+
+document.getElementById("menuThemeButton").addEventListener("click",toggleTheme);
+
+
+/* =====================================
+   LANGUAGE PREFERENCE
+===================================== */
+
+const languageSelect=document.getElementById("languageSelect");
+
+languageSelect.value=localStorage.getItem("fosterGamingLanguage")||"en";
+
+document.documentElement.lang=languageSelect.value;
+
+document.documentElement.dir=languageSelect.value==="ar"?"rtl":"ltr";
+
+languageSelect.addEventListener("change",function(){
+
+localStorage.setItem("fosterGamingLanguage",this.value);
+
+document.documentElement.lang=this.value;
+
+document.documentElement.dir=this.value==="ar"?"rtl":"ltr";
+
+alert("Your language preference has been saved.");
+
+});
+
+
+/* =====================================
+   MOBILE MENU
+===================================== */
+
+const sideMenu=document.getElementById("sideMenu");
+
+const overlay=document.getElementById("menuOverlay");
+
+function openMenu(){
+
+sideMenu.classList.add("open");
+
+overlay.classList.add("show");
+
+document.body.style.overflow="hidden";
+
+}
+
+function closeMenu(){
+
+sideMenu.classList.remove("open");
+
+overlay.classList.remove("show");
+
+document.body.style.overflow="";
+
+}
+
+document.getElementById("openMenu").addEventListener("click",openMenu);
+
+document.getElementById("closeMenu").addEventListener("click",closeMenu);
+
+overlay.addEventListener("click",closeMenu);
+
+
+/* =====================================
+   CART COUNT
+===================================== */
+
+try{
+
+const cart=JSON.parse(localStorage.getItem("fosterGamingCart")||"[]");
+
+const count=Array.isArray(cart)?cart.reduce((total,item)=>{
+
+return total+(Number(item.quantity)||1);
+
+},0):0;
+
+document.getElementById("cartCount").textContent=count||"";
+
+}catch(error){
+
+document.getElementById("cartCount").textContent="";
+
+}
+
+
+/* =====================================
+   INITIALIZE
+===================================== */
+
+document.getElementById("currentYear").textContent=
+new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
