@@ -3,654 +3,1410 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#e52535">
+<meta name="theme-color" content="#e51d35">
 <title>Contact Us | Foster Gaming</title>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 :root{
---red:#e52535;
+--red:#e51d35;
+--red-dark:#bd1026;
 --green:#16a36a;
---bg:#f5f5f7;
---card:#fff;
---text:#171717;
---muted:#777;
---border:#e8e8e8;
+--bg:#090a0e;
+--surface:#111319;
+--surface2:#191c25;
+--text:#f5f5f7;
+--muted:#a2a5b0;
+--border:rgba(255,255,255,.09);
+--header:rgba(9,10,14,.95);
+}
+
+body.light{
+--bg:#f5f6f9;
+--surface:#fff;
+--surface2:#eceef3;
+--text:#171923;
+--muted:#656b79;
+--border:rgba(0,0,0,.09);
 --header:rgba(255,255,255,.95);
 }
-body.dark{
---bg:#101010;
---card:#191919;
---text:#f5f5f5;
---muted:#aaa;
---border:#303030;
---header:rgba(18,18,18,.96);
-}
+
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);transition:.25s}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+overflow-x:hidden;
+transition:.3s;
+}
+
 a{text-decoration:none;color:inherit}
 button,input,textarea,select{font-family:inherit}
-.container{width:min(1200px,92%);margin:auto}
+
+.container{width:min(1150px,92%);margin:auto}
+
 .announcement{
-background:var(--red);color:white;text-align:center;
-padding:10px;font-size:10px;font-weight:900;letter-spacing:.5px
+background:var(--red);
+color:white;
+text-align:center;
+padding:10px;
+font-size:11px;
+font-weight:800;
+letter-spacing:.5px;
 }
+
 header{
-position:sticky;top:0;z-index:1000;
-background:var(--header);backdrop-filter:blur(15px);
-border-bottom:1px solid var(--border)
+background:var(--header);
+backdrop-filter:blur(18px);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:1000;
 }
+
 .navbar{
-height:75px;display:flex;align-items:center;
-justify-content:space-between;gap:15px
+height:76px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
 }
-.brand{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900}
-.brand img{width:40px;height:40px;border-radius:10px;object-fit:cover}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:19px;
+font-weight:900;
+}
+
+.brand img{
+width:42px;
+height:42px;
+border-radius:9px;
+object-fit:contain;
+}
+
 .brand span{color:var(--red)}
-.desktop-nav{display:flex;gap:22px}
-.desktop-nav a{font-size:11px;font-weight:800;color:var(--muted)}
-.desktop-nav a:hover,.desktop-nav a.active{color:var(--red)}
-.nav-actions{display:flex;align-items:center;gap:8px}
+
+.desktop-nav{display:flex;gap:25px}
+
+.desktop-nav a{
+font-size:13px;
+color:var(--muted);
+font-weight:700;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active{color:var(--red)}
+
+.nav-actions{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
 .icon-btn{
-width:39px;height:39px;border:1px solid var(--border);
-border-radius:10px;background:var(--card);color:var(--text);
-font-size:16px;cursor:pointer
+width:39px;
+height:39px;
+background:var(--surface);
+color:var(--text);
+border:1px solid var(--border);
+border-radius:10px;
+font-size:17px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+cursor:pointer;
 }
-.cart-btn{
-width:auto;padding:0 10px;display:flex;align-items:center;
-gap:7px;font-size:12px;font-weight:800
+
+.cart-count{
+position:absolute;
+top:-7px;
+right:-7px;
+background:var(--red);
+color:white;
+border-radius:50%;
+width:19px;
+height:19px;
+font-size:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
 }
-.cart-count{background:var(--red);color:white;padding:4px 7px;border-radius:50px;font-size:10px}
+
+.cart-count:empty{display:none}
+.menu-btn{display:none}
+
 /* MENU */
+
 .menu-overlay{
-position:fixed;inset:0;background:#0009;z-index:1100;
-visibility:hidden;opacity:0;transition:.3s
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:1100;
+opacity:0;
+visibility:hidden;
+transition:.3s;
 }
-.menu-overlay.active{visibility:visible;opacity:1}
+
+.menu-overlay.show{
+opacity:1;
+visibility:visible;
+}
+
 .side-menu{
-position:fixed;right:-350px;top:0;width:min(330px,88%);
-height:100vh;background:var(--card);z-index:1200;
-padding:25px;transition:.3s;overflow-y:auto
+position:fixed;
+top:0;
+right:-360px;
+width:min(340px,88%);
+height:100vh;
+background:var(--surface);
+z-index:1200;
+padding:25px;
+transition:.35s;
+overflow-y:auto;
+border-left:1px solid var(--border);
 }
-.side-menu.active{right:0}
-.menu-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--border)}
-.menu-top strong{font-size:19px}
-.close-menu{border:0;background:none;color:var(--text);font-size:27px;cursor:pointer}
-.menu-links{display:grid;gap:5px;margin:20px 0}
-.menu-links a{padding:13px;border-radius:9px;font-size:13px;font-weight:700}
-.menu-links a:hover{background:var(--bg);color:var(--red)}
-.menu-setting{border-top:1px solid var(--border);padding:17px 0}
-.menu-setting label{display:block;font-size:11px;font-weight:800;margin-bottom:10px}
-.menu-setting select,.theme-toggle{
-width:100%;padding:13px;border:1px solid var(--border);
-border-radius:9px;background:var(--bg);color:var(--text)
+
+.side-menu.open{right:0}
+
+.menu-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-bottom:22px;
+border-bottom:1px solid var(--border);
 }
-.theme-toggle{text-align:left;font-weight:700;cursor:pointer}
-/* HERO */
-.hero{
-padding:80px 0;
-background:radial-gradient(circle at 85% 30%,#e5253522,transparent 35%),var(--card);
-border-bottom:1px solid var(--border)
+
+.close-menu{
+background:var(--surface2);
+color:var(--text);
+border:0;
+width:38px;
+height:38px;
+border-radius:9px;
+font-size:20px;
+cursor:pointer;
 }
-.hero-content{max-width:750px}
-.hero-label{
-display:inline-block;padding:9px 14px;
-background:rgba(229,37,53,.1);color:var(--red);
-border-radius:50px;font-size:10px;font-weight:900;
-letter-spacing:1px;margin-bottom:20px
+
+.menu-links{
+display:grid;
+gap:5px;
+padding:20px 0;
 }
-.hero h1{
-font-size:clamp(36px,6vw,62px);font-weight:900;
-letter-spacing:-2.5px;line-height:1.1;margin-bottom:20px
+
+.menu-links a{
+padding:13px;
+border-radius:9px;
+font-size:14px;
+font-weight:700;
 }
-.hero h1 span{color:var(--red)}
-.hero p{font-size:13px;color:var(--muted);line-height:2;max-width:570px}
-/* BREADCRUMB */
-.breadcrumb{padding:22px 0;font-size:11px;color:var(--muted)}
-.breadcrumb a{color:var(--red)}
-/* CONTACT */
-.contact-section{padding:55px 0 85px}
-.section-heading{margin-bottom:30px}
-.section-heading h2{font-size:27px;font-weight:900}
-.section-heading p{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.8}
-.contact-grid{
-display:grid;grid-template-columns:.85fr 1.15fr;
-gap:25px;align-items:start
+
+.menu-links a:hover{
+background:var(--surface2);
+color:var(--red);
 }
-.contact-info{
-background:#171717;color:white;border-radius:15px;
-padding:30px;overflow:hidden;position:relative
+
+.menu-setting{
+border-top:1px solid var(--border);
+padding:20px 0;
 }
-.contact-info::after{
-content:"";position:absolute;width:200px;height:200px;
-border:1px solid #ffffff20;border-radius:50%;
-right:-90px;bottom:-90px
+
+.menu-setting label{
+display:block;
+font-size:12px;
+color:var(--muted);
+margin-bottom:10px;
+font-weight:700;
 }
-.contact-info h3{font-size:21px;font-weight:900;margin-bottom:12px}
-.contact-info>p{font-size:11px;line-height:1.9;color:#aaa;margin-bottom:30px}
-.contact-item{
-display:flex;gap:13px;align-items:flex-start;
-margin-bottom:24px;position:relative;z-index:1
+
+.menu-setting select{
+width:100%;
+padding:13px;
+border-radius:9px;
+border:1px solid var(--border);
+background:var(--surface2);
+color:var(--text);
 }
-.contact-icon{
-width:38px;height:38px;border-radius:10px;
-background:#ffffff15;display:grid;place-items:center;flex-shrink:0
+
+.menu-theme{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:14px;
+font-weight:700;
 }
-.contact-item strong{display:block;font-size:11px;margin-bottom:6px}
-.contact-item span,.contact-item a{font-size:10px;color:#aaa;line-height:1.8;overflow-wrap:anywhere}
-.contact-item a:hover{color:white}
-.social-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+
+.social-links{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
 .social-links a{
-padding:10px 13px;border:1px solid #ffffff25;
-border-radius:8px;font-size:10px;font-weight:800;color:white
+background:var(--surface2);
+padding:9px;
+border-radius:8px;
+font-size:11px;
 }
-.social-links a:hover{background:var(--red);border-color:var(--red)}
+
+/* HERO */
+
+.hero{
+padding:75px 0;
+background:
+linear-gradient(90deg,rgba(7,8,12,.96),rgba(7,8,12,.78)),
+url("https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1800&q=85");
+background-size:cover;
+background-position:center;
+}
+
+.hero-label{
+display:inline-flex;
+align-items:center;
+gap:9px;
+color:#ff5266;
+font-size:11px;
+font-weight:900;
+letter-spacing:1.5px;
+margin-bottom:20px;
+}
+
+.hero-label:before{
+content:"";
+width:24px;
+height:2px;
+background:var(--red);
+}
+
+.hero h1{
+font-size:clamp(36px,6vw,58px);
+line-height:1.1;
+color:white;
+margin-bottom:18px;
+letter-spacing:-1.5px;
+}
+
+.hero h1 span{color:var(--red)}
+
+.hero p{
+max-width:620px;
+font-size:14px;
+line-height:1.9;
+color:#c0c2ca;
+}
+
+/* MAIN */
+
+.contact-section{padding:75px 0}
+
+.contact-layout{
+display:grid;
+grid-template-columns:.85fr 1.4fr;
+gap:30px;
+align-items:start;
+}
+
+.section-label{
+color:var(--red);
+font-size:10px;
+font-weight:900;
+letter-spacing:1.5px;
+display:block;
+margin-bottom:13px;
+}
+
+.section-title{
+font-size:clamp(25px,4vw,35px);
+line-height:1.2;
+margin-bottom:16px;
+}
+
+.section-text{
+font-size:13px;
+line-height:1.9;
+color:var(--muted);
+margin-bottom:25px;
+}
+
+/* CONTACT DETAILS */
+
+.contact-info{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:14px;
+padding:28px;
+}
+
+.contact-item{
+display:flex;
+gap:15px;
+align-items:flex-start;
+padding:18px 0;
+border-bottom:1px solid var(--border);
+}
+
+.contact-item:last-child{border-bottom:0}
+
+.contact-icon{
+width:43px;
+height:43px;
+flex-shrink:0;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:10px;
+background:rgba(229,29,53,.12);
+font-size:20px;
+}
+
+.contact-item h3{
+font-size:13px;
+margin-bottom:7px;
+}
+
+.contact-item p,
+.contact-item a{
+font-size:12px;
+color:var(--muted);
+line-height:1.8;
+overflow-wrap:anywhere;
+}
+
+.contact-item a:hover{color:var(--red)}
+
 /* FORM */
+
 .contact-form{
-background:var(--card);border:1px solid var(--border);
-border-radius:15px;padding:30px
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:14px;
+padding:32px;
 }
-.contact-form h3{font-size:20px;font-weight:900;margin-bottom:10px}
-.contact-form>p{font-size:11px;color:var(--muted);line-height:1.8;margin-bottom:25px}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px}
-.form-group{margin-bottom:18px}
+
+.form-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.form-group{margin-bottom:19px}
+
 .form-group.full{grid-column:1/-1}
+
 .form-group label{
-display:block;font-size:10px;font-weight:800;margin-bottom:9px
+display:block;
+font-size:12px;
+font-weight:800;
+margin-bottom:9px;
 }
-.form-group input,.form-group select,.form-group textarea{
-width:100%;padding:14px;background:var(--bg);
-border:1px solid var(--border);border-radius:9px;
-color:var(--text);font-size:11px;outline:none
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+width:100%;
+padding:14px;
+border:1px solid var(--border);
+background:var(--surface2);
+color:var(--text);
+border-radius:8px;
+outline:none;
+font-size:13px;
 }
-.form-group textarea{min-height:145px;resize:vertical}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--red)}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+border-color:var(--red);
+}
+
+.form-group textarea{
+min-height:150px;
+resize:vertical;
+}
+
+.form-group select option{
+background:var(--surface);
+color:var(--text);
+}
+
 .submit-btn{
-width:100%;padding:15px;border:0;border-radius:9px;
-background:var(--red);color:white;font-size:11px;
-font-weight:900;cursor:pointer;transition:.2s
+width:100%;
+padding:16px;
+border:0;
+border-radius:9px;
+background:var(--red);
+color:white;
+font-size:12px;
+font-weight:900;
+cursor:pointer;
+transition:.2s;
 }
-.submit-btn:hover{background:#bd1728}
-.form-note{font-size:9px;color:var(--muted);line-height:1.8;margin-top:13px}
+
+.submit-btn:hover{
+background:var(--red-dark);
+transform:translateY(-2px);
+}
+
+.form-note{
+font-size:10px;
+color:var(--muted);
+line-height:1.8;
+margin-top:14px;
+}
+
+/* SOCIAL */
+
+.social-section{
+background:var(--surface2);
+padding:70px 0;
+}
+
+.center-heading{
+text-align:center;
+max-width:650px;
+margin:0 auto 38px;
+}
+
+.social-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:16px;
+}
+
+.social-card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:12px;
+padding:25px 15px;
+text-align:center;
+transition:.25s;
+}
+
+.social-card:hover{
+transform:translateY(-5px);
+border-color:var(--red);
+}
+
+.social-card .icon{
+font-size:30px;
+margin-bottom:15px;
+}
+
+.social-card h3{
+font-size:14px;
+margin-bottom:9px;
+}
+
+.social-card p{
+font-size:11px;
+color:var(--muted);
+line-height:1.7;
+margin-bottom:17px;
+}
+
+.social-card a{
+display:inline-block;
+padding:10px 15px;
+border-radius:7px;
+background:var(--red);
+color:white;
+font-size:10px;
+font-weight:900;
+}
+
 /* FAQ */
-.faq-section{padding:70px 0;background:var(--card);border-top:1px solid var(--border)}
-.faq-heading{text-align:center;margin-bottom:35px}
-.faq-heading span{font-size:10px;color:var(--red);font-weight:900;letter-spacing:1px}
-.faq-heading h2{font-size:28px;font-weight:900;margin-top:12px}
-.faq-list{max-width:800px;margin:auto;display:grid;gap:12px}
-.faq-item{border:1px solid var(--border);border-radius:11px;overflow:hidden}
+
+.faq-section{padding:75px 0}
+
+.faq-list{
+max-width:800px;
+margin:auto;
+display:grid;
+gap:12px;
+}
+
+.faq-item{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:10px;
+overflow:hidden;
+}
+
 .faq-question{
-width:100%;padding:18px;background:var(--card);
-border:0;color:var(--text);display:flex;
-justify-content:space-between;gap:15px;text-align:left;
-font-size:11px;font-weight:800;cursor:pointer
+width:100%;
+background:none;
+border:0;
+padding:19px;
+color:var(--text);
+display:flex;
+justify-content:space-between;
+align-items:center;
+text-align:left;
+font-size:13px;
+font-weight:800;
+cursor:pointer;
 }
+
 .faq-answer{
-display:none;padding:0 18px 18px;
-font-size:11px;color:var(--muted);line-height:1.9
+display:none;
+padding:0 19px 19px;
+color:var(--muted);
+font-size:12px;
+line-height:1.9;
 }
+
 .faq-item.active .faq-answer{display:block}
-.faq-item.active .faq-question{color:var(--red)}
-/* CTA */
-.cta-section{
-padding:65px 0;background:linear-gradient(120deg,#b81727,#e52535);
-color:white;text-align:center
-}
-.cta-section h2{font-size:clamp(25px,4vw,37px);font-weight:900;margin-bottom:15px}
-.cta-section p{font-size:12px;line-height:1.9;opacity:.9;margin-bottom:25px}
-.cta-button{
-display:inline-block;background:white;color:#bd1728;
-padding:15px 25px;border-radius:9px;font-size:11px;font-weight:900
-}
+
+.faq-item.active .faq-question span{color:var(--red)}
+
 /* FOOTER */
-footer{background:#101010;color:white;padding:55px 0 0}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:30px;padding-bottom:40px}
-.footer-brand{font-size:21px;font-weight:900;margin-bottom:15px}
-.footer-brand span{color:var(--red)}
-.footer-about{font-size:11px;line-height:1.9;color:#aaa}
-.footer-column h4{font-size:12px;margin-bottom:18px}
-.footer-column a{display:block;font-size:11px;color:#aaa;margin-bottom:13px}
-.footer-column a:hover{color:var(--red)}
+
+footer{
+background:#08090c;
+color:white;
+padding:60px 0 0;
+border-top:1px solid var(--border);
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+gap:35px;
+padding-bottom:40px;
+}
+
+.footer-brand p{
+font-size:12px;
+line-height:1.9;
+color:#999eaa;
+margin-top:16px;
+margin-bottom:18px;
+}
+
+.footer-col h3{
+font-size:13px;
+margin-bottom:20px;
+}
+
+.footer-col a{
+display:block;
+color:#999eaa;
+font-size:12px;
+margin-bottom:13px;
+}
+
+.footer-col a:hover{color:var(--red)}
+
 .footer-bottom{
-border-top:1px solid #303030;padding:20px 0;
-display:flex;justify-content:space-between;flex-wrap:wrap;
-gap:15px;font-size:10px;color:#aaa
+border-top:1px solid rgba(255,255,255,.09);
+padding:23px 0;
+display:flex;
+justify-content:space-between;
+gap:15px;
+flex-wrap:wrap;
+color:#858994;
+font-size:11px;
 }
-.developer-credit{color:white;font-weight:800}
-.developer-credit span{color:var(--red)}
+
+.footer-bottom strong{color:white}
+
 @media(max-width:950px){
+
 .desktop-nav{display:none}
+.menu-btn{display:flex}
+.contact-layout{grid-template-columns:1fr 1.3fr}
 .footer-grid{grid-template-columns:repeat(2,1fr)}
+
 }
-@media(max-width:650px){
-.navbar{height:68px}
-.brand{font-size:15px}
-.brand img{width:35px;height:35px}
-.nav-actions{gap:6px}
-.icon-btn{width:35px;height:35px}
-.cart-btn{padding:0 7px}
-.hero{padding:55px 0}
-.hero h1{letter-spacing:-1.5px}
-.contact-grid{grid-template-columns:1fr}
+
+@media(max-width:700px){
+
+.navbar{height:67px}
+.brand{font-size:16px}
+.brand img{width:36px;height:36px}
+
+.hero{padding:65px 0}
+.contact-section{padding:55px 0}
+
+.contact-layout{grid-template-columns:1fr}
+
+.contact-form{padding:23px}
+
+.social-section,.faq-section{padding:55px 0}
+
+.social-grid{grid-template-columns:repeat(2,1fr)}
+
+}
+
+@media(max-width:430px){
+
 .form-grid{grid-template-columns:1fr}
 .form-group.full{grid-column:auto}
-.contact-info,.contact-form{padding:23px}
-.faq-heading h2{font-size:23px}
-.footer-grid{grid-template-columns:1fr 1fr;gap:25px 15px}
+.social-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr}
+
 }
+
 </style>
 </head>
+
 <body>
+
 <div class="announcement">
-FOSTER GAMING — WE'RE HERE TO HELP
+🔥 FOSTER GAMING — PREMIUM POKÉMON GO ACCOUNTS
 </div>
+
+
 <header>
 <div class="container navbar">
+
 <a href="index.html" class="brand">
-<img src="https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/YOUR-REPOSITORY/main/assets/images/logo.png" alt="Foster Gaming">
+<img src="https://placehold.co/100x100/e51d35/ffffff?text=FG" alt="Foster Gaming Logo">
 <div>FOSTER <span>GAMING</span></div>
 </a>
+
 <nav class="desktop-nav">
-<a href="index.html">HOME</a>
-<a href="accounts.html">ACCOUNTS</a>
-<a href="sold.html">SOLD ACCOUNTS</a>
-<a href="blog.html">BLOG</a>
-<a href="about.html">ABOUT</a>
-<a href="contact.html" class="active">CONTACT</a>
+<a href="index.html">Home</a>
+<a href="accounts.html">Accounts</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About Us</a>
+<a href="contact.html" class="active">Contact</a>
 </nav>
+
 <div class="nav-actions">
-<a href="cart.html" class="icon-btn cart-btn">
-🛒 <span class="cart-count" id="cartCount">0</span>
+
+<button class="icon-btn" id="themeButton" aria-label="Change theme">☀</button>
+
+<a href="cart.html" class="icon-btn" aria-label="Shopping cart">
+🛒<span class="cart-count" id="cartCount"></span>
 </a>
-<button class="icon-btn" id="themeButton">🌙</button>
-<button class="icon-btn" id="menuButton">☰</button>
+
+<button class="icon-btn menu-btn" id="openMenu" aria-label="Open menu">☰</button>
+
 </div>
 </div>
 </header>
+
+
 <div class="menu-overlay" id="menuOverlay"></div>
+
 <aside class="side-menu" id="sideMenu">
-<div class="menu-top">
-<strong>Foster Gaming</strong>
+
+<div class="menu-head">
+<h3>Foster Gaming</h3>
 <button class="close-menu" id="closeMenu">×</button>
 </div>
-<nav class="menu-links">
+
+<div class="menu-links">
 <a href="index.html">🏠 Home</a>
 <a href="accounts.html">🎮 Browse Accounts</a>
-<a href="sold.html">✅ Sold Accounts</a>
 <a href="cart.html">🛒 Shopping Cart</a>
-<a href="blog.html">📰 Blog</a>
+<a href="blog.html">📰 Gaming Blog</a>
 <a href="about.html">ℹ️ About Us</a>
-<a href="reviews.html">⭐ Reviews</a>
+<a href="reviews.html">⭐ Customer Reviews</a>
 <a href="contact.html">📩 Contact Us</a>
-</nav>
+</div>
+
 <div class="menu-setting">
-<label>🌍 SELECT LANGUAGE</label>
+<label for="languageSelect">SELECT LANGUAGE</label>
 <select id="languageSelect">
-<option value="en">English</option>
-<option value="es">Español</option>
-<option value="fr">Français</option>
-<option value="de">Deutsch</option>
-<option value="pt">Português</option>
-<option value="ja">日本語</option>
-<option value="ko">한국어</option>
-<option value="ar">العربية</option>
+<option value="en">🇬🇧 English</option>
+<option value="es">🇪🇸 Español</option>
+<option value="fr">🇫🇷 Français</option>
+<option value="de">🇩🇪 Deutsch</option>
+<option value="pt">🇵🇹 Português</option>
+<option value="ar">🇸🇦 العربية</option>
+<option value="zh">🇨🇳 中文</option>
+<option value="ja">🇯🇵 日本語</option>
 </select>
 </div>
+
 <div class="menu-setting">
-<label>🎨 APPEARANCE</label>
-<button class="theme-toggle" id="menuThemeButton">🌙 Switch to Dark Mode</button>
+<div class="menu-theme">
+<span>Appearance</span>
+<button class="icon-btn" id="menuThemeButton">☀</button>
 </div>
+</div>
+
 <div class="menu-setting">
-<label>📱 FOLLOW US</label>
-<div class="menu-links">
+<label>FOLLOW FOSTER GAMING</label>
+<div class="social-links">
 <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok 1</a>
 <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
 <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
 <a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
 </div>
 </div>
+
 </aside>
-<!-- HERO -->
-<section class="hero">
-<div class="container">
-<div class="hero-content">
-<div class="hero-label">CONTACT FOSTER GAMING</div>
-<h1>Let's <span>Talk Gaming.</span></h1>
-<p>
-Have a question about an account, need assistance with an order
-or simply want to learn more about Foster Gaming?
-Our team welcomes your message.
-</p>
-</div>
-</div>
-</section>
+
+
 <main>
-<div class="container breadcrumb">
-<a href="index.html">Home</a> / Contact Us
-</div>
-<section class="contact-section">
+
+<!-- HERO -->
+
+<section class="hero">
+
 <div class="container">
-<div class="section-heading">
-<h2>Get In Touch With Us</h2>
-<p>Choose your preferred contact method or send us a message using the form.</p>
-</div>
-<div class="contact-grid">
-<!-- CONTACT INFORMATION -->
-<div class="contact-info">
-<h3>Contact Information</h3>
+
+<div class="hero-label">WE ARE HERE TO HELP</div>
+
+<h1>CONTACT <span>US</span></h1>
+
 <p>
-Reach Foster Gaming through our official contact channels.
-We're happy to receive your questions and enquiries.
+Have a question about an account listing, an order, payment
+instructions or anything related to Foster Gaming?
+Send us a message or reach us through our official channels.
 </p>
-<div class="contact-item">
-<div class="contact-icon">✉️</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT FORM AND DETAILS -->
+
+<section class="contact-section">
+
+<div class="container contact-layout">
+
+
+<!-- CONTACT DETAILS -->
+
 <div>
-<strong>Email Address</strong>
+
+<span class="section-label">GET IN TOUCH</span>
+
+<h2 class="section-title">Let's Talk About Your Inquiry</h2>
+
+<p class="section-text">
+Our contact channels are available for general questions,
+account listing inquiries and order-related communication.
+Choose the method that works best for you.
+</p>
+
+
+<div class="contact-info">
+
+<div class="contact-item">
+
+<div class="contact-icon">📧</div>
+
+<div>
+<h3>Business Email</h3>
 <a href="mailto:harishwilliams010@gmail.com">
 harishwilliams010@gmail.com
 </a>
 </div>
+
 </div>
+
+
 <div class="contact-item">
+
 <div class="contact-icon">🎵</div>
+
 <div>
-<strong>TikTok</strong>
+<h3>TikTok Account 1</h3>
 <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">
 @williamfoster83
 </a>
-<br>
+</div>
+
+</div>
+
+
+<div class="contact-item">
+
+<div class="contact-icon">🎮</div>
+
+<div>
+<h3>TikTok Account 2</h3>
 <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">
 @fostergames5
 </a>
 </div>
+
 </div>
+
+
 <div class="contact-item">
+
 <div class="contact-icon">👻</div>
+
 <div>
-<strong>Snapchat</strong>
+<h3>Snapchat</h3>
 <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">
 Connect on Snapchat
 </a>
 </div>
+
 </div>
+
+
 <div class="contact-item">
+
 <div class="contact-icon">💬</div>
+
 <div>
-<strong>Discord</strong>
+<h3>Discord Community</h3>
 <a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">
-Join our Discord community
+Join Foster Gaming Discord
 </a>
 </div>
+
 </div>
-<div class="social-links">
-<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok</a>
-<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
-<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
+
 </div>
+
 </div>
+
+
 <!-- CONTACT FORM -->
+
 <div class="contact-form">
-<h3>Send Us a Message</h3>
-<p>
-Complete the form below. Your email application will open with
-your message prepared for Foster Gaming.
+
+<span class="section-label">SEND A MESSAGE</span>
+
+<h2 class="section-title">Contact Form</h2>
+
+<p class="section-text">
+Fill in the details below. Your email application will open
+with your message prepared for our business email.
 </p>
+
+
 <form id="contactForm">
+
 <div class="form-grid">
+
 <div class="form-group">
-<label for="name">YOUR NAME *</label>
+<label for="name">Full Name *</label>
 <input type="text" id="name" name="name" placeholder="Enter your name" required>
 </div>
+
+
 <div class="form-group">
-<label for="email">EMAIL ADDRESS *</label>
+<label for="email">Email Address *</label>
 <input type="email" id="email" name="email" placeholder="Enter your email" required>
 </div>
-<div class="form-group full">
-<label for="subject">SUBJECT *</label>
+
+
+<div class="form-group">
+<label for="phone">Phone Number (Optional)</label>
+<input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+</div>
+
+
+<div class="form-group">
+<label for="subject">Inquiry Type *</label>
+
 <select id="subject" name="subject" required>
-<option value="">Select a subject</option>
-<option value="Account Enquiry">Account Enquiry</option>
-<option value="Order Assistance">Order Assistance</option>
-<option value="Payment Enquiry">Payment Enquiry</option>
+<option value="">Select an inquiry</option>
+<option value="Account Inquiry">Account Inquiry</option>
+<option value="Order Inquiry">Order Inquiry</option>
+<option value="Payment Inquiry">Payment Inquiry</option>
+<option value="Account Swap">Account Swap</option>
+<option value="Technical Support">Technical Support</option>
 <option value="General Question">General Question</option>
-<option value="Business Enquiry">Business Enquiry</option>
 <option value="Other">Other</option>
 </select>
+
 </div>
+
+
 <div class="form-group full">
-<label for="message">YOUR MESSAGE *</label>
+<label for="reference">Order Reference (Optional)</label>
+<input type="text" id="reference" name="reference" placeholder="Enter your order reference if applicable">
+</div>
+
+
+<div class="form-group full">
+<label for="message">Your Message *</label>
 <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
 </div>
+
 </div>
+
+
 <button type="submit" class="submit-btn">
 SEND MESSAGE →
 </button>
+
 <p class="form-note">
-This form opens your device's email application with your message
-prepared. You must send the email from that application.
+Submitting this form opens your default email application with
+the message prepared. You must send the email from that application.
+This website does not silently transmit messages.
 </p>
+
 </form>
+
 </div>
+
 </div>
-</div>
+
 </section>
+
+
+<!-- SOCIAL CHANNELS -->
+
+<section class="social-section">
+
+<div class="container">
+
+<div class="center-heading">
+
+<span class="section-label">CONNECT WITH US</span>
+
+<h2 class="section-title">Follow Foster Gaming</h2>
+
+<p class="section-text">
+Stay connected through our social media pages and community.
+</p>
+
+</div>
+
+
+<div class="social-grid">
+
+<div class="social-card">
+<div class="icon">🎵</div>
+<h3>TikTok</h3>
+<p>Follow our first TikTok account.</p>
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">VISIT ACCOUNT</a>
+</div>
+
+
+<div class="social-card">
+<div class="icon">🎮</div>
+<h3>TikTok Gaming</h3>
+<p>Connect with our second TikTok account.</p>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">VISIT ACCOUNT</a>
+</div>
+
+
+<div class="social-card">
+<div class="icon">👻</div>
+<h3>Snapchat</h3>
+<p>Connect with Foster Gaming on Snapchat.</p>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">CONNECT NOW</a>
+</div>
+
+
+<div class="social-card">
+<div class="icon">💬</div>
+<h3>Discord</h3>
+<p>Join our Discord community.</p>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">JOIN DISCORD</a>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
 <!-- FAQ -->
+
 <section class="faq-section">
+
 <div class="container">
-<div class="faq-heading">
-<span>NEED MORE INFORMATION?</span>
-<h2>Frequently Asked Questions</h2>
+
+<div class="center-heading">
+
+<span class="section-label">HELP CENTER</span>
+
+<h2 class="section-title">Frequently Asked Questions</h2>
+
+<p class="section-text">
+Some useful information before contacting our team.
+</p>
+
 </div>
+
+
 <div class="faq-list">
+
+
 <div class="faq-item">
+
 <button class="faq-question">
-How can I enquire about an account?
-<span>+</span>
+How can I purchase an account?
+<span>＋</span>
 </button>
+
 <div class="faq-answer">
-Visit our Accounts page, explore the available listings and
-contact us through email or our social media channels if you
-have questions about a particular account.
+Visit the accounts page, explore the available listings, open
+the account details and add your selected listing to your cart.
+You can then continue to checkout and review the displayed
+payment instructions.
 </div>
+
 </div>
+
+
 <div class="faq-item">
+
 <button class="faq-question">
-How do I place an order?
-<span>+</span>
+How can I ask about an account?
+<span>＋</span>
 </button>
+
 <div class="faq-answer">
-Browse available accounts, view the details of your preferred
-listing, add it to your cart and continue to checkout.
+You can contact us through the business email, Discord or the
+contact form on this page. Include the account ID where possible.
 </div>
+
 </div>
+
+
 <div class="faq-item">
+
 <button class="faq-question">
-How can I get help with an existing order?
-<span>+</span>
+How do I contact you about an existing order?
+<span>＋</span>
 </button>
+
 <div class="faq-answer">
-Send us an email with your order reference and the email address
-used during checkout. Do not send your passwords or sensitive
-payment information.
+Send an email to our business address and include your order
+reference, the email address used during checkout and a
+description of your inquiry.
 </div>
+
 </div>
+
+
 <div class="faq-item">
+
 <button class="faq-question">
-Which payment methods are supported?
-<span>+</span>
+Can I request an account swap?
+<span>＋</span>
 </button>
+
 <div class="faq-answer">
-Available payment instructions are displayed during checkout
-according to the payment options configured for your order.
-Always review the details carefully before making a payment.
+You can contact our team to discuss an account swap. Any
+arrangement will depend on the accounts involved and the
+terms agreed between the parties.
 </div>
+
 </div>
+
+
 <div class="faq-item">
+
 <button class="faq-question">
-How can I follow Foster Gaming?
-<span>+</span>
+How long does order verification take?
+<span>＋</span>
 </button>
+
 <div class="faq-answer">
-You can follow our TikTok accounts, connect with us on Snapchat
-or join our Discord community using the links on this page.
+Orders requiring manual review are not automatically confirmed
+by this website. Contact our team with your order reference
+if you need an update.
 </div>
+
 </div>
+
+
+<div class="faq-item">
+
+<button class="faq-question">
+Is Foster Gaming affiliated with Pokémon GO?
+<span>＋</span>
+</button>
+
+<div class="faq-answer">
+No. Foster Gaming is an independent marketplace and is not
+officially affiliated with or endorsed by Niantic or Pokémon GO.
+Buying, selling or transferring game accounts may violate the
+game's terms of service.
 </div>
+
 </div>
+
+</div>
+
+</div>
+
 </section>
-<!-- CTA -->
-<section class="cta-section">
-<div class="container">
-<h2>Still Have Questions?</h2>
-<p>
-We're happy to hear from you. Send us an email and tell us
-how we can assist.
-</p>
-<a href="mailto:harishwilliams010@gmail.com" class="cta-button">
-EMAIL FOSTER GAMING →
-</a>
-</div>
-</section>
+
 </main>
+
+
 <!-- FOOTER -->
+
 <footer>
+
 <div class="container">
+
 <div class="footer-grid">
-<div>
-<div class="footer-brand">FOSTER <span>GAMING</span></div>
-<p class="footer-about">
-Your destination for premium Pokémon GO accounts.
-Explore different account levels and discover available
-listings in our gaming marketplace.
+
+<div class="footer-brand">
+
+<a href="index.html" class="brand">
+<img src="https://placehold.co/100x100/e51d35/ffffff?text=FG" alt="Foster Gaming">
+<div>FOSTER <span>GAMING</span></div>
+</a>
+
+<p>
+Foster Gaming specializes in buying, selling and swapping
+stacked Pokémon GO accounts. Explore our marketplace and
+discover your next account.
 </p>
+
+<div class="social-links">
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok</a>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
 </div>
-<div class="footer-column">
-<h4>MARKETPLACE</h4>
+
+</div>
+
+
+<div class="footer-col">
+<h3>QUICK LINKS</h3>
 <a href="index.html">Home</a>
 <a href="accounts.html">Browse Accounts</a>
-<a href="sold.html">Sold Accounts</a>
 <a href="cart.html">Shopping Cart</a>
-</div>
-<div class="footer-column">
-<h4>INFORMATION</h4>
+<a href="blog.html">Gaming Blog</a>
 <a href="about.html">About Us</a>
-<a href="blog.html">Our Blog</a>
-<a href="reviews.html">Customer Reviews</a>
 <a href="contact.html">Contact</a>
 </div>
-<div class="footer-column">
-<h4>CONTACT</h4>
-<a href="mailto:harishwilliams010@gmail.com">Email Us</a>
-<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce">TikTok</a>
-<a href="https://snapchat.com/t/Ua0aZSS4">Snapchat</a>
-<a href="https://discord.gg/VqVBngcg">Discord</a>
+
+
+<div class="footer-col">
+<h3>ACCOUNT LEVELS</h3>
+<a href="accounts.html?level=65">Level 65–68</a>
+<a href="accounts.html?level=69">Level 69–72</a>
+<a href="accounts.html?level=73">Level 73–76</a>
+<a href="accounts.html?level=77">Level 77–80</a>
+<a href="accounts.html?status=sold">Sold Accounts</a>
 </div>
+
+
+<div class="footer-col">
+<h3>CONTACT</h3>
+<a href="mailto:harishwilliams010@gmail.com">📧 Business Email</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">💬 Discord</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">👻 Snapchat</a>
+<a href="reviews.html">⭐ Reviews</a>
 </div>
+
+</div>
+
+
 <div class="footer-bottom">
-<div>
-© <span id="year"></span> Foster Gaming. All rights reserved.
+
+<div>© <span id="currentYear"></span> Foster Gaming. All Rights Reserved.</div>
+
+<div>Website developed by <strong>BITBRIDGE TECHNOLOGIES INC.</strong></div>
+
 </div>
-<div class="developer-credit">
-Developed by <span>BITBRIDGE TECHNOLOGIES INC.</span>
+
 </div>
-</div>
-</div>
+
 </footer>
+
+
 <script>
+
 /* THEME */
+
 function applyTheme(theme){
-document.body.classList.toggle('dark',theme==='dark');
-localStorage.setItem('foster_theme',theme);
-document.getElementById('themeButton').textContent=
-theme==='dark'?'☀️':'🌙';
-document.getElementById('menuThemeButton').textContent=
-theme==='dark'?'☀️ Switch to Light Mode':'🌙 Switch to Dark Mode';
+
+document.body.classList.toggle("light",theme==="light");
+
+localStorage.setItem("fosterGamingTheme",theme);
+
+const icon=theme==="light"?"🌙":"☀";
+
+document.getElementById("themeButton").textContent=icon;
+
+document.getElementById("menuThemeButton").textContent=icon;
+
 }
-applyTheme(localStorage.getItem('foster_theme')||'light');
+
+applyTheme(localStorage.getItem("fosterGamingTheme")||"dark");
+
+
 function toggleTheme(){
-const current=localStorage.getItem('foster_theme')||'light';
-applyTheme(current==='light'?'dark':'light');
+
+const current=localStorage.getItem("fosterGamingTheme")||"dark";
+
+applyTheme(current==="dark"?"light":"dark");
+
 }
-document.getElementById('themeButton').onclick=toggleTheme;
-document.getElementById('menuThemeButton').onclick=toggleTheme;
+
+document.getElementById("themeButton").addEventListener("click",toggleTheme);
+
+document.getElementById("menuThemeButton").addEventListener("click",toggleTheme);
+
+
 /* LANGUAGE PREFERENCE */
-const languageSelect=document.getElementById('languageSelect');
-languageSelect.value=localStorage.getItem('foster_language')||'en';
-languageSelect.onchange=function(){
-localStorage.setItem('foster_language',this.value);
-};
-/* MENU */
-const sideMenu=document.getElementById('sideMenu');
-const overlay=document.getElementById('menuOverlay');
-document.getElementById('menuButton').onclick=()=>{
-sideMenu.classList.add('active');
-overlay.classList.add('active');
-document.body.style.overflow='hidden';
-};
+
+const languageSelect=document.getElementById("languageSelect");
+
+languageSelect.value=localStorage.getItem("fosterGamingLanguage")||"en";
+
+document.documentElement.lang=languageSelect.value;
+
+document.documentElement.dir=languageSelect.value==="ar"?"rtl":"ltr";
+
+languageSelect.addEventListener("change",function(){
+
+localStorage.setItem("fosterGamingLanguage",this.value);
+
+document.documentElement.lang=this.value;
+
+document.documentElement.dir=this.value==="ar"?"rtl":"ltr";
+
+alert("Your language preference has been saved.");
+
+});
+
+
+/* MOBILE MENU */
+
+const sideMenu=document.getElementById("sideMenu");
+
+const overlay=document.getElementById("menuOverlay");
+
+function openMenu(){
+
+sideMenu.classList.add("open");
+
+overlay.classList.add("show");
+
+document.body.style.overflow="hidden";
+
+}
+
 function closeMenu(){
-sideMenu.classList.remove('active');
-overlay.classList.remove('active');
-document.body.style.overflow='';
+
+sideMenu.classList.remove("open");
+
+overlay.classList.remove("show");
+
+document.body.style.overflow="";
+
 }
-document.getElementById('closeMenu').onclick=closeMenu;
-overlay.onclick=closeMenu;
-document.querySelectorAll('.menu-links a').forEach(link=>{
-link.addEventListener('click',closeMenu);
-});
-/* CART COUNTER */
-function updateCartCount(){
+
+document.getElementById("openMenu").addEventListener("click",openMenu);
+
+document.getElementById("closeMenu").addEventListener("click",closeMenu);
+
+overlay.addEventListener("click",closeMenu);
+
+
+/* CART COUNT */
+
 try{
-const cart=JSON.parse(localStorage.getItem('foster_cart'))||[];
-const count=cart.reduce((sum,item)=>{
-return sum+(Number(item.quantity)||1);
-},0);
-document.getElementById('cartCount').textContent=count;
+
+const cart=JSON.parse(localStorage.getItem("fosterGamingCart")||"[]");
+
+const count=Array.isArray(cart)?cart.reduce((total,item)=>{
+
+return total+(Number(item.quantity)||1);
+
+},0):0;
+
+document.getElementById("cartCount").textContent=count||"";
+
 }catch(error){
-document.getElementById('cartCount').textContent='0';
+
+document.getElementById("cartCount").textContent="";
+
 }
-}
-updateCartCount();
-window.addEventListener('storage',event=>{
-if(event.key==='foster_cart')updateCartCount();
-});
-window.addEventListener('pageshow',updateCartCount);
+
+
 /* CONTACT FORM */
-document.getElementById('contactForm').addEventListener('submit',function(event){
+
+document.getElementById("contactForm").addEventListener("submit",function(event){
+
 event.preventDefault();
-const name=document.getElementById('name').value.trim();
-const email=document.getElementById('email').value.trim();
-const subject=document.getElementById('subject').value;
-const message=document.getElementById('message').value.trim();
+
+const name=document.getElementById("name").value.trim();
+
+const email=document.getElementById("email").value.trim();
+
+const phone=document.getElementById("phone").value.trim();
+
+const subject=document.getElementById("subject").value;
+
+const reference=document.getElementById("reference").value.trim();
+
+const message=document.getElementById("message").value.trim();
+
 if(!name||!email||!subject||!message){
-alert('Please complete all required fields.');
+
+alert("Please complete all required fields.");
+
 return;
+
 }
-const emailBody=
-'Name: '+name+
-'\nEmail: '+email+
-'\n\nMessage:\n'+message;
-const mailto=
-'mailto:harishwilliams010@gmail.com'+
-'?subject='+encodeURIComponent(subject)+
-'&body='+encodeURIComponent(emailBody);
+
+const emailSubject=encodeURIComponent("Foster Gaming: "+subject);
+
+const emailBody=encodeURIComponent(
+
+"Name: "+name+"\n"+
+"Email: "+email+"\n"+
+"Phone: "+(phone||"Not provided")+"\n"+
+"Inquiry Type: "+subject+"\n"+
+"Order Reference: "+(reference||"Not provided")+"\n\n"+
+"Message:\n"+message
+
+);
+
+const mailto="mailto:harishwilliams010@gmail.com?subject="+emailSubject+"&body="+emailBody;
+
 window.location.href=mailto;
+
 });
+
+
 /* FAQ ACCORDION */
-document.querySelectorAll('.faq-question').forEach(button=>{
-button.addEventListener('click',()=>{
-const item=button.parentElement;
-const isActive=item.classList.contains('active');
-document.querySelectorAll('.faq-item').forEach(faq=>{
-faq.classList.remove('active');
-faq.querySelector('.faq-question span').textContent='+';
+
+document.querySelectorAll(".faq-question").forEach(button=>{
+
+button.addEventListener("click",function(){
+
+const item=this.parentElement;
+
+const wasActive=item.classList.contains("active");
+
+document.querySelectorAll(".faq-item").forEach(faq=>{
+
+faq.classList.remove("active");
+
+faq.querySelector(".faq-question span").textContent="＋";
+
 });
-if(!isActive){
-item.classList.add('active');
-button.querySelector('span').textContent='−';
+
+if(!wasActive){
+
+item.classList.add("active");
+
+this.querySelector("span").textContent="−";
+
 }
+
 });
+
 });
-/* FOOTER YEAR */
-document.getElementById('year').textContent=new Date().getFullYear();
+
+
+/* YEAR */
+
+document.getElementById("currentYear").textContent=new Date().getFullYear();
+
 </script>
+
 </body>
 </html>
