@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e52535">
+<title>Sold Accounts | Foster Gaming</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root {
+--red:#e52535;
+--green:#16a36a;
+--bg:#f5f5f7;
+--card:#ffffff;
+--text:#171717;
+--muted:#777;
+--border:#e8e8e8;
+--header:rgba(255,255,255,.95);
+}
+body.dark {
+--bg:#101010;
+--card:#191919;
+--text:#f5f5f5;
+--muted:#aaa;
+--border:#303030;
+--header:rgba(18,18,18,.96);
+}
+* {
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+body {
+font-family:Inter,sans-serif;
+background:var(--bg);
+color:var(--text);
+transition:.25s;
+}
+a {
+text-decoration:none;
+color:inherit;
+}
+button,select,input {
+font-family:inherit;
+}
+.container {
+width:min(1200px,92%);
+margin:auto;
+}
+/* ANNOUNCEMENT */
+.announcement {
+background:var(--red);
+color:white;
+text-align:center;
+padding:10px;
+font-size:10px;
+font-weight:900;
+letter-spacing:.5px;
+}
+/* HEADER */
+header {
+position:sticky;
+top:0;
+z-index:1000;
+background:var(--header);
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--border);
+}
+.navbar {
+height:75px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+}
+.brand {
+display:flex;
+align-items:center;
+gap:10px;
+font-size:18px;
+font-weight:900;
+}
+.brand img {
+width:40px;
+height:40px;
+border-radius:10px;
+object-fit:cover;
+}
+.brand span {
+color:var(--red);
+}
+.desktop-nav {
+display:flex;
+gap:22px;
+}
+.desktop-nav a {
+font-size:11px;
+font-weight:800;
+color:var(--muted);
+}
+.desktop-nav a:hover,
+.desktop-nav a.active {
+color:var(--red);
+}
+.nav-actions {
+display:flex;
+align-items:center;
+gap:8px;
+}
+.icon-btn {
+width:39px;
+height:39px;
+border:1px solid var(--border);
+border-radius:10px;
+background:var(--card);
+color:var(--text);
+font-size:16px;
+cursor:pointer;
+}
+.cart-btn {
+width:auto;
+padding:0 10px;
+display:flex;
+align-items:center;
+gap:7px;
+font-size:12px;
+font-weight:800;
+}
+.cart-count {
+background:var(--red);
+color:white;
+padding:4px 7px;
+border-radius:50px;
+font-size:10px;
+}
+/* SIDE MENU */
+.menu-overlay {
+position:fixed;
+inset:0;
+background:#0009;
+z-index:1100;
+visibility:hidden;
+opacity:0;
+transition:.3s;
+}
+.menu-overlay.active {
+visibility:visible;
+opacity:1;
+}
+.side-menu {
+position:fixed;
+right:-350px;
+top:0;
+width:min(330px,88%);
+height:100vh;
+background:var(--card);
+z-index:1200;
+padding:25px;
+transition:.3s;
+overflow-y:auto;
+}
+.side-menu.active {
+right:0;
+}
+.menu-top {
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-bottom:20px;
+border-bottom:1px solid var(--border);
+}
+.menu-top strong {
+font-size:19px;
+}
+.close-menu {
+border:0;
+background:none;
+color:var(--text);
+font-size:27px;
+cursor:pointer;
+}
+.menu-links {
+display:grid;
+gap:5px;
+margin:20px 0;
+}
+.menu-links a {
+padding:13px;
+border-radius:9px;
+font-size:13px;
+font-weight:700;
+}
+.menu-links a:hover {
+background:var(--bg);
+color:var(--red);
+}
+.menu-setting {
+border-top:1px solid var(--border);
+padding:17px 0;
+}
+.menu-setting label {
+display:block;
+font-size:11px;
+font-weight:800;
+margin-bottom:10px;
+}
+.menu-setting select,
+.theme-toggle {
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+border-radius:9px;
+background:var(--bg);
+color:var(--text);
+}
+.theme-toggle {
+text-align:left;
+font-weight:700;
+cursor:pointer;
+}
+/* HERO */
+.hero {
+padding:75px 0;
+background:
+radial-gradient(circle at 85% 30%,#e5253522,transparent 35%),
+var(--card);
+border-bottom:1px solid var(--border);
+}
+.hero-content {
+max-width:750px;
+}
+.hero-label {
+display:inline-block;
+padding:9px 14px;
+background:rgba(229,37,53,.1);
+color:var(--red);
+border-radius:50px;
+font-size:10px;
+font-weight:900;
+letter-spacing:1px;
+margin-bottom:20px;
+}
+.hero h1 {
+font-size:clamp(35px,6vw,62px);
+font-weight:900;
+letter-spacing:-2.5px;
+line-height:1.1;
+margin-bottom:20px;
+}
+.hero h1 span {
+color:var(--red);
+}
+.hero p {
+font-size:13px;
+color:var(--muted);
+line-height:2;
+max-width:570px;
+}
+.hero-stats {
+display:flex;
+gap:35px;
+margin-top:35px;
+flex-wrap:wrap;
+}
+.stat strong {
+display:block;
+font-size:25px;
+font-weight:900;
+}
+.stat span {
+font-size:10px;
+color:var(--muted);
+}
+/* BREADCRUMB */
+.breadcrumb {
+padding:22px 0;
+font-size:11px;
+color:var(--muted);
+}
+.breadcrumb a {
+color:var(--red);
+}
+/* MARKETPLACE */
+.marketplace {
+padding:35px 0 85px;
+}
+.market-heading {
+display:flex;
+justify-content:space-between;
+align-items:end;
+gap:20px;
+margin-bottom:28px;
+flex-wrap:wrap;
+}
+.market-heading h2 {
+font-size:26px;
+font-weight:900;
+}
+.market-heading p {
+font-size:11px;
+color:var(--muted);
+margin-top:9px;
+}
+.total-badge {
+background:var(--red);
+color:white;
+padding:10px 15px;
+border-radius:9px;
+font-size:11px;
+font-weight:900;
+}
+/* FILTERS */
+.filter-box {
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-bottom:30px;
+}
+.search-box {
+flex:1;
+min-width:200px;
+}
+.filter-box input,
+.filter-box select {
+width:100%;
+padding:14px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:10px;
+color:var(--text);
+font-size:11px;
+outline:none;
+}
+.filter-box input:focus,
+.filter-box select:focus {
+border-color:var(--red);
+}
+.filter-select {
+width:170px;
+}
+/* ACCOUNT GRID */
+.account-grid {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:22px;
+}
+.account-card {
+background:var(--card);
+border:1px solid var(--border);
+border-radius:15px;
+overflow:hidden;
+transition:.25s;
+}
+.account-card:hover {
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+.card-image {
+height:210px;
+background:linear-gradient(135deg,#252525,#68121c);
+position:relative;
+overflow:hidden;
+display:grid;
+place-items:center;
+}
+.card-image img {
+width:100%;
+height:100%;
+object-fit:cover;
+}
+.image-placeholder {
+font-size:55px;
+color:white;
+}
+.sold-badge {
+position:absolute;
+top:14px;
+left:14px;
+background:var(--red);
+color:white;
+padding:8px 12px;
+border-radius:6px;
+font-size:9px;
+font-weight:900;
+}
+.level-badge {
+position:absolute;
+bottom:13px;
+right:13px;
+background:#000c;
+color:white;
+padding:8px 11px;
+border-radius:7px;
+font-size:10px;
+font-weight:800;
+}
+.card-content {
+padding:19px;
+}
+.card-content h3 {
+font-size:15px;
+font-weight:900;
+margin-bottom:10px;
+}
+.card-description {
+font-size:10px;
+color:var(--muted);
+line-height:1.8;
+margin-bottom:17px;
+min-height:36px;
+}
+.card-price {
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:13px 0;
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+margin-bottom:16px;
+}
+.card-price span {
+font-size:10px;
+color:var(--muted);
+}
+.card-price strong {
+font-size:17px;
+color:var(--red);
+}
+.card-actions {
+display:grid;
+grid-template-columns:1fr;
+gap:9px;
+}
+.details-btn {
+padding:13px;
+border:0;
+border-radius:9px;
+background:var(--bg);
+color:var(--text);
+font-size:10px;
+font-weight:900;
+text-align:center;
+}
+.details-btn:hover {
+background:var(--red);
+color:white;
+}
+/* EMPTY STATE */
+.empty-state {
+grid-column:1/-1;
+text-align:center;
+padding:65px 20px;
+background:var(--card);
+border:1px dashed var(--border);
+border-radius:15px;
+}
+.empty-state div {
+font-size:45px;
+margin-bottom:15px;
+}
+.empty-state h3 {
+font-size:19px;
+margin-bottom:10px;
+}
+.empty-state p {
+font-size:11px;
+color:var(--muted);
+line-height:1.8;
+}
+/* TRUST SECTION */
+.trust-section {
+padding:65px 0;
+background:var(--card);
+}
+.section-heading {
+text-align:center;
+margin-bottom:35px;
+}
+.section-heading span {
+font-size:10px;
+color:var(--red);
+font-weight:900;
+letter-spacing:1.5px;
+}
+.section-heading h2 {
+font-size:29px;
+font-weight:900;
+margin-top:12px;
+}
+.trust-grid {
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+.trust-card {
+padding:25px;
+background:var(--bg);
+border-radius:13px;
+}
+.trust-icon {
+font-size:30px;
+margin-bottom:15px;
+}
+.trust-card h3 {
+font-size:14px;
+margin-bottom:10px;
+}
+.trust-card p {
+font-size:11px;
+line-height:1.9;
+color:var(--muted);
+}
+/* CTA */
+.cta-section {
+padding:70px 0;
+background:linear-gradient(120deg,#b81727,#e52535);
+color:white;
+text-align:center;
+}
+.cta-section h2 {
+font-size:clamp(25px,4vw,37px);
+font-weight:900;
+margin-bottom:15px;
+}
+.cta-section p {
+font-size:12px;
+line-height:1.9;
+opacity:.9;
+margin-bottom:25px;
+}
+.cta-button {
+display:inline-block;
+background:white;
+color:#bd1728;
+padding:15px 25px;
+border-radius:9px;
+font-size:11px;
+font-weight:900;
+}
+/* FOOTER */
+footer {
+background:#101010;
+color:white;
+padding:55px 0 0;
+}
+.footer-grid {
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 1fr;
+gap:30px;
+padding-bottom:40px;
+}
+.footer-brand {
+font-size:21px;
+font-weight:900;
+margin-bottom:15px;
+}
+.footer-brand span {
+color:var(--red);
+}
+.footer-about {
+font-size:11px;
+line-height:1.9;
+color:#aaa;
+}
+.footer-column h4 {
+font-size:12px;
+margin-bottom:18px;
+}
+.footer-column a {
+display:block;
+font-size:11px;
+color:#aaa;
+margin-bottom:13px;
+}
+.footer-column a:hover {
+color:var(--red);
+}
+.footer-bottom {
+border-top:1px solid #303030;
+padding:20px 0;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:15px;
+font-size:10px;
+color:#aaa;
+}
+.developer-credit {
+color:white;
+font-weight:800;
+}
+.developer-credit span {
+color:var(--red);
+}
+/* RESPONSIVE */
+@media(max-width:950px) {
+.desktop-nav {
+display:none;
+}
+.account-grid {
+grid-template-columns:repeat(2,1fr);
+}
+.footer-grid {
+grid-template-columns:repeat(2,1fr);
+}
+}
+@media(max-width:600px) {
+.navbar {
+height:68px;
+}
+.brand {
+font-size:15px;
+}
+.brand img {
+width:35px;
+height:35px;
+}
+.nav-actions {
+gap:6px;
+}
+.icon-btn {
+width:35px;
+height:35px;
+}
+.cart-btn {
+padding:0 7px;
+}
+.hero {
+padding:55px 0;
+}
+.hero h1 {
+letter-spacing:-1.5px;
+}
+.hero-stats {
+gap:22px;
+}
+.account-grid {
+grid-template-columns:1fr;
+}
+.card-image {
+height:230px;
+}
+.trust-grid {
+grid-template-columns:1fr;
+}
+.footer-grid {
+grid-template-columns:1fr 1fr;
+gap:25px 15px;
+}
+.market-heading h2 {
+font-size:22px;
+}
+.section-heading h2 {
+font-size:24px;
+}
+}
+</style>
+</head>
+<body>
+<div class="announcement">
+FOSTER GAMING — EXPLORE OUR PREVIOUSLY SOLD ACCOUNTS
+</div>
+<header>
+<div class="container navbar">
+<a href="index.html" class="brand">
+<img src="https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/YOUR-REPOSITORY/main/assets/images/logo.png" alt="Foster Gaming">
+<div>FOSTER <span>GAMING</span></div>
+</a>
+<nav class="desktop-nav">
+<a href="index.html">HOME</a>
+<a href="accounts.html">ACCOUNTS</a>
+<a href="sold.html" class="active">SOLD ACCOUNTS</a>
+<a href="blog.html">BLOG</a>
+<a href="about.html">ABOUT</a>
+<a href="contact.html">CONTACT</a>
+</nav>
+<div class="nav-actions">
+<a href="cart.html" class="icon-btn cart-btn">
+🛒 <span class="cart-count" id="cartCount">0</span>
+</a>
+<button class="icon-btn" id="themeButton">🌙</button>
+<button class="icon-btn" id="menuButton">☰</button>
+</div>
+</div>
+</header>
+<div class="menu-overlay" id="menuOverlay"></div>
+<aside class="side-menu" id="sideMenu">
+<div class="menu-top">
+<strong>Foster Gaming</strong>
+<button class="close-menu" id="closeMenu">×</button>
+</div>
+<nav class="menu-links">
+<a href="index.html">🏠 Home</a>
+<a href="accounts.html">🎮 Browse Accounts</a>
+<a href="sold.html">✅ Sold Accounts</a>
+<a href="cart.html">🛒 Shopping Cart</a>
+<a href="blog.html">📰 Blog</a>
+<a href="about.html">ℹ️ About Us</a>
+<a href="reviews.html">⭐ Reviews</a>
+<a href="contact.html">📩 Contact Us</a>
+</nav>
+<div class="menu-setting">
+<label>🌍 SELECT LANGUAGE</label>
+<select id="languageSelect">
+<option value="en">English</option>
+<option value="es">Español</option>
+<option value="fr">Français</option>
+<option value="de">Deutsch</option>
+<option value="pt">Português</option>
+<option value="ja">日本語</option>
+<option value="ko">한국어</option>
+<option value="ar">العربية</option>
+</select>
+</div>
+<div class="menu-setting">
+<label>🎨 APPEARANCE</label>
+<button class="theme-toggle" id="menuThemeButton">
+🌙 Switch to Dark Mode
+</button>
+</div>
+<div class="menu-setting">
+<label>📱 FOLLOW US</label>
+<div class="menu-links">
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok 1</a>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
+</div>
+</div>
+</aside>
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<div class="hero-label">
+🏆 FOSTER GAMING MARKETPLACE
+</div>
+<h1>
+Our Successfully <span>Sold</span> Accounts.
+</h1>
+<p>
+Explore previously sold Pokémon GO accounts from Foster Gaming.
+Browse different account levels, discover our previous listings
+and see examples of the accounts that have passed through our marketplace.
+</p>
+<div class="hero-stats">
+<div class="stat">
+<strong id="totalSold">0</strong>
+<span>SOLD LISTINGS</span>
+</div>
+<div class="stat">
+<strong>65–80</strong>
+<span>ACCOUNT LEVELS</span>
+</div>
+<div class="stat">
+<strong>100%</strong>
+<span>MARKETPLACE FOCUS</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<main>
+<div class="container breadcrumb">
+<a href="index.html">Home</a> / Sold Accounts
+</div>
+<section class="marketplace">
+<div class="container">
+<div class="market-heading">
+<div>
+<h2>Previously Sold Accounts</h2>
+<p>Explore our previous marketplace listings.</p>
+</div>
+<div class="total-badge" id="listingCount">
+0 SOLD ACCOUNTS
+</div>
+</div>
+<!-- FILTERS -->
+<div class="filter-box">
+<div class="search-box">
+<input
+type="search"
+id="searchInput"
+placeholder="Search sold accounts by name or ID..."
+>
+</div>
+<div class="filter-select">
+<select id="levelFilter">
+<option value="all">All Levels</option>
+<option value="65">Level 65</option>
+<option value="66">Level 66</option>
+<option value="67">Level 67</option>
+<option value="68">Level 68</option>
+<option value="69">Level 69</option>
+<option value="70">Level 70</option>
+<option value="71">Level 71</option>
+<option value="72">Level 72</option>
+<option value="73">Level 73</option>
+<option value="74">Level 74</option>
+<option value="75">Level 75</option>
+<option value="76">Level 76</option>
+<option value="77">Level 77</option>
+<option value="78">Level 78</option>
+<option value="79">Level 79</option>
+<option value="80">Level 80</option>
+</select>
+</div>
+</div>
+<!-- ACCOUNT GRID -->
+<div class="account-grid" id="accountGrid">
+<div class="empty-state">
+<div>🎮</div>
+<h3>Loading Sold Accounts</h3>
+<p>Please wait while we load our previous listings.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- WHY FOSTER GAMING -->
+<section class="trust-section">
+<div class="container">
+<div class="section-heading">
+<span>THE FOSTER GAMING EXPERIENCE</span>
+<h2>Why Explore Foster Gaming?</h2>
+</div>
+<div class="trust-grid">
+<div class="trust-card">
+<div class="trust-icon">🎮</div>
+<h3>Gaming-Focused Marketplace</h3>
+<p>
+A marketplace dedicated to Pokémon GO accounts,
+with listings organized by account level.
+</p>
+</div>
+<div class="trust-card">
+<div class="trust-icon">🔍</div>
+<h3>Account Previews</h3>
+<p>
+Browse available account descriptions and
+images to understand each listing.
+</p>
+</div>
+<div class="trust-card">
+<div class="trust-icon">📩</div>
+<h3>Direct Communication</h3>
+<p>
+Contact Foster Gaming through our social
+channels for questions about listings.
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta-section">
+<div class="container">
+<h2>Looking for Your Next Account?</h2>
+<p>
+Our available marketplace listings are waiting for you.
+Explore the current collection and find an account that matches your preference.
+</p>
+<a href="accounts.html" class="cta-button">
+BROWSE AVAILABLE ACCOUNTS →
+</a>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer>
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-brand">
+FOSTER <span>GAMING</span>
+</div>
+<p class="footer-about">
+Your destination for premium Pokémon GO accounts.
+Explore different account levels and discover available
+listings in our gaming marketplace.
+</p>
+</div>
+<div class="footer-column">
+<h4>MARKETPLACE</h4>
+<a href="index.html">Home</a>
+<a href="accounts.html">Browse Accounts</a>
+<a href="sold.html">Sold Accounts</a>
+<a href="cart.html">Shopping Cart</a>
+</div>
+<div class="footer-column">
+<h4>INFORMATION</h4>
+<a href="about.html">About Us</a>
+<a href="blog.html">Our Blog</a>
+<a href="reviews.html">Customer Reviews</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="footer-column">
+<h4>CONTACT</h4>
+<a href="mailto:harishwilliams010@gmail.com">Email Us</a>
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce">TikTok</a>
+<a href="https://snapchat.com/t/Ua0aZSS4">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg">Discord</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>
+© <span id="year"></span> Foster Gaming. All rights reserved.
+</div>
+<div class="developer-credit">
+Developed by <span>BITBRIDGE TECHNOLOGIES INC.</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+/* ======================================
+   FOSTER GAMING SOLD ACCOUNTS
+====================================== */
+/* THEME */
+function applyTheme(theme){
+document.body.classList.toggle('dark',theme==='dark');
+localStorage.setItem('foster_theme',theme);
+document.getElementById('themeButton').textContent=
+theme==='dark'?'☀️':'🌙';
+document.getElementById('menuThemeButton').textContent=
+theme==='dark'?'☀️ Switch to Light Mode':'🌙 Switch to Dark Mode';
+}
+applyTheme(localStorage.getItem('foster_theme')||'light');
+function toggleTheme(){
+const current=localStorage.getItem('foster_theme')||'light';
+applyTheme(current==='light'?'dark':'light');
+}
+document.getElementById('themeButton').onclick=toggleTheme;
+document.getElementById('menuThemeButton').onclick=toggleTheme;
+/* LANGUAGE */
+const languageSelect=document.getElementById('languageSelect');
+languageSelect.value=
+localStorage.getItem('foster_language')||'en';
+languageSelect.onchange=function(){
+localStorage.setItem('foster_language',this.value);
+};
+/* MENU */
+const sideMenu=document.getElementById('sideMenu');
+const overlay=document.getElementById('menuOverlay');
+document.getElementById('menuButton').onclick=()=>{
+sideMenu.classList.add('active');
+overlay.classList.add('active');
+document.body.style.overflow='hidden';
+};
+function closeMenu(){
+sideMenu.classList.remove('active');
+overlay.classList.remove('active');
+document.body.style.overflow='';
+}
+document.getElementById('closeMenu').onclick=closeMenu;
+overlay.onclick=closeMenu;
+document.querySelectorAll('.menu-links a').forEach(a=>{
+a.addEventListener('click',closeMenu);
+});
+/* STORAGE */
+function readStorage(key,fallback=[]){
+try{
+const value=JSON.parse(localStorage.getItem(key));
+return Array.isArray(value)?value:fallback;
+}catch(error){
+return fallback;
+}
+}
+/* ESCAPE HTML */
+function escapeHTML(value){
+return String(value??'').replace(/[&<>"']/g,char=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+}[char]));
+}
+/* FORMAT PRICE */
+function formatPrice(price,currency){
+try{
+return new Intl.NumberFormat('en-US',{
+style:'currency',
+currency:currency||'USD'
+}).format(Number(price)||0);
+}catch(error){
+return '$'+Number(price||0).toFixed(2);
+}
+}
+/* CART */
+function updateCartCount(){
+const cart=readStorage('foster_cart');
+const count=cart.reduce((sum,item)=>{
+return sum+(Number(item.quantity)||1);
+},0);
+document.getElementById('cartCount').textContent=count;
+}
+updateCartCount();
+/* INVENTORY */
+let inventory=readStorage('foster_accounts');
+let soldAccounts=[];
+/* ACCOUNT IMAGE */
+function getAccountImage(account){
+const image=account.image||
+(Array.isArray(account.images)?account.images[0]:'');
+if(!image)return '<div class="image-placeholder">🎮</div>';
+return `<img src="${escapeHTML(image)}" alt="Sold account preview" loading="lazy" onerror="this.style.display='none'">`;
+}
+/* RENDER SOLD ACCOUNTS */
+function renderSoldAccounts(){
+inventory=readStorage('foster_accounts');
+soldAccounts=inventory.filter(account=>
+account.status==='sold'
+);
+document.getElementById('totalSold').textContent=
+soldAccounts.length;
+document.getElementById('listingCount').textContent=
+soldAccounts.length+' SOLD ACCOUNTS';
+filterAccounts();
+}
+/* FILTER */
+function filterAccounts(){
+const search=document.getElementById('searchInput').value.toLowerCase().trim();
+const level=document.getElementById('levelFilter').value;
+let filtered=soldAccounts.filter(account=>{
+const matchesSearch=
+(account.title||'').toLowerCase().includes(search)||
+String(account.id||'').toLowerCase().includes(search)||
+String(account.level||'').includes(search);
+const matchesLevel=
+level==='all'||String(account.level)===level;
+return matchesSearch&&matchesLevel;
+});
+renderCards(filtered);
+}
+/* RENDER CARDS */
+function renderCards(accounts){
+const grid=document.getElementById('accountGrid');
+grid.innerHTML='';
+if(!accounts.length){
+grid.innerHTML=`
+<div class="empty-state">
+<div>🔍</div>
+<h3>No Sold Accounts Found</h3>
+<p>
+There are no sold accounts matching your search.
+Try changing your search term or level filter.
+</p>
+</div>
+`;
+return;
+}
+accounts.forEach(account=>{
+const card=document.createElement('article');
+card.className='account-card';
+const image=getAccountImage(account);
+const title=account.title||'Premium Pokémon GO Account';
+const description=account.description||
+'Explore this previously sold Pokémon GO account listing.';
+card.innerHTML=`
+<div class="card-image">
+${image}
+<div class="sold-badge">✓ SOLD</div>
+<div class="level-badge">
+LEVEL ${escapeHTML(account.level||'N/A')}
+</div>
+</div>
+<div class="card-content">
+<h3>${escapeHTML(title)}</h3>
+<p class="card-description">
+${escapeHTML(description.substring(0,110))}
+${description.length>110?'...':''}
+</p>
+<div class="card-price">
+<span>LISTED PRICE</span>
+<strong>
+${formatPrice(account.price,account.currency||'USD')}
+</strong>
+</div>
+<div class="card-actions">
+<a class="details-btn" href="account.html?id=${encodeURIComponent(account.id)}">
+VIEW ACCOUNT DETAILS →
+</a>
+</div>
+</div>
+`;
+grid.appendChild(card);
+});
+}
+/* SEARCH EVENTS */
+document.getElementById('searchInput').addEventListener('input',filterAccounts);
+document.getElementById('levelFilter').addEventListener('change',filterAccounts);
+/* LIVE INVENTORY UPDATES */
+window.addEventListener('storage',event=>{
+if(event.key==='foster_accounts'){
+renderSoldAccounts();
+}
+if(event.key==='foster_cart'){
+updateCartCount();
+}
+});
+/* INITIALIZATION */
+document.getElementById('year').textContent=
+new Date().getFullYear();
+renderSoldAccounts();
+updateCartCount();
+window.addEventListener('pageshow',updateCartCount);
+</script>
+</body>
+</html>
