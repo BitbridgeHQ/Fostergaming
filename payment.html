@@ -1,0 +1,1935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#e51d35">
+<title>Payment Instructions | Foster Gaming</title>
+
+<style>
+:root{
+--red:#e51d35;
+--red-dark:#bd1026;
+--green:#16a36a;
+--bg:#090a0e;
+--surface:#111319;
+--surface2:#191c25;
+--text:#f5f5f7;
+--muted:#a2a5b0;
+--border:rgba(255,255,255,.09);
+--header:rgba(9,10,14,.95);
+}
+
+body.light{
+--bg:#f5f6f9;
+--surface:#fff;
+--surface2:#eceef3;
+--text:#171923;
+--muted:#656b79;
+--border:rgba(0,0,0,.09);
+--header:rgba(255,255,255,.95);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+background:var(--bg);
+color:var(--text);
+font-family:Arial,Helvetica,sans-serif;
+transition:.3s;
+overflow-x:hidden;
+}
+
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+
+.container{width:min(1120px,92%);margin:auto}
+
+.announcement{
+background:var(--red);
+color:white;
+text-align:center;
+padding:10px;
+font-size:11px;
+font-weight:800;
+letter-spacing:.5px;
+}
+
+header{
+background:var(--header);
+backdrop-filter:blur(18px);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+.navbar{
+height:76px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:19px;
+font-weight:900;
+}
+
+.brand img{
+width:42px;
+height:42px;
+border-radius:9px;
+object-fit:contain;
+}
+
+.brand span{color:var(--red)}
+
+.desktop-nav{display:flex;gap:25px}
+
+.desktop-nav a{
+font-size:13px;
+color:var(--muted);
+font-weight:700;
+}
+
+.desktop-nav a:hover{color:var(--red)}
+
+.nav-actions{
+display:flex;
+gap:10px;
+align-items:center;
+}
+
+.icon-btn{
+width:39px;
+height:39px;
+background:var(--surface);
+color:var(--text);
+border:1px solid var(--border);
+border-radius:10px;
+font-size:17px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+}
+
+.cart-count{
+position:absolute;
+top:-7px;
+right:-7px;
+background:var(--red);
+color:white;
+border-radius:50%;
+width:19px;
+height:19px;
+font-size:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:900;
+}
+
+.cart-count:empty{display:none}
+.menu-btn{display:none}
+
+/* MOBILE MENU */
+
+.menu-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:1100;
+opacity:0;
+visibility:hidden;
+transition:.3s;
+}
+
+.menu-overlay.show{
+opacity:1;
+visibility:visible;
+}
+
+.side-menu{
+position:fixed;
+top:0;
+right:-360px;
+width:min(340px,88%);
+height:100vh;
+background:var(--surface);
+z-index:1200;
+padding:25px;
+transition:.35s;
+overflow-y:auto;
+border-left:1px solid var(--border);
+}
+
+.side-menu.open{right:0}
+
+.menu-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-bottom:22px;
+border-bottom:1px solid var(--border);
+}
+
+.close-menu{
+background:var(--surface2);
+color:var(--text);
+border:0;
+width:38px;
+height:38px;
+border-radius:9px;
+font-size:20px;
+}
+
+.menu-links{
+display:grid;
+gap:5px;
+padding:20px 0;
+}
+
+.menu-links a{
+padding:13px;
+border-radius:9px;
+font-size:14px;
+font-weight:700;
+}
+
+.menu-links a:hover{
+background:var(--surface2);
+color:var(--red);
+}
+
+.menu-setting{
+border-top:1px solid var(--border);
+padding:20px 0;
+}
+
+.menu-setting label{
+display:block;
+font-size:12px;
+color:var(--muted);
+margin-bottom:10px;
+font-weight:700;
+}
+
+.menu-setting select{
+width:100%;
+padding:13px;
+border-radius:9px;
+border:1px solid var(--border);
+background:var(--surface2);
+color:var(--text);
+}
+
+.menu-theme{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:14px;
+font-weight:700;
+}
+
+.social-links{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.social-links a{
+background:var(--surface2);
+padding:9px;
+border-radius:8px;
+font-size:11px;
+}
+
+/* GENERAL */
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+padding:15px 20px;
+border-radius:9px;
+font-size:12px;
+font-weight:800;
+border:1px solid transparent;
+transition:.2s;
+}
+
+.btn-primary{
+background:var(--red);
+color:white;
+}
+
+.btn-primary:hover{
+background:var(--red-dark);
+transform:translateY(-2px);
+}
+
+.btn-outline{
+background:transparent;
+border-color:var(--border);
+color:var(--text);
+}
+
+.page{padding:45px 0 90px}
+
+.breadcrumb{
+font-size:12px;
+color:var(--muted);
+margin-bottom:25px;
+}
+
+.breadcrumb a{color:var(--red)}
+
+.page-heading{margin-bottom:28px}
+
+.page-heading h1{
+font-size:clamp(28px,4vw,38px);
+letter-spacing:-1px;
+margin-bottom:9px;
+}
+
+.page-heading p{
+font-size:13px;
+color:var(--muted);
+line-height:1.8;
+}
+
+/* STATUS */
+
+.status-banner{
+background:rgba(22,163,106,.09);
+border:1px solid rgba(22,163,106,.25);
+border-radius:12px;
+padding:18px;
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:25px;
+}
+
+.status-icon{
+width:43px;
+height:43px;
+border-radius:50%;
+background:rgba(22,163,106,.15);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+flex-shrink:0;
+}
+
+.status-banner h3{
+font-size:14px;
+margin-bottom:5px;
+}
+
+.status-banner p{
+font-size:11px;
+color:var(--muted);
+line-height:1.7;
+}
+
+/* LAYOUT */
+
+.payment-layout{
+display:grid;
+grid-template-columns:1fr 350px;
+gap:22px;
+align-items:start;
+}
+
+.main-column{
+display:grid;
+gap:20px;
+}
+
+.card{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:14px;
+padding:25px;
+}
+
+.card-heading{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:22px;
+}
+
+.heading-icon{
+width:36px;
+height:36px;
+background:rgba(229,29,53,.12);
+color:var(--red);
+border-radius:9px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:17px;
+}
+
+.card-heading h2{font-size:17px}
+
+.card-heading p{
+font-size:11px;
+color:var(--muted);
+margin-top:5px;
+}
+
+/* ORDER REFERENCE */
+
+.reference-box{
+background:var(--surface2);
+border:1px dashed var(--red);
+border-radius:11px;
+padding:20px;
+}
+
+.reference-label{
+font-size:10px;
+color:var(--muted);
+font-weight:800;
+letter-spacing:1px;
+margin-bottom:10px;
+}
+
+.reference-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.reference-row strong{
+font-size:clamp(17px,3vw,25px);
+letter-spacing:1px;
+overflow-wrap:anywhere;
+}
+
+.copy-btn{
+background:var(--red);
+color:white;
+border:0;
+border-radius:7px;
+padding:10px 13px;
+font-size:10px;
+font-weight:800;
+flex-shrink:0;
+}
+
+/* PAYMENT DETAILS */
+
+.payment-method-title{
+display:flex;
+align-items:center;
+gap:12px;
+margin-bottom:20px;
+}
+
+.payment-method-icon{font-size:30px}
+
+.payment-method-title h3{
+font-size:16px;
+margin-bottom:5px;
+}
+
+.payment-method-title p{
+font-size:11px;
+color:var(--muted);
+}
+
+.instruction-box{
+background:var(--surface2);
+border-radius:10px;
+padding:18px;
+margin-bottom:15px;
+}
+
+.instruction-box h3{
+font-size:13px;
+margin-bottom:10px;
+}
+
+.instruction-box p{
+font-size:11px;
+line-height:1.9;
+color:var(--muted);
+}
+
+.instruction-box strong{color:var(--text)}
+
+.payment-detail{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:13px 0;
+border-bottom:1px solid var(--border);
+}
+
+.payment-detail:last-child{border-bottom:0}
+
+.payment-detail div:first-child{
+font-size:11px;
+color:var(--muted);
+}
+
+.payment-detail div:last-child{
+display:flex;
+align-items:center;
+gap:9px;
+font-size:12px;
+font-weight:800;
+text-align:right;
+overflow-wrap:anywhere;
+}
+
+.small-copy{
+background:var(--surface);
+border:1px solid var(--border);
+color:var(--text);
+padding:7px 9px;
+border-radius:6px;
+font-size:10px;
+}
+
+.warning-box{
+background:rgba(229,29,53,.07);
+border:1px solid rgba(229,29,53,.2);
+border-radius:10px;
+padding:16px;
+margin-top:16px;
+}
+
+.warning-box h3{
+font-size:12px;
+color:var(--red);
+margin-bottom:8px;
+}
+
+.warning-box p{
+font-size:11px;
+color:var(--muted);
+line-height:1.8;
+}
+
+/* AMOUNT */
+
+.amount-box{
+background:var(--surface2);
+border-radius:10px;
+padding:20px;
+margin-bottom:17px;
+}
+
+.amount-box small{
+font-size:10px;
+color:var(--muted);
+display:block;
+margin-bottom:8px;
+}
+
+.amount-box strong{
+font-size:27px;
+color:var(--green);
+display:block;
+overflow-wrap:anywhere;
+}
+
+.amount-box .usd-amount{
+font-size:12px;
+color:var(--muted);
+margin-top:9px;
+}
+
+/* ORDER SUMMARY */
+
+.order-summary{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:14px;
+padding:23px;
+position:sticky;
+top:105px;
+}
+
+.order-summary h2{
+font-size:18px;
+margin-bottom:20px;
+}
+
+.summary-item{
+display:flex;
+align-items:center;
+gap:11px;
+padding:12px 0;
+border-bottom:1px solid var(--border);
+}
+
+.summary-item img{
+width:55px;
+height:55px;
+object-fit:cover;
+border-radius:8px;
+background:var(--surface2);
+}
+
+.summary-info{flex:1;min-width:0}
+
+.summary-info strong{
+font-size:11px;
+display:block;
+margin-bottom:5px;
+}
+
+.summary-info span{
+font-size:10px;
+color:var(--muted);
+}
+
+.summary-price{
+font-size:11px;
+font-weight:900;
+white-space:nowrap;
+}
+
+.summary-line{
+display:flex;
+justify-content:space-between;
+gap:10px;
+padding:14px 0;
+border-bottom:1px solid var(--border);
+font-size:11px;
+color:var(--muted);
+}
+
+.summary-line strong{
+color:var(--text);
+text-align:right;
+}
+
+.total-line{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+padding:20px 0;
+}
+
+.total-line span{
+font-size:13px;
+font-weight:800;
+}
+
+.total-line strong{
+font-size:21px;
+color:var(--red);
+}
+
+/* CUSTOMER DETAILS */
+
+.customer-row{
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:12px 0;
+border-bottom:1px solid var(--border);
+}
+
+.customer-row:last-child{border-bottom:0}
+
+.customer-row span{
+font-size:11px;
+color:var(--muted);
+}
+
+.customer-row strong{
+font-size:11px;
+text-align:right;
+overflow-wrap:anywhere;
+}
+
+/* ACTIONS */
+
+.action-card{
+text-align:center;
+}
+
+.action-card h2{
+font-size:19px;
+margin-bottom:10px;
+}
+
+.action-card p{
+font-size:12px;
+color:var(--muted);
+line-height:1.8;
+margin-bottom:20px;
+}
+
+.action-buttons{
+display:grid;
+gap:12px;
+}
+
+.action-buttons .btn{width:100%}
+
+.manual-review{
+margin-top:18px;
+background:var(--surface2);
+border-radius:9px;
+padding:14px;
+text-align:left;
+}
+
+.manual-review strong{
+font-size:11px;
+display:block;
+margin-bottom:7px;
+}
+
+.manual-review p{
+font-size:10px;
+margin:0;
+}
+
+/* EMPTY ORDER */
+
+.empty-order{
+background:var(--surface);
+border:1px solid var(--border);
+border-radius:14px;
+padding:60px 20px;
+text-align:center;
+}
+
+.empty-order .emoji{
+font-size:55px;
+margin-bottom:17px;
+}
+
+.empty-order h2{
+font-size:22px;
+margin-bottom:10px;
+}
+
+.empty-order p{
+font-size:12px;
+color:var(--muted);
+line-height:1.8;
+margin-bottom:22px;
+}
+
+/* FOOTER */
+
+footer{
+background:#08090c;
+color:white;
+padding:60px 0 0;
+border-top:1px solid var(--border);
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 1.2fr;
+gap:35px;
+padding-bottom:40px;
+}
+
+.footer-brand p{
+font-size:12px;
+line-height:1.9;
+color:#999eaa;
+margin-top:16px;
+}
+
+.footer-col h3{
+font-size:13px;
+margin-bottom:20px;
+}
+
+.footer-col a{
+display:block;
+color:#999eaa;
+font-size:12px;
+margin-bottom:13px;
+}
+
+.footer-col a:hover{color:var(--red)}
+
+.footer-bottom{
+border-top:1px solid rgba(255,255,255,.09);
+padding:23px 0;
+display:flex;
+justify-content:space-between;
+gap:15px;
+flex-wrap:wrap;
+color:#858994;
+font-size:11px;
+}
+
+.footer-bottom strong{color:white}
+
+.toast{
+position:fixed;
+bottom:25px;
+left:50%;
+transform:translate(-50%,20px);
+background:var(--green);
+color:white;
+padding:13px 20px;
+border-radius:8px;
+font-size:12px;
+font-weight:800;
+opacity:0;
+visibility:hidden;
+transition:.25s;
+z-index:2000;
+}
+
+.toast.show{
+opacity:1;
+visibility:visible;
+transform:translate(-50%,0);
+}
+
+.hidden{display:none!important}
+
+@media(max-width:950px){
+.desktop-nav{display:none}
+.menu-btn{display:flex}
+.payment-layout{grid-template-columns:1fr 320px}
+.footer-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:700px){
+.navbar{height:67px}
+.brand{font-size:16px}
+.brand img{width:36px;height:36px}
+.icon-btn{width:35px;height:35px}
+.payment-layout{grid-template-columns:1fr}
+.order-summary{position:static;grid-row:1}
+.card{padding:19px}
+.footer-grid{grid-template-columns:1fr 1fr;gap:25px}
+.footer-brand{grid-column:1/-1}
+}
+
+@media(max-width:390px){
+.footer-grid{grid-template-columns:1fr}
+.footer-brand{grid-column:auto}
+.reference-row{align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<div class="announcement">
+🔥 FOSTER GAMING — PREMIUM POKÉMON GO ACCOUNTS
+</div>
+
+<header>
+<div class="container navbar">
+
+<a href="index.html" class="brand">
+<img src="https://placehold.co/100x100/e51d35/ffffff?text=FG" alt="Foster Gaming Logo">
+<div>FOSTER <span>GAMING</span></div>
+</a>
+
+<nav class="desktop-nav">
+<a href="index.html">Home</a>
+<a href="accounts.html">Accounts</a>
+<a href="blog.html">Blog</a>
+<a href="about.html">About Us</a>
+<a href="contact.html">Contact</a>
+</nav>
+
+<div class="nav-actions">
+<button class="icon-btn" id="themeButton" aria-label="Change theme">☀</button>
+
+<a href="cart.html" class="icon-btn" aria-label="Shopping cart">
+🛒<span class="cart-count" id="cartCount"></span>
+</a>
+
+<button class="icon-btn menu-btn" id="openMenu" aria-label="Open menu">☰</button>
+</div>
+
+</div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<aside class="side-menu" id="sideMenu">
+
+<div class="menu-head">
+<h3>Foster Gaming</h3>
+<button class="close-menu" id="closeMenu">×</button>
+</div>
+
+<div class="menu-links">
+<a href="index.html">🏠 Home</a>
+<a href="accounts.html">🎮 Browse Accounts</a>
+<a href="cart.html">🛒 Shopping Cart</a>
+<a href="blog.html">📰 Gaming Blog</a>
+<a href="about.html">ℹ️ About Us</a>
+<a href="reviews.html">⭐ Customer Reviews</a>
+<a href="contact.html">📩 Contact Us</a>
+</div>
+
+<div class="menu-setting">
+<label for="languageSelect">SELECT LANGUAGE</label>
+<select id="languageSelect">
+<option value="en">🇬🇧 English</option>
+<option value="es">🇪🇸 Español</option>
+<option value="fr">🇫🇷 Français</option>
+<option value="de">🇩🇪 Deutsch</option>
+<option value="pt">🇵🇹 Português</option>
+<option value="ar">🇸🇦 العربية</option>
+<option value="zh">🇨🇳 中文</option>
+<option value="ja">🇯🇵 日本語</option>
+</select>
+</div>
+
+<div class="menu-setting">
+<div class="menu-theme">
+<span>Appearance</span>
+<button class="icon-btn" id="menuThemeButton">☀</button>
+</div>
+</div>
+
+<div class="menu-setting">
+<label>FOLLOW FOSTER GAMING</label>
+<div class="social-links">
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok 1</a>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
+</div>
+</div>
+
+</aside>
+
+
+<main class="page">
+<div class="container">
+
+<div class="breadcrumb">
+<a href="index.html">Home</a> /
+<a href="cart.html">Cart</a> /
+<a href="checkout.html">Checkout</a> /
+Payment
+</div>
+
+<div class="page-heading">
+<h1>Complete Your Payment</h1>
+<p>Review your order and follow the payment instructions below.</p>
+</div>
+
+<div class="empty-order hidden" id="emptyOrder">
+<div class="emoji">📦</div>
+<h2>No Pending Order Found</h2>
+<p>We couldn't find an order awaiting payment on this device. Please return to checkout and place your order first.</p>
+<a href="checkout.html" class="btn btn-primary">RETURN TO CHECKOUT</a>
+</div>
+
+<div id="paymentPage">
+
+<div class="status-banner">
+<div class="status-icon">✓</div>
+<div>
+<h3>Your order has been created successfully!</h3>
+<p>Your order is awaiting payment. Follow the instructions below and notify us when you've completed your payment.</p>
+</div>
+</div>
+
+<div class="payment-layout">
+
+<div class="main-column">
+
+<!-- ORDER REFERENCE -->
+
+<section class="card">
+
+<div class="card-heading">
+<div class="heading-icon">🔖</div>
+<div>
+<h2>Order Reference</h2>
+<p>Keep this reference for payment and communication.</p>
+</div>
+</div>
+
+<div class="reference-box">
+<div class="reference-label">YOUR ORDER NUMBER</div>
+
+<div class="reference-row">
+<strong id="orderReference">Loading...</strong>
+<button class="copy-btn" onclick="copyText('orderReference')">COPY</button>
+</div>
+</div>
+
+</section>
+
+
+<!-- PAYMENT INSTRUCTIONS -->
+
+<section class="card">
+
+<div class="card-heading">
+<div class="heading-icon">💳</div>
+<div>
+<h2>Payment Instructions</h2>
+<p>Use the payment method selected during checkout.</p>
+</div>
+</div>
+
+<div class="payment-method-title">
+<div class="payment-method-icon" id="paymentIcon">💳</div>
+<div>
+<h3 id="paymentMethodName">Payment Method</h3>
+<p id="paymentMethodDescription">Selected payment option</p>
+</div>
+</div>
+
+<div class="amount-box">
+<small>AMOUNT TO PAY</small>
+<strong id="paymentAmount">Loading...</strong>
+<div class="usd-amount" id="paymentUSD"></div>
+</div>
+
+<div id="paymentInstructions"></div>
+
+<div class="warning-box">
+<h3>⚠️ IMPORTANT PAYMENT NOTICE</h3>
+<p>
+Always verify the recipient's payment details before sending money.
+Use your order reference in the payment description where supported.
+Do not send payment to an account that has not been confirmed by Foster Gaming.
+</p>
+</div>
+
+</section>
+
+
+<!-- CUSTOMER INFORMATION -->
+
+<section class="card">
+
+<div class="card-heading">
+<div class="heading-icon">👤</div>
+<div>
+<h2>Customer Information</h2>
+<p>Information submitted during checkout.</p>
+</div>
+</div>
+
+<div id="customerDetails"></div>
+
+</section>
+
+
+<!-- NOTIFICATION -->
+
+<section class="card action-card">
+
+<h2>Done With Payment?</h2>
+
+<p>
+After making your payment, notify Foster Gaming using the button below.
+Your email application will open with your order reference and payment details already filled in.
+</p>
+
+<div class="action-buttons">
+
+<button class="btn btn-primary" id="notifyButton">
+✉ I'VE MADE PAYMENT — NOTIFY FOSTER GAMING
+</button>
+
+<a href="accounts.html" class="btn btn-outline">
+CONTINUE BROWSING ACCOUNTS
+</a>
+
+</div>
+
+<div class="manual-review">
+<strong>🛡️ MANUAL PAYMENT REVIEW</strong>
+<p>
+Submitting a payment notification does not automatically confirm your payment.
+Our team must manually verify the transaction before your order can be marked as paid or completed.
+</p>
+</div>
+
+</section>
+
+</div>
+
+
+<!-- ORDER SUMMARY -->
+
+<aside class="order-summary">
+
+<h2>Order Summary</h2>
+
+<div id="orderItems"></div>
+
+<div class="summary-line">
+<span>Accounts</span>
+<strong id="orderQuantity">0</strong>
+</div>
+
+<div class="summary-line">
+<span>Subtotal</span>
+<strong id="orderSubtotal">$0.00</strong>
+</div>
+
+<div class="summary-line">
+<span>Digital Delivery</span>
+<strong>Included</strong>
+</div>
+
+<div class="total-line">
+<span>Total</span>
+<strong id="orderTotal">$0.00</strong>
+</div>
+
+<div class="summary-line">
+<span>Order Status</span>
+<strong style="color:var(--red)">Awaiting Payment</strong>
+</div>
+
+<div class="summary-line">
+<span>Verification</span>
+<strong>Pending Review</strong>
+</div>
+
+</aside>
+
+</div>
+
+</div>
+
+</div>
+</main>
+
+
+<footer>
+<div class="container">
+
+<div class="footer-grid">
+
+<div class="footer-brand">
+
+<a href="index.html" class="brand">
+<img src="https://placehold.co/100x100/e51d35/ffffff?text=FG" alt="Foster Gaming">
+<div>FOSTER <span>GAMING</span></div>
+</a>
+
+<p>
+Foster Gaming specializes in buying, selling and swapping
+stacked Pokémon GO accounts. Explore our marketplace and
+discover your next account.
+</p>
+
+<div class="social-links">
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok</a>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
+</div>
+
+</div>
+
+<div class="footer-col">
+<h3>QUICK LINKS</h3>
+<a href="index.html">Home</a>
+<a href="accounts.html">Browse Accounts</a>
+<a href="cart.html">Shopping Cart</a>
+<a href="blog.html">Gaming Blog</a>
+<a href="about.html">About Us</a>
+<a href="contact.html">Contact</a>
+</div>
+
+<div class="footer-col">
+<h3>ACCOUNT LEVELS</h3>
+<a href="accounts.html?level=65">Level 65–68</a>
+<a href="accounts.html?level=69">Level 69–72</a>
+<a href="accounts.html?level=73">Level 73–76</a>
+<a href="accounts.html?level=77">Level 77–80</a>
+<a href="accounts.html?status=sold">Sold Accounts</a>
+</div>
+
+<div class="footer-col">
+<h3>CONTACT</h3>
+<a href="mailto:harishwilliams010@gmail.com">📧 Business Email</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">💬 Discord</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">👻 Snapchat</a>
+<a href="contact.html">📩 Contact Us</a>
+</div>
+
+</div>
+
+<div class="footer-bottom">
+<div>© <span id="currentYear"></span> Foster Gaming. All Rights Reserved.</div>
+<div>Website developed by <strong>BITBRIDGE TECHNOLOGIES INC.</strong></div>
+</div>
+
+</div>
+</footer>
+
+<div class="toast" id="toast">Copied successfully!</div>
+
+
+<script>
+
+/* =====================================
+   CONFIGURATION
+===================================== */
+
+const BUSINESS_EMAIL="harishwilliams010@gmail.com";
+
+const ORDER_KEY="fosterGamingPendingOrder";
+const CART_KEY="fosterGamingCart";
+
+
+/*
+   PAYMENT RECEIVING DETAILS
+
+   Replace these placeholders with your actual
+   verified receiving details before accepting
+   real customer payments.
+*/
+
+const PAYMENT_DETAILS={
+
+bank:{
+name:"Foster Gaming",
+bankName:"YOUR BANK NAME",
+accountName:"YOUR ACCOUNT NAME",
+accountNumber:"YOUR ACCOUNT NUMBER",
+instructions:"Transfer the exact amount to the verified bank account displayed below. Include your order reference in the transfer narration where supported."
+},
+
+paypal:{
+email:"YOUR VERIFIED PAYPAL EMAIL",
+instructions:"Use the verified PayPal account displayed below. Confirm the recipient before completing your payment."
+},
+
+cashapp:{
+tag:"$YOUR_CASH_APP_TAG",
+instructions:"Send payment only to the verified Cash App tag displayed below."
+},
+
+zelle:{
+email:"YOUR VERIFIED ZELLE EMAIL",
+phone:"YOUR VERIFIED ZELLE PHONE NUMBER",
+instructions:"Use the verified Zelle recipient information below. Zelle availability is subject to your bank and account eligibility."
+},
+
+btc:{
+address:"YOUR BITCOIN WALLET ADDRESS",
+network:"Bitcoin network (BTC)",
+instructions:"Send Bitcoin only to the confirmed wallet address below. Confirm the network and address carefully before sending."
+},
+
+giftcard:{
+accepted:"CONFIRM ACCEPTED GIFT CARD BRANDS WITH SELLER",
+instructions:"Contact Foster Gaming before purchasing a gift card. Confirm the accepted brand, country, denomination and submission procedure first."
+}
+
+};
+
+
+/* =====================================
+   LOAD ORDER
+===================================== */
+
+let order=null;
+
+try{
+
+order=JSON.parse(localStorage.getItem(ORDER_KEY)||"null");
+
+}catch(error){
+
+order=null;
+
+}
+
+
+/* =====================================
+   FORMATTERS
+===================================== */
+
+function formatUSD(value){
+
+return "$"+Number(value||0).toLocaleString("en-US",{
+minimumFractionDigits:2,
+maximumFractionDigits:2
+});
+
+}
+
+function formatLocal(value){
+
+if(!order||!order.currency)return formatUSD(value);
+
+try{
+
+return new Intl.NumberFormat(undefined,{
+style:"currency",
+currency:order.currency.code,
+maximumFractionDigits:2
+}).format(value);
+
+}catch(error){
+
+return order.currency.symbol+Number(value).toFixed(2);
+
+}
+
+}
+
+function escapeHTML(value){
+
+return String(value??"").replace(/[&<>"']/g,function(character){
+
+return {
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[character];
+
+});
+
+}
+
+
+/* =====================================
+   PAYMENT METHOD INFORMATION
+===================================== */
+
+const paymentMethods={
+
+bank:{
+icon:"🏦",
+name:"Bank Transfer",
+description:"Bank payment"
+},
+
+paypal:{
+icon:"🅿️",
+name:"PayPal",
+description:"Online PayPal payment"
+},
+
+cashapp:{
+icon:"💵",
+name:"Cash App",
+description:"Cash App payment"
+},
+
+zelle:{
+icon:"🏦",
+name:"Zelle",
+description:"US bank payment"
+},
+
+btc:{
+icon:"₿",
+name:"Bitcoin",
+description:"Cryptocurrency payment"
+},
+
+giftcard:{
+icon:"🎁",
+name:"Gift Cards",
+description:"Supported gift card payment"
+}
+
+};
+
+
+/* =====================================
+   PAYMENT INSTRUCTIONS
+===================================== */
+
+function renderPaymentInstructions(method){
+
+const container=document.getElementById("paymentInstructions");
+
+const details=PAYMENT_DETAILS[method];
+
+if(!details){
+
+container.innerHTML=`
+<div class="instruction-box">
+<h3>Payment instructions unavailable</h3>
+<p>Please contact Foster Gaming for assistance.</p>
+</div>`;
+
+return;
+
+}
+
+let html="";
+
+if(method==="bank"){
+
+html=`
+
+<div class="instruction-box">
+
+<h3>🏦 Bank Account Details</h3>
+
+<p>${escapeHTML(details.instructions)}</p>
+
+<div class="payment-detail">
+<div>Bank Name</div>
+<div>${escapeHTML(details.bankName)}</div>
+</div>
+
+<div class="payment-detail">
+<div>Account Name</div>
+<div>${escapeHTML(details.accountName)}</div>
+</div>
+
+<div class="payment-detail">
+<div>Account Number</div>
+<div>
+<span>${escapeHTML(details.accountNumber)}</span>
+<button class="small-copy" onclick="copyValue('${escapeHTML(details.accountNumber)}')">COPY</button>
+</div>
+</div>
+
+</div>`;
+
+}
+
+else if(method==="paypal"){
+
+html=`
+
+<div class="instruction-box">
+
+<h3>🅿️ PayPal Account</h3>
+
+<p>${escapeHTML(details.instructions)}</p>
+
+<div class="payment-detail">
+<div>PayPal Email</div>
+<div>
+<span>${escapeHTML(details.email)}</span>
+<button class="small-copy" onclick="copyValue('${escapeHTML(details.email)}')">COPY</button>
+</div>
+</div>
+
+<p style="margin-top:12px">
+Replace the placeholder with your verified PayPal receiving email.
+</p>
+
+</div>`;
+
+}
+
+else if(method==="cashapp"){
+
+html=`
+
+<div class="instruction-box">
+
+<h3>💵 Cash App Details</h3>
+
+<p>${escapeHTML(details.instructions)}</p>
+
+<div class="payment-detail">
+<div>Cash App Tag</div>
+<div>
+<span>${escapeHTML(details.tag)}</span>
+<button class="small-copy" onclick="copyValue('${escapeHTML(details.tag)}')">COPY</button>
+</div>
+</div>
+
+</div>`;
+
+}
+
+else if(method==="zelle"){
+
+html=`
+
+<div class="instruction-box">
+
+<h3>🏦 Zelle Recipient Details</h3>
+
+<p>${escapeHTML(details.instructions)}</p>
+
+<div class="payment-detail">
+<div>Zelle Email</div>
+<div>${escapeHTML(details.email)}</div>
+</div>
+
+<div class="payment-detail">
+<div>Zelle Phone</div>
+<div>${escapeHTML(details.phone)}</div>
+</div>
+
+</div>`;
+
+}
+
+else if(method==="btc"){
+
+html=`
+
+<div class="instruction-box">
+
+<h3>₿ Bitcoin Receiving Address</h3>
+
+<p>${escapeHTML(details.instructions)}</p>
+
+<div class="payment-detail">
+<div>Network</div>
+<div>${escapeHTML(details.network)}</div>
+</div>
+
+<div class="payment-detail">
+<div>BTC Address</div>
+<div>
+<span>${escapeHTML(details.address)}</span>
+<button class="small-copy" onclick="copyValue('${escapeHTML(details.address)}')">COPY</button>
+</div>
+</div>
+
+</div>`;
+
+}
+
+else if(method==="giftcard"){
+
+html=`
+
+<div class="instruction-box">
+
+<h3>🎁 Gift Card Instructions</h3>
+
+<p>${escapeHTML(details.instructions)}</p>
+
+<div class="payment-detail">
+<div>Accepted Brands</div>
+<div>${escapeHTML(details.accepted)}</div>
+</div>
+
+</div>`;
+
+}
+
+container.innerHTML=html;
+
+}
+
+
+/* =====================================
+   DISPLAY ORDER
+===================================== */
+
+function renderOrder(){
+
+if(!order||!order.reference){
+
+document.getElementById("paymentPage").classList.add("hidden");
+
+document.getElementById("emptyOrder").classList.remove("hidden");
+
+return;
+
+}
+
+document.getElementById("paymentPage").classList.remove("hidden");
+
+document.getElementById("emptyOrder").classList.add("hidden");
+
+
+/* REFERENCE */
+
+document.getElementById("orderReference").textContent=
+order.reference;
+
+
+/* PAYMENT METHOD */
+
+const method=paymentMethods[order.paymentMethod]||{
+icon:"💳",
+name:"Payment Method",
+description:"Selected payment method"
+};
+
+document.getElementById("paymentIcon").textContent=method.icon;
+
+document.getElementById("paymentMethodName").textContent=method.name;
+
+document.getElementById("paymentMethodDescription").textContent=
+method.description;
+
+
+/* AMOUNT */
+
+document.getElementById("paymentAmount").textContent=
+formatLocal(order.currency.convertedTotal);
+
+document.getElementById("paymentUSD").textContent=
+"USD reference amount: "+formatUSD(order.totalUSD);
+
+
+/* INSTRUCTIONS */
+
+renderPaymentInstructions(order.paymentMethod);
+
+
+/* CUSTOMER */
+
+const customer=order.customer||{};
+
+const customerDetails=document.getElementById("customerDetails");
+
+const customerRows=[
+
+["Full Name",customer.name],
+["Email Address",customer.email],
+["Phone Number",customer.phone||"Not provided"],
+["Country",customer.country]
+
+];
+
+customerDetails.innerHTML=customerRows.map(row=>`
+
+<div class="customer-row">
+<span>${escapeHTML(row[0])}</span>
+<strong>${escapeHTML(row[1]||"Not provided")}</strong>
+</div>
+
+`).join("");
+
+
+/* ITEMS */
+
+const itemsContainer=document.getElementById("orderItems");
+
+itemsContainer.innerHTML="";
+
+let quantity=0;
+
+(order.items||[]).forEach(item=>{
+
+const qty=Math.max(1,Number(item.quantity)||1);
+
+quantity+=qty;
+
+const row=document.createElement("div");
+
+row.className="summary-item";
+
+const image=document.createElement("img");
+
+image.src=item.image||"https://placehold.co/100x100/191c25/ffffff?text=FG";
+
+image.alt=item.name||"Account";
+
+image.onerror=function(){
+
+this.src="https://placehold.co/100x100/191c25/ffffff?text=FG";
+
+};
+
+const info=document.createElement("div");
+
+info.className="summary-info";
+
+const name=document.createElement("strong");
+
+name.textContent=item.name||"Pokémon GO Account";
+
+const level=document.createElement("span");
+
+level.textContent="Level "+(item.level||"N/A")+" × "+qty;
+
+info.append(name,level);
+
+const price=document.createElement("div");
+
+price.className="summary-price";
+
+price.textContent=formatUSD(Number(item.price||0)*qty);
+
+row.append(image,info,price);
+
+itemsContainer.appendChild(row);
+
+});
+
+
+document.getElementById("orderQuantity").textContent=quantity;
+
+document.getElementById("orderSubtotal").textContent=
+formatUSD(order.subtotalUSD);
+
+document.getElementById("orderTotal").textContent=
+formatUSD(order.totalUSD);
+
+}
+
+
+/* =====================================
+   COPY FUNCTIONS
+===================================== */
+
+async function copyValue(value){
+
+try{
+
+await navigator.clipboard.writeText(value);
+
+showToast("Copied successfully!");
+
+}catch(error){
+
+const temporary=document.createElement("textarea");
+
+temporary.value=value;
+
+document.body.appendChild(temporary);
+
+temporary.select();
+
+document.execCommand("copy");
+
+temporary.remove();
+
+showToast("Copied successfully!");
+
+}
+
+}
+
+function copyText(elementId){
+
+const element=document.getElementById(elementId);
+
+if(element)copyValue(element.textContent);
+
+}
+
+
+/* =====================================
+   TOAST
+===================================== */
+
+function showToast(message){
+
+const toast=document.getElementById("toast");
+
+toast.textContent=message;
+
+toast.classList.add("show");
+
+setTimeout(()=>{
+
+toast.classList.remove("show");
+
+},2500);
+
+}
+
+
+/* =====================================
+   NOTIFY BUSINESS
+===================================== */
+
+document.getElementById("notifyButton").addEventListener("click",function(){
+
+if(!order)return;
+
+const customer=order.customer||{};
+
+const subject="Payment Notification - "+order.reference;
+
+const body=`
+
+Hello Foster Gaming,
+
+I have completed payment for my order.
+
+ORDER INFORMATION
+-------------------------
+Order Reference: ${order.reference}
+Order Date: ${new Date(order.date).toLocaleString()}
+
+CUSTOMER INFORMATION
+-------------------------
+Name: ${customer.name||""}
+Email: ${customer.email||""}
+Phone: ${customer.phone||"Not provided"}
+Country: ${customer.country||""}
+
+ORDER DETAILS
+-------------------------
+Payment Method: ${paymentMethods[order.paymentMethod]?.name||order.paymentMethod}
+Amount in USD: ${formatUSD(order.totalUSD)}
+Local Currency: ${formatLocal(order.currency.convertedTotal)}
+
+PAYMENT STATUS
+-------------------------
+I have made the payment and would like my transaction to be reviewed.
+
+Please confirm receipt of payment and update my order status.
+
+Thank you.
+
+`;
+
+const mailto="mailto:"+BUSINESS_EMAIL+
+"?subject="+encodeURIComponent(subject)+
+"&body="+encodeURIComponent(body);
+
+window.location.href=mailto;
+
+});
+
+
+/* =====================================
+   THEME MANAGEMENT
+===================================== */
+
+function applyTheme(theme){
+
+document.body.classList.toggle("light",theme==="light");
+
+localStorage.setItem("fosterGamingTheme",theme);
+
+const icon=theme==="light"?"🌙":"☀";
+
+document.getElementById("themeButton").textContent=icon;
+
+document.getElementById("menuThemeButton").textContent=icon;
+
+}
+
+applyTheme(localStorage.getItem("fosterGamingTheme")||"dark");
+
+function toggleTheme(){
+
+const current=localStorage.getItem("fosterGamingTheme")||"dark";
+
+applyTheme(current==="dark"?"light":"dark");
+
+}
+
+document.getElementById("themeButton").addEventListener("click",toggleTheme);
+
+document.getElementById("menuThemeButton").addEventListener("click",toggleTheme);
+
+
+/* =====================================
+   LANGUAGE PREFERENCE
+===================================== */
+
+const languageSelect=document.getElementById("languageSelect");
+
+languageSelect.value=localStorage.getItem("fosterGamingLanguage")||"en";
+
+document.documentElement.lang=languageSelect.value;
+
+document.documentElement.dir=languageSelect.value==="ar"?"rtl":"ltr";
+
+languageSelect.addEventListener("change",function(){
+
+localStorage.setItem("fosterGamingLanguage",this.value);
+
+document.documentElement.lang=this.value;
+
+document.documentElement.dir=this.value==="ar"?"rtl":"ltr";
+
+alert("Your language preference has been saved.");
+
+});
+
+
+/* =====================================
+   MOBILE MENU
+===================================== */
+
+const sideMenu=document.getElementById("sideMenu");
+
+const overlay=document.getElementById("menuOverlay");
+
+function openMenu(){
+
+sideMenu.classList.add("open");
+
+overlay.classList.add("show");
+
+document.body.style.overflow="hidden";
+
+}
+
+function closeMenu(){
+
+sideMenu.classList.remove("open");
+
+overlay.classList.remove("show");
+
+document.body.style.overflow="";
+
+}
+
+document.getElementById("openMenu").addEventListener("click",openMenu);
+
+document.getElementById("closeMenu").addEventListener("click",closeMenu);
+
+overlay.addEventListener("click",closeMenu);
+
+
+/* =====================================
+   INITIALIZATION
+===================================== */
+
+document.getElementById("currentYear").textContent=
+new Date().getFullYear();
+
+try{
+
+const cart=JSON.parse(localStorage.getItem(CART_KEY)||"[]");
+
+const count=Array.isArray(cart)?cart.reduce((total,item)=>{
+
+return total+(Number(item.quantity)||1);
+
+},0):0;
+
+document.getElementById("cartCount").textContent=count||"";
+
+}catch(error){
+
+document.getElementById("cartCount").textContent="";
+
+}
+
+renderOrder();
+
+</script>
+
+</body>
+</html>
