@@ -3,34 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#c90024">
-
-<title>Foster Gaming | Gaming Showcase</title>
-
-<meta name="description" content="Welcome to Foster Gaming — a modern gaming community and showcase. Explore gaming collections, news and updates.">
+<meta name="theme-color" content="#e52535">
+<title>Foster Gaming | Premium Pokémon GO Accounts</title>
+<meta name="description" content="Discover premium Pokémon GO accounts at Foster Gaming. Explore stacked accounts, browse account levels and find your next gaming account.">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
 :root {
-    --red: #c90024;
-    --red-dark: #a0001c;
-    --green: #159447;
-    --black: #111214;
+    --red: #e52535;
+    --red-dark: #bd1728;
+    --green: #16a36a;
     --white: #ffffff;
-    --background: #f5f5f7;
-    --surface: #ffffff;
+    --black: #101010;
+    --bg: #f5f5f7;
+    --card: #ffffff;
     --text: #171717;
-    --muted: #777;
-    --border: #e7e7e7;
-    --shadow: 0 10px 35px rgba(0,0,0,.07);
+    --muted: #777777;
+    --border: #e8e8e8;
+    --header: rgba(255,255,255,.94);
+    --shadow: 0 12px 35px rgba(0,0,0,.06);
 }
 
 body.dark {
-    --background: #101114;
-    --surface: #191b20;
-    --text: #f4f4f4;
-    --muted: #aaa;
-    --border: #303239;
-    --shadow: 0 10px 35px rgba(0,0,0,.25);
+    --bg: #101010;
+    --card: #191919;
+    --text: #f5f5f5;
+    --muted: #a1a1a1;
+    --border: #303030;
+    --header: rgba(18,18,18,.96);
+    --shadow: 0 12px 35px rgba(0,0,0,.25);
 }
 
 * {
@@ -44,16 +46,16 @@ html {
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--background);
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
-    transition: background .3s, color .3s;
+    transition: background .25s, color .25s;
+    overflow-x: hidden;
 }
 
 a {
-    color: inherit;
     text-decoration: none;
+    color: inherit;
 }
 
 button {
@@ -62,25 +64,38 @@ button {
 }
 
 .container {
-    width: min(1160px, 92%);
+    width: min(1200px, 92%);
     margin: auto;
+}
+
+/* ANNOUNCEMENT */
+
+.announcement {
+    background: var(--red);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .4px;
 }
 
 /* HEADER */
 
 header {
-    background: var(--surface);
-    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 1000;
+    background: var(--header);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
 }
 
 .navbar {
     min-height: 78px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 20px;
 }
 
@@ -91,14 +106,14 @@ header {
 }
 
 .brand img {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    border-radius: 10px;
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    object-fit: cover;
 }
 
 .brand-name {
-    font-size: 21px;
+    font-size: 19px;
     font-weight: 900;
     letter-spacing: -.8px;
 }
@@ -114,83 +129,255 @@ header {
 }
 
 .desktop-nav a {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--muted);
     transition: .2s;
 }
 
-.desktop-nav a:hover,
-.desktop-nav a.active {
+.desktop-nav a:hover {
     color: var(--red);
 }
 
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
 }
 
 .icon-btn {
-    border: 1px solid var(--border);
-    background: var(--surface);
-    color: var(--text);
     width: 39px;
     height: 39px;
-    border-radius: 10px;
-    font-size: 17px;
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    background: var(--card);
+    color: var(--text);
+    display: grid;
+    place-items: center;
+    font-size: 18px;
+    position: relative;
 }
 
-.menu-btn {
-    display: none;
+.cart-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 12px;
+    width: auto;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.cart-count {
+    background: var(--red);
+    color: white;
+    font-size: 10px;
+    min-width: 19px;
+    height: 19px;
+    border-radius: 50px;
+    display: grid;
+    place-items: center;
+    padding: 0 5px;
+}
+
+.hamburger {
+    font-size: 23px;
+}
+
+/* SIDE MENU */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 1100;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+}
+
+.menu-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.side-menu {
+    position: fixed;
+    right: -360px;
+    top: 0;
+    width: min(340px, 88%);
+    height: 100vh;
+    background: var(--card);
+    z-index: 1200;
+    padding: 25px;
+    transition: .35s;
+    overflow-y: auto;
+}
+
+.side-menu.active {
+    right: 0;
+}
+
+.menu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--border);
+}
+
+.menu-top strong {
+    font-size: 19px;
+}
+
+.close-menu {
+    background: transparent;
+    color: var(--text);
+    border: none;
+    font-size: 27px;
+}
+
+.menu-links {
+    display: grid;
+    gap: 5px;
+    margin: 22px 0;
+}
+
+.menu-links a {
+    padding: 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.menu-links a:hover {
+    background: var(--bg);
+    color: var(--red);
+}
+
+.menu-setting {
+    padding: 17px 0;
+    border-top: 1px solid var(--border);
+}
+
+.menu-setting label {
+    display: block;
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 11px;
+}
+
+.menu-setting select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    outline: none;
+}
+
+.theme-toggle {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    font-weight: 700;
+    text-align: left;
+}
+
+/* BUTTONS */
+
+.btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    padding: 14px 23px;
+    border-radius: 10px;
+    border: none;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .25s;
+}
+
+.btn-red {
+    background: var(--red);
+    color: white;
+}
+
+.btn-red:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--card);
+}
+
+.btn-outline:hover {
+    border-color: var(--red);
+    color: var(--red);
+}
+
+.btn-green {
+    background: var(--green);
+    color: white;
 }
 
 /* HERO */
 
 .hero {
     padding: 85px 0;
-    background:
-        radial-gradient(circle at 85% 20%, rgba(201,0,36,.18), transparent 30%),
-        linear-gradient(130deg, #111214, #25252a);
-    color: white;
+    position: relative;
     overflow: hidden;
+    background:
+        radial-gradient(circle at 85% 25%, rgba(229,37,53,.14), transparent 35%),
+        var(--bg);
 }
 
-.hero-content {
+.hero-grid {
     display: grid;
     grid-template-columns: 1.15fr .85fr;
     align-items: center;
-    gap: 45px;
+    gap: 55px;
 }
 
-.hero-label {
-    display: inline-block;
-    background: rgba(201,0,36,.18);
-    border: 1px solid rgba(255,255,255,.15);
-    color: #ff879a;
-    padding: 8px 14px;
-    border-radius: 30px;
-    font-size: 12px;
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(229,37,53,.1);
+    color: var(--red);
+    border-radius: 50px;
+    padding: 9px 14px;
+    font-size: 11px;
     font-weight: 800;
-    letter-spacing: 1.5px;
-    margin-bottom: 20px;
+    margin-bottom: 23px;
 }
 
 .hero h1 {
-    font-size: clamp(39px, 6vw, 66px);
+    font-size: clamp(38px, 5.4vw, 66px);
+    font-weight: 900;
     line-height: 1.08;
-    letter-spacing: -2.5px;
+    letter-spacing: -3px;
     margin-bottom: 22px;
 }
 
 .hero h1 span {
-    color: #ff304f;
+    color: var(--red);
 }
 
 .hero p {
-    color: #d1d1d1;
     max-width: 530px;
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--muted);
     margin-bottom: 30px;
 }
 
@@ -200,409 +387,540 @@ header {
     gap: 12px;
 }
 
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    padding: 13px 23px;
-    border-radius: 9px;
-    font-size: 14px;
-    font-weight: 800;
-    transition: .25s;
-}
-
-.btn-primary {
-    background: var(--red);
-    color: white;
-}
-
-.btn-primary:hover {
-    background: var(--red-dark);
-    transform: translateY(-2px);
-}
-
-.btn-outline {
-    border: 1px solid rgba(255,255,255,.4);
-    color: white;
-    background: transparent;
-}
-
-.btn-outline:hover {
-    background: white;
-    color: #111;
-}
-
 .hero-visual {
-    min-height: 330px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    position: relative;
+    min-height: 360px;
+    display: grid;
+    place-items: center;
 }
 
 .hero-card {
-    width: 100%;
-    max-width: 390px;
-    padding: 28px;
-    border: 1px solid rgba(255,255,255,.15);
-    border-radius: 22px;
-    background: rgba(255,255,255,.07);
-    backdrop-filter: blur(12px);
+    width: min(100%, 390px);
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    background: var(--card);
+    box-shadow: var(--shadow);
     transform: rotate(2deg);
-    box-shadow: 0 25px 70px rgba(0,0,0,.3);
 }
 
-.hero-card .game-icon {
-    width: 85px;
-    height: 85px;
-    border-radius: 20px;
-    background: linear-gradient(135deg, #c90024, #ff637a);
+.hero-card-image {
+    height: 215px;
+    border-radius: 17px;
+    background:
+        linear-gradient(135deg, rgba(229,37,53,.9), rgba(0,0,0,.88)),
+        #222;
     display: grid;
     place-items: center;
-    font-size: 40px;
-    margin-bottom: 25px;
+    color: white;
+    font-size: 75px;
 }
 
 .hero-card h3 {
-    font-size: 25px;
-    margin-bottom: 8px;
+    font-size: 19px;
+    margin-top: 20px;
 }
 
 .hero-card p {
-    font-size: 13px;
-    margin: 0;
+    margin: 8px 0 15px;
+    font-size: 12px;
 }
 
 .hero-card-bottom {
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid rgba(255,255,255,.15);
-    padding-top: 18px;
-    margin-top: 25px;
-    color: #ddd;
-    font-size: 12px;
+    align-items: center;
+}
+
+.hero-card-bottom strong {
+    color: var(--red);
+    font-size: 17px;
+}
+
+.floating-badge {
+    position: absolute;
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 13px 17px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.badge-one {
+    top: 25px;
+    right: -5px;
+}
+
+.badge-two {
+    bottom: 20px;
+    left: -15px;
 }
 
 /* TRUST STRIP */
 
 .trust-strip {
-    background: var(--surface);
+    background: var(--card);
+    border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    padding: 23px 0;
+    padding: 24px 0;
 }
 
 .trust-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
 }
 
 .trust-item {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     gap: 12px;
-    font-size: 13px;
-    font-weight: 800;
 }
 
 .trust-icon {
-    width: 39px;
-    height: 39px;
-    border-radius: 11px;
-    display: grid;
-    place-items: center;
-    background: rgba(201,0,36,.1);
-    color: var(--red);
-    font-size: 18px;
+    font-size: 25px;
 }
 
-/* SECTION */
+.trust-item strong {
+    display: block;
+    font-size: 12px;
+}
+
+.trust-item span {
+    font-size: 10px;
+    color: var(--muted);
+}
+
+/* GENERAL SECTIONS */
 
 section {
-    padding: 75px 0;
+    padding: 85px 0;
 }
 
 .section-heading {
     text-align: center;
-    max-width: 650px;
-    margin: 0 auto 42px;
+    margin-bottom: 42px;
 }
 
 .section-heading .eyebrow {
     color: var(--red);
-    text-transform: uppercase;
     font-size: 11px;
-    letter-spacing: 2px;
     font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
 .section-heading h2 {
-    font-size: clamp(28px, 4vw, 40px);
-    letter-spacing: -1.3px;
-    margin: 8px 0 12px;
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 900;
+    margin: 12px 0;
+    letter-spacing: -1.5px;
 }
 
 .section-heading p {
     color: var(--muted);
-    font-size: 14px;
+    font-size: 13px;
+    line-height: 1.8;
 }
 
-/* FEATURES */
+/* LEVEL CATEGORIES */
 
-.features-grid {
+.category-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
 }
 
-.feature-card {
-    background: var(--surface);
+.category-card {
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px;
-    box-shadow: var(--shadow);
+    padding: 25px 12px;
+    border-radius: 15px;
+    text-align: center;
     transition: .25s;
 }
 
-.feature-card:hover {
+.category-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(201,0,36,.4);
+    border-color: var(--red);
+    box-shadow: var(--shadow);
 }
 
-.feature-icon {
-    width: 52px;
-    height: 52px;
+.category-card .level-icon {
+    width: 48px;
+    height: 48px;
     display: grid;
     place-items: center;
-    background: rgba(201,0,36,.1);
+    background: rgba(229,37,53,.1);
     color: var(--red);
-    border-radius: 14px;
-    font-size: 23px;
-    margin-bottom: 20px;
+    font-weight: 900;
+    border-radius: 13px;
+    margin: 0 auto 13px;
+    font-size: 17px;
 }
 
-.feature-card h3 {
-    font-size: 18px;
-    margin-bottom: 10px;
+.category-card h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
 }
 
-.feature-card p {
+.category-card p {
+    font-size: 10px;
     color: var(--muted);
-    font-size: 13px;
 }
 
-/* SHOWCASE */
+/* FEATURED */
 
-.showcase {
-    background: var(--surface);
+.featured-section {
+    background: var(--card);
 }
 
-.showcase-grid {
+.featured-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
 
-.showcase-card {
-    overflow: hidden;
-    border-radius: 15px;
+.account-card {
+    background: var(--bg);
     border: 1px solid var(--border);
-    background: var(--background);
+    border-radius: 17px;
+    overflow: hidden;
+    transition: .25s;
 }
 
-.showcase-image {
+.account-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.account-image {
     height: 190px;
+    background: linear-gradient(135deg, #292929, #5c1018);
     display: grid;
     place-items: center;
-    font-size: 65px;
-    background: linear-gradient(135deg, #25252a, #4a1824);
+    color: white;
+    font-size: 55px;
+    position: relative;
 }
 
-.showcase-card:nth-child(2) .showcase-image {
-    background: linear-gradient(135deg, #163e2a, #258c53);
+.account-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.showcase-card:nth-child(3) .showcase-image {
-    background: linear-gradient(135deg, #25234e, #6d4da7);
+.level-label {
+    position: absolute;
+    top: 13px;
+    left: 13px;
+    background: var(--red);
+    color: white;
+    font-size: 10px;
+    font-weight: 900;
+    padding: 7px 11px;
+    border-radius: 50px;
 }
 
-.showcase-info {
-    padding: 20px;
+.account-info {
+    padding: 19px;
 }
 
-.showcase-info h3 {
-    font-size: 17px;
-    margin-bottom: 7px;
+.account-info h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
 }
 
-.showcase-info p {
+.account-info p {
     color: var(--muted);
-    font-size: 13px;
+    font-size: 11px;
+    line-height: 1.8;
     margin-bottom: 15px;
 }
 
-.text-link {
+.account-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.account-bottom strong {
+    font-size: 17px;
     color: var(--red);
+}
+
+.account-bottom a {
+    font-size: 11px;
+}
+
+.empty-products {
+    text-align: center;
+    padding: 35px;
+    border: 1px dashed var(--border);
+    border-radius: 15px;
+    color: var(--muted);
     font-size: 13px;
-    font-weight: 900;
+    line-height: 2;
+}
+
+/* WHY US */
+
+.why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.why-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 27px;
+    border-radius: 16px;
+}
+
+.why-card .why-icon {
+    font-size: 29px;
+    margin-bottom: 19px;
+}
+
+.why-card h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.why-card p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--muted);
 }
 
 /* CTA */
 
-.cta {
-    padding: 55px 0;
+.cta-section {
+    padding: 0 0 85px;
 }
 
 .cta-box {
-    background: linear-gradient(120deg, #b90020, #e32445);
+    background: linear-gradient(120deg, #a90f20, #ed3445);
+    border-radius: 23px;
+    padding: 55px 35px;
+    text-align: center;
     color: white;
-    border-radius: 20px;
-    padding: 45px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
 }
 
 .cta-box h2 {
-    font-size: 30px;
-    line-height: 1.2;
-    margin-bottom: 10px;
+    font-size: clamp(27px, 4vw, 40px);
+    font-weight: 900;
+    margin-bottom: 13px;
 }
 
 .cta-box p {
-    color: #ffe1e6;
-    font-size: 14px;
+    font-size: 13px;
+    opacity: .9;
+    margin-bottom: 25px;
 }
 
 .cta-box .btn {
     background: white;
     color: var(--red);
-    white-space: nowrap;
+}
+
+/* REVIEWS */
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.review-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 22px;
+    border-radius: 15px;
+}
+
+.review-stars {
+    color: #f5b800;
+    letter-spacing: 3px;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.review-card p {
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--muted);
+}
+
+.review-card h4 {
+    font-size: 12px;
+    margin-top: 17px;
+}
+
+.review-note {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 22px;
+}
+
+/* BLOG */
+
+.blog-section {
+    background: var(--card);
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.blog-card {
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.blog-image {
+    height: 175px;
+    background: linear-gradient(135deg, #252525, #a91728);
+    display: grid;
+    place-items: center;
+    font-size: 45px;
+    color: white;
+}
+
+.blog-info {
+    padding: 20px;
+}
+
+.blog-info small {
+    color: var(--red);
+    font-weight: 800;
+    font-size: 10px;
+}
+
+.blog-info h3 {
+    font-size: 14px;
+    margin: 12px 0;
+    line-height: 1.6;
+}
+
+.blog-info p {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.blog-info a {
+    color: var(--red);
+    font-size: 11px;
+    font-weight: 800;
+}
+
+/* SOCIAL */
+
+.social-section {
+    padding: 65px 0;
+}
+
+.social-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.social-link {
+    padding: 14px 22px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 11px;
+    font-size: 12px;
+    font-weight: 800;
+    transition: .2s;
+}
+
+.social-link:hover {
+    border-color: var(--red);
+    color: var(--red);
 }
 
 /* FOOTER */
 
 footer {
-    background: #101114;
+    background: #101010;
     color: white;
-    padding: 60px 0 20px;
+    padding: 65px 0 0;
 }
 
 .footer-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 35px;
-    padding-bottom: 40px;
+    gap: 40px;
+    padding-bottom: 45px;
 }
 
-.footer-brand p {
-    color: #aaa;
-    font-size: 13px;
+.footer-brand {
+    font-size: 21px;
+    font-weight: 900;
+    margin-bottom: 16px;
+}
+
+.footer-brand span {
+    color: #ed3445;
+}
+
+.footer-about {
+    font-size: 12px;
+    line-height: 1.9;
+    color: #a5a5a5;
     max-width: 300px;
-    margin-top: 15px;
 }
 
 .footer-column h4 {
-    font-size: 14px;
-    margin-bottom: 17px;
+    font-size: 13px;
+    margin-bottom: 20px;
 }
 
 .footer-column a {
     display: block;
-    color: #aaa;
-    font-size: 13px;
-    margin-bottom: 11px;
+    color: #a5a5a5;
+    font-size: 11px;
+    margin-bottom: 15px;
     transition: .2s;
 }
 
 .footer-column a:hover {
-    color: white;
+    color: #ed3445;
 }
 
 .footer-bottom {
-    border-top: 1px solid #303036;
-    padding-top: 20px;
+    border-top: 1px solid #303030;
+    padding: 22px 0;
     display: flex;
     justify-content: space-between;
-    gap: 15px;
     flex-wrap: wrap;
+    gap: 15px;
+    font-size: 10px;
     color: #999;
-    font-size: 12px;
 }
 
-.footer-credit {
-    color: #ddd;
+.developer-credit {
+    color: white;
     font-weight: 800;
-    letter-spacing: 1px;
 }
 
-/* MENU PANEL */
-
-.menu-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.55);
-    z-index: 2000;
-    opacity: 0;
-    visibility: hidden;
-    transition: .25s;
-}
-
-.menu-overlay.open {
-    opacity: 1;
-    visibility: visible;
-}
-
-.menu-panel {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: min(360px, 88%);
-    background: var(--surface);
-    padding: 25px;
-    transform: translateX(100%);
-    transition: .3s;
-}
-
-.menu-overlay.open .menu-panel {
-    transform: translateX(0);
-}
-
-.menu-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 35px;
-}
-
-.menu-panel nav a {
-    display: block;
-    padding: 15px 5px;
-    border-bottom: 1px solid var(--border);
-    font-weight: 700;
-    font-size: 15px;
-}
-
-.menu-panel nav a:hover {
-    color: var(--red);
-}
-
-.menu-settings {
-    margin-top: 25px;
-    display: grid;
-    gap: 12px;
-}
-
-.menu-settings select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border);
-    background: var(--background);
-    color: var(--text);
-    border-radius: 8px;
+.developer-credit span {
+    color: #ed3445;
 }
 
 /* RESPONSIVE */
@@ -612,25 +930,13 @@ footer {
         display: none;
     }
 
-    .menu-btn {
-        display: inline-block;
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
     }
 
-    .hero-content {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-visual {
-        min-height: auto;
-    }
-
-    .hero-card {
-        max-width: 500px;
-    }
-
-    .features-grid,
-    .showcase-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .footer-grid {
@@ -638,31 +944,56 @@ footer {
     }
 }
 
-@media(max-width: 600px) {
+@media(max-width: 650px) {
     .navbar {
         min-height: 68px;
     }
 
     .brand-name {
-        font-size: 18px;
+        font-size: 16px;
     }
 
     .brand img {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .nav-actions {
+        gap: 7px;
+    }
+
+    .icon-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .cart-btn {
+        padding: 0 8px;
+        font-size: 11px;
     }
 
     .hero {
         padding: 65px 0;
     }
 
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+
     .hero h1 {
-        letter-spacing: -1.5px;
+        letter-spacing: -2px;
+    }
+
+    .hero-visual {
+        min-height: 320px;
+    }
+
+    .badge-one {
+        right: 0;
     }
 
     .trust-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .trust-item {
@@ -670,35 +1001,45 @@ footer {
     }
 
     section {
-        padding: 58px 0;
+        padding: 65px 0;
     }
 
-    .features-grid,
-    .showcase-grid {
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .featured-grid,
+    .why-grid,
+    .reviews-grid,
+    .blog-grid {
         grid-template-columns: 1fr;
-    }
-
-    .cta-box {
-        padding: 30px 23px;
-        align-items: flex-start;
-        flex-direction: column;
-    }
-
-    .cta-box h2 {
-        font-size: 25px;
     }
 
     .footer-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 28px 15px;
-    }
-
-    .footer-brand {
-        grid-column: 1 / -1;
+        gap: 30px 20px;
     }
 
     .footer-bottom {
         flex-direction: column;
+    }
+}
+
+@media(max-width: 370px) {
+    .brand-name {
+        font-size: 13px;
+    }
+
+    .brand {
+        gap: 6px;
+    }
+
+    .nav-actions {
+        gap: 5px;
+    }
+
+    .cart-btn {
+        font-size: 10px;
     }
 }
 </style>
@@ -706,116 +1047,167 @@ footer {
 
 <body>
 
+<div class="announcement">
+    🔥 WELCOME TO FOSTER GAMING — YOUR PREMIUM POKÉMON GO MARKETPLACE
+</div>
+
 <header>
     <div class="container navbar">
 
         <a href="index.html" class="brand">
-            <!-- Replace this URL with your logo image URL -->
-            <img src="https://placehold.co/100x100/c90024/ffffff?text=FG"
-                 alt="Foster Gaming Logo">
-
-            <div class="brand-name">
-                FOSTER <span>GAMING</span>
-            </div>
+            <img src="https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/YOUR-REPOSITORY/main/assets/images/logo.png" alt="Foster Gaming Logo">
+            <div class="brand-name">FOSTER <span>GAMING</span></div>
         </a>
 
         <nav class="desktop-nav">
-            <a href="index.html" class="active">Home</a>
-            <a href="accounts.html">Showcase</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
+            <a href="index.html">HOME</a>
+            <a href="accounts.html">ACCOUNTS</a>
+            <a href="sold.html">SOLD ACCOUNTS</a>
+            <a href="blog.html">BLOG</a>
+            <a href="about.html">ABOUT</a>
+            <a href="contact.html">CONTACT</a>
         </nav>
 
         <div class="nav-actions">
-            <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☾</button>
-            <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+            <a href="cart.html" class="icon-btn cart-btn" aria-label="Shopping cart">
+                🛒 <span class="cart-count" id="cartCount">0</span>
+            </a>
+
+            <button class="icon-btn" id="themeButton" aria-label="Change theme">
+                🌙
+            </button>
+
+            <button class="icon-btn hamburger" id="menuButton" aria-label="Open menu">
+                ☰
+            </button>
+
         </div>
 
     </div>
 </header>
 
-<!-- MOBILE MENU -->
+<div class="menu-overlay" id="menuOverlay"></div>
 
-<div class="menu-overlay" id="menuOverlay">
-    <div class="menu-panel">
+<aside class="side-menu" id="sideMenu">
 
-        <div class="menu-top">
-            <strong>FOSTER <span style="color:var(--red)">GAMING</span></strong>
-            <button class="icon-btn" id="closeMenu" aria-label="Close menu">✕</button>
-        </div>
-
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="accounts.html">Gaming Showcase</a>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-
-        <div class="menu-settings">
-            <label for="languageSelect">Website language</label>
-            <select id="languageSelect">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-                <option value="pt">Português</option>
-            </select>
-        </div>
-
+    <div class="menu-top">
+        <strong>Foster Gaming</strong>
+        <button class="close-menu" id="closeMenu">×</button>
     </div>
-</div>
 
-<!-- HERO -->
+    <nav class="menu-links">
+        <a href="index.html">🏠 Home</a>
+        <a href="accounts.html">🎮 Browse Accounts</a>
+        <a href="sold.html">✅ Sold Accounts</a>
+        <a href="cart.html">🛒 Shopping Cart</a>
+        <a href="blog.html">📰 Blog</a>
+        <a href="about.html">ℹ️ About Us</a>
+        <a href="reviews.html">⭐ Customer Reviews</a>
+        <a href="contact.html">📩 Contact Us</a>
+    </nav>
+
+    <div class="menu-setting">
+        <label for="languageSelect">🌍 SELECT LANGUAGE</label>
+        <select id="languageSelect">
+            <option value="en">English</option>
+            <option value="es">Español (Spanish)</option>
+            <option value="fr">Français (French)</option>
+            <option value="de">Deutsch (German)</option>
+            <option value="pt">Português (Portuguese)</option>
+            <option value="ja">日本語 (Japanese)</option>
+            <option value="ko">한국어 (Korean)</option>
+            <option value="ar">العربية (Arabic)</option>
+        </select>
+    </div>
+
+    <div class="menu-setting">
+        <label>🎨 APPEARANCE</label>
+        <button class="theme-toggle" id="menuThemeButton">
+            🌙 Switch to Dark Mode
+        </button>
+    </div>
+
+    <div class="menu-setting">
+        <label>📱 FOLLOW FOSTER GAMING</label>
+        <div class="menu-links">
+            <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok 1</a>
+            <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
+            <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
+            <a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
+        </div>
+    </div>
+
+</aside>
 
 <main>
 
+<!-- HERO -->
+
 <section class="hero">
-    <div class="container hero-content">
+    <div class="container hero-grid">
 
         <div>
-            <div class="hero-label">WELCOME TO FOSTER GAMING</div>
+
+            <div class="hero-tag">
+                🔴 PREMIUM POKÉMON GO ACCOUNTS
+            </div>
 
             <h1>
-                YOUR WORLD.<br>
-                YOUR <span>GAME.</span><br>
-                YOUR EXPERIENCE.
+                LEVEL UP YOUR
+                <span>POKÉMON GO</span>
+                EXPERIENCE.
             </h1>
 
             <p>
-                Welcome to Foster Gaming — a place for gaming enthusiasts,
-                collections, updates and everything that makes gaming exciting.
-                Explore our showcase and connect with our community.
+                Welcome to Foster Gaming. Explore our collection of
+                premium, stacked Pokémon GO accounts. Discover accounts
+                across different levels and find the perfect addition
+                to your gaming journey.
             </p>
 
             <div class="hero-buttons">
-                <a href="accounts.html" class="btn btn-primary">
-                    Explore Showcase →
+                <a href="accounts.html" class="btn btn-red">
+                    EXPLORE ACCOUNTS →
                 </a>
 
                 <a href="about.html" class="btn btn-outline">
-                    Discover Foster Gaming
+                    DISCOVER FOSTER GAMING
                 </a>
             </div>
+
         </div>
 
         <div class="hero-visual">
+
+            <div class="floating-badge badge-one">
+                🔥 PREMIUM ACCOUNTS
+            </div>
+
             <div class="hero-card">
 
-                <div class="game-icon">🎮</div>
+                <div class="hero-card-image">
+                    🎮
+                </div>
 
-                <h3>FOSTER GAMING</h3>
+                <h3>Find Your Next Account</h3>
 
                 <p>
-                    Gaming culture. Collections. Community.
-                    Everything in one place.
+                    Explore different levels and discover
+                    accounts that match your gaming goals.
                 </p>
 
                 <div class="hero-card-bottom">
-                    <span>GAMING COMMUNITY</span>
-                    <span>EST. FOSTER</span>
+                    <strong>FOSTER GAMING</strong>
+                    <a href="accounts.html" class="btn btn-red">SHOP NOW</a>
                 </div>
 
             </div>
+
+            <div class="floating-badge badge-two">
+                🟢 EXPLORE OUR COLLECTION
+            </div>
+
         </div>
 
     </div>
@@ -828,126 +1220,166 @@ footer {
 
         <div class="trust-item">
             <div class="trust-icon">🎮</div>
-            <span>Gaming Focused</span>
+            <div>
+                <strong>Premium Accounts</strong>
+                <span>Carefully presented listings</span>
+            </div>
+        </div>
+
+        <div class="trust-item">
+            <div class="trust-icon">🔒</div>
+            <div>
+                <strong>Manual Verification</strong>
+                <span>Payment review process</span>
+            </div>
         </div>
 
         <div class="trust-item">
             <div class="trust-icon">🌍</div>
-            <span>Worldwide Community</span>
+            <div>
+                <strong>International Access</strong>
+                <span>Customers worldwide</span>
+            </div>
         </div>
 
         <div class="trust-item">
-            <div class="trust-icon">💬</div>
-            <span>Community Support</span>
+            <div class="trust-icon">📩</div>
+            <div>
+                <strong>Email Delivery</strong>
+                <span>After payment approval</span>
+            </div>
         </div>
 
     </div>
 </div>
 
-<!-- ABOUT FEATURES -->
+<!-- CATEGORIES -->
 
 <section>
     <div class="container">
 
         <div class="section-heading">
-            <span class="eyebrow">WHAT WE DO</span>
-            <h2>Welcome to Our Gaming World</h2>
+            <span class="eyebrow">EXPLORE OUR COLLECTION</span>
+            <h2>Browse By Account Level</h2>
             <p>
-                Discover what makes Foster Gaming a destination
-                for gaming enthusiasts.
+                Find Pokémon GO accounts across our available
+                level categories.
             </p>
         </div>
 
-        <div class="features-grid">
+        <div class="category-grid" id="categoryGrid"></div>
 
-            <div class="feature-card">
-                <div class="feature-icon">🏆</div>
-                <h3>Gaming Collections</h3>
-                <p>
-                    Explore gaming collections, featured highlights
-                    and interesting discoveries from the gaming world.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Gaming Updates</h3>
-                <p>
-                    Stay connected with gaming news, updates,
-                    announcements and community highlights.
-                </p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">🤝</div>
-                <h3>Community</h3>
-                <p>
-                    Connect with Foster Gaming, ask questions
-                    and stay in touch through our social channels.
-                </p>
-            </div>
-
+        <div style="text-align:center;margin-top:32px;">
+            <a href="accounts.html" class="btn btn-red">
+                VIEW ALL ACCOUNTS →
+            </a>
         </div>
 
     </div>
 </section>
 
-<!-- SHOWCASE -->
+<!-- FEATURED ACCOUNTS -->
 
-<section class="showcase">
+<section class="featured-section">
     <div class="container">
 
         <div class="section-heading">
-            <span class="eyebrow">EXPLORE</span>
-            <h2>Featured Gaming Categories</h2>
+            <span class="eyebrow">OUR MARKETPLACE</span>
+            <h2>Featured Accounts</h2>
             <p>
-                Take a look at some of the gaming categories
-                featured on Foster Gaming.
+                Take a look at some of the accounts available
+                in the Foster Gaming marketplace.
             </p>
         </div>
 
-        <div class="showcase-grid">
+        <div class="featured-grid" id="featuredGrid">
 
-            <div class="showcase-card">
-                <div class="showcase-image">⚔️</div>
-                <div class="showcase-info">
-                    <h3>Pokémon GO</h3>
-                    <p>
-                        Explore Pokémon GO collections, highlights
-                        and gaming-related content.
-                    </p>
-                    <a href="accounts.html" class="text-link">
-                        Explore Collection →
-                    </a>
-                </div>
+            <div class="empty-products">
+                🎮 Account listings will appear here once
+                the marketplace inventory is configured.
+                <br>
+                Visit our accounts page to explore the collection.
             </div>
 
-            <div class="showcase-card">
-                <div class="showcase-image">🎯</div>
-                <div class="showcase-info">
-                    <h3>Gaming Highlights</h3>
-                    <p>
-                        Discover interesting gaming moments,
-                        achievements and featured content.
-                    </p>
-                    <a href="accounts.html" class="text-link">
-                        View Highlights →
-                    </a>
-                </div>
+        </div>
+
+        <div style="text-align:center;margin-top:35px;">
+            <a href="accounts.html" class="btn btn-red">
+                EXPLORE ALL LISTINGS →
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- WHY BUY FROM US -->
+
+<section>
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">THE FOSTER GAMING EXPERIENCE</span>
+            <h2>Why Buy From Us?</h2>
+            <p>
+                We aim to make browsing and purchasing
+                accounts straightforward for our customers.
+            </p>
+        </div>
+
+        <div class="why-grid">
+
+            <div class="why-card">
+                <div class="why-icon">🎯</div>
+                <h3>Different Account Levels</h3>
+                <p>
+                    Explore our marketplace with account categories
+                    ranging from Level 65 through Level 80.
+                </p>
             </div>
 
-            <div class="showcase-card">
-                <div class="showcase-image">🌟</div>
-                <div class="showcase-info">
-                    <h3>Community Updates</h3>
-                    <p>
-                        Follow announcements and updates
-                        from the Foster Gaming community.
-                    </p>
-                    <a href="contact.html" class="text-link">
-                        Connect With Us →
-                    </a>
-                </div>
+            <div class="why-card">
+                <div class="why-icon">💳</div>
+                <h3>Multiple Payment Options</h3>
+                <p>
+                    Our checkout experience is designed to support
+                    different payment methods and international customers.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">📨</div>
+                <h3>Manual Payment Review</h3>
+                <p>
+                    Payments are reviewed manually before purchased
+                    account details are delivered.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">🖼️</div>
+                <h3>Account Previews</h3>
+                <p>
+                    Browse account descriptions and available
+                    screenshots before making your decision.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">🌍</div>
+                <h3>International Customers</h3>
+                <p>
+                    We welcome customers from different countries
+                    through our international marketplace.
+                </p>
+            </div>
+
+            <div class="why-card">
+                <div class="why-icon">🤝</div>
+                <h3>Customer Support</h3>
+                <p>
+                    Connect with Foster Gaming through our
+                    social media channels and support contacts.
+                </p>
             </div>
 
         </div>
@@ -957,21 +1389,184 @@ footer {
 
 <!-- CTA -->
 
-<section class="cta">
+<section class="cta-section">
     <div class="container">
 
         <div class="cta-box">
+            <h2>Your Next Gaming Account Awaits.</h2>
+            <p>
+                Explore our listings and discover what Foster Gaming has available.
+            </p>
+            <a href="accounts.html" class="btn">
+                START EXPLORING →
+            </a>
+        </div>
 
-            <div>
-                <h2>Let's Talk Gaming.</h2>
+    </div>
+</section>
+
+<!-- CUSTOMER REVIEWS -->
+
+<section>
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">CUSTOMER FEEDBACK</span>
+            <h2>What Our Customers Say</h2>
+            <p>
+                Customer experiences and feedback are important
+                to the Foster Gaming community.
+            </p>
+        </div>
+
+        <div class="reviews-grid">
+
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
                 <p>
-                    Have a question or want to connect with Foster Gaming?
-                    Get in touch with us.
+                    Customer testimonials will be published here
+                    after they have been received and verified.
                 </p>
+                <h4>Customer testimonial slot 01</h4>
             </div>
 
-            <a href="contact.html" class="btn">
-                Contact Us →
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>
+                    We welcome customers to share their genuine
+                    experiences with Foster Gaming.
+                </p>
+                <h4>Customer testimonial slot 02</h4>
+            </div>
+
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p>
+                    Your feedback helps other visitors understand
+                    the experiences of our customers.
+                </p>
+                <h4>Customer testimonial slot 03</h4>
+            </div>
+
+        </div>
+
+        <p class="review-note">
+            These are demonstration placeholders, not verified customer reviews.
+        </p>
+
+        <div style="text-align:center;margin-top:30px;">
+            <a href="reviews.html" class="btn btn-red">
+                VIEW REVIEWS & SUBMIT YOURS →
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- BLOG -->
+
+<section class="blog-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">LATEST UPDATES</span>
+            <h2>From Our Blog</h2>
+            <p>
+                Gaming updates, account guides and useful
+                information from Foster Gaming.
+            </p>
+        </div>
+
+        <div class="blog-grid">
+
+            <article class="blog-card">
+                <div class="blog-image">🎮</div>
+                <div class="blog-info">
+                    <small>GAMING GUIDES</small>
+                    <h3>Understanding Pokémon GO Account Levels</h3>
+                    <p>
+                        Discover what account levels mean and
+                        what to consider when browsing listings.
+                    </p>
+                    <a href="blog.html">READ MORE →</a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">⭐</div>
+                <div class="blog-info">
+                    <small>ACCOUNT TIPS</small>
+                    <h3>What to Look For When Choosing an Account</h3>
+                    <p>
+                        Learn about account previews, descriptions
+                        and important purchasing considerations.
+                    </p>
+                    <a href="blog.html">READ MORE →</a>
+                </div>
+            </article>
+
+            <article class="blog-card">
+                <div class="blog-image">🌍</div>
+                <div class="blog-info">
+                    <small>FOSTER GAMING</small>
+                    <h3>Welcome to the Foster Gaming Marketplace</h3>
+                    <p>
+                        Get to know our marketplace and explore
+                        the services available to visitors.
+                    </p>
+                    <a href="blog.html">READ MORE →</a>
+                </div>
+            </article>
+
+        </div>
+
+        <div style="text-align:center;margin-top:32px;">
+            <a href="blog.html" class="btn btn-outline">
+                VISIT OUR BLOG →
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- SOCIAL MEDIA -->
+
+<section class="social-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">STAY CONNECTED</span>
+            <h2>Follow Foster Gaming</h2>
+            <p>
+                Connect with us through our official social
+                media platforms.
+            </p>
+        </div>
+
+        <div class="social-grid">
+
+            <a class="social-link"
+               href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce"
+               target="_blank" rel="noopener">
+                🎵 TikTok
+            </a>
+
+            <a class="social-link"
+               href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6"
+               target="_blank" rel="noopener">
+                🎵 TikTok 2
+            </a>
+
+            <a class="social-link"
+               href="https://snapchat.com/t/Ua0aZSS4"
+               target="_blank" rel="noopener">
+                👻 Snapchat
+            </a>
+
+            <a class="social-link"
+               href="https://discord.gg/VqVBngcg"
+               target="_blank" rel="noopener">
+                🎮 Discord
             </a>
 
         </div>
@@ -984,132 +1579,329 @@ footer {
 <!-- FOOTER -->
 
 <footer>
+
     <div class="container">
 
         <div class="footer-grid">
 
-            <div class="footer-brand">
-                <div class="brand-name">
+            <div>
+                <div class="footer-brand">
                     FOSTER <span>GAMING</span>
                 </div>
 
-                <p>
-                    A gaming-focused community and showcase
-                    built for people who love gaming.
+                <p class="footer-about">
+                    Your destination for premium Pokémon GO accounts.
+                    Explore different account levels, discover available
+                    listings and connect with the Foster Gaming community.
                 </p>
             </div>
 
             <div class="footer-column">
-                <h4>Navigation</h4>
+                <h4>QUICK LINKS</h4>
                 <a href="index.html">Home</a>
-                <a href="accounts.html">Showcase</a>
+                <a href="accounts.html">Browse Accounts</a>
+                <a href="sold.html">Sold Accounts</a>
+                <a href="cart.html">Shopping Cart</a>
+                <a href="blog.html">Our Blog</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>INFORMATION</h4>
                 <a href="about.html">About Us</a>
-                <a href="contact.html">Contact</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="reviews.html">Customer Reviews</a>
+                <a href="reviews.html">Submit a Review</a>
             </div>
 
             <div class="footer-column">
-                <h4>Explore</h4>
-                <a href="accounts.html">Pokémon GO</a>
-                <a href="accounts.html">Gaming Highlights</a>
-                <a href="accounts.html">Collections</a>
-            </div>
-
-            <div class="footer-column">
-                <h4>Get in Touch</h4>
+                <h4>GET IN TOUCH</h4>
                 <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
-                <a href="https://www.tiktok.com/@fostergames5" target="_blank" rel="noopener">TikTok</a>
-                <a href="https://snapchat.com/t/3SgH1EdO" target="_blank" rel="noopener">Snapchat</a>
-                <a href="https://discord.gg/5TCTxUWJ" target="_blank" rel="noopener">Discord</a>
+                <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce">TikTok</a>
+                <a href="https://snapchat.com/t/Ua0aZSS4">Snapchat</a>
+                <a href="https://discord.gg/VqVBngcg">Discord</a>
             </div>
 
         </div>
 
         <div class="footer-bottom">
-            <span>© <span id="year"></span> Foster Gaming. All rights reserved.</span>
 
-            <span class="footer-credit">
-                POWERED BY BITBRIDGE TECHNOLOGIES INC.
-            </span>
+            <div>
+                © <span id="currentYear"></span> Foster Gaming.
+                All rights reserved.
+            </div>
+
+            <div class="developer-credit">
+                Developed by <span>BITBRIDGE TECHNOLOGIES INC.</span>
+            </div>
+
         </div>
 
     </div>
+
 </footer>
 
 <script>
-/* CURRENT YEAR */
 
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+/* =====================================
+   FOSTER GAMING GLOBAL SETTINGS
+===================================== */
 
-/* DARK AND LIGHT THEME */
+/* THEME */
 
-const themeBtn = document.getElementById("themeBtn");
+function applyTheme(theme) {
 
-function applyTheme() {
-    const savedTheme = localStorage.getItem("fosterTheme") || "light";
+    document.body.classList.toggle('dark', theme === 'dark');
 
-    document.body.classList.toggle("dark", savedTheme === "dark");
+    localStorage.setItem('foster_theme', theme);
 
-    themeBtn.textContent =
-        savedTheme === "dark" ? "☀" : "☾";
+    const icon = theme === 'dark' ? '☀️' : '🌙';
+
+    document.getElementById('themeButton').textContent = icon;
+
+    document.getElementById('menuThemeButton').textContent =
+        theme === 'dark'
+        ? '☀️ Switch to Light Mode'
+        : '🌙 Switch to Dark Mode';
 }
 
-themeBtn.addEventListener("click", () => {
-    const isDark = document.body.classList.contains("dark");
+const savedTheme = localStorage.getItem('foster_theme') || 'light';
 
-    localStorage.setItem(
-        "fosterTheme",
-        isDark ? "light" : "dark"
-    );
+applyTheme(savedTheme);
 
-    applyTheme();
-});
+function toggleTheme() {
 
-applyTheme();
+    const current = localStorage.getItem('foster_theme') || 'light';
 
-/* MOBILE MENU */
+    applyTheme(current === 'light' ? 'dark' : 'light');
+}
 
-const menuBtn = document.getElementById("menuBtn");
-const closeMenu = document.getElementById("closeMenu");
-const menuOverlay = document.getElementById("menuOverlay");
+document.getElementById('themeButton').addEventListener('click', toggleTheme);
 
-menuBtn.addEventListener("click", () => {
-    menuOverlay.classList.add("open");
-});
+document.getElementById('menuThemeButton').addEventListener('click', toggleTheme);
 
-closeMenu.addEventListener("click", () => {
-    menuOverlay.classList.remove("open");
-});
 
-menuOverlay.addEventListener("click", (event) => {
-    if (event.target === menuOverlay) {
-        menuOverlay.classList.remove("open");
-    }
-});
+/* LANGUAGE */
 
-document.querySelectorAll(".menu-panel nav a").forEach(link => {
-    link.addEventListener("click", () => {
-        menuOverlay.classList.remove("open");
-    });
-});
+const languageSelect = document.getElementById('languageSelect');
 
-/* LANGUAGE PREFERENCE */
-
-const languageSelect = document.getElementById("languageSelect");
-
-const savedLanguage =
-    localStorage.getItem("fosterLanguage") || "en";
+const savedLanguage = localStorage.getItem('foster_language') || 'en';
 
 languageSelect.value = savedLanguage;
 
-languageSelect.addEventListener("change", () => {
-    localStorage.setItem(
-        "fosterLanguage",
-        languageSelect.value
-    );
+languageSelect.addEventListener('change', function() {
 
-    alert("Language preference saved. Full translations will be added as the website pages are completed.");
+    localStorage.setItem('foster_language', this.value);
+
+    alert('Language preference saved. Full page translations will be enabled as the language system is implemented across the website.');
+
 });
+
+
+/* HAMBURGER MENU */
+
+const menuButton = document.getElementById('menuButton');
+
+const closeMenu = document.getElementById('closeMenu');
+
+const sideMenu = document.getElementById('sideMenu');
+
+const menuOverlay = document.getElementById('menuOverlay');
+
+function openMenu() {
+
+    sideMenu.classList.add('active');
+
+    menuOverlay.classList.add('active');
+
+    document.body.style.overflow = 'hidden';
+}
+
+function hideMenu() {
+
+    sideMenu.classList.remove('active');
+
+    menuOverlay.classList.remove('active');
+
+    document.body.style.overflow = '';
+}
+
+menuButton.addEventListener('click', openMenu);
+
+closeMenu.addEventListener('click', hideMenu);
+
+menuOverlay.addEventListener('click', hideMenu);
+
+document.querySelectorAll('.menu-links a').forEach(link => {
+
+    link.addEventListener('click', hideMenu);
+
+});
+
+
+/* CART COUNTER */
+
+function updateCartCount() {
+
+    let cart = [];
+
+    try {
+
+        cart = JSON.parse(localStorage.getItem('foster_cart')) || [];
+
+    } catch(error) {
+
+        cart = [];
+
+    }
+
+    let totalItems = cart.reduce((sum, item) => {
+
+        return sum + (Number(item.quantity) || 1);
+
+    }, 0);
+
+    document.getElementById('cartCount').textContent = totalItems;
+}
+
+updateCartCount();
+
+
+/* ACCOUNT LEVEL CATEGORIES */
+
+const categoryGrid = document.getElementById('categoryGrid');
+
+for(let level = 65; level <= 80; level++) {
+
+    const category = document.createElement('a');
+
+    category.href = `accounts.html?level=${level}`;
+
+    category.className = 'category-card';
+
+    category.innerHTML = `
+        <div class="level-icon">${level}</div>
+        <h3>Level ${level}</h3>
+        <p>Explore accounts →</p>
+    `;
+
+    categoryGrid.appendChild(category);
+
+}
+
+
+/* FEATURED ACCOUNT DATA */
+
+function loadFeaturedAccounts() {
+
+    const featuredGrid = document.getElementById('featuredGrid');
+
+    let accounts = [];
+
+    try {
+
+        accounts = JSON.parse(localStorage.getItem('foster_accounts')) || [];
+
+    } catch(error) {
+
+        accounts = [];
+
+    }
+
+    const available = accounts.filter(account => {
+
+        return account.status !== 'sold';
+
+    }).slice(0, 3);
+
+    if(available.length === 0) return;
+
+    featuredGrid.innerHTML = '';
+
+    available.forEach(account => {
+
+        const card = document.createElement('article');
+
+        card.className = 'account-card';
+
+        const image = account.image
+            ? `<img src="${escapeHTML(account.image)}" alt="Pokémon GO account preview">`
+            : '🎮';
+
+        const title = escapeHTML(account.title || 'Premium Account');
+
+        const description = escapeHTML(account.description || 'Explore this available account.');
+
+        const price = Number(account.price) || 0;
+
+        card.innerHTML = `
+            <div class="account-image">
+                ${image}
+                <span class="level-label">LEVEL ${Number(account.level) || 65}</span>
+            </div>
+
+            <div class="account-info">
+                <h3>${title}</h3>
+                <p>${description}</p>
+
+                <div class="account-bottom">
+                    <strong>${price.toLocaleString('en-US', {maximumFractionDigits:2})}</strong>
+                    <a class="btn btn-red" href="account.html?id=${encodeURIComponent(account.id)}">
+                        VIEW DETAILS
+                    </a>
+                </div>
+            </div>
+        `;
+
+        featuredGrid.appendChild(card);
+
+    });
+
+}
+
+
+/* BASIC HTML ESCAPING */
+
+function escapeHTML(value) {
+
+    return String(value).replace(/[&<>"']/g, function(character) {
+
+        return {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#039;'
+        }[character];
+
+    });
+
+}
+
+
+/* CURRENT YEAR */
+
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+
+/* LOAD DATA */
+
+loadFeaturedAccounts();
+
+
+/* UPDATE CART WHEN PAGE RETURNS */
+
+window.addEventListener('pageshow', updateCartCount);
+
+window.addEventListener('storage', function(event) {
+
+    if(event.key === 'foster_cart') {
+
+        updateCartCount();
+
+    }
+
+});
+
 </script>
 
 </body>
