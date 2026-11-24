@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c90024">
+
+<title>Foster Gaming | Gaming Showcase</title>
+
+<meta name="description" content="Welcome to Foster Gaming — a modern gaming community and showcase. Explore gaming collections, news and updates.">
+
+<style>
+:root {
+    --red: #c90024;
+    --red-dark: #a0001c;
+    --green: #159447;
+    --black: #111214;
+    --white: #ffffff;
+    --background: #f5f5f7;
+    --surface: #ffffff;
+    --text: #171717;
+    --muted: #777;
+    --border: #e7e7e7;
+    --shadow: 0 10px 35px rgba(0,0,0,.07);
+}
+
+body.dark {
+    --background: #101114;
+    --surface: #191b20;
+    --text: #f4f4f4;
+    --muted: #aaa;
+    --border: #303239;
+    --shadow: 0 10px 35px rgba(0,0,0,.25);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background .3s, color .3s;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.container {
+    width: min(1160px, 92%);
+    margin: auto;
+}
+
+/* HEADER */
+
+header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    min-height: 78px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.brand img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    border-radius: 10px;
+}
+
+.brand-name {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: -.8px;
+}
+
+.brand-name span {
+    color: var(--red);
+}
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 27px;
+}
+
+.desktop-nav a {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--muted);
+    transition: .2s;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+    color: var(--red);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icon-btn {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    width: 39px;
+    height: 39px;
+    border-radius: 10px;
+    font-size: 17px;
+}
+
+.menu-btn {
+    display: none;
+}
+
+/* HERO */
+
+.hero {
+    padding: 85px 0;
+    background:
+        radial-gradient(circle at 85% 20%, rgba(201,0,36,.18), transparent 30%),
+        linear-gradient(130deg, #111214, #25252a);
+    color: white;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    align-items: center;
+    gap: 45px;
+}
+
+.hero-label {
+    display: inline-block;
+    background: rgba(201,0,36,.18);
+    border: 1px solid rgba(255,255,255,.15);
+    color: #ff879a;
+    padding: 8px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(39px, 6vw, 66px);
+    line-height: 1.08;
+    letter-spacing: -2.5px;
+    margin-bottom: 22px;
+}
+
+.hero h1 span {
+    color: #ff304f;
+}
+
+.hero p {
+    color: #d1d1d1;
+    max-width: 530px;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    padding: 13px 23px;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: 800;
+    transition: .25s;
+}
+
+.btn-primary {
+    background: var(--red);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--red-dark);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    border: 1px solid rgba(255,255,255,.4);
+    color: white;
+    background: transparent;
+}
+
+.btn-outline:hover {
+    background: white;
+    color: #111;
+}
+
+.hero-visual {
+    min-height: 330px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-card {
+    width: 100%;
+    max-width: 390px;
+    padding: 28px;
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 22px;
+    background: rgba(255,255,255,.07);
+    backdrop-filter: blur(12px);
+    transform: rotate(2deg);
+    box-shadow: 0 25px 70px rgba(0,0,0,.3);
+}
+
+.hero-card .game-icon {
+    width: 85px;
+    height: 85px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #c90024, #ff637a);
+    display: grid;
+    place-items: center;
+    font-size: 40px;
+    margin-bottom: 25px;
+}
+
+.hero-card h3 {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.hero-card p {
+    font-size: 13px;
+    margin: 0;
+}
+
+.hero-card-bottom {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,.15);
+    padding-top: 18px;
+    margin-top: 25px;
+    color: #ddd;
+    font-size: 12px;
+}
+
+/* TRUST STRIP */
+
+.trust-strip {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 23px 0;
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.trust-icon {
+    width: 39px;
+    height: 39px;
+    border-radius: 11px;
+    display: grid;
+    place-items: center;
+    background: rgba(201,0,36,.1);
+    color: var(--red);
+    font-size: 18px;
+}
+
+/* SECTION */
+
+section {
+    padding: 75px 0;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 650px;
+    margin: 0 auto 42px;
+}
+
+.section-heading .eyebrow {
+    color: var(--red);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 900;
+}
+
+.section-heading h2 {
+    font-size: clamp(28px, 4vw, 40px);
+    letter-spacing: -1.3px;
+    margin: 8px 0 12px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* FEATURES */
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.feature-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+    transition: .25s;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(201,0,36,.4);
+}
+
+.feature-icon {
+    width: 52px;
+    height: 52px;
+    display: grid;
+    place-items: center;
+    background: rgba(201,0,36,.1);
+    color: var(--red);
+    border-radius: 14px;
+    font-size: 23px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* SHOWCASE */
+
+.showcase {
+    background: var(--surface);
+}
+
+.showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.showcase-card {
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid var(--border);
+    background: var(--background);
+}
+
+.showcase-image {
+    height: 190px;
+    display: grid;
+    place-items: center;
+    font-size: 65px;
+    background: linear-gradient(135deg, #25252a, #4a1824);
+}
+
+.showcase-card:nth-child(2) .showcase-image {
+    background: linear-gradient(135deg, #163e2a, #258c53);
+}
+
+.showcase-card:nth-child(3) .showcase-image {
+    background: linear-gradient(135deg, #25234e, #6d4da7);
+}
+
+.showcase-info {
+    padding: 20px;
+}
+
+.showcase-info h3 {
+    font-size: 17px;
+    margin-bottom: 7px;
+}
+
+.showcase-info p {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.text-link {
+    color: var(--red);
+    font-size: 13px;
+    font-weight: 900;
+}
+
+/* CTA */
+
+.cta {
+    padding: 55px 0;
+}
+
+.cta-box {
+    background: linear-gradient(120deg, #b90020, #e32445);
+    color: white;
+    border-radius: 20px;
+    padding: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 25px;
+}
+
+.cta-box h2 {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.cta-box p {
+    color: #ffe1e6;
+    font-size: 14px;
+}
+
+.cta-box .btn {
+    background: white;
+    color: var(--red);
+    white-space: nowrap;
+}
+
+/* FOOTER */
+
+footer {
+    background: #101114;
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 35px;
+    padding-bottom: 40px;
+}
+
+.footer-brand p {
+    color: #aaa;
+    font-size: 13px;
+    max-width: 300px;
+    margin-top: 15px;
+}
+
+.footer-column h4 {
+    font-size: 14px;
+    margin-bottom: 17px;
+}
+
+.footer-column a {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+    margin-bottom: 11px;
+    transition: .2s;
+}
+
+.footer-column a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    border-top: 1px solid #303036;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    color: #999;
+    font-size: 12px;
+}
+
+.footer-credit {
+    color: #ddd;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+/* MENU PANEL */
+
+.menu-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: .25s;
+}
+
+.menu-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-panel {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: min(360px, 88%);
+    background: var(--surface);
+    padding: 25px;
+    transform: translateX(100%);
+    transition: .3s;
+}
+
+.menu-overlay.open .menu-panel {
+    transform: translateX(0);
+}
+
+.menu-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+}
+
+.menu-panel nav a {
+    display: block;
+    padding: 15px 5px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.menu-panel nav a:hover {
+    color: var(--red);
+}
+
+.menu-settings {
+    margin-top: 25px;
+    display: grid;
+    gap: 12px;
+}
+
+.menu-settings select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    background: var(--background);
+    color: var(--text);
+    border-radius: 8px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 900px) {
+    .desktop-nav {
+        display: none;
+    }
+
+    .menu-btn {
+        display: inline-block;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-visual {
+        min-height: auto;
+    }
+
+    .hero-card {
+        max-width: 500px;
+    }
+
+    .features-grid,
+    .showcase-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media(max-width: 600px) {
+    .navbar {
+        min-height: 68px;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .brand img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hero {
+        padding: 65px 0;
+    }
+
+    .hero h1 {
+        letter-spacing: -1.5px;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .trust-item {
+        justify-content: flex-start;
+    }
+
+    section {
+        padding: 58px 0;
+    }
+
+    .features-grid,
+    .showcase-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-box {
+        padding: 30px 23px;
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .cta-box h2 {
+        font-size: 25px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 15px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+
+        <a href="index.html" class="brand">
+            <!-- Replace this URL with your logo image URL -->
+            <img src="https://placehold.co/100x100/c90024/ffffff?text=FG"
+                 alt="Foster Gaming Logo">
+
+            <div class="brand-name">
+                FOSTER <span>GAMING</span>
+            </div>
+        </a>
+
+        <nav class="desktop-nav">
+            <a href="index.html" class="active">Home</a>
+            <a href="accounts.html">Showcase</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☾</button>
+            <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        </div>
+
+    </div>
+</header>
+
+<!-- MOBILE MENU -->
+
+<div class="menu-overlay" id="menuOverlay">
+    <div class="menu-panel">
+
+        <div class="menu-top">
+            <strong>FOSTER <span style="color:var(--red)">GAMING</span></strong>
+            <button class="icon-btn" id="closeMenu" aria-label="Close menu">✕</button>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="accounts.html">Gaming Showcase</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="menu-settings">
+            <label for="languageSelect">Website language</label>
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="pt">Português</option>
+            </select>
+        </div>
+
+    </div>
+</div>
+
+<!-- HERO -->
+
+<main>
+
+<section class="hero">
+    <div class="container hero-content">
+
+        <div>
+            <div class="hero-label">WELCOME TO FOSTER GAMING</div>
+
+            <h1>
+                YOUR WORLD.<br>
+                YOUR <span>GAME.</span><br>
+                YOUR EXPERIENCE.
+            </h1>
+
+            <p>
+                Welcome to Foster Gaming — a place for gaming enthusiasts,
+                collections, updates and everything that makes gaming exciting.
+                Explore our showcase and connect with our community.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="accounts.html" class="btn btn-primary">
+                    Explore Showcase →
+                </a>
+
+                <a href="about.html" class="btn btn-outline">
+                    Discover Foster Gaming
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-visual">
+            <div class="hero-card">
+
+                <div class="game-icon">🎮</div>
+
+                <h3>FOSTER GAMING</h3>
+
+                <p>
+                    Gaming culture. Collections. Community.
+                    Everything in one place.
+                </p>
+
+                <div class="hero-card-bottom">
+                    <span>GAMING COMMUNITY</span>
+                    <span>EST. FOSTER</span>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- TRUST STRIP -->
+
+<div class="trust-strip">
+    <div class="container trust-grid">
+
+        <div class="trust-item">
+            <div class="trust-icon">🎮</div>
+            <span>Gaming Focused</span>
+        </div>
+
+        <div class="trust-item">
+            <div class="trust-icon">🌍</div>
+            <span>Worldwide Community</span>
+        </div>
+
+        <div class="trust-item">
+            <div class="trust-icon">💬</div>
+            <span>Community Support</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- ABOUT FEATURES -->
+
+<section>
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">WHAT WE DO</span>
+            <h2>Welcome to Our Gaming World</h2>
+            <p>
+                Discover what makes Foster Gaming a destination
+                for gaming enthusiasts.
+            </p>
+        </div>
+
+        <div class="features-grid">
+
+            <div class="feature-card">
+                <div class="feature-icon">🏆</div>
+                <h3>Gaming Collections</h3>
+                <p>
+                    Explore gaming collections, featured highlights
+                    and interesting discoveries from the gaming world.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Gaming Updates</h3>
+                <p>
+                    Stay connected with gaming news, updates,
+                    announcements and community highlights.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤝</div>
+                <h3>Community</h3>
+                <p>
+                    Connect with Foster Gaming, ask questions
+                    and stay in touch through our social channels.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- SHOWCASE -->
+
+<section class="showcase">
+    <div class="container">
+
+        <div class="section-heading">
+            <span class="eyebrow">EXPLORE</span>
+            <h2>Featured Gaming Categories</h2>
+            <p>
+                Take a look at some of the gaming categories
+                featured on Foster Gaming.
+            </p>
+        </div>
+
+        <div class="showcase-grid">
+
+            <div class="showcase-card">
+                <div class="showcase-image">⚔️</div>
+                <div class="showcase-info">
+                    <h3>Pokémon GO</h3>
+                    <p>
+                        Explore Pokémon GO collections, highlights
+                        and gaming-related content.
+                    </p>
+                    <a href="accounts.html" class="text-link">
+                        Explore Collection →
+                    </a>
+                </div>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-image">🎯</div>
+                <div class="showcase-info">
+                    <h3>Gaming Highlights</h3>
+                    <p>
+                        Discover interesting gaming moments,
+                        achievements and featured content.
+                    </p>
+                    <a href="accounts.html" class="text-link">
+                        View Highlights →
+                    </a>
+                </div>
+            </div>
+
+            <div class="showcase-card">
+                <div class="showcase-image">🌟</div>
+                <div class="showcase-info">
+                    <h3>Community Updates</h3>
+                    <p>
+                        Follow announcements and updates
+                        from the Foster Gaming community.
+                    </p>
+                    <a href="contact.html" class="text-link">
+                        Connect With Us →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+
+<section class="cta">
+    <div class="container">
+
+        <div class="cta-box">
+
+            <div>
+                <h2>Let's Talk Gaming.</h2>
+                <p>
+                    Have a question or want to connect with Foster Gaming?
+                    Get in touch with us.
+                </p>
+            </div>
+
+            <a href="contact.html" class="btn">
+                Contact Us →
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <div class="brand-name">
+                    FOSTER <span>GAMING</span>
+                </div>
+
+                <p>
+                    A gaming-focused community and showcase
+                    built for people who love gaming.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <a href="index.html">Home</a>
+                <a href="accounts.html">Showcase</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Explore</h4>
+                <a href="accounts.html">Pokémon GO</a>
+                <a href="accounts.html">Gaming Highlights</a>
+                <a href="accounts.html">Collections</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Get in Touch</h4>
+                <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
+                <a href="https://www.tiktok.com/@fostergames5" target="_blank" rel="noopener">TikTok</a>
+                <a href="https://snapchat.com/t/3SgH1EdO" target="_blank" rel="noopener">Snapchat</a>
+                <a href="https://discord.gg/5TCTxUWJ" target="_blank" rel="noopener">Discord</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span id="year"></span> Foster Gaming. All rights reserved.</span>
+
+            <span class="footer-credit">
+                POWERED BY BITBRIDGE TECHNOLOGIES INC.
+            </span>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+/* CURRENT YEAR */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+/* DARK AND LIGHT THEME */
+
+const themeBtn = document.getElementById("themeBtn");
+
+function applyTheme() {
+    const savedTheme = localStorage.getItem("fosterTheme") || "light";
+
+    document.body.classList.toggle("dark", savedTheme === "dark");
+
+    themeBtn.textContent =
+        savedTheme === "dark" ? "☀" : "☾";
+}
+
+themeBtn.addEventListener("click", () => {
+    const isDark = document.body.classList.contains("dark");
+
+    localStorage.setItem(
+        "fosterTheme",
+        isDark ? "light" : "dark"
+    );
+
+    applyTheme();
+});
+
+applyTheme();
+
+/* MOBILE MENU */
+
+const menuBtn = document.getElementById("menuBtn");
+const closeMenu = document.getElementById("closeMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+menuBtn.addEventListener("click", () => {
+    menuOverlay.classList.add("open");
+});
+
+closeMenu.addEventListener("click", () => {
+    menuOverlay.classList.remove("open");
+});
+
+menuOverlay.addEventListener("click", (event) => {
+    if (event.target === menuOverlay) {
+        menuOverlay.classList.remove("open");
+    }
+});
+
+document.querySelectorAll(".menu-panel nav a").forEach(link => {
+    link.addEventListener("click", () => {
+        menuOverlay.classList.remove("open");
+    });
+});
+
+/* LANGUAGE PREFERENCE */
+
+const languageSelect = document.getElementById("languageSelect");
+
+const savedLanguage =
+    localStorage.getItem("fosterLanguage") || "en";
+
+languageSelect.value = savedLanguage;
+
+languageSelect.addEventListener("change", () => {
+    localStorage.setItem(
+        "fosterLanguage",
+        languageSelect.value
+    );
+
+    alert("Language preference saved. Full translations will be added as the website pages are completed.");
+});
+</script>
+
+</body>
+</html>
