@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c90024">
+
+<title>Gaming Showcase | Foster Gaming</title>
+<meta name="description" content="Explore the Foster Gaming Pokémon GO collection showcase.">
+
+<style>
+:root {
+    --red:#c90024;
+    --red-dark:#a0001c;
+    --green:#159447;
+    --background:#f5f5f7;
+    --surface:#fff;
+    --text:#171717;
+    --muted:#777;
+    --border:#e7e7e7;
+    --shadow:0 10px 35px rgba(0,0,0,.07);
+}
+
+body.dark {
+    --background:#101114;
+    --surface:#191b20;
+    --text:#f4f4f4;
+    --muted:#aaa;
+    --border:#303239;
+    --shadow:0 10px 35px rgba(0,0,0,.25);
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--background);
+    color:var(--text);
+    line-height:1.6;
+    transition:background .3s,color .3s;
+}
+
+a { text-decoration:none;color:inherit; }
+button,input,select { font-family:inherit; }
+button { cursor:pointer; }
+
+.container {
+    width:min(1160px,92%);
+    margin:auto;
+}
+
+/* HEADER */
+
+header {
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.navbar {
+    min-height:78px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.brand {
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.brand img {
+    width:46px;
+    height:46px;
+    object-fit:contain;
+    border-radius:10px;
+}
+
+.brand-name {
+    font-size:20px;
+    font-weight:900;
+    letter-spacing:-.7px;
+}
+
+.brand-name span { color:var(--red); }
+
+.desktop-nav {
+    display:flex;
+    gap:27px;
+}
+
+.desktop-nav a {
+    font-size:14px;
+    font-weight:700;
+    color:var(--muted);
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active { color:var(--red); }
+
+.nav-actions {
+    display:flex;
+    gap:10px;
+}
+
+.icon-btn {
+    width:39px;
+    height:39px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
+    border-radius:10px;
+    font-size:17px;
+}
+
+.menu-btn { display:none; }
+
+/* PAGE HERO */
+
+.page-hero {
+    background:
+        radial-gradient(circle at 85% 15%,rgba(201,0,36,.2),transparent 30%),
+        linear-gradient(130deg,#111214,#29252a);
+    color:#fff;
+    padding:75px 0;
+}
+
+.page-hero .eyebrow {
+    color:#ff879a;
+    font-size:12px;
+    letter-spacing:2px;
+    font-weight:900;
+}
+
+.page-hero h1 {
+    font-size:clamp(35px,5vw,55px);
+    line-height:1.1;
+    letter-spacing:-2px;
+    margin:12px 0;
+}
+
+.page-hero h1 span { color:#ff304f; }
+
+.page-hero p {
+    color:#d0d0d0;
+    max-width:620px;
+    font-size:15px;
+}
+
+.breadcrumb {
+    margin-top:22px;
+    font-size:13px;
+    color:#bbb;
+}
+
+.breadcrumb a { color:#fff; }
+
+/* COLLECTION INTRO */
+
+.collection-section { padding:65px 0; }
+
+.section-heading {
+    margin-bottom:30px;
+}
+
+.section-heading h2 {
+    font-size:30px;
+    letter-spacing:-1px;
+}
+
+.section-heading p {
+    color:var(--muted);
+    font-size:14px;
+    margin-top:6px;
+}
+
+/* FILTERS */
+
+.filter-box {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:20px;
+    margin-bottom:28px;
+    box-shadow:var(--shadow);
+}
+
+.filter-top {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:17px;
+}
+
+.filter-top h3 { font-size:16px; }
+
+.results-count {
+    font-size:12px;
+    color:var(--muted);
+}
+
+.filter-controls {
+    display:grid;
+    grid-template-columns:1fr 220px;
+    gap:12px;
+}
+
+.filter-controls input,
+.filter-controls select {
+    width:100%;
+    padding:13px 14px;
+    border:1px solid var(--border);
+    background:var(--background);
+    color:var(--text);
+    border-radius:9px;
+    outline:none;
+    font-size:13px;
+}
+
+.filter-controls input:focus,
+.filter-controls select:focus {
+    border-color:var(--red);
+}
+
+.level-filters {
+    display:flex;
+    gap:9px;
+    flex-wrap:wrap;
+    margin-top:17px;
+}
+
+.filter-btn {
+    padding:8px 14px;
+    border-radius:30px;
+    border:1px solid var(--border);
+    background:var(--background);
+    color:var(--text);
+    font-size:12px;
+    font-weight:800;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background:var(--red);
+    color:#fff;
+    border-color:var(--red);
+}
+
+/* COLLECTION CARDS */
+
+.collection-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:23px;
+}
+
+.collection-card {
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.25s;
+}
+
+.collection-card:hover {
+    transform:translateY(-5px);
+    border-color:rgba(201,0,36,.4);
+}
+
+.card-cover {
+    height:185px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#29252a,#a0001c);
+    overflow:hidden;
+}
+
+.card-cover.green {
+    background:linear-gradient(135deg,#153b29,#159447);
+}
+
+.card-cover.blue {
+    background:linear-gradient(135deg,#172b50,#4568a9);
+}
+
+.card-cover.purple {
+    background:linear-gradient(135deg,#33204e,#7952a8);
+}
+
+.card-cover.orange {
+    background:linear-gradient(135deg,#633018,#c66a25);
+}
+
+.card-cover.teal {
+    background:linear-gradient(135deg,#123f46,#258a92);
+}
+
+.cover-symbol {
+    font-size:68px;
+    filter:drop-shadow(0 8px 15px rgba(0,0,0,.3));
+}
+
+.level-badge {
+    position:absolute;
+    top:14px;
+    left:14px;
+    background:rgba(0,0,0,.65);
+    color:white;
+    padding:6px 11px;
+    border-radius:30px;
+    font-size:11px;
+    font-weight:900;
+}
+
+.showcase-badge {
+    position:absolute;
+    right:14px;
+    top:14px;
+    background:var(--green);
+    color:#fff;
+    padding:6px 10px;
+    border-radius:30px;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+}
+
+.card-body { padding:20px; }
+
+.card-body h3 {
+    font-size:18px;
+    margin-bottom:6px;
+}
+
+.card-description {
+    color:var(--muted);
+    font-size:13px;
+    min-height:42px;
+}
+
+.card-stats {
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+    margin:17px 0;
+}
+
+.stat {
+    background:var(--background);
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:10px;
+}
+
+.stat strong {
+    display:block;
+    font-size:16px;
+}
+
+.stat span {
+    font-size:10px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+.card-footer {
+    border-top:1px solid var(--border);
+    padding-top:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.card-footer small {
+    color:var(--muted);
+    font-size:11px;
+}
+
+.view-btn {
+    background:var(--red);
+    color:white;
+    border:0;
+    padding:10px 15px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:900;
+}
+
+.view-btn:hover { background:var(--red-dark); }
+
+.empty-state {
+    display:none;
+    text-align:center;
+    padding:50px 20px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:15px;
+}
+
+.empty-state h3 { margin-bottom:8px; }
+.empty-state p { color:var(--muted);font-size:13px; }
+
+/* NOTICE */
+
+.notice {
+    margin-top:35px;
+    padding:18px;
+    border-radius:12px;
+    background:rgba(21,148,71,.08);
+    border:1px solid rgba(21,148,71,.25);
+    font-size:13px;
+    color:var(--text);
+}
+
+.notice strong { color:var(--green); }
+
+/* CTA */
+
+.cta-section { padding:15px 0 70px; }
+
+.cta-box {
+    padding:40px;
+    border-radius:18px;
+    background:linear-gradient(120deg,#b90020,#e32445);
+    color:white;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:25px;
+}
+
+.cta-box h2 {
+    font-size:28px;
+    line-height:1.2;
+}
+
+.cta-box p {
+    color:#ffe1e6;
+    font-size:13px;
+    margin-top:8px;
+}
+
+.cta-button {
+    background:#fff;
+    color:var(--red);
+    padding:13px 20px;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+/* FOOTER */
+
+footer {
+    background:#101114;
+    color:white;
+    padding:55px 0 20px;
+}
+
+.footer-grid {
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr 1fr;
+    gap:30px;
+    padding-bottom:35px;
+}
+
+.footer-brand p {
+    color:#aaa;
+    font-size:13px;
+    max-width:280px;
+    margin-top:14px;
+}
+
+.footer-column h4 {
+    font-size:14px;
+    margin-bottom:16px;
+}
+
+.footer-column a {
+    display:block;
+    color:#aaa;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.footer-column a:hover { color:white; }
+
+.footer-bottom {
+    border-top:1px solid #303036;
+    padding-top:20px;
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+    color:#999;
+    font-size:12px;
+}
+
+.footer-credit {
+    color:#ddd;
+    font-weight:800;
+    letter-spacing:1px;
+}
+
+/* MENU */
+
+.menu-overlay {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    z-index:2000;
+    opacity:0;
+    visibility:hidden;
+    transition:.25s;
+}
+
+.menu-overlay.open {
+    opacity:1;
+    visibility:visible;
+}
+
+.menu-panel {
+    position:absolute;
+    right:0;
+    top:0;
+    height:100%;
+    width:min(360px,88%);
+    background:var(--surface);
+    padding:25px;
+    transform:translateX(100%);
+    transition:.3s;
+}
+
+.menu-overlay.open .menu-panel {
+    transform:translateX(0);
+}
+
+.menu-top {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.menu-panel nav a {
+    display:block;
+    padding:14px 5px;
+    border-bottom:1px solid var(--border);
+    font-weight:700;
+    font-size:14px;
+}
+
+.menu-panel nav a:hover { color:var(--red); }
+
+.menu-settings {
+    display:grid;
+    gap:10px;
+    margin-top:25px;
+}
+
+.menu-settings select {
+    padding:12px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--background);
+    color:var(--text);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px) {
+    .desktop-nav { display:none; }
+    .menu-btn { display:block; }
+
+    .collection-grid { grid-template-columns:repeat(2,1fr); }
+    .footer-grid { grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:600px) {
+    .navbar { min-height:68px; }
+    .brand-name { font-size:18px; }
+    .brand img { width:40px;height:40px; }
+
+    .page-hero { padding:58px 0; }
+
+    .filter-controls { grid-template-columns:1fr; }
+
+    .collection-grid { grid-template-columns:1fr; }
+
+    .card-description { min-height:0; }
+
+    .cta-box {
+        padding:28px 22px;
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .footer-grid {
+        grid-template-columns:1fr 1fr;
+        gap:25px 15px;
+    }
+
+    .footer-brand { grid-column:1/-1; }
+
+    .footer-bottom { flex-direction:column; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="container navbar">
+
+        <a href="index.html" class="brand">
+            <img src="https://placehold.co/100x100/c90024/ffffff?text=FG"
+                 alt="Foster Gaming Logo">
+
+            <div class="brand-name">
+                FOSTER <span>GAMING</span>
+            </div>
+        </a>
+
+        <nav class="desktop-nav">
+            <a href="index.html">Home</a>
+            <a href="accounts.html" class="active">Showcase</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="nav-actions">
+            <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☾</button>
+            <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+        </div>
+
+    </div>
+</header>
+
+<!-- MOBILE MENU -->
+
+<div class="menu-overlay" id="menuOverlay">
+    <div class="menu-panel">
+
+        <div class="menu-top">
+            <strong>FOSTER <span style="color:var(--red)">GAMING</span></strong>
+            <button class="icon-btn" id="closeMenu" aria-label="Close menu">✕</button>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="accounts.html">Gaming Showcase</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="menu-settings">
+            <label for="languageSelect">Website language</label>
+            <select id="languageSelect">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="pt">Português</option>
+            </select>
+        </div>
+
+    </div>
+</div>
+
+<main>
+
+<!-- PAGE HERO -->
+
+<section class="page-hero">
+    <div class="container">
+
+        <span class="eyebrow">FOSTER GAMING COLLECTION</span>
+
+        <h1>Gaming <span>Showcase.</span></h1>
+
+        <p>
+            Explore our featured gaming collections, discover interesting
+            highlights and browse the Foster Gaming showcase.
+        </p>
+
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / Gaming Showcase
+        </div>
+
+    </div>
+</section>
+
+<!-- COLLECTION -->
+
+<section class="collection-section">
+    <div class="container">
+
+        <div class="section-heading">
+            <h2>Featured Collections</h2>
+            <p>
+                Browse the showcase and use the filters to find
+                a particular collection.
+            </p>
+        </div>
+
+        <div class="filter-box">
+
+            <div class="filter-top">
+                <h3>Find a Collection</h3>
+                <span class="results-count" id="resultsCount">
+                    6 collections displayed
+                </span>
+            </div>
+
+            <div class="filter-controls">
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search collections..."
+                    aria-label="Search collections"
+                >
+
+                <select id="sortSelect" aria-label="Sort collections">
+                    <option value="default">Default order</option>
+                    <option value="level-high">Highest level first</option>
+                    <option value="level-low">Lowest level first</option>
+                </select>
+            </div>
+
+            <div class="level-filters">
+                <button class="filter-btn active" data-level="all">All</button>
+                <button class="filter-btn" data-level="70">Level 70</button>
+                <button class="filter-btn" data-level="72">Level 72</button>
+                <button class="filter-btn" data-level="74">Level 74</button>
+                <button class="filter-btn" data-level="76">Level 76</button>
+                <button class="filter-btn" data-level="78">Level 78</button>
+                <button class="filter-btn" data-level="80">Level 80</button>
+            </div>
+
+        </div>
+
+        <!--
+        DEMONSTRATION CARDS:
+        Replace these sample entries with verified collection information
+        and your own images before publishing.
+        -->
+
+        <div class="collection-grid" id="collectionGrid">
+
+            <article class="collection-card"
+                data-level="80"
+                data-name="Level 80 featured collection">
+
+                <div class="card-cover">
+                    <span class="level-badge">LEVEL 80</span>
+                    <span class="showcase-badge">Featured</span>
+                    <div class="cover-symbol">👑</div>
+                </div>
+
+                <div class="card-body">
+                    <h3>Level 80 Collection</h3>
+                    <p class="card-description">
+                        A featured high-level Pokémon GO collection
+                        showcase.
+                    </p>
+
+                    <div class="card-stats">
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Shiny Pokémon</span>
+                        </div>
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Perfect Pokémon</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <small>Collection showcase</small>
+                        <a href="account.html" class="view-btn">View Details →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="collection-card"
+                data-level="78"
+                data-name="Level 78 featured collection">
+
+                <div class="card-cover green">
+                    <span class="level-badge">LEVEL 78</span>
+                    <div class="cover-symbol">🌟</div>
+                </div>
+
+                <div class="card-body">
+                    <h3>Level 78 Collection</h3>
+                    <p class="card-description">
+                        Explore a collection featuring Pokémon GO
+                        highlights and discoveries.
+                    </p>
+
+                    <div class="card-stats">
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Shiny Pokémon</span>
+                        </div>
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Perfect Pokémon</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <small>Collection showcase</small>
+                        <a href="account.html" class="view-btn">View Details →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="collection-card"
+                data-level="76"
+                data-name="Level 76 featured collection">
+
+                <div class="card-cover blue">
+                    <span class="level-badge">LEVEL 76</span>
+                    <div class="cover-symbol">💎</div>
+                </div>
+
+                <div class="card-body">
+                    <h3>Level 76 Collection</h3>
+                    <p class="card-description">
+                        A collection showcase with featured
+                        Pokémon GO content.
+                    </p>
+
+                    <div class="card-stats">
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Shiny Pokémon</span>
+                        </div>
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Perfect Pokémon</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <small>Collection showcase</small>
+                        <a href="account.html" class="view-btn">View Details →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="collection-card"
+                data-level="74"
+                data-name="Level 74 featured collection">
+
+                <div class="card-cover purple">
+                    <span class="level-badge">LEVEL 74</span>
+                    <div class="cover-symbol">⚡</div>
+                </div>
+
+                <div class="card-body">
+                    <h3>Level 74 Collection</h3>
+                    <p class="card-description">
+                        Discover featured Pokémon and interesting
+                        collection highlights.
+                    </p>
+
+                    <div class="card-stats">
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Shiny Pokémon</span>
+                        </div>
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Perfect Pokémon</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <small>Collection showcase</small>
+                        <a href="account.html" class="view-btn">View Details →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="collection-card"
+                data-level="72"
+                data-name="Level 72 featured collection">
+
+                <div class="card-cover orange">
+                    <span class="level-badge">LEVEL 72</span>
+                    <div class="cover-symbol">🔥</div>
+                </div>
+
+                <div class="card-body">
+                    <h3>Level 72 Collection</h3>
+                    <p class="card-description">
+                        Browse a featured collection from the
+                        Pokémon GO gaming world.
+                    </p>
+
+                    <div class="card-stats">
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Shiny Pokémon</span>
+                        </div>
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Perfect Pokémon</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <small>Collection showcase</small>
+                        <a href="account.html" class="view-btn">View Details →</a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="collection-card"
+                data-level="70"
+                data-name="Level 70 featured collection">
+
+                <div class="card-cover teal">
+                    <span class="level-badge">LEVEL 70</span>
+                    <div class="cover-symbol">🌍</div>
+                </div>
+
+                <div class="card-body">
+                    <h3>Level 70 Collection</h3>
+                    <p class="card-description">
+                        Explore a Pokémon GO collection
+                        and its featured highlights.
+                    </p>
+
+                    <div class="card-stats">
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Shiny Pokémon</span>
+                        </div>
+                        <div class="stat">
+                            <strong>—</strong>
+                            <span>Perfect Pokémon</span>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <small>Collection showcase</small>
+                        <a href="account.html" class="view-btn">View Details →</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="empty-state" id="emptyState">
+            <h3>No collections found</h3>
+            <p>Try another search term or choose a different level.</p>
+        </div>
+
+        <div class="notice">
+            <strong>Important:</strong>
+            These cards are demonstration placeholders. Replace the sample
+            information with accurate, verified collection details and
+            screenshots before publishing.
+        </div>
+
+    </div>
+</section>
+
+<!-- CONTACT CTA -->
+
+<section class="cta-section">
+    <div class="container">
+
+        <div class="cta-box">
+            <div>
+                <h2>Want to Connect With Us?</h2>
+                <p>
+                    Contact Foster Gaming for questions, feedback
+                    and community enquiries.
+                </p>
+            </div>
+
+            <a href="contact.html" class="cta-button">
+                Contact Us →
+            </a>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <div class="brand-name">
+                    FOSTER <span>GAMING</span>
+                </div>
+
+                <p>
+                    Gaming collections, community updates
+                    and gaming culture in one place.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h4>Navigation</h4>
+                <a href="index.html">Home</a>
+                <a href="accounts.html">Showcase</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Collections</h4>
+                <a href="#collectionGrid">Featured</a>
+                <a href="#collectionGrid">Pokémon GO</a>
+                <a href="#collectionGrid">Gaming Highlights</a>
+            </div>
+
+            <div class="footer-column">
+                <h4>Connect</h4>
+                <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
+                <a href="https://www.tiktok.com/@fostergames5" target="_blank" rel="noopener">TikTok</a>
+                <a href="https://snapchat.com/t/3SgH1EdO" target="_blank" rel="noopener">Snapchat</a>
+                <a href="https://discord.gg/5TCTxUWJ" target="_blank" rel="noopener">Discord</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span id="year"></span> Foster Gaming. All rights reserved.</span>
+            <span class="footer-credit">POWERED BY BITBRIDGE TECHNOLOGIES INC.</span>
+        </div>
+
+    </div>
+</footer>
+
+<script>
+/* YEAR */
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+/* THEME */
+
+const themeBtn = document.getElementById("themeBtn");
+
+function applyTheme() {
+    const theme = localStorage.getItem("fosterTheme") || "light";
+
+    document.body.classList.toggle("dark", theme === "dark");
+
+    themeBtn.textContent = theme === "dark" ? "☀" : "☾";
+}
+
+themeBtn.addEventListener("click", () => {
+    const current = document.body.classList.contains("dark");
+
+    localStorage.setItem("fosterTheme", current ? "light" : "dark");
+
+    applyTheme();
+});
+
+applyTheme();
+
+/* MENU */
+
+const menuOverlay = document.getElementById("menuOverlay");
+
+document.getElementById("menuBtn").addEventListener("click", () => {
+    menuOverlay.classList.add("open");
+});
+
+document.getElementById("closeMenu").addEventListener("click", () => {
+    menuOverlay.classList.remove("open");
+});
+
+menuOverlay.addEventListener("click", event => {
+    if (event.target === menuOverlay) {
+        menuOverlay.classList.remove("open");
+    }
+});
+
+document.querySelectorAll(".menu-panel nav a").forEach(link => {
+    link.addEventListener("click", () => {
+        menuOverlay.classList.remove("open");
+    });
+});
+
+/* LANGUAGE PREFERENCE */
+
+const languageSelect = document.getElementById("languageSelect");
+
+languageSelect.value =
+    localStorage.getItem("fosterLanguage") || "en";
+
+languageSelect.addEventListener("change", () => {
+    localStorage.setItem("fosterLanguage", languageSelect.value);
+
+    alert("Your language preference has been saved.");
+});
+
+/* COLLECTION SEARCH AND FILTER */
+
+const cards = [...document.querySelectorAll(".collection-card")];
+const searchInput = document.getElementById("searchInput");
+const sortSelect = document.getElementById("sortSelect");
+const filterButtons = document.querySelectorAll(".filter-btn");
+const resultsCount = document.getElementById("resultsCount");
+const emptyState = document.getElementById("emptyState");
+const collectionGrid = document.getElementById("collectionGrid");
+
+let selectedLevel = "all";
+
+function filterCollections() {
+    const search = searchInput.value.toLowerCase().trim();
+
+    let visibleCards = cards.filter(card => {
+        const level = card.dataset.level;
+        const name = card.dataset.name.toLowerCase();
+
+        const matchesLevel =
+            selectedLevel === "all" || level === selectedLevel;
+
+        const matchesSearch = name.includes(search);
+
+        return matchesLevel && matchesSearch;
+    });
+
+    const sort = sortSelect.value;
+
+    if (sort === "level-high") {
+        visibleCards.sort((a, b) =>
+            Number(b.dataset.level) - Number(a.dataset.level)
+        );
+    }
+
+    if (sort === "level-low") {
+        visibleCards.sort((a, b) =>
+            Number(a.dataset.level) - Number(b.dataset.level)
+        );
+    }
+
+    cards.forEach(card => {
+        card.style.display = "none";
+    });
+
+    visibleCards.forEach(card => {
+        card.style.display = "block";
+        collectionGrid.appendChild(card);
+    });
+
+    resultsCount.textContent =
+        visibleCards.length + " collection(s) displayed";
+
+    emptyState.style.display =
+        visibleCards.length === 0 ? "block" : "none";
+}
+
+searchInput.addEventListener("input", filterCollections);
+sortSelect.addEventListener("change", filterCollections);
+
+filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+
+        button.classList.add("active");
+
+        selectedLevel = button.dataset.level;
+
+        filterCollections();
+    });
+});
+
+</script>
+
+</body>
+</html>
