@@ -3,1012 +3,958 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#c90024">
-
-<title>Cart | Foster Gaming</title>
-
+<meta name="theme-color" content="#e52535">
+<title>Shopping Cart | Foster Gaming</title>
 <style>
-:root {
-    --red:#c90024;
-    --red-dark:#a0001c;
-    --green:#159447;
-    --background:#f5f5f7;
-    --surface:#fff;
-    --text:#171717;
-    --muted:#777;
-    --border:#e7e7e7;
-    --shadow:0 10px 35px rgba(0,0,0,.07);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root{
+--red:#e52535;
+--green:#16a36a;
+--bg:#f5f5f7;
+--card:#fff;
+--text:#171717;
+--muted:#777;
+--border:#e8e8e8;
+--header:rgba(255,255,255,.95);
 }
-
-body.dark {
-    --background:#101114;
-    --surface:#191b20;
-    --text:#f4f4f4;
-    --muted:#aaa;
-    --border:#303239;
-    --shadow:0 10px 35px rgba(0,0,0,.25);
+body.dark{
+--bg:#101010;
+--card:#191919;
+--text:#f5f5f5;
+--muted:#aaa;
+--border:#303030;
+--header:rgba(18,18,18,.96);
 }
-
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Inter,sans-serif;
+background:var(--bg);
+color:var(--text);
+transition:.25s;
 }
-
-body {
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--background);
-    color:var(--text);
-    line-height:1.6;
-    transition:background .3s,color .3s;
+a{text-decoration:none;color:inherit}
+button,select{font-family:inherit}
+.container{width:min(1200px,92%);margin:auto}
+.announcement{
+background:var(--red);
+color:white;
+text-align:center;
+padding:10px;
+font-size:10px;
+font-weight:900;
+letter-spacing:.5px;
 }
-
-a {
-    text-decoration:none;
-    color:inherit;
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:var(--header);
+backdrop-filter:blur(15px);
+border-bottom:1px solid var(--border);
 }
-
-button {
-    font-family:inherit;
-    cursor:pointer;
+.navbar{
+height:75px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
 }
-
-.container {
-    width:min(1160px,92%);
-    margin:auto;
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:18px;
+font-weight:900;
 }
-
-/* HEADER */
-
-header {
-    background:var(--surface);
-    border-bottom:1px solid var(--border);
-    position:sticky;
-    top:0;
-    z-index:1000;
+.brand img{
+width:40px;
+height:40px;
+border-radius:10px;
+object-fit:cover;
 }
-
-.navbar {
-    min-height:78px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
+.brand span{color:var(--red)}
+.desktop-nav{
+display:flex;
+gap:22px;
 }
-
-.brand {
-    display:flex;
-    align-items:center;
-    gap:11px;
+.desktop-nav a{
+font-size:11px;
+font-weight:800;
+color:var(--muted);
 }
-
-.brand img {
-    width:46px;
-    height:46px;
-    object-fit:contain;
-    border-radius:10px;
-}
-
-.brand-name {
-    font-size:20px;
-    font-weight:900;
-    letter-spacing:-.7px;
-}
-
-.brand-name span { color:var(--red); }
-
-.desktop-nav {
-    display:flex;
-    gap:27px;
-}
-
-.desktop-nav a {
-    font-size:14px;
-    font-weight:700;
-    color:var(--muted);
-}
-
 .desktop-nav a:hover,
-.desktop-nav a.active {
-    color:var(--red);
+.desktop-nav a.active{color:var(--red)}
+.nav-actions{
+display:flex;
+align-items:center;
+gap:8px;
 }
-
-.nav-actions {
-    display:flex;
-    gap:10px;
+.icon-btn{
+width:39px;
+height:39px;
+border:1px solid var(--border);
+border-radius:10px;
+background:var(--card);
+color:var(--text);
+font-size:16px;
+cursor:pointer;
 }
-
-.icon-btn {
-    width:39px;
-    height:39px;
-    border:1px solid var(--border);
-    background:var(--surface);
-    color:var(--text);
-    border-radius:10px;
-    font-size:17px;
+.cart-btn{
+width:auto;
+padding:0 10px;
+display:flex;
+align-items:center;
+gap:7px;
+font-size:12px;
+font-weight:800;
 }
-
-.menu-btn { display:none; }
-
-/* PAGE HERO */
-
-.page-hero {
-    background:linear-gradient(130deg,#111214,#29252a);
-    color:white;
-    padding:55px 0;
+.cart-count{
+background:var(--red);
+color:white;
+padding:4px 7px;
+border-radius:50px;
+font-size:10px;
 }
-
-.page-hero h1 {
-    font-size:clamp(32px,5vw,48px);
-    letter-spacing:-1.5px;
-}
-
-.page-hero h1 span { color:#ff304f; }
-
-.page-hero p {
-    color:#ccc;
-    font-size:14px;
-    margin-top:8px;
-}
-
-.breadcrumb {
-    color:#aaa;
-    font-size:12px;
-    margin-top:15px;
-}
-
-.breadcrumb a { color:white; }
-
-/* CART SECTION */
-
-.cart-section {
-    padding:65px 0;
-}
-
-.cart-layout {
-    display:grid;
-    grid-template-columns:1fr 350px;
-    gap:25px;
-    align-items:start;
-}
-
-.cart-heading {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-}
-
-.cart-heading h2 {
-    font-size:22px;
-}
-
-.cart-count {
-    font-size:12px;
-    color:var(--muted);
-}
-
-/* CART ITEMS */
-
-.cart-items {
-    display:grid;
-    gap:15px;
-}
-
-.cart-item {
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:18px;
-    display:grid;
-    grid-template-columns:105px 1fr auto;
-    gap:17px;
-    align-items:center;
-    box-shadow:var(--shadow);
-}
-
-.item-image {
-    width:105px;
-    height:105px;
-    border-radius:10px;
-    display:grid;
-    place-items:center;
-    font-size:42px;
-    color:white;
-    background:linear-gradient(135deg,#29252a,#a0001c);
-}
-
-.item-image.green {
-    background:linear-gradient(135deg,#153b29,#159447);
-}
-
-.item-image.blue {
-    background:linear-gradient(135deg,#172b50,#4568a9);
-}
-
-.item-info h3 {
-    font-size:16px;
-    margin-bottom:5px;
-}
-
-.item-info p {
-    font-size:12px;
-    color:var(--muted);
-}
-
-.item-price {
-    color:var(--red);
-    font-size:17px;
-    font-weight:900;
-    margin-top:7px;
-}
-
-.item-actions {
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:12px;
-}
-
-.quantity-control {
-    display:flex;
-    align-items:center;
-    gap:10px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    padding:5px 9px;
-}
-
-.quantity-control button {
-    border:0;
-    background:transparent;
-    color:var(--text);
-    font-size:17px;
-    width:20px;
-}
-
-.quantity-control span {
-    font-size:13px;
-    font-weight:800;
-}
-
-.remove-btn {
-    border:0;
-    background:transparent;
-    color:var(--red);
-    font-size:11px;
-    font-weight:800;
-}
-
-/* SUMMARY */
-
-.summary-card {
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:24px;
-    box-shadow:var(--shadow);
-    position:sticky;
-    top:105px;
-}
-
-.summary-card h2 {
-    font-size:20px;
-    margin-bottom:20px;
-}
-
-.summary-line {
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:15px;
-    font-size:13px;
-}
-
-.summary-line span:first-child {
-    color:var(--muted);
-}
-
-.summary-total {
-    border-top:1px solid var(--border);
-    padding-top:18px;
-    margin-top:18px;
-    font-size:18px;
-    font-weight:900;
-}
-
-.summary-total span:last-child {
-    color:var(--red);
-}
-
-.checkout-btn {
-    display:block;
-    width:100%;
-    padding:14px;
-    background:var(--red);
-    color:white;
-    border:0;
-    border-radius:9px;
-    font-weight:900;
-    font-size:13px;
-    text-align:center;
-    margin-top:22px;
-}
-
-.checkout-btn:hover {
-    background:var(--red-dark);
-}
-
-.checkout-btn:disabled {
-    opacity:.45;
-    cursor:not-allowed;
-}
-
-.continue-btn {
-    display:block;
-    text-align:center;
-    margin-top:15px;
-    color:var(--muted);
-    font-size:12px;
-    font-weight:800;
-}
-
-.continue-btn:hover { color:var(--red); }
-
-/* EMPTY CART */
-
-.empty-cart {
-    display:none;
-    text-align:center;
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:15px;
-    padding:55px 20px;
-}
-
-.empty-icon {
-    font-size:55px;
-    margin-bottom:15px;
-}
-
-.empty-cart h2 {
-    font-size:22px;
-    margin-bottom:8px;
-}
-
-.empty-cart p {
-    color:var(--muted);
-    font-size:13px;
-    margin-bottom:22px;
-}
-
-.empty-cart a {
-    display:inline-block;
-    background:var(--red);
-    color:white;
-    padding:12px 20px;
-    border-radius:8px;
-    font-size:13px;
-    font-weight:900;
-}
-
-/* NOTICE */
-
-.notice {
-    margin-top:25px;
-    padding:17px;
-    background:rgba(21,148,71,.08);
-    border:1px solid rgba(21,148,71,.25);
-    border-radius:11px;
-    font-size:12px;
-}
-
-.notice strong { color:var(--green); }
-
-/* FOOTER */
-
-footer {
-    background:#101114;
-    color:white;
-    padding:55px 0 20px;
-}
-
-.footer-grid {
-    display:grid;
-    grid-template-columns:1.5fr 1fr 1fr 1fr;
-    gap:30px;
-    padding-bottom:35px;
-}
-
-.footer-brand p {
-    color:#aaa;
-    font-size:13px;
-    max-width:280px;
-    margin-top:14px;
-}
-
-.footer-column h4 {
-    font-size:14px;
-    margin-bottom:16px;
-}
-
-.footer-column a {
-    display:block;
-    color:#aaa;
-    font-size:13px;
-    margin-bottom:10px;
-}
-
-.footer-column a:hover { color:white; }
-
-.footer-bottom {
-    border-top:1px solid #303036;
-    padding-top:20px;
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    flex-wrap:wrap;
-    color:#999;
-    font-size:12px;
-}
-
-.footer-credit {
-    color:#ddd;
-    font-weight:800;
-    letter-spacing:1px;
-}
-
 /* MENU */
-
-.menu-overlay {
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.55);
-    z-index:2000;
-    opacity:0;
-    visibility:hidden;
-    transition:.25s;
+.menu-overlay{
+position:fixed;
+inset:0;
+background:#0009;
+z-index:1100;
+visibility:hidden;
+opacity:0;
+transition:.3s;
 }
-
-.menu-overlay.open {
-    opacity:1;
-    visibility:visible;
+.menu-overlay.active{
+visibility:visible;
+opacity:1;
 }
-
-.menu-panel {
-    position:absolute;
-    right:0;
-    top:0;
-    height:100%;
-    width:min(360px,88%);
-    background:var(--surface);
-    padding:25px;
-    transform:translateX(100%);
-    transition:.3s;
+.side-menu{
+position:fixed;
+right:-350px;
+top:0;
+width:min(330px,88%);
+height:100vh;
+background:var(--card);
+z-index:1200;
+padding:25px;
+transition:.3s;
+overflow-y:auto;
 }
-
-.menu-overlay.open .menu-panel {
-    transform:translateX(0);
+.side-menu.active{right:0}
+.menu-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding-bottom:20px;
+border-bottom:1px solid var(--border);
 }
-
-.menu-top {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:30px;
+.menu-top strong{font-size:19px}
+.close-menu{
+border:0;
+background:none;
+color:var(--text);
+font-size:27px;
+cursor:pointer;
 }
-
-.menu-panel nav a {
-    display:block;
-    padding:14px 5px;
-    border-bottom:1px solid var(--border);
-    font-weight:700;
-    font-size:14px;
+.menu-links{
+display:grid;
+gap:5px;
+margin:20px 0;
 }
-
-.menu-panel nav a:hover { color:var(--red); }
-
-.menu-settings {
-    display:grid;
-    gap:10px;
-    margin-top:25px;
+.menu-links a{
+padding:13px;
+border-radius:9px;
+font-size:13px;
+font-weight:700;
 }
-
-.menu-settings select {
-    padding:12px;
-    border-radius:8px;
-    border:1px solid var(--border);
-    background:var(--background);
-    color:var(--text);
+.menu-links a:hover{
+background:var(--bg);
+color:var(--red);
 }
-
-/* RESPONSIVE */
-
-@media(max-width:900px) {
-    .desktop-nav { display:none; }
-    .menu-btn { display:block; }
-
-    .cart-layout {
-        grid-template-columns:1fr;
-    }
-
-    .summary-card {
-        position:static;
-    }
-
-    .footer-grid {
-        grid-template-columns:repeat(2,1fr);
-    }
+.menu-setting{
+border-top:1px solid var(--border);
+padding:17px 0;
 }
-
-@media(max-width:600px) {
-    .navbar { min-height:68px; }
-
-    .brand-name { font-size:18px; }
-    .brand img { width:40px;height:40px; }
-
-    .cart-section { padding:45px 0; }
-
-    .cart-item {
-        grid-template-columns:75px 1fr;
-        gap:12px;
-    }
-
-    .item-image {
-        width:75px;
-        height:85px;
-        font-size:32px;
-    }
-
-    .item-actions {
-        grid-column:1/-1;
-        flex-direction:row;
-        justify-content:space-between;
-        align-items:center;
-        border-top:1px solid var(--border);
-        padding-top:12px;
-    }
-
-    .footer-grid {
-        grid-template-columns:1fr 1fr;
-        gap:25px 15px;
-    }
-
-    .footer-brand { grid-column:1/-1; }
-
-    .footer-bottom { flex-direction:column; }
+.menu-setting label{
+display:block;
+font-size:11px;
+font-weight:800;
+margin-bottom:10px;
+}
+.menu-setting select,
+.theme-toggle{
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+border-radius:9px;
+background:var(--bg);
+color:var(--text);
+}
+.theme-toggle{
+text-align:left;
+font-weight:700;
+cursor:pointer;
+}
+/* HERO */
+.hero{
+padding:55px 0;
+background:radial-gradient(circle at 85% 30%,#e5253522,transparent 35%),var(--card);
+border-bottom:1px solid var(--border);
+}
+.hero-label{
+display:inline-block;
+padding:9px 14px;
+background:rgba(229,37,53,.1);
+color:var(--red);
+border-radius:50px;
+font-size:10px;
+font-weight:900;
+letter-spacing:1px;
+margin-bottom:15px;
+}
+.hero h1{
+font-size:clamp(33px,5vw,50px);
+font-weight:900;
+letter-spacing:-2px;
+margin-bottom:12px;
+}
+.hero h1 span{color:var(--red)}
+.hero p{
+font-size:12px;
+color:var(--muted);
+line-height:1.9;
+}
+/* BREADCRUMB */
+.breadcrumb{
+padding:22px 0;
+font-size:11px;
+color:var(--muted);
+}
+.breadcrumb a{color:var(--red)}
+/* CART LAYOUT */
+.cart-section{padding:20px 0 85px}
+.cart-layout{
+display:grid;
+grid-template-columns:1fr 350px;
+gap:25px;
+align-items:start;
+}
+.cart-main{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:14px;
+overflow:hidden;
+}
+.cart-heading{
+padding:23px;
+border-bottom:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+}
+.cart-heading h2{
+font-size:18px;
+font-weight:900;
+}
+.cart-heading p{
+font-size:10px;
+color:var(--muted);
+margin-top:6px;
+}
+.clear-btn{
+border:1px solid var(--border);
+background:var(--card);
+color:var(--red);
+padding:10px 13px;
+border-radius:8px;
+font-size:10px;
+font-weight:800;
+cursor:pointer;
+}
+.cart-items{padding:0 22px}
+.cart-item{
+display:grid;
+grid-template-columns:100px 1fr auto;
+gap:18px;
+align-items:center;
+padding:23px 0;
+border-bottom:1px solid var(--border);
+}
+.cart-item:last-child{border-bottom:0}
+.item-image{
+width:100px;
+height:90px;
+border-radius:10px;
+background:var(--bg);
+overflow:hidden;
+display:grid;
+place-items:center;
+}
+.item-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+.image-placeholder{
+font-size:32px;
+}
+.item-info h3{
+font-size:13px;
+font-weight:900;
+margin-bottom:8px;
+}
+.item-info p{
+font-size:10px;
+color:var(--muted);
+margin-bottom:7px;
+}
+.item-price{
+font-size:13px;
+font-weight:900;
+color:var(--red);
+}
+.quantity-control{
+display:flex;
+align-items:center;
+gap:10px;
+margin-top:13px;
+}
+.quantity-control button{
+width:27px;
+height:27px;
+border:1px solid var(--border);
+background:var(--bg);
+color:var(--text);
+border-radius:6px;
+cursor:pointer;
+font-weight:900;
+}
+.quantity-control span{
+font-size:11px;
+font-weight:800;
+min-width:15px;
+text-align:center;
+}
+.item-actions{
+text-align:right;
+display:flex;
+flex-direction:column;
+align-items:flex-end;
+gap:17px;
+}
+.line-total{
+font-size:13px;
+font-weight:900;
+}
+.remove-btn{
+border:0;
+background:none;
+color:var(--red);
+font-size:10px;
+font-weight:800;
+cursor:pointer;
+}
+.continue-shopping{
+display:inline-block;
+padding:19px 22px;
+font-size:11px;
+font-weight:900;
+color:var(--red);
+}
+/* SUMMARY */
+.summary-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:14px;
+padding:24px;
+position:sticky;
+top:100px;
+}
+.summary-card h3{
+font-size:17px;
+font-weight:900;
+margin-bottom:23px;
+}
+.summary-line{
+display:flex;
+justify-content:space-between;
+gap:15px;
+margin-bottom:17px;
+font-size:11px;
+color:var(--muted);
+}
+.summary-line strong{
+color:var(--text);
+font-weight:800;
+}
+.summary-divider{
+height:1px;
+background:var(--border);
+margin:20px 0;
+}
+.summary-total{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-weight:900;
+margin-bottom:23px;
+}
+.summary-total span:first-child{font-size:12px}
+.summary-total span:last-child{font-size:21px;color:var(--red)}
+.checkout-btn{
+width:100%;
+display:block;
+text-align:center;
+padding:16px;
+background:var(--red);
+color:white;
+border:0;
+border-radius:9px;
+font-size:11px;
+font-weight:900;
+cursor:pointer;
+}
+.checkout-btn:hover{background:#bd1728}
+.secure-note{
+margin-top:17px;
+font-size:9px;
+line-height:1.8;
+text-align:center;
+color:var(--muted);
+}
+.payment-methods{
+display:flex;
+justify-content:center;
+gap:7px;
+flex-wrap:wrap;
+margin-top:15px;
+}
+.payment-methods span{
+font-size:9px;
+font-weight:800;
+padding:7px 9px;
+border:1px solid var(--border);
+border-radius:6px;
+}
+/* EMPTY CART */
+.empty-cart{
+padding:70px 20px;
+text-align:center;
+}
+.empty-icon{
+width:90px;
+height:90px;
+border-radius:50%;
+background:rgba(229,37,53,.1);
+display:grid;
+place-items:center;
+font-size:38px;
+margin:0 auto 22px;
+}
+.empty-cart h2{
+font-size:22px;
+font-weight:900;
+margin-bottom:10px;
+}
+.empty-cart p{
+font-size:11px;
+line-height:1.9;
+color:var(--muted);
+margin-bottom:23px;
+}
+.empty-cart a{
+display:inline-block;
+background:var(--red);
+color:white;
+padding:14px 21px;
+border-radius:9px;
+font-size:10px;
+font-weight:900;
+}
+/* FOOTER */
+footer{
+background:#101010;
+color:white;
+padding:55px 0 0;
+}
+.footer-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 1fr;
+gap:30px;
+padding-bottom:40px;
+}
+.footer-brand{
+font-size:21px;
+font-weight:900;
+margin-bottom:15px;
+}
+.footer-brand span{color:var(--red)}
+.footer-about{
+font-size:11px;
+line-height:1.9;
+color:#aaa;
+}
+.footer-column h4{
+font-size:12px;
+margin-bottom:18px;
+}
+.footer-column a{
+display:block;
+font-size:11px;
+color:#aaa;
+margin-bottom:13px;
+}
+.footer-column a:hover{color:var(--red)}
+.footer-bottom{
+border-top:1px solid #303030;
+padding:20px 0;
+display:flex;
+justify-content:space-between;
+flex-wrap:wrap;
+gap:15px;
+font-size:10px;
+color:#aaa;
+}
+.developer-credit{color:white;font-weight:800}
+.developer-credit span{color:var(--red)}
+@media(max-width:950px){
+.desktop-nav{display:none}
+.cart-layout{grid-template-columns:1fr 300px}
+.footer-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+.cart-layout{grid-template-columns:1fr}
+.summary-card{position:static}
+.cart-item{grid-template-columns:75px 1fr auto;gap:12px}
+.item-image{width:75px;height:75px}
+.item-info h3{font-size:11px}
+.line-total{font-size:11px}
+}
+@media(max-width:480px){
+.navbar{height:68px}
+.brand{font-size:15px}
+.brand img{width:35px;height:35px}
+.nav-actions{gap:6px}
+.icon-btn{width:35px;height:35px}
+.cart-btn{padding:0 7px}
+.hero{padding:45px 0}
+.hero h1{letter-spacing:-1px}
+.cart-heading{padding:17px}
+.cart-items{padding:0 14px}
+.cart-item{grid-template-columns:65px 1fr;position:relative;padding:18px 0}
+.item-image{width:65px;height:65px}
+.item-actions{
+grid-column:2;
+flex-direction:row;
+justify-content:space-between;
+align-items:center;
+width:100%;
+margin-top:-3px
+}
+.quantity-control{margin-top:10px}
+.footer-grid{grid-template-columns:1fr 1fr;gap:25px 15px}
 }
 </style>
 </head>
-
 <body>
-
-<header>
-    <div class="container navbar">
-
-        <a href="index.html" class="brand">
-            <img src="https://placehold.co/100x100/c90024/ffffff?text=FG"
-                 alt="Foster Gaming Logo">
-
-            <div class="brand-name">
-                FOSTER <span>GAMING</span>
-            </div>
-        </a>
-
-        <nav class="desktop-nav">
-            <a href="index.html">Home</a>
-            <a href="accounts.html">Showcase</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-
-        <div class="nav-actions">
-            <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">☾</button>
-            <button class="icon-btn menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
-        </div>
-
-    </div>
-</header>
-
-<!-- MOBILE MENU -->
-
-<div class="menu-overlay" id="menuOverlay">
-    <div class="menu-panel">
-
-        <div class="menu-top">
-            <strong>FOSTER <span style="color:var(--red)">GAMING</span></strong>
-            <button class="icon-btn" id="closeMenu" aria-label="Close menu">✕</button>
-        </div>
-
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="accounts.html">Gaming Showcase</a>
-            <a href="about.html">About Us</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-
-        <div class="menu-settings">
-            <label for="languageSelect">Website language</label>
-            <select id="languageSelect">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-                <option value="pt">Português</option>
-            </select>
-        </div>
-
-    </div>
+<div class="announcement">
+YOUR FOSTER GAMING SHOPPING CART
 </div>
-
+<header>
+<div class="container navbar">
+<a href="index.html" class="brand">
+<img src="https://raw.githubusercontent.com/YOUR-GITHUB-USERNAME/YOUR-REPOSITORY/main/assets/images/logo.png" alt="Foster Gaming">
+<div>FOSTER <span>GAMING</span></div>
+</a>
+<nav class="desktop-nav">
+<a href="index.html">HOME</a>
+<a href="accounts.html">ACCOUNTS</a>
+<a href="sold.html">SOLD ACCOUNTS</a>
+<a href="blog.html">BLOG</a>
+<a href="about.html">ABOUT</a>
+<a href="contact.html">CONTACT</a>
+</nav>
+<div class="nav-actions">
+<a href="cart.html" class="icon-btn cart-btn">
+🛒 <span class="cart-count" id="cartCount">0</span>
+</a>
+<button class="icon-btn" id="themeButton">🌙</button>
+<button class="icon-btn" id="menuButton">☰</button>
+</div>
+</div>
+</header>
+<div class="menu-overlay" id="menuOverlay"></div>
+<aside class="side-menu" id="sideMenu">
+<div class="menu-top">
+<strong>Foster Gaming</strong>
+<button class="close-menu" id="closeMenu">×</button>
+</div>
+<nav class="menu-links">
+<a href="index.html">🏠 Home</a>
+<a href="accounts.html">🎮 Browse Accounts</a>
+<a href="sold.html">✅ Sold Accounts</a>
+<a href="cart.html">🛒 Shopping Cart</a>
+<a href="blog.html">📰 Blog</a>
+<a href="about.html">ℹ️ About Us</a>
+<a href="reviews.html">⭐ Reviews</a>
+<a href="contact.html">📩 Contact Us</a>
+</nav>
+<div class="menu-setting">
+<label>🌍 SELECT LANGUAGE</label>
+<select id="languageSelect">
+<option value="en">English</option>
+<option value="es">Español</option>
+<option value="fr">Français</option>
+<option value="de">Deutsch</option>
+<option value="pt">Português</option>
+<option value="ja">日本語</option>
+<option value="ko">한국어</option>
+<option value="ar">العربية</option>
+</select>
+</div>
+<div class="menu-setting">
+<label>🎨 APPEARANCE</label>
+<button class="theme-toggle" id="menuThemeButton">🌙 Switch to Dark Mode</button>
+</div>
+<div class="menu-setting">
+<label>📱 FOLLOW US</label>
+<div class="menu-links">
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok 1</a>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
+<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
+</div>
+</div>
+</aside>
+<!-- HERO -->
+<section class="hero">
+<div class="container">
+<div class="hero-label">YOUR SELECTED ACCOUNTS</div>
+<h1>Shopping <span>Cart.</span></h1>
+<p>
+Review your selected Pokémon GO accounts before proceeding
+to checkout.
+</p>
+</div>
+</section>
 <main>
-
-<section class="page-hero">
-    <div class="container">
-
-        <h1>Your <span>Cart.</span></h1>
-
-        <p>
-            Review the items saved in your demonstration cart.
-        </p>
-
-        <div class="breadcrumb">
-            <a href="index.html">Home</a> / Cart
-        </div>
-
-    </div>
-</section>
-
+<div class="container breadcrumb">
+<a href="index.html">Home</a> / Shopping Cart
+</div>
 <section class="cart-section">
-    <div class="container">
-
-        <div class="cart-layout">
-
-            <div>
-
-                <div class="cart-heading">
-                    <h2>Cart Overview</h2>
-                    <span class="cart-count" id="cartCount">
-                        0 items
-                    </span>
-                </div>
-
-                <div class="cart-items" id="cartItems"></div>
-
-                <div class="empty-cart" id="emptyCart">
-                    <div class="empty-icon">🛒</div>
-
-                    <h2>Your cart is empty</h2>
-
-                    <p>
-                        You haven't added anything to your cart yet.
-                    </p>
-
-                    <a href="accounts.html">
-                        Explore Showcase
-                    </a>
-                </div>
-
-            </div>
-
-            <aside class="summary-card">
-
-                <h2>Order Summary</h2>
-
-                <div class="summary-line">
-                    <span>Items</span>
-                    <strong id="summaryItems">0</strong>
-                </div>
-
-                <div class="summary-line">
-                    <span>Subtotal</span>
-                    <strong id="subtotal">$0.00</strong>
-                </div>
-
-                <div class="summary-line">
-                    <span>Delivery</span>
-                    <strong>—</strong>
-                </div>
-
-                <div class="summary-line summary-total">
-                    <span>Total</span>
-                    <span id="total">$0.00</span>
-                </div>
-
-                <button class="checkout-btn" id="checkoutBtn" disabled>
-                    Continue to Checkout →
-                </button>
-
-                <a href="accounts.html" class="continue-btn">
-                    ← Continue Browsing
-                </a>
-
-                <div class="notice">
-                    <strong>Demonstration only:</strong>
-                    This cart does not accept payments or initiate
-                    account transfers.
-                </div>
-
-            </aside>
-
-        </div>
-
-    </div>
+<div class="container">
+<div class="cart-layout">
+<div class="cart-main" id="cartMain">
+<div class="cart-heading">
+<div>
+<h2>Your Cart</h2>
+<p id="cartDescription">Loading your selected accounts...</p>
+</div>
+<button class="clear-btn" id="clearCartButton">CLEAR CART</button>
+</div>
+<div class="cart-items" id="cartItems"></div>
+<a href="accounts.html" class="continue-shopping">
+← CONTINUE SHOPPING
+</a>
+</div>
+<!-- ORDER SUMMARY -->
+<aside class="summary-card">
+<h3>Order Summary</h3>
+<div class="summary-line">
+<span>Items</span>
+<strong id="summaryItems">0</strong>
+</div>
+<div class="summary-line">
+<span>Subtotal</span>
+<strong id="subtotal">$0.00</strong>
+</div>
+<div class="summary-line">
+<span>Shipping</span>
+<strong>Digital Delivery</strong>
+</div>
+<div class="summary-divider"></div>
+<div class="summary-total">
+<span>Total</span>
+<span id="total">$0.00</span>
+</div>
+<button class="checkout-btn" id="checkoutButton">
+PROCEED TO CHECKOUT →
+</button>
+<p class="secure-note">
+Review your account selection and total before continuing.
+Payment instructions will be presented during checkout.
+</p>
+<div class="payment-methods">
+<span>PayPal</span>
+<span>Cash App</span>
+<span>BTC</span>
+<span>Gift Cards</span>
+</div>
+</aside>
+</div>
+</div>
 </section>
-
 </main>
-
+<!-- FOOTER -->
 <footer>
-    <div class="container">
-
-        <div class="footer-grid">
-
-            <div class="footer-brand">
-                <div class="brand-name">
-                    FOSTER <span>GAMING</span>
-                </div>
-
-                <p>
-                    Gaming collections, community updates
-                    and gaming culture in one place.
-                </p>
-            </div>
-
-            <div class="footer-column">
-                <h4>Navigation</h4>
-                <a href="index.html">Home</a>
-                <a href="accounts.html">Showcase</a>
-                <a href="about.html">About Us</a>
-                <a href="contact.html">Contact</a>
-            </div>
-
-            <div class="footer-column">
-                <h4>Explore</h4>
-                <a href="accounts.html">Collections</a>
-                <a href="accounts.html">Pokémon GO</a>
-            </div>
-
-            <div class="footer-column">
-                <h4>Connect</h4>
-                <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
-                <a href="https://www.tiktok.com/@fostergames5" target="_blank" rel="noopener">TikTok</a>
-                <a href="https://snapchat.com/t/3SgH1EdO" target="_blank" rel="noopener">Snapchat</a>
-                <a href="https://discord.gg/5TCTxUWJ" target="_blank" rel="noopener">Discord</a>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            <span>© <span id="year"></span> Foster Gaming. All rights reserved.</span>
-            <span class="footer-credit">POWERED BY BITBRIDGE TECHNOLOGIES INC.</span>
-        </div>
-
-    </div>
+<div class="container">
+<div class="footer-grid">
+<div>
+<div class="footer-brand">FOSTER <span>GAMING</span></div>
+<p class="footer-about">
+Your destination for premium Pokémon GO accounts.
+Explore different account levels and discover available
+listings in our gaming marketplace.
+</p>
+</div>
+<div class="footer-column">
+<h4>MARKETPLACE</h4>
+<a href="index.html">Home</a>
+<a href="accounts.html">Browse Accounts</a>
+<a href="sold.html">Sold Accounts</a>
+<a href="cart.html">Shopping Cart</a>
+</div>
+<div class="footer-column">
+<h4>INFORMATION</h4>
+<a href="about.html">About Us</a>
+<a href="blog.html">Our Blog</a>
+<a href="reviews.html">Customer Reviews</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="footer-column">
+<h4>CONTACT</h4>
+<a href="mailto:harishwilliams010@gmail.com">Email Us</a>
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce">TikTok</a>
+<a href="https://snapchat.com/t/Ua0aZSS4">Snapchat</a>
+<a href="https://discord.gg/VqVBngcg">Discord</a>
+</div>
+</div>
+<div class="footer-bottom">
+<div>
+© <span id="year"></span> Foster Gaming. All rights reserved.
+</div>
+<div class="developer-credit">
+Developed by <span>BITBRIDGE TECHNOLOGIES INC.</span>
+</div>
+</div>
+</div>
 </footer>
-
 <script>
-/* YEAR */
-
-document.getElementById("year").textContent =
-    new Date().getFullYear();
-
-/* THEME */
-
-const themeBtn = document.getElementById("themeBtn");
-
-function applyTheme() {
-    const theme = localStorage.getItem("fosterTheme") || "light";
-
-    document.body.classList.toggle("dark", theme === "dark");
-
-    themeBtn.textContent = theme === "dark" ? "☀" : "☾";
+/* SHARED SETTINGS */
+function applyTheme(theme){
+document.body.classList.toggle('dark',theme==='dark');
+localStorage.setItem('foster_theme',theme);
+document.getElementById('themeButton').textContent=
+theme==='dark'?'☀️':'🌙';
+document.getElementById('menuThemeButton').textContent=
+theme==='dark'?'☀️ Switch to Light Mode':'🌙 Switch to Dark Mode';
 }
-
-themeBtn.addEventListener("click", () => {
-    const current = document.body.classList.contains("dark");
-
-    localStorage.setItem(
-        "fosterTheme",
-        current ? "light" : "dark"
-    );
-
-    applyTheme();
-});
-
-applyTheme();
-
-/* MOBILE MENU */
-
-const menuOverlay = document.getElementById("menuOverlay");
-
-document.getElementById("menuBtn").addEventListener("click", () => {
-    menuOverlay.classList.add("open");
-});
-
-document.getElementById("closeMenu").addEventListener("click", () => {
-    menuOverlay.classList.remove("open");
-});
-
-menuOverlay.addEventListener("click", event => {
-    if (event.target === menuOverlay) {
-        menuOverlay.classList.remove("open");
-    }
-});
-
-document.querySelectorAll(".menu-panel nav a").forEach(link => {
-    link.addEventListener("click", () => {
-        menuOverlay.classList.remove("open");
-    });
-});
-
+applyTheme(localStorage.getItem('foster_theme')||'light');
+function toggleTheme(){
+const current=localStorage.getItem('foster_theme')||'light';
+applyTheme(current==='light'?'dark':'light');
+}
+document.getElementById('themeButton').onclick=toggleTheme;
+document.getElementById('menuThemeButton').onclick=toggleTheme;
 /* LANGUAGE PREFERENCE */
-
-const languageSelect = document.getElementById("languageSelect");
-
-languageSelect.value =
-    localStorage.getItem("fosterLanguage") || "en";
-
-languageSelect.addEventListener("change", () => {
-    localStorage.setItem("fosterLanguage", languageSelect.value);
-
-    alert("Your language preference has been saved.");
+const languageSelect=document.getElementById('languageSelect');
+languageSelect.value=localStorage.getItem('foster_language')||'en';
+languageSelect.onchange=function(){
+localStorage.setItem('foster_language',this.value);
+};
+/* MENU */
+const sideMenu=document.getElementById('sideMenu');
+const overlay=document.getElementById('menuOverlay');
+document.getElementById('menuButton').onclick=()=>{
+sideMenu.classList.add('active');
+overlay.classList.add('active');
+document.body.style.overflow='hidden';
+};
+function closeMenu(){
+sideMenu.classList.remove('active');
+overlay.classList.remove('active');
+document.body.style.overflow='';
+}
+document.getElementById('closeMenu').onclick=closeMenu;
+overlay.onclick=closeMenu;
+document.querySelectorAll('.menu-links a').forEach(link=>{
+link.addEventListener('click',closeMenu);
 });
-
-/* CART DATA */
-
-const CART_KEY = "fosterDemoCart";
-
-function getCart() {
-    try {
-        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
-    } catch {
-        return [];
-    }
+/* CART STORAGE */
+const CART_KEY='foster_cart';
+function getCart(){
+try{
+const cart=JSON.parse(localStorage.getItem(CART_KEY));
+return Array.isArray(cart)?cart:[];
+}catch(error){
+return [];
 }
-
-function saveCart(cart) {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
-
-function formatPrice(price) {
-    return "$" + Number(price).toFixed(2);
-}
-
-/* RENDER CART */
-
-function renderCart() {
-
-    const cart = getCart();
-
-    const cartItems = document.getElementById("cartItems");
-    const emptyCart = document.getElementById("emptyCart");
-
-    cartItems.innerHTML = "";
-
-    let subtotal = 0;
-    let totalQuantity = 0;
-
-    cart.forEach((item, index) => {
-
-        const quantity = Math.max(1, Number(item.quantity) || 1);
-        const price = Math.max(0, Number(item.price) || 0);
-
-        subtotal += price * quantity;
-        totalQuantity += quantity;
-
-        const element = document.createElement("article");
-
-        element.className = "cart-item";
-
-        element.innerHTML = `
-            <div class="item-image">
-                ${item.icon || "🎮"}
-            </div>
-
-            <div class="item-info">
-                <h3>${escapeHTML(item.name || "Gaming Collection")}</h3>
-                <p>${escapeHTML(item.description || "Collection showcase")}</p>
-                <div class="item-price">${formatPrice(price)}</div>
-            </div>
-
-            <div class="item-actions">
-
-                <div class="quantity-control">
-                    <button type="button" data-action="minus" data-index="${index}">−</button>
-                    <span>${quantity}</span>
-                    <button type="button" data-action="plus" data-index="${index}">+</button>
-                </div>
-
-                <button type="button" class="remove-btn"
-                    data-action="remove" data-index="${index}">
-                    Remove
-                </button>
-
-            </div>
-        `;
-
-        cartItems.appendChild(element);
-    });
-
-    document.getElementById("cartCount").textContent =
-        totalQuantity + (totalQuantity === 1 ? " item" : " items");
-
-    document.getElementById("summaryItems").textContent =
-        totalQuantity;
-
-    document.getElementById("subtotal").textContent =
-        formatPrice(subtotal);
-
-    document.getElementById("total").textContent =
-        formatPrice(subtotal);
-
-    emptyCart.style.display =
-        cart.length === 0 ? "block" : "none";
-
-    document.querySelector(".cart-layout").style.display =
-        cart.length === 0 ? "block" : "grid";
-
-    document.getElementById("checkoutBtn").disabled =
-        cart.length === 0;
-}
-
-/* BASIC HTML ESCAPING */
-
-function escapeHTML(value) {
-    return String(value).replace(/[&<>"']/g, character => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#039;"
-    })[character]);
-}
-
-/* CART BUTTONS */
-
-document.getElementById("cartItems").addEventListener("click", event => {
-
-    const button = event.target.closest("button[data-action]");
-
-    if (!button) return;
-
-    const cart = getCart();
-    const index = Number(button.dataset.index);
-
-    if (!cart[index]) return;
-
-    const action = button.dataset.action;
-
-    if (action === "plus") {
-        cart[index].quantity =
-            Math.min(99, Number(cart[index].quantity || 1) + 1);
-    }
-
-    if (action === "minus") {
-        cart[index].quantity =
-            Math.max(1, Number(cart[index].quantity || 1) - 1);
-    }
-
-    if (action === "remove") {
-        cart.splice(index, 1);
-    }
-
-    saveCart(cart);
-    renderCart();
-});
-
-/* CHECKOUT BUTTON */
-
-document.getElementById("checkoutBtn").addEventListener("click", () => {
-    alert(
-        "This demonstration checkout is not connected to a payment or order-processing service."
-    );
-});
-
-/* INITIAL LOAD */
-
+function saveCart(cart){
+localStorage.setItem(CART_KEY,JSON.stringify(cart));
+updateCartCount();
 renderCart();
+}
+function money(amount,currency){
+return new Intl.NumberFormat('en-US',{
+style:'currency',
+currency:currency||'USD'
+}).format(Number(amount)||0);
+}
+function escapeHTML(value){
+return String(value??'').replace(/[&<>"']/g,char=>({
+'&':'&amp;',
+'<':'&lt;',
+'>':'&gt;',
+'"':'&quot;',
+"'":'&#039;'
+}[char]));
+}
+function updateCartCount(){
+const cart=getCart();
+const count=cart.reduce((sum,item)=>{
+return sum+(Number(item.quantity)||1);
+},0);
+document.getElementById('cartCount').textContent=count;
+}
+/* RENDER CART */
+function renderCart(){
+const cart=getCart();
+const cartItems=document.getElementById('cartItems');
+const description=document.getElementById('cartDescription');
+if(cart.length===0){
+cartItems.innerHTML=`
+<div class="empty-cart">
+<div class="empty-icon">🛒</div>
+<h2>Your Cart Is Empty</h2>
+<p>
+You haven't added any Pokémon GO accounts yet.
+Explore our marketplace to discover available accounts.
+</p>
+<a href="accounts.html">EXPLORE ACCOUNTS →</a>
+</div>
+`;
+description.textContent='No accounts selected yet.';
+document.getElementById('summaryItems').textContent='0';
+document.getElementById('subtotal').textContent='$0.00';
+document.getElementById('total').textContent='$0.00';
+document.getElementById('checkoutButton').disabled=true;
+document.getElementById('checkoutButton').style.opacity='.5';
+return;
+}
+document.getElementById('checkoutButton').disabled=false;
+document.getElementById('checkoutButton').style.opacity='1';
+let total=0;
+let quantityTotal=0;
+cartItems.innerHTML=cart.map((item,index)=>{
+const quantity=Math.max(1,Number(item.quantity)||1);
+const price=Number(item.price)||0;
+const currency=item.currency||'USD';
+const lineTotal=price*quantity;
+total+=lineTotal;
+quantityTotal+=quantity;
+const image=item.image
+?`<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" onerror="this.style.display='none';this.parentElement.innerHTML='<div class=\\'image-placeholder\\'>🎮</div>'">`
+:`<div class="image-placeholder">🎮</div>`;
+return `
+<div class="cart-item">
+<div class="item-image">
+${image}
+</div>
+<div class="item-info">
+<h3>${escapeHTML(item.title||'Pokémon GO Account')}</h3>
+<p>Account Level: ${escapeHTML(item.level||'N/A')}</p>
+<div class="item-price">${money(price,currency)}</div>
+<div class="quantity-control">
+<button onclick="changeQuantity(${index},-1)">−</button>
+<span>${quantity}</span>
+<button onclick="changeQuantity(${index},1)">+</button>
+</div>
+</div>
+<div class="item-actions">
+<div class="line-total">${money(lineTotal,currency)}</div>
+<button class="remove-btn" onclick="removeItem(${index})">
+REMOVE
+</button>
+</div>
+</div>
+`;
+}).join('');
+description.textContent=
+quantityTotal+' item'+(quantityTotal===1?'':'s')+' in your cart.';
+document.getElementById('summaryItems').textContent=quantityTotal;
+/*
+The cart is designed for a single checkout currency.
+If items have different currencies, the checkout should
+not silently combine them.
+*/
+const currencies=[...new Set(cart.map(item=>item.currency||'USD'))];
+if(currencies.length>1){
+document.getElementById('subtotal').textContent='Multiple currencies';
+document.getElementById('total').textContent='See checkout';
+}else{
+document.getElementById('subtotal').textContent=money(total,currencies[0]);
+document.getElementById('total').textContent=money(total,currencies[0]);
+}
+}
+/* QUANTITY */
+function changeQuantity(index,change){
+const cart=getCart();
+if(!cart[index])return;
+const quantity=(Number(cart[index].quantity)||1)+change;
+if(quantity<=0){
+cart.splice(index,1);
+}else{
+cart[index].quantity=quantity;
+}
+saveCart(cart);
+}
+/* REMOVE ITEM */
+function removeItem(index){
+const cart=getCart();
+if(!cart[index])return;
+cart.splice(index,1);
+saveCart(cart);
+}
+/* CLEAR CART */
+document.getElementById('clearCartButton').onclick=()=>{
+const cart=getCart();
+if(cart.length===0)return;
+if(confirm('Are you sure you want to remove all accounts from your cart?')){
+saveCart([]);
+}
+};
+/* CHECKOUT */
+document.getElementById('checkoutButton').onclick=()=>{
+const cart=getCart();
+if(cart.length===0){
+alert('Your cart is empty.');
+return;
+}
+const currencies=[...new Set(cart.map(item=>item.currency||'USD'))];
+if(currencies.length>1){
+alert('Your cart contains different currencies. Please keep one currency per order before checking out.');
+return;
+}
+window.location.href='checkout.html';
+};
+/* KEEP CART UPDATED */
+window.addEventListener('storage',event=>{
+if(event.key===CART_KEY){
+updateCartCount();
+renderCart();
+}
+});
+window.addEventListener('pageshow',()=>{
+updateCartCount();
+renderCart();
+});
+/* INITIALIZE */
+updateCartCount();
+renderCart();
+document.getElementById('year').textContent=new Date().getFullYear();
 </script>
-
 </body>
 </html>
