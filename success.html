@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment | Foster Gaming</title>
+
+<style>
+:root {
+    --red:#e32636;
+    --red-dark:#bd1726;
+    --green:#159447;
+    --bg:#f5f6f8;
+    --card:#fff;
+    --text:#171717;
+    --muted:#777;
+    --border:#e6e6e6;
+    --shadow:0 8px 30px rgba(0,0,0,.06);
+}
+
+body.dark {
+    --bg:#101114;
+    --card:#1b1d22;
+    --text:#f5f5f5;
+    --muted:#aaa;
+    --border:#303239;
+    --shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.25s;
+}
+
+a {
+    color:inherit;
+    text-decoration:none;
+}
+
+button,input,select,textarea {
+    font-family:inherit;
+}
+
+button {
+    cursor:pointer;
+}
+
+.top-strip {
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:9px 15px;
+    font-size:12px;
+    letter-spacing:.5px;
+}
+
+header {
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.navbar {
+    max-width:1200px;
+    margin:auto;
+    min-height:76px;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:21px;
+    font-weight:900;
+}
+
+.brand img {
+    width:43px;
+    height:43px;
+    object-fit:contain;
+}
+
+.brand span {
+    color:var(--red);
+}
+
+.nav-actions {
+    display:flex;
+    align-items:center;
+    gap:13px;
+}
+
+.icon-btn {
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    padding:10px 13px;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.cart-link {
+    background:var(--red);
+    color:white;
+    padding:11px 15px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.cart-count {
+    background:white;
+    color:var(--red);
+    border-radius:50%;
+    padding:2px 6px;
+    margin-left:4px;
+    font-size:11px;
+}
+
+.menu-panel {
+    display:none;
+    position:absolute;
+    top:76px;
+    right:20px;
+    width:260px;
+    background:var(--card);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    border-radius:14px;
+    padding:15px;
+    z-index:200;
+}
+
+.menu-panel.show {
+    display:block;
+}
+
+.menu-panel a,
+.menu-panel button,
+.menu-panel select {
+    display:block;
+    width:100%;
+    padding:12px;
+    margin-bottom:5px;
+    text-align:left;
+    border:0;
+    border-radius:8px;
+    background:transparent;
+    color:var(--text);
+    font-size:14px;
+}
+
+.menu-panel a:hover,
+.menu-panel button:hover {
+    background:var(--bg);
+}
+
+.menu-panel select {
+    border:1px solid var(--border);
+}
+
+.container {
+    max-width:1100px;
+    margin:auto;
+    padding:35px 20px 70px;
+}
+
+.breadcrumb {
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.breadcrumb a {
+    color:var(--red);
+}
+
+.page-heading {
+    margin-bottom:28px;
+}
+
+.page-heading h1 {
+    font-size:32px;
+    margin-bottom:9px;
+}
+
+.page-heading p {
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.7;
+}
+
+.payment-layout {
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:25px;
+    align-items:start;
+}
+
+.main-column {
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:25px;
+    box-shadow:var(--shadow);
+}
+
+.card h2 {
+    font-size:19px;
+    margin-bottom:18px;
+}
+
+.order-reference {
+    background:var(--bg);
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+}
+
+.order-reference small {
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:7px;
+}
+
+.order-reference strong {
+    color:var(--red);
+    font-size:16px;
+    letter-spacing:1px;
+}
+
+.customer-info {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:13px;
+}
+
+.customer-info div {
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:9px;
+}
+
+.customer-info small {
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-bottom:6px;
+}
+
+.customer-info strong {
+    font-size:13px;
+    word-break:break-word;
+}
+
+.payment-methods {
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.method {
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    padding:16px;
+    border-radius:11px;
+    text-align:left;
+    transition:.2s;
+}
+
+.method:hover {
+    border-color:var(--red);
+    transform:translateY(-2px);
+}
+
+.method.active {
+    border:2px solid var(--red);
+    background:rgba(227,38,54,.06);
+}
+
+.method-icon {
+    font-size:25px;
+    margin-bottom:10px;
+}
+
+.method-name {
+    display:block;
+    font-size:13px;
+    font-weight:900;
+}
+
+.method-description {
+    display:block;
+    color:var(--muted);
+    font-size:10px;
+    margin-top:5px;
+    line-height:1.5;
+}
+
+.method-unavailable {
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.payment-instructions {
+    display:none;
+    margin-top:20px;
+    padding:18px;
+    background:var(--bg);
+    border:1px solid var(--border);
+    border-radius:12px;
+}
+
+.payment-instructions.show {
+    display:block;
+}
+
+.payment-instructions h3 {
+    font-size:16px;
+    margin-bottom:13px;
+}
+
+.instruction-row {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.instruction-row:last-child {
+    border-bottom:0;
+}
+
+.instruction-row small {
+    color:var(--muted);
+    font-size:11px;
+}
+
+.instruction-row strong {
+    font-size:12px;
+    text-align:right;
+    word-break:break-word;
+}
+
+.copy-btn {
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    padding:7px 10px;
+    border-radius:7px;
+    font-size:10px;
+    font-weight:bold;
+}
+
+.instruction-warning {
+    margin-top:15px;
+    padding:13px;
+    background:#fff3cd;
+    color:#765600;
+    border-radius:9px;
+    font-size:11px;
+    line-height:1.7;
+}
+
+body.dark .instruction-warning {
+    background:#3b321a;
+    color:#f5d98b;
+}
+
+.proceed-btn {
+    width:100%;
+    border:0;
+    background:var(--red);
+    color:white;
+    padding:15px;
+    border-radius:10px;
+    font-size:13px;
+    font-weight:900;
+    margin-top:20px;
+}
+
+.proceed-btn:hover {
+    background:var(--red-dark);
+}
+
+.proceed-btn:disabled {
+    opacity:.5;
+    cursor:not-allowed;
+}
+
+.summary-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:23px;
+    box-shadow:var(--shadow);
+    position:sticky;
+    top:100px;
+}
+
+.summary-card h2 {
+    font-size:19px;
+    margin-bottom:18px;
+}
+
+.order-item {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.order-image {
+    width:55px;
+    height:55px;
+    border-radius:8px;
+    background:#e9e9e9;
+    overflow:hidden;
+    flex-shrink:0;
+}
+
+.order-image img {
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.order-info {
+    flex:1;
+    min-width:0;
+}
+
+.order-info strong {
+    display:block;
+    font-size:12px;
+    margin-bottom:5px;
+}
+
+.order-info small {
+    color:var(--muted);
+    font-size:10px;
+}
+
+.order-price {
+    font-size:12px;
+    font-weight:900;
+    color:var(--red);
+}
+
+.summary-row {
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    margin:16px 0;
+    font-size:12px;
+    color:var(--muted);
+}
+
+.summary-row strong {
+    color:var(--text);
+    text-align:right;
+}
+
+.total-row {
+    border-top:1px solid var(--border);
+    padding-top:17px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:15px;
+    font-weight:900;
+}
+
+.total-row strong {
+    font-size:23px;
+    color:var(--red);
+}
+
+.summary-note {
+    margin-top:18px;
+    padding:13px;
+    background:var(--bg);
+    border-radius:9px;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.7;
+}
+
+.form-group {
+    margin-top:18px;
+}
+
+.form-group label {
+    display:block;
+    font-size:12px;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width:100%;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    padding:13px;
+    border-radius:9px;
+    outline:none;
+    font-size:13px;
+}
+
+.form-group textarea {
+    min-height:95px;
+    resize:vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color:var(--red);
+}
+
+.form-note {
+    color:var(--muted);
+    font-size:10px;
+    margin-top:7px;
+    line-height:1.6;
+}
+
+footer {
+    background:#101010;
+    color:white;
+    padding:45px 20px 20px;
+}
+
+.footer-inner {
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:30px;
+}
+
+.footer-brand {
+    font-size:21px;
+    font-weight:900;
+    margin-bottom:12px;
+}
+
+.footer-brand span {
+    color:var(--red);
+}
+
+.footer-column h4 {
+    margin-bottom:15px;
+    font-size:14px;
+}
+
+.footer-column a {
+    display:block;
+    color:#aaa;
+    font-size:13px;
+    line-height:2;
+}
+
+.footer-column a:hover {
+    color:white;
+}
+
+.footer-bottom {
+    max-width:1100px;
+    margin:30px auto 0;
+    padding-top:20px;
+    border-top:1px solid #333;
+    text-align:center;
+    color:#999;
+    font-size:11px;
+    line-height:2;
+}
+
+.toast {
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%) translateY(100px);
+    background:#171717;
+    color:white;
+    padding:14px 22px;
+    border-radius:10px;
+    font-size:13px;
+    z-index:600;
+    transition:.3s;
+    opacity:0;
+}
+
+.toast.show {
+    transform:translateX(-50%) translateY(0);
+    opacity:1;
+}
+
+.modal-overlay {
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.7);
+    z-index:500;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.modal-overlay.show {
+    display:flex;
+}
+
+.modal {
+    width:100%;
+    max-width:480px;
+    background:var(--card);
+    color:var(--text);
+    border-radius:16px;
+    padding:28px;
+    box-shadow:var(--shadow);
+}
+
+.modal h2 {
+    font-size:21px;
+    margin-bottom:12px;
+}
+
+.modal p {
+    color:var(--muted);
+    font-size:13px;
+    line-height:1.8;
+}
+
+.modal-actions {
+    display:flex;
+    gap:10px;
+    margin-top:22px;
+}
+
+.modal-actions button {
+    flex:1;
+    padding:13px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.modal-cancel {
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+}
+
+.modal-confirm {
+    border:0;
+    background:var(--red);
+    color:white;
+}
+
+.no-order {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+    padding:50px 20px;
+    text-align:center;
+}
+
+.no-order h2 {
+    margin-bottom:10px;
+}
+
+.no-order p {
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.no-order a {
+    display:inline-block;
+    background:var(--red);
+    color:white;
+    padding:13px 20px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+@media(max-width:850px) {
+    .payment-layout {
+        grid-template-columns:1fr;
+    }
+
+    .summary-card {
+        position:static;
+    }
+}
+
+@media(max-width:600px) {
+    .navbar {
+        padding:12px 14px;
+    }
+
+    .brand {
+        font-size:17px;
+    }
+
+    .brand img {
+        width:35px;
+        height:35px;
+    }
+
+    .nav-actions {
+        gap:7px;
+    }
+
+    .icon-btn {
+        padding:9px 10px;
+    }
+
+    .cart-link {
+        padding:10px;
+        font-size:11px;
+    }
+
+    .container {
+        padding:25px 14px 50px;
+    }
+
+    .page-heading h1 {
+        font-size:26px;
+    }
+
+    .card,
+    .summary-card {
+        padding:18px;
+    }
+
+    .payment-methods {
+        grid-template-columns:1fr 1fr;
+    }
+
+    .customer-info {
+        grid-template-columns:1fr;
+    }
+
+    .footer-inner {
+        grid-template-columns:1fr;
+    }
+
+    .menu-panel {
+        right:10px;
+    }
+
+    .modal {
+        padding:21px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-strip">
+    PREMIUM POKÉMON GO ACCOUNTS • FOSTER GAMING
+</div>
+
+<header>
+    <nav class="navbar">
+
+        <a href="index.html" class="brand">
+            <img src="https://raw.githubusercontent.com/YOUR-USERNAME/Foster-Gaming/main/assets/logo.png" alt="Foster Gaming Logo">
+            <div>FOSTER <span>GAMING</span></div>
+        </a>
+
+        <div class="nav-actions">
+            <button class="icon-btn" onclick="toggleTheme()">☀️</button>
+
+            <a href="cart.html" class="cart-link">
+                🛒 Cart <span class="cart-count" id="cartCount">0</span>
+            </a>
+
+            <button class="icon-btn" onclick="toggleMenu()">☰</button>
+        </div>
+
+        <div class="menu-panel" id="menuPanel">
+            <a href="index.html">Home</a>
+            <a href="accounts.html">Marketplace</a>
+            <a href="cart.html">Shopping Cart</a>
+            <a href="about.html">About Us</a>
+            <a href="blog.html">Blog</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+
+            <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+
+            <select id="languageSelect" onchange="changeLanguage()">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="pt">Português</option>
+                <option value="it">Italiano</option>
+                <option value="ja">日本語</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+
+    </nav>
+</header>
+
+<main class="container">
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> /
+        <a href="cart.html">Cart</a> /
+        <a href="checkout.html">Checkout</a> /
+        Payment
+    </div>
+
+    <div class="page-heading">
+        <h1>Complete Your Payment</h1>
+        <p>Select a payment method and follow the instructions to complete your order.</p>
+    </div>
+
+    <div id="paymentContent"></div>
+
+</main>
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div>
+            <div class="footer-brand">FOSTER <span>GAMING</span></div>
+            <p style="color:#aaa;font-size:13px;line-height:1.8;max-width:350px;">
+                Your destination for premium Pokémon GO accounts. Explore available accounts and contact us for buying and swapping enquiries.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="accounts.html">Marketplace</a>
+            <a href="about.html">About Us</a>
+            <a href="blog.html">Blog</a>
+            <a href="reviews.html">Reviews</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Connect With Us</h4>
+            <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok 1</a>
+            <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a>
+            <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
+            <a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
+            <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © <span id="year"></span> Foster Gaming. All rights reserved.<br>
+        Powered by BITBRIDGE TECHNOLOGIES INC
+    </div>
+
+</footer>
+
+<!-- PAYMENT CONFIRMATION MODAL -->
+
+<div class="modal-overlay" id="confirmationModal">
+
+    <div class="modal">
+
+        <h2>Submit Your Payment Details?</h2>
+
+        <p>
+            Your order information and payment reference will be prepared in an email to Foster Gaming for manual review.
+            Submitting this form does not itself confirm that payment has been received.
+        </p>
+
+        <div class="modal-actions">
+
+            <button class="modal-cancel" onclick="closeModal()">
+                GO BACK
+            </button>
+
+            <button class="modal-confirm" onclick="submitPayment()">
+                CONTINUE
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+/* =================================
+   PAYMENT ACCOUNT CONFIGURATION
+================================= */
+
+/*
+  IMPORTANT:
+  Replace these placeholders with your real payment details.
+  Never publish private passwords, recovery codes or login credentials.
+*/
+
+const paymentDetails = {
+
+    "PayPal": {
+        title:"PayPal Payment",
+        icon:"🅿️",
+        fields:[
+            {label:"PayPal Email",value:"YOUR-PAYPAL-EMAIL"}
+        ],
+        instructions:"Send the order amount using PayPal. Confirm the recipient details before sending."
+    },
+
+    "Cash App": {
+        title:"Cash App Payment",
+        icon:"💵",
+        fields:[
+            {label:"Cash App Tag",value:"$YOUR-CASH-APP-TAG"}
+        ],
+        instructions:"Open Cash App and send the required payment to the Cash App tag shown above."
+    },
+
+    "Zelle": {
+        title:"Zelle Payment",
+        icon:"🏦",
+        fields:[
+            {label:"Zelle Email or Phone",value:"YOUR-ZELLE-DETAILS"}
+        ],
+        instructions:"Use the Zelle details shown above to complete your payment."
+    },
+
+    "Bitcoin (BTC)": {
+        title:"Bitcoin Payment",
+        icon:"₿",
+        fields:[
+            {label:"Bitcoin Wallet Address",value:"YOUR-BITCOIN-WALLET-ADDRESS"}
+        ],
+        instructions:"Send Bitcoin to the wallet address shown above. Check the address and network carefully before sending."
+    },
+
+    "Gift Cards": {
+        title:"Gift Card Payment",
+        icon:"🎁",
+        fields:[
+            {label:"Gift Card Instructions",value:"CONTACT US FOR ACCEPTED GIFT CARDS"}
+        ],
+        instructions:"Contact Foster Gaming to confirm accepted gift card brands, denominations and redemption instructions before purchasing a gift card."
+    },
+
+    "Nigerian Bank Transfer": {
+        title:"Nigerian Bank Transfer",
+        icon:"🏦",
+        fields:[
+            {label:"Bank Name",value:"YOUR BANK NAME"},
+            {label:"Account Name",value:"YOUR ACCOUNT NAME"},
+            {label:"Account Number",value:"YOUR ACCOUNT NUMBER"}
+        ],
+        instructions:"Transfer the required amount using the bank details shown above."
+    },
+
+    "Ghana Mobile Money": {
+        title:"Ghana Mobile Money",
+        icon:"📱",
+        fields:[
+            {label:"Mobile Money Number",value:"YOUR MOBILE MONEY NUMBER"},
+            {label:"Account Name",value:"YOUR ACCOUNT NAME"}
+        ],
+        instructions:"Use the mobile money details shown above. Confirm the recipient name before completing the transfer."
+    },
+
+    "M-Pesa": {
+        title:"M-Pesa Payment",
+        icon:"📱",
+        fields:[
+            {label:"M-Pesa Number",value:"YOUR M-PESA NUMBER"},
+            {label:"Account Name",value:"YOUR ACCOUNT NAME"}
+        ],
+        instructions:"Use the M-Pesa details shown above and confirm the recipient before sending."
+    },
+
+    "Mobile Money": {
+        title:"Mobile Money Payment",
+        icon:"📱",
+        fields:[
+            {label:"Mobile Money Number",value:"YOUR MOBILE MONEY NUMBER"},
+            {label:"Account Name",value:"YOUR ACCOUNT NAME"}
+        ],
+        instructions:"Contact us to confirm the supported mobile money provider and payment details."
+    },
+
+    "Interac e-Transfer": {
+        title:"Interac e-Transfer",
+        icon:"🏦",
+        fields:[
+            {label:"Recipient Email",value:"YOUR-INTERAC-EMAIL"}
+        ],
+        instructions:"Send the Interac e-Transfer to the recipient email shown above."
+    },
+
+    "Bank Transfer": {
+        title:"Bank Transfer",
+        icon:"🏦",
+        fields:[
+            {label:"Bank Name",value:"YOUR BANK NAME"},
+            {label:"Account Name",value:"YOUR ACCOUNT NAME"},
+            {label:"Account Number / IBAN",value:"YOUR ACCOUNT DETAILS"}
+        ],
+        instructions:"Use the bank details shown above. Confirm the currency and recipient information before sending."
+    },
+
+    "UPI": {
+        title:"UPI Payment",
+        icon:"📱",
+        fields:[
+            {label:"UPI ID",value:"YOUR-UPI-ID"}
+        ],
+        instructions:"Send the payment using the UPI ID shown above."
+    },
+
+    "Pix": {
+        title:"Pix Payment",
+        icon:"📱",
+        fields:[
+            {label:"Pix Key",value:"YOUR-PIX-KEY"}
+        ],
+        instructions:"Complete the Pix transfer using the payment key shown above."
+    },
+
+    "SEPA Bank Transfer": {
+        title:"SEPA Bank Transfer",
+        icon:"🏦",
+        fields:[
+            {label:"Account Name",value:"YOUR ACCOUNT NAME"},
+            {label:"IBAN",value:"YOUR IBAN"},
+            {label:"BIC / SWIFT",value:"YOUR BIC OR SWIFT"}
+        ],
+        instructions:"Use the provided IBAN and BIC details to complete your SEPA transfer."
+    },
+
+    "iDEAL": {
+        title:"iDEAL Payment",
+        icon:"🏦",
+        fields:[
+            {label:"Payment Instructions",value:"CONTACT US FOR PAYMENT INSTRUCTIONS"}
+        ],
+        instructions:"Contact Foster Gaming to confirm an available iDEAL payment arrangement."
+    },
+
+    "MB WAY": {
+        title:"MB WAY Payment",
+        icon:"📱",
+        fields:[
+            {label:"Mobile Number",value:"YOUR MB WAY NUMBER"}
+        ],
+        instructions:"Use the confirmed MB WAY payment details provided by Foster Gaming."
+    },
+
+    "GCash": {
+        title:"GCash Payment",
+        icon:"📱",
+        fields:[
+            {label:"GCash Number",value:"YOUR GCASH NUMBER"},
+            {label:"Account Name",value:"YOUR ACCOUNT NAME"}
+        ],
+        instructions:"Use the GCash details shown above and verify the recipient before sending."
+    },
+
+    "PayNow": {
+        title:"PayNow Payment",
+        icon:"📱",
+        fields:[
+            {label:"PayNow Number / UEN",value:"YOUR PAYNOW DETAILS"}
+        ],
+        instructions:"Use the confirmed PayNow details to complete your transfer."
+    },
+
+    "DuitNow": {
+        title:"DuitNow Payment",
+        icon:"📱",
+        fields:[
+            {label:"DuitNow ID",value:"YOUR DUITNOW ID"}
+        ],
+        instructions:"Use the confirmed DuitNow payment details provided by Foster Gaming."
+    },
+
+    "Bancontact": {
+        title:"Bancontact Payment",
+        icon:"🏦",
+        fields:[
+            {label:"Payment Instructions",value:"CONTACT US FOR PAYMENT INSTRUCTIONS"}
+        ],
+        instructions:"Contact Foster Gaming to confirm an available Bancontact payment arrangement."
+    }
+
+};
+
+
+/* =================================
+   PAYMENT METHOD ICONS
+================================= */
+
+function getMethodIcon(method) {
+
+    const icons = {
+        "PayPal":"🅿️",
+        "Cash App":"💵",
+        "Zelle":"🏦",
+        "Bitcoin (BTC)":"₿",
+        "Gift Cards":"🎁",
+        "Bank Transfer":"🏦",
+        "Nigerian Bank Transfer":"🏦",
+        "Ghana Mobile Money":"📱",
+        "M-Pesa":"📱",
+        "Mobile Money":"📱",
+        "Interac e-Transfer":"🏦",
+        "UPI":"📱",
+        "Pix":"📱",
+        "SEPA Bank Transfer":"🏦",
+        "iDEAL":"🏦",
+        "MB WAY":"📱",
+        "GCash":"📱",
+        "PayNow":"📱",
+        "DuitNow":"📱",
+        "Bancontact":"🏦"
+    };
+
+    return icons[method] || "💳";
+
+}
+
+
+/* =================================
+   ORDER DATA
+================================= */
+
+function getOrder() {
+
+    try {
+        return JSON.parse(localStorage.getItem("fg-current-order"));
+    } catch(error) {
+        return null;
+    }
+
+}
+
+function getCart() {
+
+    try {
+        const cart = JSON.parse(localStorage.getItem("fg-cart")) || [];
+        return Array.isArray(cart) ? cart : [];
+    } catch(error) {
+        return [];
+    }
+
+}
+
+function updateCartCount() {
+
+    const cart = getCart();
+
+    const count = cart.reduce((total,item) => {
+        return total + Number(item.quantity || 1);
+    },0);
+
+    document.getElementById("cartCount").textContent = count;
+
+}
+
+function escapeHTML(value) {
+
+    return String(value).replace(/[&<>"']/g,function(character) {
+
+        const entities = {
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#039;"
+        };
+
+        return entities[character];
+
+    });
+
+}
+
+
+/* =================================
+   DISPLAY PAYMENT PAGE
+================================= */
+
+let selectedMethod = "";
+
+function renderPaymentPage() {
+
+    const order = getOrder();
+
+    const content = document.getElementById("paymentContent");
+
+    if(!order || !order.customer || !order.items || !order.items.length) {
+
+        content.innerHTML = `
+
+            <div class="no-order">
+
+                <h2>No Active Order Found</h2>
+
+                <p>Please return to the marketplace and create an order before making payment.</p>
+
+                <a href="accounts.html">GO TO MARKETPLACE</a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+    const methods = order.paymentMethods || ["PayPal","Bitcoin (BTC)","Gift Cards"];
+
+    const methodCards = methods.map(method => {
+
+        const available = Boolean(paymentDetails[method]);
+
+        return `
+
+            <button
+                type="button"
+                class="method ${available ? "" : "method-unavailable"}"
+                ${available ? `onclick="selectPaymentMethod('${escapeHTML(method)}')"` : "disabled"}
+            >
+
+                <span class="method-icon">
+                    ${getMethodIcon(method)}
+                </span>
+
+                <span class="method-name">
+                    ${escapeHTML(method)}
+                </span>
+
+                <span class="method-description">
+                    ${available ? "View payment instructions" : "Instructions not configured"}
+                </span>
+
+            </button>
+
+        `;
+
+    }).join("");
+
+    const itemsHTML = order.items.map(item => `
+
+        <div class="order-item">
+
+            <div class="order-image">
+                <img src="${escapeHTML(item.image || "")}" alt="">
+            </div>
+
+            <div class="order-info">
+                <strong>${escapeHTML(item.name || "Pokémon GO Account")}</strong>
+                <small>Level ${escapeHTML(String(item.level || "N/A"))}</small>
+            </div>
+
+            <div class="order-price">
+                $${Number(item.price || 0).toFixed(2)}
+            </div>
+
+        </div>
+
+    `).join("");
+
+    const localAmount = order.estimatedLocalAmount !== null &&
+        order.estimatedLocalAmount !== undefined
+        ? formatMoney(order.estimatedLocalAmount,order.currency)
+        : "Unavailable";
+
+    content.innerHTML = `
+
+        <div class="payment-layout">
+
+            <div class="main-column">
+
+                <section class="card">
+
+                    <h2>Order Information</h2>
+
+                    <div class="order-reference">
+                        <small>YOUR ORDER REFERENCE</small>
+                        <strong>${escapeHTML(order.reference)}</strong>
+                    </div>
+
+                    <div class="customer-info">
+
+                        <div>
+                            <small>FULL NAME</small>
+                            <strong>${escapeHTML(order.customer.fullName)}</strong>
+                        </div>
+
+                        <div>
+                            <small>EMAIL ADDRESS</small>
+                            <strong>${escapeHTML(order.customer.email)}</strong>
+                        </div>
+
+                        <div>
+                            <small>COUNTRY</small>
+                            <strong>${escapeHTML(order.customer.country)}</strong>
+                        </div>
+
+                        <div>
+                            <small>PHONE NUMBER</small>
+                            <strong>${escapeHTML(order.customer.phone || "Not provided")}</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <section class="card">
+
+                    <h2>Choose Payment Method</h2>
+
+                    <p style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:18px;">
+                        Available payment options are based on your selected country.
+                        Choose a method below to view its payment instructions.
+                    </p>
+
+                    <div class="payment-methods">
+                        ${methodCards}
+                    </div>
+
+                    <div class="payment-instructions" id="paymentInstructions"></div>
+
+                </section>
+
+
+                <section class="card">
+
+                    <h2>Payment Confirmation</h2>
+
+                    <p style="font-size:12px;color:var(--muted);line-height:1.8;">
+                        After completing your payment, enter the transaction reference or other payment confirmation details below.
+                    </p>
+
+                    <div class="form-group">
+
+                        <label for="transactionReference">
+                            Transaction Reference / Payment ID *
+                        </label>
+
+                        <input
+                            type="text"
+                            id="transactionReference"
+                            placeholder="Enter your payment transaction reference"
+                            maxlength="150"
+                        >
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="paymentNote">
+                            Additional Payment Information
+                        </label>
+
+                        <textarea
+                            id="paymentNote"
+                            placeholder="Add any useful information about your payment..."
+                            maxlength="1000"
+                        ></textarea>
+
+                        <p class="form-note">
+                            Do not enter passwords, recovery codes, card security codes or other sensitive login information.
+                        </p>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="proceed-btn"
+                        id="doneButton"
+                        onclick="openConfirmation()"
+                        disabled
+                    >
+                        DONE WITH PAYMENT? PROCEED HERE →
+                    </button>
+
+                </section>
+
+            </div>
+
+
+            <aside class="summary-card">
+
+                <h2>Order Summary</h2>
+
+                ${itemsHTML}
+
+                <div class="summary-row">
+                    <span>Items</span>
+                    <strong>${order.items.length}</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Customer Country</span>
+                    <strong>${escapeHTML(order.customer.country)}</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Payment Status</span>
+                    <strong>Awaiting Confirmation</strong>
+                </div>
+
+                <div class="total-row">
+                    <span>Total</span>
+                    <strong>$${Number(order.subtotalUSD).toFixed(2)}</strong>
+                </div>
+
+                <div class="summary-note">
+                    Estimated local currency amount:<br>
+                    <strong>${escapeHTML(localAmount)}</strong><br><br>
+                    USD is the reference currency for this order. Your payment provider may apply its own exchange rate and fees.
+                </div>
+
+                <div class="summary-note">
+                    🔒 Your order reference is important. Include it in your payment communication so we can identify your order.
+                </div>
+
+            </aside>
+
+        </div>
+
+    `;
+
+    updateCartCount();
+
+    document.getElementById("transactionReference")
+        .addEventListener("input",checkPaymentForm);
+
+}
+
+
+/* =================================
+   SELECT PAYMENT METHOD
+================================= */
+
+function selectPaymentMethod(method) {
+
+    const details = paymentDetails[method];
+
+    if(!details) {
+
+        showToast("Payment instructions are not configured.");
+
+        return;
+
+    }
+
+    selectedMethod = method;
+
+    const order = getOrder();
+
+    order.selectedPaymentMethod = method;
+
+    localStorage.setItem("fg-current-order",JSON.stringify(order));
+
+    document.querySelectorAll(".method").forEach(button => {
+
+        button.classList.toggle(
+            "active",
+            button.querySelector(".method-name").textContent === method
+        );
+
+    });
+
+    const instructions =
+        document.getElementById("paymentInstructions");
+
+    const fieldsHTML = details.fields.map((field,index) => `
+
+        <div class="instruction-row">
+
+            <div>
+                <small>${escapeHTML(field.label)}</small>
+                <br>
+                <strong>${escapeHTML(field.value)}</strong>
+            </div>
+
+            <button
+                type="button"
+                class="copy-btn"
+                onclick="copyPaymentDetail(${index})"
+            >
+                COPY
+            </button>
+
+        </div>
+
+    `).join("");
+
+    instructions.innerHTML = `
+
+        <h3>${details.icon} ${escapeHTML(details.title)}</h3>
+
+        ${fieldsHTML}
+
+        <div style="font-size:12px;line-height:1.8;color:var(--muted);margin-top:15px;">
+            ${escapeHTML(details.instructions)}
+        </div>
+
+        <div class="instruction-warning">
+            ⚠️ Verify the recipient and payment details before sending money.
+            Only pay using the official details confirmed by Foster Gaming.
+            Replace all demonstration placeholders before accepting real payments.
+        </div>
+
+    `;
+
+    instructions.classList.add("show");
+
+    checkPaymentForm();
+
+}
+
+
+/* =================================
+   COPY PAYMENT DETAILS
+================================= */
+
+function copyPaymentDetail(index) {
+
+    const details = paymentDetails[selectedMethod];
+
+    if(!details || !details.fields[index]) return;
+
+    const value = details.fields[index].value;
+
+    if(value.startsWith("YOUR-") ||
+       value.includes("YOUR ") ||
+       value.includes("CONTACT US")) {
+
+        showToast("This is a placeholder. Update the payment details first.");
+
+        return;
+
+    }
+
+    navigator.clipboard.writeText(value)
+        .then(() => showToast("Payment detail copied."))
+        .catch(() => showToast("Unable to copy. Please copy manually."));
+
+}
+
+
+/* =================================
+   VALIDATE PAYMENT FORM
+================================= */
+
+function checkPaymentForm() {
+
+    const reference =
+        document.getElementById("transactionReference");
+
+    const button =
+        document.getElementById("doneButton");
+
+    if(!reference || !button) return;
+
+    button.disabled =
+        !selectedMethod ||
+        !reference.value.trim();
+
+}
+
+
+/* =================================
+   CONFIRMATION MODAL
+================================= */
+
+function openConfirmation() {
+
+    if(!selectedMethod) {
+
+        showToast("Please select a payment method.");
+
+        return;
+
+    }
+
+    const reference =
+        document.getElementById("transactionReference").value.trim();
+
+    if(!reference) {
+
+        showToast("Enter your payment reference.");
+
+        return;
+
+    }
+
+    document.getElementById("confirmationModal")
+        .classList.add("show");
+
+}
+
+function closeModal() {
+
+    document.getElementById("confirmationModal")
+        .classList.remove("show");
+
+}
+
+
+/* =================================
+   SUBMIT PAYMENT DETAILS
+================================= */
+
+function submitPayment() {
+
+    const order = getOrder();
+
+    if(!order) {
+
+        showToast("Order information not found.");
+
+        return;
+
+    }
+
+    const reference =
+        document.getElementById("transactionReference").value.trim();
+
+    const note =
+        document.getElementById("paymentNote").value.trim();
+
+    if(!reference || !selectedMethod) {
+
+        closeModal();
+
+        showToast("Complete your payment details first.");
+
+        return;
+
+    }
+
+    order.selectedPaymentMethod = selectedMethod;
+
+    order.transactionReference = reference;
+
+    order.paymentNote = note;
+
+    order.status = "Payment Submitted - Awaiting Manual Review";
+
+    order.submittedAt = new Date().toISOString();
+
+    localStorage.setItem("fg-current-order",JSON.stringify(order));
+
+    /*
+      Save a local copy of the order.
+      This is not a secure online order database.
+    */
+
+    let history = [];
+
+    try {
+        history = JSON.parse(localStorage.getItem("fg-order-history")) || [];
+    } catch(error) {
+        history = [];
+    }
+
+    history.push(order);
+
+    localStorage.setItem("fg-order-history",JSON.stringify(history));
+
+    /*
+      Open a prefilled email to the business.
+      The customer must send the email from their email application.
+    */
+
+    const emailSubject =
+        "Payment Submitted - " + order.reference;
+
+    const emailBody = [
+
+        "FOSTER GAMING - PAYMENT SUBMISSION",
+
+        "",
+
+        "ORDER REFERENCE: " + order.reference,
+
+        "CUSTOMER NAME: " + order.customer.fullName,
+
+        "CUSTOMER EMAIL: " + order.customer.email,
+
+        "PHONE: " + (order.customer.phone || "Not provided"),
+
+        "COUNTRY: " + order.customer.country,
+
+        "",
+
+        "PAYMENT METHOD: " + selectedMethod,
+
+        "TRANSACTION REFERENCE: " + reference,
+
+        "PAYMENT NOTE: " + (note || "None"),
+
+        "",
+
+        "ORDER TOTAL: $" + Number(order.subtotalUSD).toFixed(2) + " USD",
+
+        "",
+
+        "ORDER ITEMS:",
+
+        ...order.items.map(item =>
+            "- " + item.name +
+            " | Level " + item.level +
+            " | $" + Number(item.price).toFixed(2)
+        ),
+
+        "",
+
+        "Please review this payment and confirm the order."
+
+    ].join("\n");
+
+    const mailto =
+        "mailto:harishwilliams010@gmail.com" +
+        "?subject=" + encodeURIComponent(emailSubject) +
+        "&body=" + encodeURIComponent(emailBody);
+
+    localStorage.setItem("fg-payment-submitted","true");
+
+    window.location.href = mailto;
+
+    /*
+      Send the customer to the confirmation page after
+      the email application has had time to open.
+    */
+
+    setTimeout(() => {
+
+        window.location.href = "success.html";
+
+    },1800);
+
+}
+
+
+/* =================================
+   THEME
+================================= */
+
+function toggleTheme() {
+
+    document.body.classList.toggle("dark");
+
+    const theme = document.body.classList.contains("dark")
+        ? "dark"
+        : "light";
+
+    localStorage.setItem("fg-theme",theme);
+
+}
+
+function loadTheme() {
+
+    if(localStorage.getItem("fg-theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+
+}
+
+
+/* =================================
+   MENU
+================================= */
+
+function toggleMenu() {
+
+    document.getElementById("menuPanel").classList.toggle("show");
+
+}
+
+document.addEventListener("click",function(event) {
+
+    const menu = document.getElementById("menuPanel");
+
+    if(!menu.contains(event.target) &&
+       !event.target.closest(".nav-actions")) {
+
+        menu.classList.remove("show");
+
+    }
+
+});
+
+
+/* =================================
+   LANGUAGE PREFERENCE
+================================= */
+
+function changeLanguage() {
+
+    const language =
+        document.getElementById("languageSelect").value;
+
+    localStorage.setItem("fg-language",language);
+
+    showToast("Language preference saved.");
+
+}
+
+function loadLanguage() {
+
+    const language =
+        localStorage.getItem("fg-language") || "en";
+
+    document.getElementById("languageSelect").value = language;
+
+}
+
+
+/* =================================
+   TOAST
+================================= */
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    },2500);
+
+}
+
+
+/* =================================
+   CURRENCY FORMAT
+================================= */
+
+function formatMoney(amount,currency) {
+
+    try {
+
+        return new Intl.NumberFormat(undefined,{
+            style:"currency",
+            currency:currency
+        }).format(amount);
+
+    } catch(error) {
+
+        return Number(amount).toFixed(2) + " " + currency;
+
+    }
+
+}
+
+
+/* =================================
+   INITIALIZE
+================================= */
+
+loadTheme();
+loadLanguage();
+updateCartCount();
+renderPaymentPage();
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
