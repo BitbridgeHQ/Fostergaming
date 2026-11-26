@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Article | Foster Gaming</title>
+
+<style>
+:root {
+    --red:#e32636;
+    --green:#159447;
+    --bg:#f5f6f8;
+    --card:#fff;
+    --text:#171717;
+    --muted:#777;
+    --border:#e6e6e6;
+    --shadow:0 8px 30px rgba(0,0,0,.06);
+}
+
+body.dark {
+    --bg:#101114;
+    --card:#1b1d22;
+    --text:#f5f5f5;
+    --muted:#aaa;
+    --border:#303239;
+    --shadow:0 8px 30px rgba(0,0,0,.25);
+}
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body {
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    transition:.25s;
+}
+
+a {
+    text-decoration:none;
+    color:inherit;
+}
+
+button,select {
+    font-family:inherit;
+    cursor:pointer;
+}
+
+.top-strip {
+    background:#111;
+    color:white;
+    text-align:center;
+    padding:9px 15px;
+    font-size:12px;
+    letter-spacing:.5px;
+}
+
+header {
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.navbar {
+    max-width:1200px;
+    margin:auto;
+    min-height:76px;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:21px;
+    font-weight:900;
+}
+
+.brand img {
+    width:43px;
+    height:43px;
+    object-fit:contain;
+}
+
+.brand span {
+    color:var(--red);
+}
+
+.nav-actions {
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.icon-btn {
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    padding:10px 13px;
+    border-radius:10px;
+    font-size:16px;
+}
+
+.cart-link {
+    background:var(--red);
+    color:white;
+    padding:11px 15px;
+    border-radius:10px;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.cart-count {
+    background:white;
+    color:var(--red);
+    border-radius:50%;
+    padding:2px 6px;
+    margin-left:4px;
+    font-size:11px;
+}
+
+.menu-panel {
+    display:none;
+    position:absolute;
+    top:76px;
+    right:20px;
+    width:260px;
+    background:var(--card);
+    border:1px solid var(--border);
+    box-shadow:var(--shadow);
+    border-radius:14px;
+    padding:15px;
+    z-index:200;
+}
+
+.menu-panel.show {
+    display:block;
+}
+
+.menu-panel a,
+.menu-panel button,
+.menu-panel select {
+    display:block;
+    width:100%;
+    padding:12px;
+    margin-bottom:5px;
+    text-align:left;
+    border:0;
+    border-radius:8px;
+    background:transparent;
+    color:var(--text);
+    font-size:14px;
+}
+
+.menu-panel a:hover,
+.menu-panel button:hover {
+    background:var(--bg);
+}
+
+.menu-panel select {
+    border:1px solid var(--border);
+}
+
+.container {
+    max-width:1150px;
+    margin:auto;
+    padding:35px 20px 70px;
+}
+
+.breadcrumb {
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.breadcrumb a {
+    color:var(--red);
+}
+
+.article-layout {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 290px;
+    gap:30px;
+    align-items:start;
+}
+
+.article-main {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+
+.article-header {
+    padding:35px 35px 25px;
+}
+
+.category-tag {
+    display:inline-block;
+    background:rgba(227,38,54,.1);
+    color:var(--red);
+    padding:8px 12px;
+    border-radius:5px;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    margin-bottom:18px;
+}
+
+.article-header h1 {
+    font-size:34px;
+    line-height:1.3;
+    margin-bottom:18px;
+}
+
+.article-meta {
+    display:flex;
+    flex-wrap:wrap;
+    gap:15px;
+    color:var(--muted);
+    font-size:11px;
+}
+
+.article-cover {
+    width:100%;
+    height:390px;
+    object-fit:cover;
+    display:block;
+    background:#222;
+}
+
+.article-content {
+    padding:30px 35px 40px;
+}
+
+.article-content p {
+    font-size:14px;
+    line-height:2;
+    color:var(--muted);
+    margin-bottom:19px;
+}
+
+.article-content h2 {
+    font-size:22px;
+    margin:30px 0 14px;
+    line-height:1.4;
+}
+
+.article-content h3 {
+    font-size:17px;
+    margin:25px 0 12px;
+}
+
+.article-content ul {
+    padding-left:22px;
+    margin-bottom:22px;
+}
+
+.article-content li {
+    font-size:13px;
+    color:var(--muted);
+    line-height:2;
+    margin-bottom:5px;
+}
+
+.article-callout {
+    background:var(--bg);
+    border-left:4px solid var(--red);
+    padding:20px;
+    border-radius:7px;
+    margin:25px 0;
+}
+
+.article-callout p {
+    margin:0;
+}
+
+.article-share {
+    border-top:1px solid var(--border);
+    margin-top:30px;
+    padding-top:22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.article-share strong {
+    font-size:13px;
+}
+
+.share-buttons {
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+
+.share-buttons button {
+    background:var(--bg);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:10px 13px;
+    border-radius:7px;
+    font-size:11px;
+    font-weight:bold;
+}
+
+.share-buttons button:hover {
+    background:var(--red);
+    color:white;
+    border-color:var(--red);
+}
+
+.sidebar-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:22px;
+    margin-bottom:20px;
+}
+
+.sidebar-card h3 {
+    font-size:16px;
+    margin-bottom:17px;
+}
+
+.sidebar-card p {
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.sidebar-link {
+    display:block;
+    color:var(--muted);
+    font-size:12px;
+    padding:11px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.sidebar-link:last-child {
+    border-bottom:0;
+}
+
+.sidebar-link:hover {
+    color:var(--red);
+}
+
+.sidebar-button {
+    display:block;
+    text-align:center;
+    background:var(--red);
+    color:white;
+    padding:13px;
+    border-radius:8px;
+    font-size:11px;
+    font-weight:900;
+}
+
+.related-section {
+    margin-top:55px;
+}
+
+.related-section h2 {
+    font-size:23px;
+    margin-bottom:20px;
+}
+
+.related-grid {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.related-card {
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    overflow:hidden;
+}
+
+.related-card img {
+    width:100%;
+    height:145px;
+    object-fit:cover;
+}
+
+.related-content {
+    padding:15px;
+}
+
+.related-content small {
+    color:var(--red);
+    font-size:10px;
+    font-weight:bold;
+}
+
+.related-content h3 {
+    font-size:14px;
+    line-height:1.5;
+    margin:9px 0 12px;
+}
+
+.related-content a {
+    color:var(--red);
+    font-size:11px;
+    font-weight:900;
+}
+
+.not-found {
+    background:var(--card);
+    padding:60px 25px;
+    border:1px solid var(--border);
+    border-radius:15px;
+    text-align:center;
+}
+
+.not-found h2 {
+    margin-bottom:12px;
+}
+
+.not-found p {
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:20px;
+}
+
+.not-found a {
+    display:inline-block;
+    background:var(--red);
+    color:white;
+    padding:13px 20px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+footer {
+    background:#101010;
+    color:white;
+    padding:40px 20px 20px;
+}
+
+.footer-inner {
+    max-width:1100px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:30px;
+}
+
+.footer-brand {
+    font-size:21px;
+    font-weight:900;
+    margin-bottom:12px;
+}
+
+.footer-brand span {
+    color:var(--red);
+}
+
+.footer-column h4 {
+    margin-bottom:15px;
+    font-size:14px;
+}
+
+.footer-column a {
+    display:block;
+    color:#aaa;
+    font-size:13px;
+    line-height:2;
+}
+
+.footer-column a:hover {
+    color:white;
+}
+
+.footer-bottom {
+    max-width:1100px;
+    margin:30px auto 0;
+    padding-top:20px;
+    border-top:1px solid #333;
+    text-align:center;
+    color:#999;
+    font-size:11px;
+    line-height:2;
+}
+
+.toast {
+    position:fixed;
+    bottom:25px;
+    left:50%;
+    transform:translateX(-50%) translateY(100px);
+    background:#171717;
+    color:white;
+    padding:14px 22px;
+    border-radius:10px;
+    font-size:13px;
+    z-index:600;
+    transition:.3s;
+    opacity:0;
+}
+
+.toast.show {
+    transform:translateX(-50%) translateY(0);
+    opacity:1;
+}
+
+@media(max-width:850px) {
+    .article-layout {
+        grid-template-columns:1fr;
+    }
+
+    .sidebar {
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:15px;
+    }
+
+    .sidebar-card {
+        margin:0;
+    }
+}
+
+@media(max-width:600px) {
+    .navbar {
+        padding:12px 14px;
+    }
+
+    .brand {
+        font-size:17px;
+    }
+
+    .brand img {
+        width:35px;
+        height:35px;
+    }
+
+    .nav-actions {
+        gap:7px;
+    }
+
+    .icon-btn {
+        padding:9px 10px;
+    }
+
+    .cart-link {
+        padding:10px;
+        font-size:11px;
+    }
+
+    .container {
+        padding:25px 13px 50px;
+    }
+
+    .article-header {
+        padding:24px 19px;
+    }
+
+    .article-header h1 {
+        font-size:25px;
+    }
+
+    .article-cover {
+        height:240px;
+    }
+
+    .article-content {
+        padding:22px 19px 30px;
+    }
+
+    .article-content h2 {
+        font-size:19px;
+    }
+
+    .sidebar {
+        grid-template-columns:1fr;
+    }
+
+    .related-grid {
+        grid-template-columns:1fr;
+    }
+
+    .related-card {
+        display:grid;
+        grid-template-columns:110px 1fr;
+    }
+
+    .related-card img {
+        height:100%;
+        min-height:130px;
+    }
+
+    .footer-inner {
+        grid-template-columns:1fr;
+    }
+
+    .menu-panel {
+        right:10px;
+    }
+}
+
+@media print {
+    header,footer,.sidebar,.related-section,.article-share,.breadcrumb {
+        display:none!important;
+    }
+
+    body {
+        background:white;
+        color:black;
+    }
+
+    .container {
+        padding:0;
+    }
+
+    .article-main {
+        border:0;
+        box-shadow:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top-strip">
+    PREMIUM POKÉMON GO ACCOUNTS • FOSTER GAMING
+</div>
+
+<header>
+<nav class="navbar">
+
+    <a href="index.html" class="brand">
+        <img src="https://raw.githubusercontent.com/YOUR-USERNAME/Foster-Gaming/main/assets/logo.png" alt="Foster Gaming Logo">
+        <div>FOSTER <span>GAMING</span></div>
+    </a>
+
+    <div class="nav-actions">
+
+        <button class="icon-btn" onclick="toggleTheme()">☀️</button>
+
+        <a href="cart.html" class="cart-link">
+            🛒 Cart <span class="cart-count" id="cartCount">0</span>
+        </a>
+
+        <button class="icon-btn" onclick="toggleMenu()">☰</button>
+
+    </div>
+
+    <div class="menu-panel" id="menuPanel">
+
+        <a href="index.html">Home</a>
+        <a href="accounts.html">Marketplace</a>
+        <a href="cart.html">Shopping Cart</a>
+        <a href="about.html">About Us</a>
+        <a href="blog.html">Blog</a>
+        <a href="reviews.html">Reviews</a>
+        <a href="contact.html">Contact</a>
+
+        <button onclick="toggleTheme()">🌙 Toggle Theme</button>
+
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="pt">Português</option>
+            <option value="it">Italiano</option>
+            <option value="ja">日本語</option>
+            <option value="zh">中文</option>
+        </select>
+
+    </div>
+
+</nav>
+</header>
+
+
+<main class="container">
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a> /
+        <a href="blog.html">Blog</a> /
+        Article
+    </div>
+
+    <div id="articleContainer"></div>
+
+</main>
+
+
+<footer>
+
+    <div class="footer-inner">
+
+        <div>
+            <div class="footer-brand">FOSTER <span>GAMING</span></div>
+
+            <p style="color:#aaa;font-size:13px;line-height:1.8;max-width:350px;">
+                Your destination for premium Pokémon GO accounts.
+                Explore available accounts and contact us for buying and swapping enquiries.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h4>Quick Links</h4>
+            <a href="index.html">Home</a>
+            <a href="accounts.html">Marketplace</a>
+            <a href="about.html">About Us</a>
+            <a href="blog.html">Blog</a>
+            <a href="reviews.html">Reviews</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Connect With Us</h4>
+            <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok 1</a>
+            <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a>
+            <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
+            <a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
+            <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © <span id="year"></span> Foster Gaming. All rights reserved.<br>
+        Powered by BITBRIDGE TECHNOLOGIES INC
+    </div>
+
+</footer>
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =================================
+   ARTICLE DATABASE
+================================= */
+
+const articles = [
+
+{
+id:"premium-account-guide",
+title:"What Makes a Premium Pokémon GO Account Worth Exploring?",
+category:"Guides",
+date:"November 2026",
+read:"5 min read",
+image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1200",
+
+intro:"A Pokémon GO account can contain much more than a trainer level. For collectors and players, the collection, progress and individual Pokémon can all contribute to the overall experience.",
+
+sections:[
+{
+heading:"1. The Pokémon Collection",
+paragraphs:[
+"One of the first things people notice when exploring an account is its Pokémon collection. A diverse collection can include legendary Pokémon, rare encounters, event Pokémon, costume Pokémon and other interesting catches.",
+"The variety of a collection can make an account particularly interesting to someone who enjoys collecting different Pokémon."
+]
+},
+{
+heading:"2. Shiny Pokémon",
+paragraphs:[
+"Shiny Pokémon are special colour variations of regular Pokémon. They are popular among collectors because they offer a different appearance and can be associated with memorable encounters.",
+"Some collectors also enjoy building collections around particular Pokémon families, events or special appearances."
+]
+},
+{
+heading:"3. Legendary Pokémon",
+paragraphs:[
+"Legendary Pokémon are among the most recognisable creatures in the Pokémon universe. Their appearances, availability and usefulness make them an interesting part of many collections.",
+"A collection containing different legendary Pokémon may appeal to people who enjoy having a wide variety of Pokémon."
+]
+},
+{
+heading:"4. Trainer Level and Progression",
+paragraphs:[
+"Trainer level is another feature people often look at. It provides an indication of progression and can help describe how far an account has advanced.",
+"However, level alone does not tell the entire story. The Pokémon collection and other account features also matter."
+]
+},
+{
+heading:"5. What Should You Check?",
+paragraphs:[
+"Before making any purchase, carefully review the account description and available screenshots. Make sure the features advertised match the information presented to you."
+],
+bullets:[
+"Trainer level and account progression.",
+"Number of legendary Pokémon.",
+"Shiny Pokémon collection.",
+"Costume and event Pokémon.",
+"Shadow Pokémon and other collection details.",
+"Available screenshots and account information."
+]
+}
+],
+
+conclusion:"A premium Pokémon GO account is best evaluated by looking at its complete collection and the features that matter to the intended buyer. At Foster Gaming, our marketplace descriptions are designed to help visitors explore available listings."
+},
+
+{
+id:"understanding-shiny-pokemon",
+title:"Understanding Shiny Pokémon and Their Appeal",
+category:"Pokémon GO",
+date:"November 2026",
+read:"4 min read",
+image:"https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=1200",
+
+intro:"Shiny Pokémon are among the most recognisable special variants in Pokémon GO. Their different colour appearances make them especially interesting to players who enjoy collecting Pokémon.",
+
+sections:[
+{
+heading:"What Is a Shiny Pokémon?",
+paragraphs:[
+"A Shiny Pokémon is a special variant that has a different colour scheme from its regular form. The difference can be subtle for some Pokémon and very noticeable for others.",
+"Shiny Pokémon generally have the same basic species identity as their regular counterparts, but their alternative appearance makes them desirable to many collectors."
+]
+},
+{
+heading:"Why Do Collectors Like Them?",
+paragraphs:[
+"Part of the appeal comes from their visual differences. Collectors may enjoy finding a favourite Pokémon in its shiny form or completing collections of shiny variants.",
+"Special event appearances can also make certain shiny Pokémon memorable."
+]
+},
+{
+heading:"Different Types of Shiny Collections",
+paragraphs:[
+"Some players focus on collecting as many shiny species as possible. Others prefer specific Pokémon families, costume variants or event-related shinies.",
+"There is no single way to build a collection. Personal preference plays a major role."
+]
+},
+{
+heading:"What to Check in an Account Listing",
+paragraphs:[
+"If shiny Pokémon are an important feature for you, check the listing description and available screenshots. Pay attention to the stated shiny count and any special variants mentioned."
+]
+}
+],
+
+conclusion:"Shiny Pokémon add colour and variety to Pokémon GO collections. Whether you collect them for their appearance or their rarity, they remain an interesting feature of the game."
+},
+
+{
+id:"account-levels-explained",
+title:"Pokémon GO Account Levels Explained",
+category:"Account Tips",
+date:"November 2026",
+read:"6 min read",
+image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200",
+
+intro:"Trainer levels are one of the basic ways to describe progression in Pokémon GO. Understanding levels can help you compare accounts and better understand their progression.",
+
+sections:[
+{
+heading:"What Does Trainer Level Mean?",
+paragraphs:[
+"Trainer level is a progression measure within Pokémon GO. Players gain experience through different in-game activities and advance as they meet the requirements for each level.",
+"It is one of the easiest details to identify when reviewing an account."
+]
+},
+{
+heading:"Why Do People Compare Levels?",
+paragraphs:[
+"Some players prefer accounts with higher progression because they want to explore an account that has already advanced considerably.",
+"Others focus more on the Pokémon collection, shiny count, legendary Pokémon or other individual features."
+]
+},
+{
+heading:"Level Is Not Everything",
+paragraphs:[
+"Two accounts at the same level can have very different collections. One might have more shiny Pokémon, while another might have more legendary Pokémon or event-related catches."
+]
+},
+{
+heading:"How to Compare Listings",
+paragraphs:[
+"When comparing account listings, look beyond the level. Review the description, screenshots and collection information before making a decision."
+],
+bullets:[
+"Compare trainer levels.",
+"Review the Pokémon collection.",
+"Check shiny and legendary counts.",
+"Look at available account screenshots.",
+"Compare prices and listing details."
+]
+}
+],
+
+conclusion:"Trainer level is useful when comparing accounts, but it should be considered alongside the rest of the collection. Reviewing all available information helps you make a more informed choice."
+},
+
+{
+id:"legendary-pokemon-guide",
+title:"A Beginner's Guide to Legendary Pokémon",
+category:"Guides",
+date:"November 2026",
+read:"5 min read",
+image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200",
+
+intro:"Legendary Pokémon occupy a special place in the Pokémon universe. Their unique identities, designs and appearances make them popular among players and collectors.",
+
+sections:[
+{
+heading:"What Are Legendary Pokémon?",
+paragraphs:[
+"Legendary Pokémon are special Pokémon recognised throughout the Pokémon universe. Many have important roles in their respective regions and stories.",
+"They are often associated with unique abilities, distinctive designs and special encounters."
+]
+},
+{
+heading:"Why Are They Popular?",
+paragraphs:[
+"Many players enjoy collecting legendary Pokémon because of their designs, stories and place in the Pokémon universe.",
+"Some are also particularly interesting because of their appearances in raids and other game activities."
+]
+},
+{
+heading:"Building a Legendary Collection",
+paragraphs:[
+"A collection can include legendary Pokémon from different generations and regions. Some collectors focus on variety, while others prefer collecting specific favourites."
+]
+},
+{
+heading:"Checking Account Collections",
+paragraphs:[
+"When reviewing an account listing, look at the stated legendary count and available screenshots. Make sure the information matches the listing description."
+]
+}
+],
+
+conclusion:"Legendary Pokémon are an interesting part of Pokémon GO collecting. Their variety and recognisable designs make them a popular feature of many collections."
+},
+
+{
+id:"pokemon-collection-tips",
+title:"How to Organise and Appreciate Your Pokémon Collection",
+category:"Account Tips",
+date:"November 2026",
+read:"4 min read",
+image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1200",
+
+intro:"A Pokémon collection can grow quickly. Keeping track of your favourite Pokémon and special catches can make the collection easier to appreciate.",
+
+sections:[
+{
+heading:"Create Your Own Collection Goals",
+paragraphs:[
+"Some players enjoy collecting shiny Pokémon, while others focus on legendary Pokémon, costume Pokémon or particular species.",
+"Choosing a collection goal gives you something specific to work towards."
+]
+},
+{
+heading:"Pay Attention to Special Pokémon",
+paragraphs:[
+"Event Pokémon, costume variants and special appearances can make a collection more interesting. Keeping track of these Pokémon can help you remember which ones are important to you."
+]
+},
+{
+heading:"Review Your Collection Regularly",
+paragraphs:[
+"Take time to review your collection and identify your favourite catches. Screenshots can also help you keep a personal record of memorable moments."
+]
+},
+{
+heading:"Enjoy the Process",
+paragraphs:[
+"Collecting should be enjoyable. You do not need to follow someone else's collection goals. Focus on the Pokémon and features you personally appreciate."
+]
+}
+],
+
+conclusion:"A good collection is one that reflects your interests. Organising it around your favourite Pokémon can make the experience more enjoyable."
+},
+
+{
+id:"foster-gaming-marketplace",
+title:"Welcome to the Foster Gaming Marketplace",
+category:"Updates",
+date:"November 2026",
+read:"3 min read",
+image:"https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=1200",
+
+intro:"Welcome to Foster Gaming, a marketplace focused on premium Pokémon GO accounts. We created this platform to make browsing account listings and contacting our team more convenient.",
+
+sections:[
+{
+heading:"Explore Our Marketplace",
+paragraphs:[
+"Our marketplace is organised around account listings and trainer levels. Visitors can browse available accounts, inspect descriptions and review the information provided for each listing."
+]
+},
+{
+heading:"Account Information",
+paragraphs:[
+"Each listing is designed to provide useful details such as trainer level, Pokémon collection information, shiny counts and other features where applicable.",
+"Available images help visitors understand what is being offered."
+]
+},
+{
+heading:"Buying and Payment Enquiries",
+paragraphs:[
+"Visitors can add listings to their cart and proceed through the checkout process. Payment instructions and order details are presented during the process.",
+"Payment submissions are subject to manual review. An order should only be treated as approved after the payment has been verified."
+]
+},
+{
+heading:"Contact Foster Gaming",
+paragraphs:[
+"If you have a question about an account, a listing or a purchase, you can contact our team directly through the website."
+]
+}
+],
+
+conclusion:"Thank you for visiting Foster Gaming. We look forward to helping you explore our marketplace."
+},
+
+{
+id:"pokemon-go-collection",
+title:"Building a Pokémon GO Collection You Enjoy",
+category:"Pokémon GO",
+date:"November 2026",
+read:"5 min read",
+image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1200",
+
+intro:"A Pokémon GO collection can be built around many different interests. The most enjoyable collections often reflect the individual preferences of the player.",
+
+sections:[
+{
+heading:"Choose Your Favourite Pokémon",
+paragraphs:[
+"Start with Pokémon you genuinely enjoy. This could be a favourite from a particular generation, a memorable starter or a Pokémon with a design you appreciate."
+]
+},
+{
+heading:"Explore Different Variants",
+paragraphs:[
+"Shiny Pokémon and costume Pokémon can add variety to a collection. Some players enjoy looking for different forms of the same species."
+]
+},
+{
+heading:"Collect Across Different Categories",
+paragraphs:[
+"You might choose to collect legendary Pokémon, regional Pokémon, event Pokémon or Pokémon from particular generations.",
+"Having different collection goals can make the experience more varied."
+]
+},
+{
+heading:"Make the Collection Your Own",
+paragraphs:[
+"There is no perfect collection. What matters most is enjoying the Pokémon you have and the memories associated with them."
+]
+}
+],
+
+conclusion:"The best collection is one you enjoy. Explore different Pokémon, discover your favourites and build something that reflects your interests."
+},
+
+{
+id:"safe-online-shopping",
+title:"Things to Check Before Making an Online Purchase",
+category:"Guides",
+date:"November 2026",
+read:"4 min read",
+image:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200",
+
+intro:"Online shopping is more convenient when you understand what you are buying and keep a clear record of the transaction. Here are some useful things to review before placing an order.",
+
+sections:[
+{
+heading:"Read the Product Description",
+paragraphs:[
+"Carefully review the listing description. Pay attention to the product features, specifications, price and any important conditions."
+]
+},
+{
+heading:"Review Available Images",
+paragraphs:[
+"Product images can help you understand what is being offered. Check that the images and written description are consistent."
+]
+},
+{
+heading:"Understand the Payment Process",
+paragraphs:[
+"Before making a payment, understand the payment method, instructions and what information you need to submit.",
+"Be cautious if payment instructions differ from the information provided through the seller's official communication channels."
+]
+},
+{
+heading:"Keep Your Order Information",
+paragraphs:[
+"Save your order reference, payment transaction reference and any relevant correspondence. These details can help when following up on an order."
+],
+bullets:[
+"Keep your order reference number.",
+"Save payment transaction records.",
+"Keep a copy of the listing description.",
+"Use the seller's stated contact channels.",
+"Do not share passwords or unrelated personal information."
+]
+}
+],
+
+conclusion:"Taking a few minutes to review a listing and understand the payment process can help make online purchases clearer and easier to follow."
+},
+
+{
+id:"marketplace-announcements",
+title:"Foster Gaming Marketplace Announcements",
+category:"News",
+date:"November 2026",
+read:"2 min read",
+image:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1200",
+
+intro:"Welcome to the Foster Gaming announcements page. This is where visitors can keep up with marketplace information, new listings and important updates.",
+
+sections:[
+{
+heading:"Marketplace Listings",
+paragraphs:[
+"Visitors can explore the marketplace to see available Pokémon GO account listings. Each listing includes its own details and pricing."
+]
+},
+{
+heading:"New Account Listings",
+paragraphs:[
+"Check the marketplace regularly for newly added accounts and listing updates."
+]
+},
+{
+heading:"Questions and Support",
+paragraphs:[
+"If you need help understanding a listing or have questions about an order, contact Foster Gaming using the contact information provided on the website."
+]
+}
+],
+
+conclusion:"Thank you for following Foster Gaming. Visit the marketplace to explore the current listings."
+}
+
+];
+
+
+/* =================================
+   SAFE HTML
+================================= */
+
+function escapeHTML(value) {
+
+    return String(value ?? "").replace(/[&<>"']/g,function(character) {
+
+        const entities = {
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#039;"
+        };
+
+        return entities[character];
+
+    });
+
+}
+
+
+/* =================================
+   LOAD SELECTED ARTICLE
+================================= */
+
+const params = new URLSearchParams(window.location.search);
+
+const articleId = params.get("id");
+
+const article = articles.find(item => item.id === articleId);
+
+const articleContainer =
+    document.getElementById("articleContainer");
+
+
+/* =================================
+   RENDER ARTICLE
+================================= */
+
+function renderArticle() {
+
+    if(!article) {
+
+        articleContainer.innerHTML = `
+
+            <div class="not-found">
+
+                <h2>Article Not Found</h2>
+
+                <p>
+                    Sorry, this article could not be found.
+                    It may have been moved or the link may be incorrect.
+                </p>
+
+                <a href="blog.html">BACK TO BLOG</a>
+
+            </div>
+
+        `;
+
+        document.title = "Article Not Found | Foster Gaming";
+
+        return;
+
+    }
+
+    document.title = article.title + " | Foster Gaming";
+
+    const sectionsHTML = article.sections.map(section => {
+
+        const paragraphsHTML = section.paragraphs.map(paragraph => `
+            <p>${escapeHTML(paragraph)}</p>
+        `).join("");
+
+        const bulletsHTML = section.bullets ? `
+            <ul>
+                ${section.bullets.map(item => `
+                    <li>${escapeHTML(item)}</li>
+                `).join("")}
+            </ul>
+        ` : "";
+
+        return `
+
+            <h2>${escapeHTML(section.heading)}</h2>
+
+            ${paragraphsHTML}
+
+            ${bulletsHTML}
+
+        `;
+
+    }).join("");
+
+
+    const relatedArticles = articles
+        .filter(item => item.id !== article.id)
+        .slice(0,3);
+
+
+    const relatedHTML = relatedArticles.map(item => `
+
+        <div class="related-card">
+
+            <img src="${item.image}" alt="${escapeHTML(item.title)}" loading="lazy">
+
+            <div class="related-content">
+
+                <small>${escapeHTML(item.category)}</small>
+
+                <h3>${escapeHTML(item.title)}</h3>
+
+                <a href="blog-post.html?id=${encodeURIComponent(item.id)}">
+                    READ ARTICLE →
+                </a>
+
+            </div>
+
+        </div>
+
+    `).join("");
+
+
+    articleContainer.innerHTML = `
+
+        <div class="article-layout">
+
+            <article class="article-main">
+
+                <div class="article-header">
+
+                    <span class="category-tag">
+                        ${escapeHTML(article.category)}
+                    </span>
+
+                    <h1>${escapeHTML(article.title)}</h1>
+
+                    <div class="article-meta">
+
+                        <span>✍ Foster Gaming Editorial</span>
+
+                        <span>📅 ${escapeHTML(article.date)}</span>
+
+                        <span>⏱ ${escapeHTML(article.read)}</span>
+
+                    </div>
+
+                </div>
+
+
+                <img
+                    class="article-cover"
+                    src="${article.image}"
+                    alt="${escapeHTML(article.title)}">
+
+
+                <div class="article-content">
+
+                    <p>${escapeHTML(article.intro)}</p>
+
+                    ${sectionsHTML}
+
+                    <div class="article-callout">
+                        <p>
+                            ${escapeHTML(article.conclusion)}
+                        </p>
+                    </div>
+
+
+                    <div class="article-share">
+
+                        <strong>Enjoyed this article?</strong>
+
+                        <div class="share-buttons">
+
+                            <button onclick="shareArticle()">
+                                SHARE ARTICLE
+                            </button>
+
+                            <button onclick="copyArticleLink()">
+                                COPY LINK
+                            </button>
+
+                            <button onclick="window.print()">
+                                PRINT
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <aside class="sidebar">
+
+                <div class="sidebar-card">
+
+                    <h3>About Foster Gaming</h3>
+
+                    <p>
+                        Foster Gaming is a marketplace for premium Pokémon GO accounts.
+                        Browse our listings and discover the available collections.
+                    </p>
+
+                    <a href="about.html" class="sidebar-button">
+                        LEARN ABOUT US
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-card">
+
+                    <h3>Explore Our Website</h3>
+
+                    <a href="accounts.html" class="sidebar-link">
+                        Browse Account Listings →
+                    </a>
+
+                    <a href="blog.html" class="sidebar-link">
+                        More Blog Articles →
+                    </a>
+
+                    <a href="reviews.html" class="sidebar-link">
+                        Customer Reviews →
+                    </a>
+
+                    <a href="contact.html" class="sidebar-link">
+                        Contact Our Team →
+                    </a>
+
+                </div>
+
+
+                <div class="sidebar-card">
+
+                    <h3>Need Assistance?</h3>
+
+                    <p>
+                        Have questions about an account or a purchase?
+                        Our team is available through email.
+                    </p>
+
+                    <a href="mailto:harishwilliams010@gmail.com" class="sidebar-button">
+                        CONTACT SUPPORT
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </div>
+
+
+        <section class="related-section">
+
+            <h2>You May Also Like</h2>
+
+            <div class="related-grid">
+                ${relatedHTML}
+            </div>
+
+        </section>
+
+    `;
+
+}
+
+
+/* =================================
+   SHARE ARTICLE
+================================= */
+
+function shareArticle() {
+
+    if(!article) return;
+
+    const shareData = {
+        title:article.title,
+        text:article.title + " - Foster Gaming",
+        url:window.location.href
+    };
+
+    if(navigator.share) {
+
+        navigator.share(shareData)
+            .catch(() => {});
+
+    } else {
+
+        copyArticleLink();
+
+    }
+
+}
+
+
+/* =================================
+   COPY ARTICLE LINK
+================================= */
+
+function copyArticleLink() {
+
+    navigator.clipboard.writeText(window.location.href)
+        .then(() => showToast("Article link copied."))
+        .catch(() => showToast("Unable to copy link."));
+
+}
+
+
+/* =================================
+   CART COUNT
+================================= */
+
+function updateCartCount() {
+
+    try {
+
+        const cart =
+            JSON.parse(localStorage.getItem("fg-cart")) || [];
+
+        const count = cart.reduce((total,item) => {
+            return total + Number(item.quantity || 1);
+        },0);
+
+        document.getElementById("cartCount").textContent = count;
+
+    } catch(error) {
+
+        document.getElementById("cartCount").textContent = "0";
+
+    }
+
+}
+
+
+/* =================================
+   THEME
+================================= */
+
+function toggleTheme() {
+
+    document.body.classList.toggle("dark");
+
+    const theme =
+        document.body.classList.contains("dark")
+            ? "dark"
+            : "light";
+
+    localStorage.setItem("fg-theme",theme);
+
+}
+
+function loadTheme() {
+
+    if(localStorage.getItem("fg-theme") === "dark") {
+        document.body.classList.add("dark");
+    }
+
+}
+
+
+/* =================================
+   MENU
+================================= */
+
+function toggleMenu() {
+
+    document.getElementById("menuPanel")
+        .classList.toggle("show");
+
+}
+
+document.addEventListener("click",function(event) {
+
+    const menu = document.getElementById("menuPanel");
+
+    if(!menu.contains(event.target) &&
+       !event.target.closest(".nav-actions")) {
+
+        menu.classList.remove("show");
+
+    }
+
+});
+
+
+/* =================================
+   LANGUAGE
+================================= */
+
+function changeLanguage() {
+
+    const language =
+        document.getElementById("languageSelect").value;
+
+    localStorage.setItem("fg-language",language);
+
+}
+
+function loadLanguage() {
+
+    const language =
+        localStorage.getItem("fg-language") || "en";
+
+    document.getElementById("languageSelect").value = language;
+
+}
+
+
+/* =================================
+   TOAST
+================================= */
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+        toast.classList.remove("show");
+    },2500);
+
+}
+
+
+/* =================================
+   INITIALIZE
+================================= */
+
+renderArticle();
+updateCartCount();
+loadTheme();
+loadLanguage();
+
+document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
