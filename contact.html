@@ -6,381 +6,650 @@
 <title>Contact Us | Foster Gaming</title>
 <style>
 :root{
-  --red:#e32636;--green:#16834a;--black:#171717;
-  --white:#fff;--bg:#f5f5f5;--card:#fff;--text:#202020;
-  --muted:#707070;--border:#e5e5e5;--shadow:0 8px 28px rgba(0,0,0,.07)
-}
-body.dark{
-  --bg:#111;--card:#1d1d1d;--text:#f5f5f5;
-  --muted:#aaa;--border:#333;--black:#090909;
-  --shadow:0 8px 28px rgba(0,0,0,.25)
+    --red:#e32636;
+    --red-dark:#bd1726;
+    --green:#159447;
+    --bg:#f5f6f8;
+    --card:#fff;
+    --text:#171717;
+    --muted:#777;
+    --border:#e7e7e7;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:.2s}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+}
+body.dark{
+    --bg:#101114;
+    --card:#1b1d22;
+    --text:#f5f5f5;
+    --muted:#aaa;
+    --border:#303238;
+}
 a{text-decoration:none;color:inherit}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-.topbar{background:var(--black);color:#fff;padding:9px 5%;text-align:center;font-size:12px}
-header{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.nav{max-width:1200px;margin:auto;padding:13px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}
-.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:21px}
-.logo img{width:42px;height:42px;object-fit:contain;border-radius:8px}
-.logo span{color:var(--red)}
-.nav-actions{display:flex;align-items:center;gap:10px}
-.icon-btn{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:9px;padding:9px 12px;font-size:17px}
-.cart-link{background:var(--red);color:white;padding:9px 14px;border-radius:9px;font-weight:bold;font-size:14px}
-.cart-count{background:white;color:var(--red);padding:2px 6px;border-radius:20px;margin-left:4px}
-.menu-panel{display:none;background:var(--card);border-top:1px solid var(--border);padding:18px 5%}
-.menu-panel.open{display:block}
-.menu-inner{max-width:1160px;margin:auto;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.menu-inner a,.menu-inner button,.menu-inner select{padding:9px 13px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--text);font-size:14px}
-.menu-inner a:hover{border-color:var(--red);color:var(--red)}
-main{max-width:1120px;margin:auto;padding:45px 20px 70px}
-.hero{text-align:center;padding:25px 10px 35px}
-.eyebrow{display:inline-block;background:rgba(227,38,54,.1);color:var(--red);padding:6px 13px;border-radius:30px;font-size:12px;font-weight:bold;text-transform:uppercase;letter-spacing:1px}
-h1{font-size:clamp(32px,5vw,48px);line-height:1.15;margin:15px 0}
-.hero p{max-width:650px;margin:auto;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;box-shadow:var(--shadow)}
-.card h2{font-size:21px;margin-bottom:8px}
-.card-intro{color:var(--muted);font-size:14px;margin-bottom:20px}
-.contact-list{display:grid;gap:12px}
-.contact-item{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid var(--border);border-radius:12px;transition:.2s}
-.contact-item:hover{border-color:var(--red);transform:translateY(-2px)}
-.contact-icon{width:43px;height:43px;display:grid;place-items:center;background:rgba(227,38,54,.1);border-radius:12px;font-size:21px;flex-shrink:0}
-.contact-item strong{display:block;font-size:14px}
-.contact-item small{display:block;color:var(--muted);font-size:12px;overflow-wrap:anywhere}
-.contact-item .arrow{margin-left:auto;color:var(--red);font-size:20px}
-.form-group{margin-bottom:15px}
-label{display:block;font-size:13px;font-weight:bold;margin-bottom:7px}
-input,textarea,select{width:100%;padding:12px 13px;border:1px solid var(--border);border-radius:9px;background:var(--bg);color:var(--text);outline:none}
-input:focus,textarea:focus,select:focus{border-color:var(--red)}
-textarea{min-height:135px;resize:vertical}
-.submit-btn{width:100%;border:0;background:var(--red);color:#fff;padding:14px;border-radius:9px;font-weight:bold}
-.submit-btn:hover{background:#c71c2b}
-.note{font-size:12px;color:var(--muted);margin-top:12px}
-.faq-section{margin-top:40px}
-.faq-section h2{text-align:center;font-size:27px;margin-bottom:20px}
-.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}
-.faq{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:19px}
-.faq h3{font-size:15px;margin-bottom:7px}
-.faq p{font-size:13px;color:var(--muted)}
-.cta{margin-top:35px;background:var(--black);color:white;border-radius:16px;padding:30px;text-align:center}
-.cta h2{font-size:25px;margin-bottom:8px}
-.cta p{color:#ccc;margin-bottom:17px;font-size:14px}
-.cta a{display:inline-block;background:var(--red);padding:11px 20px;border-radius:8px;font-weight:bold}
-footer{background:#111;color:white;padding:40px 20px 20px}
-.footer-inner{max-width:1120px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
-footer h3{margin-bottom:13px}
-footer p,footer a{font-size:13px;color:#bbb}
-footer a{display:block;margin:7px 0}
-footer a:hover{color:white}
-.footer-bottom{max-width:1120px;margin:25px auto 0;padding-top:17px;border-top:1px solid #333;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:#999}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#16834a;color:white;padding:12px 20px;border-radius:9px;display:none;z-index:300;font-size:14px;box-shadow:var(--shadow)}
-@media(max-width:760px){
- .grid{grid-template-columns:1fr}
- .faq-grid{grid-template-columns:1fr}
- .footer-inner{grid-template-columns:1fr}
- .nav{padding:12px}
- .logo{font-size:18px}
- main{padding-top:25px}
+button,input,textarea,select{font-family:inherit}
+.container{width:min(1160px,92%);margin:auto}
+/* HEADER */
+header{
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+.header-inner{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--red);
+    font-size:22px;
+    font-weight:900;
+}
+.logo img{width:43px;height:43px;object-fit:contain}
+nav{display:flex;align-items:center;gap:22px}
+nav a{font-size:14px;font-weight:700}
+nav a:hover{color:var(--red)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.cart-link{
+    background:var(--red);
+    color:#fff;
+    padding:10px 15px;
+    border-radius:9px;
+    font-weight:800;
+    font-size:13px;
+}
+.menu-btn{
+    display:none;
+    background:transparent;
+    border:0;
+    color:var(--text);
+    font-size:27px;
+}
+.drawer{
+    display:none;
+    padding:15px 4% 22px;
+    background:var(--card);
+    border-top:1px solid var(--border);
+}
+.drawer.open{display:block}
+.drawer a{display:block;padding:11px 0;font-weight:700}
+.drawer-controls{display:flex;gap:10px;margin-top:12px}
+.drawer-controls select,.drawer-controls button{
+    padding:10px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    border-radius:8px;
+}
+/* HERO */
+.hero{
+    background:linear-gradient(120deg,#111,#351015);
+    color:#fff;
+    padding:70px 0;
+    text-align:center;
+}
+.hero-tag{
+    display:inline-block;
+    color:#ff6875;
+    background:rgba(227,38,54,.17);
+    padding:7px 14px;
+    border-radius:30px;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1px;
+    margin-bottom:16px;
+}
+.hero h1{
+    font-size:clamp(32px,5vw,48px);
+    line-height:1.2;
+    margin-bottom:13px;
+}
+.hero h1 span{color:#ff4757}
+.hero p{
+    color:#ccc;
+    max-width:620px;
+    margin:auto;
+    font-size:14px;
+}
+/* CONTENT */
+.section{padding:65px 0}
+.section-heading{
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 35px;
+}
+.section-heading span{
+    color:var(--red);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1.5px;
+}
+.section-heading h2{
+    font-size:clamp(25px,4vw,34px);
+    line-height:1.2;
+    margin:9px 0;
+}
+.section-heading p{font-size:13px;color:var(--muted)}
+/* CONTACT CARDS */
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:40px;
+}
+.contact-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:22px 15px;
+    text-align:center;
+    transition:.2s;
+}
+.contact-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--red);
+}
+.contact-icon{font-size:30px;margin-bottom:10px}
+.contact-card h3{font-size:15px;margin-bottom:5px}
+.contact-card p{font-size:11px;color:var(--muted);margin-bottom:13px}
+.contact-card a{
+    display:inline-block;
+    color:var(--red);
+    font-size:12px;
+    font-weight:900;
+}
+/* FORM */
+.form-layout{
+    display:grid;
+    grid-template-columns:.8fr 1.2fr;
+    gap:25px;
+    align-items:stretch;
+}
+.contact-info{
+    background:#171717;
+    color:#fff;
+    padding:32px;
+    border-radius:14px;
+}
+.contact-info h2{font-size:25px;line-height:1.3;margin-bottom:13px}
+.contact-info>p{color:#bbb;font-size:13px;margin-bottom:28px}
+.info-line{
+    display:flex;
+    gap:12px;
+    margin-bottom:20px;
+    align-items:flex-start;
+}
+.info-line .icon{font-size:20px}
+.info-line strong{display:block;font-size:13px}
+.info-line span{display:block;color:#aaa;font-size:12px}
+.contact-form{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:30px;
+}
+.contact-form h2{font-size:22px;margin-bottom:6px}
+.contact-form>p{color:var(--muted);font-size:12px;margin-bottom:22px}
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+.form-group{margin-bottom:17px}
+.form-group label{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    margin-bottom:7px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    padding:13px;
+    border-radius:8px;
+    outline:none;
+    font-size:13px;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{border-color:var(--red)}
+.form-group textarea{min-height:130px;resize:vertical}
+.submit-btn{
+    width:100%;
+    padding:15px;
+    background:var(--red);
+    color:#fff;
+    border:0;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:900;
+}
+.submit-btn:hover{background:var(--red-dark)}
+.form-note{font-size:11px;color:var(--muted);margin-top:12px}
+/* FAQ */
+.faq-section{background:var(--card)}
+.faq-list{max-width:800px;margin:auto}
+.faq-item{
+    border-bottom:1px solid var(--border);
+    padding:19px 0;
+}
+.faq-question{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:900;
+}
+.faq-answer{
+    display:none;
+    padding-top:12px;
+    font-size:13px;
+    color:var(--muted);
+}
+.faq-item.active .faq-answer{display:block}
+.faq-item.active .faq-symbol{color:var(--red)}
+/* FOOTER */
+footer{background:#101010;color:#fff;padding:45px 0 20px}
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:30px;
+    margin-bottom:30px;
+}
+footer h3{margin-bottom:12px;font-size:16px}
+footer p,footer a{font-size:13px;color:#aaa;line-height:2}
+footer a:hover{color:#fff}
+.footer-bottom{
+    border-top:1px solid #303030;
+    padding-top:17px;
+    text-align:center;
+    color:#999;
+    font-size:12px;
+}
+.footer-bottom strong{color:#fff}
+@media(max-width:900px){
+    nav{display:none}
+    .menu-btn{display:block}
+    .contact-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:650px){
+    .header-inner{min-height:66px}
+    .logo{font-size:19px}
+    .logo img{width:36px;height:36px}
+    .hero{padding:55px 0}
+    .section{padding:48px 0}
+    .form-layout{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr}
+    .contact-form,.contact-info{padding:23px}
+    .footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
-
-<div class="topbar">WELCOME TO FOSTER GAMING — PREMIUM POKÉMON GO ACCOUNTS</div>
-
 <header>
-  <div class="nav">
-    <a class="logo" href="index.html">
-      <img src="https://raw.githubusercontent.com/YOUR-USERNAME/Foster-Gaming/main/assets/logo.png" alt="Foster Gaming Logo">
-      <div>FOSTER <span>GAMING</span></div>
-    </a>
-
-    <div class="nav-actions">
-      <a class="cart-link" href="cart.html">🛒 Cart <span class="cart-count" id="cartCount">0</span></a>
-      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
-      <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Foster Gaming Logo">
+            <span>FOSTER GAMING</span>
+        </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="accounts.html">Accounts</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+        <a href="cart.html" class="cart-link">🛒 Cart <span id="cartCount">0</span></a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
     </div>
-  </div>
-
-  <div class="menu-panel" id="menuPanel">
-    <div class="menu-inner">
-      <a href="index.html">Home</a>
-      <a href="accounts.html">Accounts</a>
-      <a href="about.html">About Us</a>
-      <a href="blog.html">Blog</a>
-      <a href="reviews.html">Reviews</a>
-      <a href="contact.html">Contact</a>
-      <select id="languageSelect" aria-label="Select language">
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-        <option value="fr">French</option>
-        <option value="de">German</option>
-        <option value="pt">Portuguese</option>
-        <option value="it">Italian</option>
-        <option value="ja">Japanese</option>
-        <option value="zh">Chinese</option>
-      </select>
+</div>
+<div class="drawer" id="drawer">
+    <a href="index.html">Home</a>
+    <a href="accounts.html">Accounts</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="cart.html">Shopping Cart</a>
+    <div class="drawer-controls">
+        <select id="languageSelect" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="pt">Português</option>
+            <option value="ar">العربية</option>
+            <option value="it">Italiano</option>
+            <option value="zh">中文</option>
+        </select>
+        <button id="themeToggle">🌙 Theme</button>
     </div>
-  </div>
+</div>
 </header>
-
 <main>
-  <section class="hero">
-    <span class="eyebrow">We're Here to Help</span>
-    <h1>Contact <span style="color:var(--red)">Foster Gaming</span></h1>
-    <p>Have a question about an account, purchase, payment, or swap? Reach out to us through any of the channels below or send us a message.</p>
-  </section>
-
-  <section class="grid">
-    <div class="card">
-      <h2>Get in Touch</h2>
-      <p class="card-intro">Choose your preferred way to contact Foster Gaming.</p>
-
-      <div class="contact-list">
-        <a class="contact-item" href="mailto:harishwilliams010@gmail.com">
-          <div class="contact-icon">✉️</div>
-          <div>
-            <strong>Email Us</strong>
-            <small>harishwilliams010@gmail.com</small>
-          </div>
-          <span class="arrow">›</span>
-        </a>
-
-        <a class="contact-item" href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">
-          <div class="contact-icon">🎵</div>
-          <div>
-            <strong>TikTok — William Foster</strong>
-            <small>@williamfoster83</small>
-          </div>
-          <span class="arrow">›</span>
-        </a>
-
-        <a class="contact-item" href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">
-          <div class="contact-icon">🎮</div>
-          <div>
-            <strong>TikTok — Foster Games</strong>
-            <small>@fostergames5</small>
-          </div>
-          <span class="arrow">›</span>
-        </a>
-
-        <a class="contact-item" href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">
-          <div class="contact-icon">👻</div>
-          <div>
-            <strong>Snapchat</strong>
-            <small>Chat with Foster Gaming</small>
-          </div>
-          <span class="arrow">›</span>
-        </a>
-
-        <a class="contact-item" href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">
-          <div class="contact-icon">💬</div>
-          <div>
-            <strong>Discord Community</strong>
-            <small>Join our Discord server</small>
-          </div>
-          <span class="arrow">›</span>
-        </a>
-      </div>
+<section class="hero">
+    <div class="container">
+        <span class="hero-tag">WE'RE HERE TO HELP</span>
+        <h1>Contact <span>Foster Gaming</span></h1>
+        <p>
+            Have a question about an account, interested in a swap,
+            or need help with an order? Reach out to us through
+            any of our available contact channels.
+        </p>
     </div>
-
-    <div class="card">
-      <h2>Send Us an Enquiry</h2>
-      <p class="card-intro">Complete the form below and your email application will open with your message prepared.</p>
-
-      <form id="contactForm">
-        <div class="form-group">
-          <label for="name">Full Name *</label>
-          <input id="name" name="name" type="text" placeholder="Enter your full name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email Address *</label>
-          <input id="email" name="email" type="email" placeholder="Enter your email address" required>
-        </div>
-
-        <div class="form-group">
-          <label for="subject">Subject *</label>
-          <input id="subject" name="subject" type="text" placeholder="What is your enquiry about?" required>
-        </div>
-
-        <div class="form-group">
-          <label for="category">Enquiry Category *</label>
-          <select id="category" name="category" required>
-            <option value="">Select a category</option>
-            <option>Account Enquiry</option>
-            <option>Purchase / Order</option>
-            <option>Account Swap</option>
-            <option>Payment</option>
-            <option>General Enquiry</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="message">Your Message *</label>
-          <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
-        </div>
-
-        <button type="submit" class="submit-btn">SEND ENQUIRY →</button>
-        <p class="note">Your email application will open with the enquiry details filled in. You must press Send in your email application to submit it.</p>
-      </form>
+</section>
+<section class="section">
+    <div class="container">
+    <div class="section-heading">
+        <span>GET IN TOUCH</span>
+        <h2>Choose How You Want to Contact Us</h2>
+        <p>Connect with Foster Gaming through any of these channels.</p>
     </div>
-  </section>
-
-  <section class="faq-section">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-grid">
-      <div class="faq">
-        <h3>How can I purchase an account?</h3>
-        <p>Browse the available accounts, select the account you want, add it to your cart, and follow the checkout instructions.</p>
-      </div>
-
-      <div class="faq">
-        <h3>Can I ask about an account before buying?</h3>
-        <p>Yes. Contact us through email or our social media channels if you need more information about a listing.</p>
-      </div>
-
-      <div class="faq">
-        <h3>Do you accept account swaps?</h3>
-        <p>Yes, you can contact us with details of the account you want to swap and the account you are interested in.</p>
-      </div>
-
-      <div class="faq">
-        <h3>How do I ask about an existing order?</h3>
-        <p>Send us an enquiry and include your order reference so we can identify the transaction more easily.</p>
-      </div>
-
-      <div class="faq">
-        <h3>What if I have a payment question?</h3>
-        <p>Choose Payment in the enquiry category and include your order reference and relevant payment information.</p>
-      </div>
-
-      <div class="faq">
-        <h3>Can I contact you through TikTok?</h3>
-        <p>Yes. You can reach us through either of our TikTok profiles listed above.</p>
-      </div>
+    <div class="contact-grid">
+        <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <p>Send questions and order enquiries.</p>
+            <a href="mailto:harishwilliams010@gmail.com">SEND EMAIL →</a>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">🎵</div>
+            <h3>TikTok</h3>
+            <p>Follow our first TikTok page.</p>
+            <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">VISIT PAGE →</a>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">👻</div>
+            <h3>Snapchat</h3>
+            <p>Connect with us on Snapchat.</p>
+            <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">CONNECT →</a>
+        </div>
+        <div class="contact-card">
+            <div class="contact-icon">💬</div>
+            <h3>Discord</h3>
+            <p>Join our Discord community.</p>
+            <a href="https://discord.gg/VqVBngcg" target="_blank">JOIN DISCORD →</a>
+        </div>
     </div>
-  </section>
-
-  <section class="cta">
-    <h2>Ready to Find Your Next Account?</h2>
-    <p>Explore the Foster Gaming marketplace and discover available Pokémon GO accounts.</p>
-    <a href="accounts.html">EXPLORE ACCOUNTS →</a>
-  </section>
+    <div class="form-layout">
+        <div class="contact-info">
+            <h2>Let's Talk About Your Next Account</h2>
+            <p>
+                Whether you're buying, selling or swapping,
+                we're available through our listed contact channels.
+            </p>
+            <div class="info-line">
+                <div class="icon">📧</div>
+                <div>
+                    <strong>Email Address</strong>
+                    <span>harishwilliams010@gmail.com</span>
+                </div>
+            </div>
+            <div class="info-line">
+                <div class="icon">🎮</div>
+                <div>
+                    <strong>Business</strong>
+                    <span>Foster Gaming</span>
+                </div>
+            </div>
+            <div class="info-line">
+                <div class="icon">🔄</div>
+                <div>
+                    <strong>Account Services</strong>
+                    <span>Buying, selling and swapping</span>
+                </div>
+            </div>
+            <div class="info-line">
+                <div class="icon">📩</div>
+                <div>
+                    <strong>Order Support</strong>
+                    <span>Payment and order enquiries</span>
+                </div>
+            </div>
+        </div>
+        <form class="contact-form" id="contactForm">
+            <h2>Send Us a Message</h2>
+            <p>Complete the form and your email application will open with your message ready to send.</p>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Your Name *</label>
+                    <input type="text" id="name" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email *</label>
+                    <input type="email" id="email" required placeholder="Enter your email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="subject">What Is Your Message About? *</label>
+                <select id="subject" required>
+                    <option value="">Select a subject</option>
+                    <option>Buying a Pokémon GO Account</option>
+                    <option>Account Swapping</option>
+                    <option>Existing Order</option>
+                    <option>Payment Enquiry</option>
+                    <option>General Question</option>
+                    <option>Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message *</label>
+                <textarea id="message" required placeholder="Write your message here..."></textarea>
+            </div>
+            <button type="submit" class="submit-btn">OPEN EMAIL TO SEND MESSAGE →</button>
+            <p class="form-note">
+                This form opens your email application. Your message is not submitted automatically by the website.
+            </p>
+        </form>
+    </div>
+</div>
+</section>
+<section class="section faq-section">
+    <div class="container">
+    <div class="section-heading">
+        <span>HELP CENTRE</span>
+        <h2>Frequently Asked Questions</h2>
+        <p>Some quick answers to common questions.</p>
+    </div>
+    <div class="faq-list">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How can I buy an account?</span>
+                <span class="faq-symbol">＋</span>
+            </div>
+            <div class="faq-answer">
+                Browse the available accounts, open the listing you like,
+                add it to your cart and proceed to checkout.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Can I request an account swap?</span>
+                <span class="faq-symbol">＋</span>
+            </div>
+            <div class="faq-answer">
+                Yes. Contact Foster Gaming through email or our social
+                media channels to discuss your proposed swap.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How does payment confirmation work?</span>
+                <span class="faq-symbol">＋</span>
+            </div>
+            <div class="faq-answer">
+                Payments are manually reviewed. Follow the checkout
+                instructions and provide the requested payment
+                reference or evidence for review.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How will I receive my account details?</span>
+                <span class="faq-symbol">＋</span>
+            </div>
+            <div class="faq-answer">
+                After payment approval, account delivery details
+                are sent using the email address provided with your order.
+            </div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How can I ask about an account that is sold?</span>
+                <span class="faq-symbol">＋</span>
+            </div>
+            <div class="faq-answer">
+                Contact us and mention the account listing you're
+                interested in. We can discuss whether similar options
+                are available.
+            </div>
+        </div>
+    </div>
+</div>
+</section>
 </main>
-
 <footer>
-  <div class="footer-inner">
-    <div>
-      <h3>FOSTER <span style="color:var(--red)">GAMING</span></h3>
-      <p>Your marketplace for premium Pokémon GO accounts. Browse available listings, explore collections, and contact our team for enquiries.</p>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h3>FOSTER GAMING</h3>
+                <p>Your destination for premium Pokémon GO accounts. Buy, sell and swap stacked accounts with us.</p>
+            </div>
+        <div>
+            <h3>Quick Links</h3>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="accounts.html">Available Accounts</a></p>
+            <p><a href="cart.html">Shopping Cart</a></p>
+            <p><a href="reviews.html">Customer Reviews</a></p>
+        </div>
+        <div>
+            <h3>Connect With Us</h3>
+            <p><a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok</a></p>
+            <p><a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a></p>
+            <p><a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a></p>
+            <p><a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a></p>
+        </div>
     </div>
-
-    <div>
-      <h3>Quick Links</h3>
-      <a href="index.html">Home</a>
-      <a href="accounts.html">Browse Accounts</a>
-      <a href="about.html">About Us</a>
-      <a href="blog.html">Blog</a>
-      <a href="reviews.html">Reviews</a>
+    <div class="footer-bottom">
+        © <span id="year"></span> Foster Gaming. All Rights Reserved.
+        <br>Developed by <strong>BITBRIDGE TECHNOLOGIES INC</strong>
     </div>
-
-    <div>
-      <h3>Connect With Us</h3>
-      <a href="mailto:harishwilliams010@gmail.com">Email</a>
-      <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok 1</a>
-      <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
-      <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
-      <a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <span>© <span id="year"></span> Foster Gaming. All rights reserved.</span>
-    <span>Powered by <strong>BITBRIDGE TECHNOLOGIES INC</strong></span>
-  </div>
+</div>
 </footer>
-
-<div class="toast" id="toast">Your email application is opening...</div>
-
 <script>
-const CART_KEY = "fg-cart";
-const THEME_KEY = "fg-theme";
-const LANGUAGE_KEY = "fg-language";
-
+/* CART COUNT */
 function updateCartCount(){
-  let cart = [];
-  try {
-    cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  } catch(e) {
-    cart = [];
-  }
-
-  const count = cart.reduce((total,item)=>total + (Number(item.quantity)||1),0);
-  document.getElementById("cartCount").textContent = count;
+    try{
+        const cart=JSON.parse(localStorage.getItem("foster_cart"))||[];
+        const count=cart.reduce(
+            (sum,item)=>sum+(Number(item.quantity)||1),0
+        );
+        document.getElementById("cartCount").textContent=count;
+    }catch(error){
+        document.getElementById("cartCount").textContent="0";
+    }
 }
-
-function applyTheme(){
-  const theme = localStorage.getItem(THEME_KEY) || "light";
-  document.body.classList.toggle("dark",theme === "dark");
-  document.getElementById("themeBtn").textContent = theme === "dark" ? "☀️" : "🌙";
-}
-
-document.getElementById("themeBtn").addEventListener("click",()=>{
-  const newTheme = document.body.classList.contains("dark") ? "light" : "dark";
-  localStorage.setItem(THEME_KEY,newTheme);
-  applyTheme();
+/* CONTACT FORM */
+document.getElementById("contactForm").addEventListener("submit",function(event){
+    event.preventDefault();
+    const name=document.getElementById("name").value.trim();
+    const email=document.getElementById("email").value.trim();
+    const subject=document.getElementById("subject").value;
+    const message=document.getElementById("message").value.trim();
+    if(!name||!email||!subject||!message){
+        alert("Please complete all required fields.");
+        return;
+    }
+    const emailSubject=encodeURIComponent("Foster Gaming Enquiry: "+subject);
+    const emailBody=encodeURIComponent(
+        "Hello Foster Gaming,\n\n"+
+        message+"\n\n"+
+        "Name: "+name+"\n"+
+        "Customer Email: "+email+"\n"+
+        "Enquiry: "+subject+"\n\n"+
+        "Sent through the Foster Gaming website."
+    );
+    window.location.href=
+        "mailto:harishwilliams010@gmail.com"+
+        "?subject="+emailSubject+
+        "&body="+emailBody;
 });
-
+/* FAQ ACCORDION */
+document.querySelectorAll(".faq-question").forEach(question=>{
+    question.addEventListener("click",()=>{
+        const item=question.parentElement;
+        item.classList.toggle("active");
+        const symbol=question.querySelector(".faq-symbol");
+        symbol.textContent=item.classList.contains("active")?"−":"＋";
+    });
+});
+/* MOBILE MENU */
 document.getElementById("menuBtn").addEventListener("click",()=>{
-  document.getElementById("menuPanel").classList.toggle("open");
+    document.getElementById("drawer").classList.toggle("open");
 });
-
-const languageSelect = document.getElementById("languageSelect");
-languageSelect.value = localStorage.getItem(LANGUAGE_KEY) || "en";
-languageSelect.addEventListener("change",()=>{
-  localStorage.setItem(LANGUAGE_KEY,languageSelect.value);
-  document.documentElement.lang = languageSelect.value;
+/* THEME */
+function applyTheme(){
+    const theme=localStorage.getItem("foster_theme")||"light";
+    document.body.classList.toggle("dark",theme==="dark");
+    document.getElementById("themeToggle").textContent=
+        theme==="dark"?"☀️ Light":"🌙 Dark";
+}
+document.getElementById("themeToggle").addEventListener("click",()=>{
+    const current=localStorage.getItem("foster_theme")||"light";
+    localStorage.setItem(
+        "foster_theme",
+        current==="dark"?"light":"dark"
+    );
+    applyTheme();
 });
-
-document.getElementById("contactForm").addEventListener("submit",function(e){
-  e.preventDefault();
-
-  if(!this.reportValidity()) return;
-
-  const name = document.getElementById("name").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const subject = document.getElementById("subject").value.trim();
-  const category = document.getElementById("category").value;
-  const message = document.getElementById("message").value.trim();
-
-  const body = [
-    "FOSTER GAMING — CUSTOMER ENQUIRY",
-    "",
-    "Name: " + name,
-    "Customer Email: " + email,
-    "Enquiry Category: " + category,
-    "",
-    "Message:",
-    message
-  ].join("\n");
-
-  const mailto = "mailto:harishwilliams010@gmail.com"
-    + "?subject=" + encodeURIComponent("[Foster Gaming] " + subject)
-    + "&body=" + encodeURIComponent(body);
-
-  document.getElementById("toast").style.display = "block";
-  window.location.href = mailto;
+/* LANGUAGE */
+const translations={
+    en:{home:"Home",accounts:"Accounts",blog:"Blog",about:"About",contact:"Contact",reviews:"Reviews",cart:"Shopping Cart"},
+    es:{home:"Inicio",accounts:"Cuentas",blog:"Blog",about:"Acerca de",contact:"Contacto",reviews:"Reseñas",cart:"Carrito"},
+    fr:{home:"Accueil",accounts:"Comptes",blog:"Blog",about:"À propos",contact:"Contact",reviews:"Avis",cart:"Panier"},
+    de:{home:"Startseite",accounts:"Konten",blog:"Blog",about:"Über uns",contact:"Kontakt",reviews:"Bewertungen",cart:"Warenkorb"},
+    pt:{home:"Início",accounts:"Contas",blog:"Blog",about:"Sobre",contact:"Contato",reviews:"Avaliações",cart:"Carrinho"},
+    ar:{home:"الرئيسية",accounts:"الحسابات",blog:"المدونة",about:"من نحن",contact:"اتصل بنا",reviews:"التقييمات",cart:"سلة التسوق"},
+    it:{home:"Home",accounts:"Account",blog:"Blog",about:"Chi siamo",contact:"Contatti",reviews:"Recensioni",cart:"Carrello"},
+    zh:{home:"首页",accounts:"账户",blog:"博客",about:"关于我们",contact:"联系我们",reviews:"评价",cart:"购物车"}
+};
+function applyLanguage(){
+    const lang=localStorage.getItem("foster_language")||"en";
+    document.getElementById("languageSelect").value=lang;
+    document.documentElement.lang=lang;
+    document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+    const t=translations[lang]||translations.en;
+    const links=document.querySelectorAll(".drawer a");
+    const keys=["home","accounts","blog","about","contact","reviews","cart"];
+    links.forEach((link,index)=>{
+        if(keys[index])link.textContent=t[keys[index]];
+    });
+}
+document.getElementById("languageSelect").addEventListener("change",event=>{
+    localStorage.setItem("foster_language",event.target.value);
+    applyLanguage();
 });
-
-document.getElementById("year").textContent = new Date().getFullYear();
-
-applyTheme();
+/* INITIALIZE */
+document.getElementById("year").textContent=new Date().getFullYear();
 updateCartCount();
+applyTheme();
+applyLanguage();
 </script>
-
 </body>
 </html>
