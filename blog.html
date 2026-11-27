@@ -3,660 +3,712 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog | Foster Gaming</title>
-
+<title>Gaming Blog | Foster Gaming</title>
 <style>
 :root{
     --red:#e32636;
+    --red-dark:#bd1726;
     --green:#159447;
     --bg:#f5f6f8;
     --card:#fff;
     --text:#171717;
-    --muted:#777;
-    --border:#e6e6e6;
-    --shadow:0 8px 30px rgba(0,0,0,.06);
+    --muted:#737373;
+    --border:#e7e7e7;
+    --shadow:0 12px 35px rgba(0,0,0,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
 }
 body.dark{
     --bg:#101114;
     --card:#1b1d22;
     --text:#f5f5f5;
     --muted:#aaa;
-    --border:#303239;
-    --shadow:0 8px 30px rgba(0,0,0,.25);
+    --border:#303238;
+    --shadow:0 12px 35px rgba(0,0,0,.25);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);transition:.25s}
-a{color:inherit;text-decoration:none}
-button,select,input{font-family:inherit}
-.top-strip{background:#111;color:white;text-align:center;padding:9px 15px;font-size:12px;letter-spacing:.5px}
-header{background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
-.navbar{max-width:1200px;margin:auto;min-height:76px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:900}
-.brand img{width:43px;height:43px;object-fit:contain}
-.brand span{color:var(--red)}
-.nav-actions{display:flex;align-items:center;gap:12px}
-.icon-btn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:10px 13px;border-radius:10px;font-size:16px;cursor:pointer}
-.cart-link{background:var(--red);color:white;padding:11px 15px;border-radius:10px;font-weight:bold;font-size:13px}
-.cart-count{background:white;color:var(--red);border-radius:50%;padding:2px 6px;margin-left:4px;font-size:11px}
-.menu-panel{display:none;position:absolute;top:76px;right:20px;width:260px;background:var(--card);border:1px solid var(--border);box-shadow:var(--shadow);border-radius:14px;padding:15px;z-index:200}
-.menu-panel.show{display:block}
-.menu-panel a,.menu-panel button,.menu-panel select{display:block;width:100%;padding:12px;margin-bottom:5px;text-align:left;border:0;border-radius:8px;background:transparent;color:var(--text);font-size:14px;cursor:pointer}
-.menu-panel a:hover,.menu-panel button:hover{background:var(--bg)}
-.menu-panel select{border:1px solid var(--border)}
-.container{max-width:1150px;margin:auto;padding:45px 20px 70px}
-.page-heading{text-align:center;margin-bottom:35px}
-.eyebrow{color:var(--red);font-size:11px;font-weight:900;letter-spacing:2px;margin-bottom:12px}
-.page-heading h1{font-size:38px;margin-bottom:12px}
-.page-heading p{font-size:14px;color:var(--muted);line-height:1.8;max-width:650px;margin:auto}
-.featured{display:grid;grid-template-columns:1.15fr 1fr;background:var(--card);border:1px solid var(--border);border-radius:17px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:40px}
-.featured-image{min-height:350px;background:#222;overflow:hidden}
-.featured-image img{width:100%;height:100%;object-fit:cover}
-.featured-content{padding:35px;display:flex;flex-direction:column;justify-content:center}
-.category-tag{display:inline-block;background:rgba(227,38,54,.1);color:var(--red);padding:7px 11px;border-radius:5px;font-size:10px;font-weight:900;text-transform:uppercase;width:max-content;margin-bottom:15px}
-.featured-content h2{font-size:27px;line-height:1.3;margin-bottom:15px}
-.featured-content p{font-size:13px;color:var(--muted);line-height:1.9;margin-bottom:20px}
-.article-meta{font-size:11px;color:var(--muted);margin-bottom:20px}
-.read-btn{display:inline-block;background:var(--red);color:white;padding:13px 18px;border-radius:8px;font-size:11px;font-weight:900;width:max-content}
-.section-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:20px}
-.section-heading h2{font-size:23px}
-.search-box{display:flex;gap:8px}
-.search-box input{width:230px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:11px 13px;border-radius:8px;outline:none;font-size:12px}
-.category-list{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:25px}
-.category-btn{border:1px solid var(--border);background:var(--card);color:var(--text);padding:10px 14px;border-radius:30px;font-size:11px;font-weight:bold;cursor:pointer}
-.category-btn.active,.category-btn:hover{background:var(--red);border-color:var(--red);color:white}
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.blog-card{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;transition:.2s}
-.blog-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.blog-image{height:205px;background:#222;overflow:hidden}
-.blog-image img{width:100%;height:100%;object-fit:cover;transition:.3s}
-.blog-card:hover .blog-image img{transform:scale(1.04)}
-.blog-content{padding:20px}
-.blog-content .category-tag{margin-bottom:12px}
-.blog-content h3{font-size:17px;line-height:1.45;margin-bottom:10px}
-.blog-content p{font-size:12px;color:var(--muted);line-height:1.8;margin-bottom:16px}
-.blog-bottom{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid var(--border);padding-top:14px}
-.blog-bottom small{font-size:10px;color:var(--muted)}
-.blog-bottom a{font-size:11px;font-weight:900;color:var(--red)}
-.no-results{display:none;text-align:center;padding:50px 20px;background:var(--card);border:1px solid var(--border);border-radius:12px;color:var(--muted);font-size:13px}
-.newsletter{background:#171717;color:white;padding:35px;border-radius:15px;margin-top:55px;display:flex;align-items:center;justify-content:space-between;gap:25px}
-.newsletter h2{font-size:22px;margin-bottom:9px}
-.newsletter p{color:#aaa;font-size:12px;line-height:1.7}
-.newsletter a{background:var(--red);color:white;padding:13px 18px;border-radius:8px;font-size:11px;font-weight:900;white-space:nowrap}
-footer{background:#101010;color:white;padding:40px 20px 20px}
-.footer-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
-.footer-brand{font-size:21px;font-weight:900;margin-bottom:12px}
-.footer-brand span{color:var(--red)}
-.footer-column h4{margin-bottom:15px;font-size:14px}
-.footer-column a{display:block;color:#aaa;font-size:13px;line-height:2}
-.footer-column a:hover{color:white}
-.footer-bottom{max-width:1100px;margin:30px auto 0;padding-top:20px;border-top:1px solid #333;text-align:center;color:#999;font-size:11px;line-height:2}
-@media(max-width:850px){
+a{text-decoration:none;color:inherit}
+button,input{font-family:inherit}
+button{cursor:pointer}
+img{display:block;max-width:100%}
+.container{width:min(1160px,92%);margin:auto}
+/* HEADER */
+header{
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+.header-inner{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:22px;
+    font-weight:900;
+    color:var(--red);
+}
+.logo img{width:43px;height:43px;object-fit:contain}
+nav{display:flex;align-items:center;gap:22px}
+nav a{font-size:14px;font-weight:700}
+nav a:hover{color:var(--red)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.cart-link{
+    background:var(--red);
+    color:#fff;
+    padding:10px 15px;
+    border-radius:9px;
+    font-weight:800;
+    font-size:13px;
+}
+.menu-btn{
+    display:none;
+    background:transparent;
+    border:0;
+    color:var(--text);
+    font-size:27px;
+}
+.drawer{
+    display:none;
+    padding:15px 4% 22px;
+    background:var(--card);
+    border-top:1px solid var(--border);
+}
+.drawer.open{display:block}
+.drawer a{display:block;padding:11px 0;font-weight:700}
+.drawer-controls{display:flex;gap:10px;margin-top:12px}
+.drawer-controls select,.drawer-controls button{
+    padding:10px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    border-radius:8px;
+}
+/* HERO */
+.blog-hero{
+    background:linear-gradient(120deg,#171717,#343434);
+    color:#fff;
+    padding:75px 0;
+    position:relative;
+    overflow:hidden;
+}
+.blog-hero:after{
+    content:"";
+    position:absolute;
+    width:330px;
+    height:330px;
+    border:55px solid rgba(227,38,54,.18);
+    border-radius:50%;
+    right:-70px;
+    top:-100px;
+}
+.hero-content{position:relative;z-index:1;max-width:680px}
+.hero-label{
+    display:inline-block;
+    background:var(--red);
+    padding:7px 13px;
+    border-radius:30px;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1px;
+    margin-bottom:17px;
+}
+.blog-hero h1{
+    font-size:clamp(34px,6vw,54px);
+    line-height:1.1;
+    font-weight:900;
+    margin-bottom:17px;
+}
+.blog-hero p{color:#ddd;font-size:15px;max-width:570px}
+.hero-button{
+    display:inline-block;
+    margin-top:25px;
+    background:var(--red);
+    color:#fff;
+    padding:13px 21px;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:900;
+}
+/* PAGE */
+.section{padding:55px 0}
+.section-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:15px;
+    margin-bottom:23px;
+}
+.section-heading h2{font-size:25px;font-weight:900}
+.section-heading p{font-size:13px;color:var(--muted);margin-top:4px}
+/* FEATURED */
+.featured{
+    display:grid;
+    grid-template-columns:1.25fr 1fr;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:17px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+}
+.featured-image{min-height:340px;background:#ddd}
+.featured-image img{width:100%;height:100%;min-height:340px;object-fit:cover}
+.featured-content{
+    padding:32px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:flex-start;
+}
+.category{
+    display:inline-block;
+    background:rgba(227,38,54,.1);
+    color:var(--red);
+    padding:6px 11px;
+    border-radius:30px;
+    font-size:10px;
+    font-weight:900;
+    text-transform:uppercase;
+    margin-bottom:14px;
+}
+.featured-content h3{font-size:26px;line-height:1.3;margin-bottom:13px}
+.featured-content p{font-size:14px;color:var(--muted);margin-bottom:20px}
+.read-more{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    padding:11px 17px;
+    border-radius:8px;
+    font-size:12px;
+    font-weight:900;
+}
+/* FILTERS */
+.blog-tools{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:25px;
+    flex-wrap:wrap;
+}
+.categories{display:flex;gap:8px;flex-wrap:wrap}
+.category-btn{
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    padding:9px 14px;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:800;
+}
+.category-btn.active,.category-btn:hover{
+    background:var(--red);
+    border-color:var(--red);
+    color:#fff;
+}
+.search-box{display:flex;gap:7px}
+.search-box input{
+    width:220px;
+    border:1px solid var(--border);
+    background:var(--card);
+    color:var(--text);
+    padding:10px 13px;
+    border-radius:8px;
+    outline:none;
+}
+.search-box button{
+    border:0;
+    background:var(--red);
+    color:#fff;
+    padding:10px 14px;
+    border-radius:8px;
+    font-weight:800;
+}
+/* BLOG GRID */
+.blog-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+.blog-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:.2s;
+}
+.blog-card:hover{transform:translateY(-5px)}
+.blog-card-image{height:205px;background:#ddd;overflow:hidden}
+.blog-card-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.3s;
+}
+.blog-card:hover .blog-card-image img{transform:scale(1.04)}
+.blog-card-body{padding:20px}
+.blog-card-body .category{margin-bottom:10px}
+.blog-card-body h3{font-size:17px;line-height:1.4;margin-bottom:9px}
+.blog-card-body p{font-size:13px;color:var(--muted);margin-bottom:16px}
+.post-meta{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    border-top:1px solid var(--border);
+    padding-top:13px;
+    color:var(--muted);
+    font-size:11px;
+}
+.post-link{color:var(--red);font-weight:900}
+.no-results{
+    display:none;
+    text-align:center;
+    padding:45px 15px;
+    color:var(--muted);
+    background:var(--card);
+    border-radius:12px;
+    border:1px solid var(--border);
+}
+/* NEWSLETTER */
+.newsletter{
+    background:#171717;
+    border-radius:17px;
+    padding:42px;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:25px;
+}
+.newsletter h2{font-size:25px;margin-bottom:7px}
+.newsletter p{font-size:13px;color:#bbb;max-width:500px}
+.newsletter a{
+    background:var(--red);
+    color:#fff;
+    padding:13px 19px;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:900;
+    white-space:nowrap;
+}
+/* FOOTER */
+footer{background:#101010;color:#fff;padding:45px 0 20px}
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:30px;
+    margin-bottom:30px;
+}
+footer h3{margin-bottom:12px;font-size:16px}
+footer p,footer a{font-size:13px;color:#aaa;line-height:2}
+footer a:hover{color:#fff}
+.footer-bottom{
+    border-top:1px solid #303030;
+    padding-top:17px;
+    text-align:center;
+    color:#999;
+    font-size:12px;
+}
+.footer-bottom strong{color:#fff}
+@media(max-width:900px){
+    nav{display:none}
+    .menu-btn{display:block}
     .blog-grid{grid-template-columns:repeat(2,1fr)}
     .featured{grid-template-columns:1fr}
-    .featured-image{min-height:270px}
+    .featured-image,.featured-image img{min-height:270px;height:270px}
 }
 @media(max-width:600px){
-    .navbar{padding:12px 14px}
-    .brand{font-size:17px}
-    .brand img{width:35px;height:35px}
-    .nav-actions{gap:7px}
-    .icon-btn{padding:9px 10px}
-    .cart-link{padding:10px;font-size:11px}
-    .container{padding:30px 13px 50px}
-    .page-heading h1{font-size:29px}
-    .featured-content{padding:23px}
-    .featured-content h2{font-size:22px}
+    .header-inner{min-height:66px}
+    .logo{font-size:19px}
+    .logo img{width:36px;height:36px}
+    .blog-hero{padding:55px 0}
+    .section{padding:40px 0}
     .blog-grid{grid-template-columns:1fr}
-    .section-heading{align-items:flex-start;flex-direction:column}
-    .search-box,.search-box input{width:100%}
-    .newsletter{align-items:flex-start;flex-direction:column;padding:25px}
-    .footer-inner{grid-template-columns:1fr}
-    .menu-panel{right:10px}
+    .featured-content{padding:23px}
+    .featured-content h3{font-size:22px}
+    .blog-tools{align-items:stretch}
+    .categories{width:100%}
+    .search-box{width:100%}
+    .search-box input{width:100%}
+    .newsletter{padding:27px;display:block}
+    .newsletter a{display:inline-block;margin-top:20px}
+    .footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
-
-<div class="top-strip">
-    PREMIUM POKÉMON GO ACCOUNTS • FOSTER GAMING
-</div>
-
 <header>
-<nav class="navbar">
-
-    <a href="index.html" class="brand">
-        <img src="https://raw.githubusercontent.com/YOUR-USERNAME/Foster-Gaming/main/assets/logo.png" alt="Foster Gaming Logo">
-        <div>FOSTER <span>GAMING</span></div>
-    </a>
-
-    <div class="nav-actions">
-        <button class="icon-btn" onclick="toggleTheme()">☀️</button>
-
-        <a href="cart.html" class="cart-link">
-            🛒 Cart <span class="cart-count" id="cartCount">0</span>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Foster Gaming Logo">
+            <span>FOSTER GAMING</span>
         </a>
-
-        <button class="icon-btn" onclick="toggleMenu()">☰</button>
-    </div>
-
-    <div class="menu-panel" id="menuPanel">
+    <nav>
         <a href="index.html">Home</a>
-        <a href="accounts.html">Marketplace</a>
-        <a href="cart.html">Shopping Cart</a>
-        <a href="about.html">About Us</a>
+        <a href="accounts.html">Accounts</a>
         <a href="blog.html">Blog</a>
-        <a href="reviews.html">Reviews</a>
+        <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-
-        <button onclick="toggleTheme()">🌙 Toggle Theme</button>
-
-        <select id="languageSelect" onchange="changeLanguage()">
+    </nav>
+    <div class="header-actions">
+        <a href="cart.html" class="cart-link">🛒 Cart <span id="cartCount">0</span></a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+</div>
+<div class="drawer" id="drawer">
+    <a href="index.html">Home</a>
+    <a href="accounts.html">Accounts</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="cart.html">Shopping Cart</a>
+    <div class="drawer-controls">
+        <select id="languageSelect" aria-label="Select language">
             <option value="en">English</option>
             <option value="es">Español</option>
             <option value="fr">Français</option>
             <option value="de">Deutsch</option>
             <option value="pt">Português</option>
+            <option value="ar">العربية</option>
             <option value="it">Italiano</option>
-            <option value="ja">日本語</option>
             <option value="zh">中文</option>
         </select>
+        <button id="themeToggle">🌙 Theme</button>
     </div>
-
-</nav>
+</div>
 </header>
-
-
-<main class="container">
-
-    <section class="page-heading">
-        <div class="eyebrow">FOSTER GAMING JOURNAL</div>
-        <h1>Our Blog & Updates</h1>
+<section class="blog-hero">
+    <div class="container hero-content">
+        <span class="hero-label">FOSTER GAMING BLOG</span>
+        <h1>Everything Pokémon GO. All in One Place.</h1>
         <p>
-            Explore Pokémon GO guides, account collection tips, marketplace updates,
-            gaming news and useful information from Foster Gaming.
+            Discover gaming tips, Pokémon GO guides, account updates,
+            collection highlights and news from the Foster Gaming community.
         </p>
-    </section>
-
-
-    <!-- FEATURED ARTICLE -->
-
-    <section class="featured">
-
+        <a href="#latest" class="hero-button">EXPLORE ARTICLES →</a>
+    </div>
+</section>
+<main class="container">
+<section class="section">
+    <div class="section-heading">
+        <div>
+            <h2>Featured Article</h2>
+            <p>Our latest highlight from the Foster Gaming blog.</p>
+        </div>
+    </div>
+    <article class="featured">
         <div class="featured-image">
-            <img
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000"
-                alt="Gaming setup">
+            <img src="images/blog-featured.jpg" alt="Pokémon GO featured article" onerror="this.src='images/logo.png'">
         </div>
-
         <div class="featured-content">
-
-            <span class="category-tag">Featured Article</span>
-
-            <h2>What Makes a Premium Pokémon GO Account Worth Exploring?</h2>
-
+            <span class="category">Pokémon GO Guide</span>
+            <h3>What Makes a Pokémon GO Account Valuable?</h3>
             <p>
-                Explore the features that can make a Pokémon GO account interesting,
-                from Pokémon collections and CP values to shinies, legendary Pokémon
-                and account progression.
+                Explore the factors that make an account stand out,
+                from rare Pokémon collections and Shinies to levels,
+                Hundos, costumes and other achievements.
             </p>
-
-            <div class="article-meta">
-                Foster Gaming Editorial · 5 min read
-            </div>
-
-            <a href="blog-post.html?id=premium-account-guide" class="read-btn">
-                READ FEATURED ARTICLE →
-            </a>
-
+            <a href="blog-post.html?id=1" class="read-more">READ ARTICLE →</a>
         </div>
-
-    </section>
-
-
-    <!-- BLOG LIST -->
-
-    <section>
-
-        <div class="section-heading">
+    </article>
+</section>
+<section class="section" id="latest">
+    <div class="section-heading">
+        <div>
             <h2>Latest Articles</h2>
-
-            <div class="search-box">
-                <input
-                    type="search"
-                    id="blogSearch"
-                    placeholder="Search articles..."
-                    oninput="filterArticles()">
+            <p>Guides, updates and gaming information.</p>
+        </div>
+    </div>
+    <div class="blog-tools">
+        <div class="categories">
+            <button class="category-btn active" data-category="all">All Posts</button>
+            <button class="category-btn" data-category="guides">Guides</button>
+            <button class="category-btn" data-category="accounts">Accounts</button>
+            <button class="category-btn" data-category="news">News</button>
+            <button class="category-btn" data-category="tips">Tips</button>
+        </div>
+        <div class="search-box">
+            <input type="search" id="blogSearch" placeholder="Search articles...">
+            <button id="searchBtn">Search</button>
+        </div>
+    </div>
+    <div class="blog-grid" id="blogGrid">
+        <article class="blog-card" data-category="guides" data-search="valuable pokemon go account shiny legendary hundo collection">
+            <div class="blog-card-image">
+                <img src="images/blog1.jpg" alt="Valuable Pokémon GO account" onerror="this.src='images/logo.png'">
             </div>
-        </div>
-
-
-        <div class="category-list">
-
-            <button class="category-btn active" onclick="selectCategory('All',this)">All Articles</button>
-
-            <button class="category-btn" onclick="selectCategory('Guides',this)">Guides</button>
-
-            <button class="category-btn" onclick="selectCategory('Pokémon GO',this)">Pokémon GO</button>
-
-            <button class="category-btn" onclick="selectCategory('Account Tips',this)">Account Tips</button>
-
-            <button class="category-btn" onclick="selectCategory('Updates',this)">Updates</button>
-
-            <button class="category-btn" onclick="selectCategory('News',this)">News</button>
-
-        </div>
-
-
-        <div class="blog-grid" id="blogGrid"></div>
-
-        <div class="no-results" id="noResults">
-            No articles found. Try another search term or category.
-        </div>
-
-    </section>
-
-
-    <!-- NEWSLETTER / CONTACT CTA -->
-
-    <section class="newsletter">
-
+            <div class="blog-card-body">
+                <span class="category">Guides</span>
+                <h3>What Makes a Pokémon GO Account Valuable?</h3>
+                <p>Learn about levels, Shinies, Legendary Pokémon, Hundos and other features that make an account special.</p>
+                <div class="post-meta">
+                    <span>5 min read</span>
+                    <a href="blog-post.html?id=1" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+        <article class="blog-card" data-category="accounts" data-search="pokemon go stacked account collection premium accounts">
+            <div class="blog-card-image">
+                <img src="images/blog2.jpg" alt="Stacked Pokémon GO account" onerror="this.src='images/logo.png'">
+            </div>
+            <div class="blog-card-body">
+                <span class="category">Accounts</span>
+                <h3>Why Players Look for Stacked Pokémon GO Accounts</h3>
+                <p>Discover why some players prefer accounts with established collections and valuable Pokémon.</p>
+                <div class="post-meta">
+                    <span>4 min read</span>
+                    <a href="blog-post.html?id=2" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+        <article class="blog-card" data-category="tips" data-search="shiny pokemon collection tips pokemon go">
+            <div class="blog-card-image">
+                <img src="images/blog3.jpg" alt="Shiny Pokémon collection" onerror="this.src='images/logo.png'">
+            </div>
+            <div class="blog-card-body">
+                <span class="category">Tips</span>
+                <h3>Understanding Shiny Pokémon Collections</h3>
+                <p>Explore what makes Shiny Pokémon special and why collectors enjoy building large collections.</p>
+                <div class="post-meta">
+                    <span>3 min read</span>
+                    <a href="blog-post.html?id=3" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+        <article class="blog-card" data-category="guides" data-search="hundo pokemon perfect iv pokemon go">
+            <div class="blog-card-image">
+                <img src="images/blog4.jpg" alt="Hundo Pokémon" onerror="this.src='images/logo.png'">
+            </div>
+            <div class="blog-card-body">
+                <span class="category">Guides</span>
+                <h3>What Are Hundos in Pokémon GO?</h3>
+                <p>A simple introduction to perfect IV Pokémon and why they are highly appreciated by collectors.</p>
+                <div class="post-meta">
+                    <span>3 min read</span>
+                    <a href="blog-post.html?id=4" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+        <article class="blog-card" data-category="news" data-search="pokemon go community foster gaming updates">
+            <div class="blog-card-image">
+                <img src="images/blog5.jpg" alt="Foster Gaming community update" onerror="this.src='images/logo.png'">
+            </div>
+            <div class="blog-card-body">
+                <span class="category">News</span>
+                <h3>What's Happening at Foster Gaming?</h3>
+                <p>Get updates about our latest account listings, collection highlights and community activities.</p>
+                <div class="post-meta">
+                    <span>2 min read</span>
+                    <a href="blog-post.html?id=5" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+        <article class="blog-card" data-category="accounts" data-search="pokemon go account level progression levels">
+            <div class="blog-card-image">
+                <img src="images/blog6.jpg" alt="Pokémon GO account levels" onerror="this.src='images/logo.png'">
+            </div>
+            <div class="blog-card-body">
+                <span class="category">Accounts</span>
+                <h3>Why Account Levels Matter to Pokémon GO Players</h3>
+                <p>Understand the role of account progression and how levels form part of an account's overall profile.</p>
+                <div class="post-meta">
+                    <span>4 min read</span>
+                    <a href="blog-post.html?id=6" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+        <article class="blog-card" data-category="tips" data-search="legendary pokemon collection pokemon go">
+            <div class="blog-card-image">
+                <img src="images/blog7.jpg" alt="Legendary Pokémon collection" onerror="this.src='images/logo.png'">
+            </div>
+            <div class="blog-card-body">
+                <span class="category">Tips</span>
+                <h3>Getting to Know Legendary Pokémon</h3>
+                <p>Learn about Legendary Pokémon and their place in the Pokémon GO collecting experience.</p>
+                <div class="post-meta">
+                    <span>4 min read</span>
+                    <a href="blog-post.html?id=7" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+        <article class="blog-card" data-category="guides" data-search="shadow pokemon shadow shiny pokemon go">
+            <div class="blog-card-image">
+                <img src="images/blog8.jpg" alt="Shadow Pokémon" onerror="this.src='images/logo.png'">
+            </div>
+            <div class="blog-card-body">
+                <span class="category">Guides</span>
+                <h3>What Makes Shadow Pokémon Interesting?</h3>
+                <p>Take a closer look at Shadow Pokémon, their unique appearance and why players collect them.</p>
+                <div class="post-meta">
+                    <span>3 min read</span>
+                    <a href="blog-post.html?id=8" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+        <article class="blog-card" data-category="news" data-search="foster gaming available pokemon go accounts listings">
+            <div class="blog-card-image">
+                <img src="images/blog9.jpg" alt="Available Pokémon GO accounts" onerror="this.src='images/logo.png'">
+            </div>
+            <div class="blog-card-body">
+                <span class="category">News</span>
+                <h3>Explore the Latest Available Accounts</h3>
+                <p>See the accounts currently listed on Foster Gaming and explore their individual details.</p>
+                <div class="post-meta">
+                    <span>2 min read</span>
+                    <a href="blog-post.html?id=9" class="post-link">Read More →</a>
+                </div>
+            </div>
+        </article>
+    </div>
+    <div class="no-results" id="noResults">
+        <h3>No articles found</h3>
+        <p>Try another search term or category.</p>
+    </div>
+</section>
+<section class="section">
+    <div class="newsletter">
         <div>
             <h2>Stay Connected With Foster Gaming</h2>
-
-            <p>
-                Have questions about an account or want to know about new listings?
-                Contact our team directly.
-            </p>
+            <p>Follow our social pages for account updates, new listings, gaming content and announcements.</p>
         </div>
-
-        <a href="mailto:harishwilliams010@gmail.com">
-            CONTACT OUR TEAM →
-        </a>
-
-    </section>
-
+        <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">FOLLOW US ON TIKTOK →</a>
+    </div>
+</section>
 </main>
-
-
 <footer>
-
-    <div class="footer-inner">
-
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h3>FOSTER GAMING</h3>
+                <p>Your destination for premium Pokémon GO accounts. Buy, sell and swap stacked accounts with us.</p>
+            </div>
         <div>
-            <div class="footer-brand">FOSTER <span>GAMING</span></div>
-
-            <p style="color:#aaa;font-size:13px;line-height:1.8;max-width:350px;">
-                Your destination for premium Pokémon GO accounts.
-                Explore available accounts and contact us for buying and swapping enquiries.
-            </p>
+            <h3>Quick Links</h3>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="accounts.html">Available Accounts</a></p>
+            <p><a href="cart.html">Shopping Cart</a></p>
+            <p><a href="reviews.html">Customer Reviews</a></p>
         </div>
-
-        <div class="footer-column">
-            <h4>Quick Links</h4>
-            <a href="index.html">Home</a>
-            <a href="accounts.html">Marketplace</a>
-            <a href="about.html">About Us</a>
-            <a href="blog.html">Blog</a>
-            <a href="reviews.html">Reviews</a>
+        <div>
+            <h3>Connect With Us</h3>
+            <p><a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok</a></p>
+            <p><a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a></p>
+            <p><a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a></p>
+            <p><a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a></p>
         </div>
-
-        <div class="footer-column">
-            <h4>Connect With Us</h4>
-            <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok 1</a>
-            <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a>
-            <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
-            <a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
-            <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
-        </div>
-
     </div>
-
     <div class="footer-bottom">
-        © <span id="year"></span> Foster Gaming. All rights reserved.<br>
-        Powered by BITBRIDGE TECHNOLOGIES INC
+        © <span id="year"></span> Foster Gaming. All Rights Reserved.
+        <br>Developed by <strong>BITBRIDGE TECHNOLOGIES INC</strong>
     </div>
-
+</div>
 </footer>
-
-
 <script>
-
-/* =================================
-   BLOG ARTICLE DATA
-================================= */
-
-const articles = [
-
-    {
-        id:"premium-account-guide",
-        title:"What Makes a Premium Pokémon GO Account Worth Exploring?",
-        category:"Guides",
-        date:"November 2026",
-        read:"5 min read",
-        image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
-        description:"Discover the features that make an account interesting, including Pokémon collections, shinies, legendary Pokémon and progression."
-    },
-
-    {
-        id:"understanding-shiny-pokemon",
-        title:"Understanding Shiny Pokémon and Their Appeal",
-        category:"Pokémon GO",
-        date:"November 2026",
-        read:"4 min read",
-        image:"https://images.unsplash.com/photo-1612036782180-6f0b6cd846fe?w=800",
-        description:"Learn what shiny Pokémon are, why collectors value them and how they add variety to a Pokémon collection."
-    },
-
-    {
-        id:"account-levels-explained",
-        title:"Pokémon GO Account Levels Explained",
-        category:"Account Tips",
-        date:"November 2026",
-        read:"6 min read",
-        image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
-        description:"A simple introduction to account levels and what progression can mean for a player's Pokémon GO experience."
-    },
-
-    {
-        id:"legendary-pokemon-guide",
-        title:"A Beginner's Guide to Legendary Pokémon",
-        category:"Guides",
-        date:"November 2026",
-        read:"5 min read",
-        image:"https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800",
-        description:"Explore the world of legendary Pokémon and understand why these special Pokémon attract collectors."
-    },
-
-    {
-        id:"pokemon-collection-tips",
-        title:"How to Organise and Appreciate Your Pokémon Collection",
-        category:"Account Tips",
-        date:"November 2026",
-        read:"4 min read",
-        image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800",
-        description:"Practical ideas for keeping track of your Pokémon collection, favourite catches and special discoveries."
-    },
-
-    {
-        id:"foster-gaming-marketplace",
-        title:"Welcome to the Foster Gaming Marketplace",
-        category:"Updates",
-        date:"November 2026",
-        read:"3 min read",
-        image:"https://images.unsplash.com/photo-1560253023-3ec5d502959f?w=800",
-        description:"Get to know Foster Gaming, explore the marketplace and learn how to browse available account listings."
-    },
-
-    {
-        id:"pokemon-go-collection",
-        title:"Building a Pokémon GO Collection You Enjoy",
-        category:"Pokémon GO",
-        date:"November 2026",
-        read:"5 min read",
-        image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
-        description:"From favourite Pokémon to special variants, explore ways to make your collection more meaningful."
-    },
-
-    {
-        id:"safe-online-shopping",
-        title:"Things to Check Before Making an Online Purchase",
-        category:"Guides",
-        date:"November 2026",
-        read:"4 min read",
-        image:"https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800",
-        description:"A useful checklist covering product descriptions, seller communication, payment records and order references."
-    },
-
-    {
-        id:"marketplace-announcements",
-        title:"Foster Gaming Marketplace Announcements",
-        category:"News",
-        date:"November 2026",
-        read:"2 min read",
-        image:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800",
-        description:"Keep up with new listings, marketplace information and announcements from Foster Gaming."
+/* CART COUNT */
+function updateCartCount(){
+    try{
+        const cart=JSON.parse(localStorage.getItem("foster_cart"))||[];
+        const count=cart.reduce((sum,item)=>sum+(Number(item.quantity)||1),0);
+        document.getElementById("cartCount").textContent=count;
+    }catch(error){
+        document.getElementById("cartCount").textContent="0";
     }
-
-];
-
-
-/* =================================
-   RENDER ARTICLES
-================================= */
-
-let activeCategory = "All";
-
-function renderArticles(list) {
-
-    const grid = document.getElementById("blogGrid");
-
-    const noResults = document.getElementById("noResults");
-
-    grid.innerHTML = "";
-
-    if(list.length === 0) {
-
-        noResults.style.display = "block";
-
-        return;
-
-    }
-
-    noResults.style.display = "none";
-
-    list.forEach(article => {
-
-        const card = document.createElement("article");
-
-        card.className = "blog-card";
-
-        card.innerHTML = `
-
-            <div class="blog-image">
-
-                <img
-                    src="${article.image}"
-                    alt="${article.title}"
-                    loading="lazy">
-
-            </div>
-
-            <div class="blog-content">
-
-                <span class="category-tag">
-                    ${article.category}
-                </span>
-
-                <h3>${article.title}</h3>
-
-                <p>${article.description}</p>
-
-                <div class="blog-bottom">
-
-                    <small>${article.date} · ${article.read}</small>
-
-                    <a href="blog-post.html?id=${encodeURIComponent(article.id)}">
-                        READ MORE →
-                    </a>
-
-                </div>
-
-            </div>
-
-        `;
-
-        grid.appendChild(card);
-
+}
+/* BLOG SEARCH AND FILTER */
+const categoryButtons=document.querySelectorAll(".category-btn");
+const blogCards=document.querySelectorAll(".blog-card");
+const searchInput=document.getElementById("blogSearch");
+const searchButton=document.getElementById("searchBtn");
+const noResults=document.getElementById("noResults");
+let selectedCategory="all";
+function filterArticles(){
+    const search=searchInput.value.toLowerCase().trim();
+    let visible=0;
+    blogCards.forEach(card=>{
+        const category=card.dataset.category;
+        const text=card.dataset.search+" "+card.textContent;
+        const categoryMatch=selectedCategory==="all"||category===selectedCategory;
+        const searchMatch=text.toLowerCase().includes(search);
+        const show=categoryMatch&&searchMatch;
+        card.style.display=show?"block":"none";
+        if(show)visible++;
     });
-
+    noResults.style.display=visible===0?"block":"none";
 }
-
-
-/* =================================
-   CATEGORY FILTER
-================================= */
-
-function selectCategory(category,button) {
-
-    activeCategory = category;
-
-    document.querySelectorAll(".category-btn")
-        .forEach(btn => btn.classList.remove("active"));
-
-    button.classList.add("active");
-
-    filterArticles();
-
-}
-
-
-/* =================================
-   SEARCH
-================================= */
-
-function filterArticles() {
-
-    const search =
-        document.getElementById("blogSearch")
-        .value.toLowerCase().trim();
-
-    const filtered = articles.filter(article => {
-
-        const matchesCategory =
-            activeCategory === "All" ||
-            article.category === activeCategory;
-
-        const searchableText =
-            (article.title + " " +
-            article.description + " " +
-            article.category).toLowerCase();
-
-        const matchesSearch =
-            searchableText.includes(search);
-
-        return matchesCategory && matchesSearch;
-
+categoryButtons.forEach(button=>{
+    button.addEventListener("click",()=>{
+        categoryButtons.forEach(item=>item.classList.remove("active"));
+        button.classList.add("active");
+        selectedCategory=button.dataset.category;
+        filterArticles();
     });
-
-    renderArticles(filtered);
-
-}
-
-
-/* =================================
-   CART COUNT
-================================= */
-
-function updateCartCount() {
-
-    try {
-
-        const cart =
-            JSON.parse(localStorage.getItem("fg-cart")) || [];
-
-        const count = cart.reduce((total,item) => {
-            return total + Number(item.quantity || 1);
-        },0);
-
-        document.getElementById("cartCount").textContent = count;
-
-    } catch(error) {
-
-        document.getElementById("cartCount").textContent = "0";
-
-    }
-
-}
-
-
-/* =================================
-   THEME
-================================= */
-
-function toggleTheme() {
-
-    document.body.classList.toggle("dark");
-
-    const theme =
-        document.body.classList.contains("dark")
-            ? "dark"
-            : "light";
-
-    localStorage.setItem("fg-theme",theme);
-
-}
-
-function loadTheme() {
-
-    if(localStorage.getItem("fg-theme") === "dark") {
-        document.body.classList.add("dark");
-    }
-
-}
-
-
-/* =================================
-   MENU
-================================= */
-
-function toggleMenu() {
-
-    document.getElementById("menuPanel")
-        .classList.toggle("show");
-
-}
-
-document.addEventListener("click",function(event) {
-
-    const menu = document.getElementById("menuPanel");
-
-    if(!menu.contains(event.target) &&
-       !event.target.closest(".nav-actions")) {
-
-        menu.classList.remove("show");
-
-    }
-
 });
-
-
-/* =================================
-   LANGUAGE
-================================= */
-
-function changeLanguage() {
-
-    const language =
-        document.getElementById("languageSelect").value;
-
-    localStorage.setItem("fg-language",language);
-
+searchButton.addEventListener("click",filterArticles);
+searchInput.addEventListener("input",filterArticles);
+searchInput.addEventListener("keydown",event=>{
+    if(event.key==="Enter")filterArticles();
+});
+/* MOBILE MENU */
+document.getElementById("menuBtn").addEventListener("click",()=>{
+    document.getElementById("drawer").classList.toggle("open");
+});
+/* THEME */
+function applyTheme(){
+    const theme=localStorage.getItem("foster_theme")||"light";
+    document.body.classList.toggle("dark",theme==="dark");
+    document.getElementById("themeToggle").textContent=theme==="dark"?"☀️ Light":"🌙 Dark";
 }
-
-function loadLanguage() {
-
-    const language =
-        localStorage.getItem("fg-language") || "en";
-
-    document.getElementById("languageSelect").value = language;
-
+document.getElementById("themeToggle").addEventListener("click",()=>{
+    const current=localStorage.getItem("foster_theme")||"light";
+    localStorage.setItem("foster_theme",current==="dark"?"light":"dark");
+    applyTheme();
+});
+/* LANGUAGE */
+const translations={
+    en:{home:"Home",accounts:"Accounts",blog:"Blog",about:"About",contact:"Contact",reviews:"Reviews",cart:"Shopping Cart"},
+    es:{home:"Inicio",accounts:"Cuentas",blog:"Blog",about:"Acerca de",contact:"Contacto",reviews:"Reseñas",cart:"Carrito"},
+    fr:{home:"Accueil",accounts:"Comptes",blog:"Blog",about:"À propos",contact:"Contact",reviews:"Avis",cart:"Panier"},
+    de:{home:"Startseite",accounts:"Konten",blog:"Blog",about:"Über uns",contact:"Kontakt",reviews:"Bewertungen",cart:"Warenkorb"},
+    pt:{home:"Início",accounts:"Contas",blog:"Blog",about:"Sobre",contact:"Contato",reviews:"Avaliações",cart:"Carrinho"},
+    ar:{home:"الرئيسية",accounts:"الحسابات",blog:"المدونة",about:"من نحن",contact:"اتصل بنا",reviews:"التقييمات",cart:"سلة التسوق"},
+    it:{home:"Home",accounts:"Account",blog:"Blog",about:"Chi siamo",contact:"Contatti",reviews:"Recensioni",cart:"Carrello"},
+    zh:{home:"首页",accounts:"账户",blog:"博客",about:"关于我们",contact:"联系我们",reviews:"评价",cart:"购物车"}
+};
+function applyLanguage(){
+    const lang=localStorage.getItem("foster_language")||"en";
+    const select=document.getElementById("languageSelect");
+    if(select)select.value=lang;
+    document.documentElement.lang=lang;
+    document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+    const t=translations[lang]||translations.en;
+    const links=document.querySelectorAll(".drawer a");
+    const keys=["home","accounts","blog","about","contact","reviews","cart"];
+    links.forEach((link,index)=>{
+        if(keys[index])link.textContent=t[keys[index]];
+    });
 }
-
-
-/* =================================
-   INITIALIZE
-================================= */
-
-renderArticles(articles);
+document.getElementById("languageSelect").addEventListener("change",event=>{
+    localStorage.setItem("foster_language",event.target.value);
+    applyLanguage();
+});
+/* INITIALIZE */
+document.getElementById("year").textContent=new Date().getFullYear();
 updateCartCount();
-loadTheme();
-loadLanguage();
-
-document.getElementById("year").textContent =
-    new Date().getFullYear();
-
+applyTheme();
+applyLanguage();
 </script>
-
 </body>
 </html>
