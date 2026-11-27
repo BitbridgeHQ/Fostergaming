@@ -4,1763 +4,944 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Checkout | Foster Gaming</title>
-
 <style>
-:root {
+:root{
     --red:#e32636;
     --red-dark:#bd1726;
     --green:#159447;
     --bg:#f5f6f8;
     --card:#fff;
     --text:#171717;
-    --muted:#777;
-    --border:#e6e6e6;
-    --shadow:0 8px 30px rgba(0,0,0,.06);
+    --muted:#737373;
+    --border:#e7e7e7;
+    --shadow:0 12px 35px rgba(0,0,0,.06);
 }
-
-body.dark {
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+}
+body.dark{
     --bg:#101114;
     --card:#1b1d22;
     --text:#f5f5f5;
     --muted:#aaa;
-    --border:#303239;
-    --shadow:0 8px 30px rgba(0,0,0,.25);
+    --border:#303238;
+    --shadow:0 12px 35px rgba(0,0,0,.25);
 }
-
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body {
-    font-family:Arial,Helvetica,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    transition:.25s;
-}
-
-a {
-    color:inherit;
-    text-decoration:none;
-}
-
-button,input,select {
-    font-family:inherit;
-}
-
-button {
-    cursor:pointer;
-}
-
-.top-strip {
-    background:#111;
-    color:white;
-    text-align:center;
-    padding:9px 15px;
-    font-size:12px;
-    letter-spacing:.5px;
-}
-
-header {
+a{text-decoration:none;color:inherit}
+button,input,select{font-family:inherit}
+button{cursor:pointer}
+.container{width:min(1100px,92%);margin:auto}
+/* HEADER */
+header{
     background:var(--card);
     border-bottom:1px solid var(--border);
     position:sticky;
     top:0;
     z-index:100;
 }
-
-.navbar {
-    max-width:1200px;
-    margin:auto;
+.header-inner{
     min-height:76px;
-    padding:12px 20px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:20px;
 }
-
-.brand {
+.logo{
     display:flex;
     align-items:center;
     gap:10px;
-    font-size:21px;
+    font-size:22px;
     font-weight:900;
-}
-
-.brand img {
-    width:43px;
-    height:43px;
-    object-fit:contain;
-}
-
-.brand span {
     color:var(--red);
 }
-
-.nav-actions {
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.icon-btn {
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    padding:10px 13px;
-    border-radius:10px;
-    font-size:16px;
-}
-
-.cart-link {
+.logo img{width:43px;height:43px;object-fit:contain}
+nav{display:flex;align-items:center;gap:22px}
+nav a{font-size:14px;font-weight:700}
+nav a:hover{color:var(--red)}
+.header-actions{display:flex;align-items:center;gap:12px}
+.cart-link{
     background:var(--red);
-    color:white;
-    padding:11px 15px;
-    border-radius:10px;
-    font-weight:bold;
+    color:#fff;
+    padding:10px 15px;
+    border-radius:9px;
+    font-weight:800;
     font-size:13px;
 }
-
-.cart-count {
-    background:white;
-    color:var(--red);
-    border-radius:50%;
-    padding:2px 6px;
-    margin-left:4px;
-    font-size:11px;
-}
-
-.menu-panel {
+.menu-btn{
     display:none;
-    position:absolute;
-    top:76px;
-    right:20px;
-    width:260px;
-    background:var(--card);
-    border:1px solid var(--border);
-    box-shadow:var(--shadow);
-    border-radius:14px;
-    padding:15px;
-    z-index:200;
-}
-
-.menu-panel.show {
-    display:block;
-}
-
-.menu-panel a,
-.menu-panel button,
-.menu-panel select {
-    display:block;
-    width:100%;
-    padding:12px;
-    margin-bottom:5px;
-    text-align:left;
-    border:0;
-    border-radius:8px;
     background:transparent;
+    border:0;
     color:var(--text);
-    font-size:14px;
+    font-size:27px;
 }
-
-.menu-panel a:hover,
-.menu-panel button:hover {
-    background:var(--bg);
+.drawer{
+    display:none;
+    padding:15px 4% 22px;
+    background:var(--card);
+    border-top:1px solid var(--border);
 }
-
-.menu-panel select {
+.drawer.open{display:block}
+.drawer a{display:block;padding:11px 0;font-weight:700}
+.drawer-controls{display:flex;gap:10px;margin-top:12px}
+.drawer-controls select,.drawer-controls button{
+    padding:10px;
     border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    border-radius:8px;
 }
-
-.container {
-    max-width:1150px;
-    margin:auto;
-    padding:35px 20px 70px;
-}
-
-.breadcrumb {
-    font-size:13px;
-    color:var(--muted);
-    margin-bottom:25px;
-}
-
-.breadcrumb a {
-    color:var(--red);
-}
-
-.page-heading {
-    margin-bottom:28px;
-}
-
-.page-heading h1 {
-    font-size:32px;
-    margin-bottom:9px;
-}
-
-.page-heading p {
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.7;
-}
-
-.checkout-layout {
+/* PAGE */
+.breadcrumb{padding:24px 0;color:var(--muted);font-size:13px}
+.breadcrumb a{color:var(--red);font-weight:700}
+.heading{margin-bottom:25px}
+.heading h1{font-size:30px;font-weight:900}
+.heading p{color:var(--muted);font-size:14px;margin-top:5px}
+/* CHECKOUT LAYOUT */
+.checkout-layout{
     display:grid;
-    grid-template-columns:1.3fr .8fr;
+    grid-template-columns:1fr 370px;
     gap:25px;
     align-items:start;
+    margin-bottom:65px;
 }
-
-.checkout-main {
+.checkout-main{
     display:flex;
     flex-direction:column;
     gap:20px;
 }
-
-.form-card,
-.summary-card {
+.panel{
     background:var(--card);
     border:1px solid var(--border);
     border-radius:15px;
-    padding:25px;
+    padding:24px;
     box-shadow:var(--shadow);
 }
-
-.form-card h2,
-.summary-card h2 {
-    font-size:19px;
-    margin-bottom:20px;
+.panel h2{font-size:19px;font-weight:900;margin-bottom:18px}
+.section-number{
+    display:inline-flex;
+    width:27px;
+    height:27px;
+    background:var(--red);
+    color:#fff;
+    border-radius:50%;
+    align-items:center;
+    justify-content:center;
+    font-size:13px;
+    margin-right:8px;
 }
-
-.form-grid {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:17px;
-}
-
-.form-group {
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-}
-
-.form-group.full {
-    grid-column:1/-1;
-}
-
-.form-group label {
-    font-size:12px;
-    font-weight:700;
-}
-
-.form-group input,
-.form-group select {
+/* FORM */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.form-group{display:flex;flex-direction:column;gap:7px}
+.form-group.full{grid-column:1/-1}
+.form-group label{font-size:12px;font-weight:800}
+.form-group input,.form-group select{
     width:100%;
-    padding:14px;
+    padding:13px;
     border:1px solid var(--border);
     border-radius:9px;
     background:var(--bg);
     color:var(--text);
     outline:none;
-    font-size:13px;
+    font-size:14px;
 }
-
-.form-group input:focus,
-.form-group select:focus {
-    border-color:var(--red);
-}
-
-.form-group input::placeholder {
-    color:var(--muted);
-}
-
-.optional {
-    color:var(--muted);
-    font-weight:normal;
-}
-
-.country-note {
-    font-size:11px;
-    color:var(--muted);
-    line-height:1.6;
-}
-
-.payment-preview {
-    margin-top:18px;
-    padding:15px;
-    border-radius:10px;
+.form-group input:focus,.form-group select:focus{border-color:var(--red)}
+.form-group small{font-size:11px;color:var(--muted)}
+.required{color:var(--red)}
+/* CURRENCY */
+.currency-box{
+    margin-top:16px;
     background:var(--bg);
     border:1px solid var(--border);
+    padding:15px;
+    border-radius:11px;
 }
-
-.payment-preview h3 {
-    font-size:13px;
-    margin-bottom:10px;
+.currency-box p{font-size:12px;color:var(--muted)}
+.currency-box strong{font-size:21px;color:var(--green)}
+.currency-box small{display:block;font-size:10px;color:var(--muted);margin-top:4px}
+/* PAYMENT METHODS */
+.payment-methods{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:11px;
 }
-
-.payment-tags {
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
+.payment-option{
+    border:1px solid var(--border);
+    background:var(--bg);
+    border-radius:11px;
+    padding:15px;
+    text-align:left;
+    color:var(--text);
+    transition:.2s;
 }
-
-.payment-tag {
+.payment-option:hover{border-color:var(--red);transform:translateY(-2px)}
+.payment-option.selected{
+    border:2px solid var(--red);
+    background:rgba(227,38,54,.06);
+}
+.payment-option .icon{font-size:23px;display:block;margin-bottom:6px}
+.payment-option strong{display:block;font-size:13px}
+.payment-option small{font-size:11px;color:var(--muted)}
+.payment-message{
+    margin-top:13px;
+    background:var(--bg);
+    border-radius:9px;
+    padding:12px;
+    color:var(--muted);
+    font-size:12px;
+}
+/* SUMMARY */
+.summary{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:20px;
-    padding:8px 11px;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.summary-card {
+    border-radius:15px;
+    padding:23px;
+    box-shadow:var(--shadow);
     position:sticky;
     top:100px;
 }
-
-.order-item {
+.summary h2{font-size:19px;font-weight:900;margin-bottom:17px}
+.order-item{
     display:flex;
-    gap:12px;
     align-items:center;
-    padding:13px 0;
+    gap:12px;
+    padding:12px 0;
     border-bottom:1px solid var(--border);
 }
-
-.order-image {
-    width:65px;
-    height:65px;
-    border-radius:9px;
-    overflow:hidden;
-    background:#e9e9e9;
-    flex-shrink:0;
-}
-
-.order-image img {
-    width:100%;
-    height:100%;
+.order-item img{
+    width:60px;
+    height:60px;
     object-fit:contain;
+    background:var(--bg);
+    border-radius:8px;
 }
-
-.order-info {
-    flex:1;
-    min-width:0;
-}
-
-.order-info h4 {
-    font-size:12px;
-    margin-bottom:5px;
-}
-
-.order-info p {
-    color:var(--muted);
-    font-size:11px;
-}
-
-.order-price {
-    font-size:13px;
-    font-weight:900;
-    color:var(--red);
-    white-space:nowrap;
-}
-
-.summary-row {
+.order-item-info{flex:1;min-width:0}
+.order-item-info strong{display:block;font-size:12px}
+.order-item-info small{font-size:11px;color:var(--muted)}
+.order-item-price{font-size:12px;font-weight:900;white-space:nowrap}
+.summary-row{
     display:flex;
     justify-content:space-between;
-    gap:15px;
-    margin:16px 0;
+    gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid var(--border);
     font-size:13px;
-    color:var(--muted);
 }
-
-.summary-row strong {
-    color:var(--text);
-    text-align:right;
-}
-
-.summary-total {
-    border-top:1px solid var(--border);
-    padding-top:18px;
-    margin-top:20px;
+.summary-row span:first-child{color:var(--muted)}
+.summary-total{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    font-size:15px;
+    padding:18px 0;
     font-weight:900;
 }
-
-.summary-total strong {
-    color:var(--red);
-    font-size:23px;
-}
-
-.local-total {
-    margin-top:12px;
-    background:var(--bg);
-    border-radius:10px;
-    padding:14px;
-}
-
-.local-total small {
-    display:block;
-    color:var(--muted);
-    font-size:11px;
-    margin-bottom:7px;
-}
-
-.local-total strong {
-    font-size:19px;
-    color:var(--green);
-}
-
-.exchange-note {
-    font-size:10px;
-    line-height:1.6;
-    color:var(--muted);
-    margin-top:8px;
-}
-
-.place-order-btn {
-    display:block;
+.summary-total strong{font-size:25px;color:var(--red)}
+.place-order{
     width:100%;
     border:0;
     background:var(--red);
-    color:white;
-    padding:16px;
+    color:#fff;
     border-radius:10px;
+    padding:15px;
     font-size:13px;
     font-weight:900;
-    margin-top:22px;
 }
-
-.place-order-btn:hover {
-    background:var(--red-dark);
-}
-
-.place-order-btn:disabled {
-    opacity:.6;
-    cursor:not-allowed;
-}
-
-.terms-note {
-    margin-top:15px;
-    font-size:10px;
-    color:var(--muted);
-    line-height:1.7;
-    text-align:center;
-}
-
-.secure-note {
-    margin-top:18px;
-    padding:14px;
-    border-radius:10px;
-    background:var(--bg);
+.place-order:hover{background:var(--red-dark)}
+.place-order:disabled{opacity:.45;cursor:not-allowed}
+.summary-note{
+    margin-top:14px;
     font-size:11px;
     color:var(--muted);
-    line-height:1.8;
+    text-align:center;
+    line-height:1.7;
 }
-
-.error-message {
-    display:none;
-    background:#ffe4e6;
-    color:#b91c1c;
-    padding:12px;
-    border-radius:8px;
-    font-size:12px;
-    margin-bottom:15px;
-}
-
-.error-message.show {
-    display:block;
-}
-
-.empty-checkout {
+/* EMPTY CART */
+.empty-cart{
     background:var(--card);
     border:1px solid var(--border);
-    padding:50px 20px;
-    text-align:center;
     border-radius:15px;
+    padding:65px 20px;
+    text-align:center;
+    margin-bottom:60px;
 }
-
-.empty-checkout h2 {
-    margin-bottom:10px;
-}
-
-.empty-checkout p {
-    color:var(--muted);
-    font-size:13px;
-    margin-bottom:20px;
-}
-
-.shop-btn {
+.empty-cart h2{margin-bottom:8px}
+.empty-cart p{color:var(--muted);margin-bottom:20px}
+.empty-cart a{
     display:inline-block;
     background:var(--red);
-    color:white;
-    padding:13px 20px;
-    border-radius:8px;
+    color:#fff;
+    padding:12px 20px;
+    border-radius:9px;
+    font-weight:900;
+}
+/* MODAL */
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    z-index:500;
+    align-items:center;
+    justify-content:center;
+    padding:18px;
+}
+.modal.show{display:flex}
+.modal-content{
+    width:min(480px,100%);
+    background:var(--card);
+    border-radius:16px;
+    padding:25px;
+    position:relative;
+    max-height:90vh;
+    overflow-y:auto;
+}
+.modal-close{
+    position:absolute;
+    right:17px;
+    top:12px;
+    background:transparent;
+    border:0;
+    color:var(--text);
+    font-size:27px;
+}
+.modal-content h2{font-size:21px;margin-bottom:7px;padding-right:25px}
+.modal-content>p{font-size:13px;color:var(--muted);margin-bottom:17px}
+.payment-detail{
+    background:var(--bg);
+    border:1px solid var(--border);
+    padding:15px;
+    border-radius:10px;
+    margin:12px 0;
+}
+.payment-detail span{display:block;color:var(--muted);font-size:11px;margin-bottom:5px}
+.payment-detail strong{font-size:14px;overflow-wrap:anywhere}
+.copy-btn{
+    margin-top:9px;
+    border:0;
+    background:var(--red);
+    color:#fff;
+    padding:8px 12px;
+    border-radius:7px;
+    font-size:11px;
+    font-weight:900;
+}
+.modal-note{
+    background:rgba(21,148,71,.09);
+    color:var(--green);
+    border-radius:9px;
+    padding:12px;
     font-size:12px;
-    font-weight:bold;
+    margin-top:15px;
 }
-
-footer {
-    background:#101010;
-    color:white;
-    padding:45px 20px 20px;
+.modal-done{
+    display:block;
+    width:100%;
+    margin-top:17px;
+    padding:13px;
+    border:0;
+    border-radius:9px;
+    background:var(--green);
+    color:#fff;
+    font-weight:900;
 }
-
-.footer-inner {
-    max-width:1150px;
-    margin:auto;
+/* FOOTER */
+footer{background:#101010;color:#fff;padding:45px 0 20px}
+.footer-grid{
     display:grid;
     grid-template-columns:2fr 1fr 1fr;
     gap:30px;
+    margin-bottom:30px;
 }
-
-.footer-brand {
-    font-size:21px;
-    font-weight:900;
-    margin-bottom:12px;
-}
-
-.footer-brand span {
-    color:var(--red);
-}
-
-.footer-column h4 {
-    margin-bottom:15px;
-    font-size:14px;
-}
-
-.footer-column p,
-.footer-column a {
-    display:block;
-    color:#aaa;
-    font-size:13px;
-    line-height:2;
-}
-
-.footer-column a:hover {
-    color:white;
-}
-
-.footer-bottom {
-    max-width:1150px;
-    margin:30px auto 0;
-    padding-top:20px;
-    border-top:1px solid #333;
+footer h3{margin-bottom:12px;font-size:16px}
+footer p,footer a{font-size:13px;color:#aaa;line-height:2}
+footer a:hover{color:#fff}
+.footer-bottom{
+    border-top:1px solid #303030;
+    padding-top:17px;
     text-align:center;
     color:#999;
-    font-size:11px;
-    line-height:2;
+    font-size:12px;
 }
-
-.toast {
-    position:fixed;
-    bottom:25px;
-    left:50%;
-    transform:translateX(-50%) translateY(100px);
-    background:#171717;
-    color:white;
-    padding:14px 22px;
-    border-radius:10px;
-    font-size:13px;
-    z-index:600;
-    transition:.3s;
-    opacity:0;
+.footer-bottom strong{color:#fff}
+@media(max-width:900px){
+    nav{display:none}
+    .menu-btn{display:block}
+    .checkout-layout{grid-template-columns:1fr}
+    .summary{position:static}
 }
-
-.toast.show {
-    transform:translateX(-50%) translateY(0);
-    opacity:1;
-}
-
-@media(max-width:850px) {
-    .checkout-layout {
-        grid-template-columns:1fr;
-    }
-
-    .summary-card {
-        position:static;
-    }
-}
-
-@media(max-width:600px) {
-    .navbar {
-        padding:12px 14px;
-    }
-
-    .brand {
-        font-size:17px;
-    }
-
-    .brand img {
-        width:35px;
-        height:35px;
-    }
-
-    .nav-actions {
-        gap:7px;
-    }
-
-    .icon-btn {
-        padding:9px 10px;
-    }
-
-    .cart-link {
-        padding:10px;
-        font-size:11px;
-    }
-
-    .container {
-        padding:25px 14px 50px;
-    }
-
-    .page-heading h1 {
-        font-size:26px;
-    }
-
-    .form-card,
-    .summary-card {
-        padding:18px;
-    }
-
-    .form-grid {
-        grid-template-columns:1fr;
-    }
-
-    .form-group.full {
-        grid-column:auto;
-    }
-
-    .footer-inner {
-        grid-template-columns:1fr;
-    }
-
-    .menu-panel {
-        right:10px;
-    }
+@media(max-width:600px){
+    .header-inner{min-height:66px}
+    .logo{font-size:19px}
+    .logo img{width:36px;height:36px}
+    .heading h1{font-size:25px}
+    .panel{padding:18px}
+    .form-grid{grid-template-columns:1fr}
+    .form-group.full{grid-column:auto}
+    .payment-methods{grid-template-columns:1fr 1fr}
+    .footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
-
-<div class="top-strip">
-    PREMIUM POKÉMON GO ACCOUNTS • BUY & SWAP WITH FOSTER GAMING
-</div>
-
 <header>
-    <nav class="navbar">
-
-        <a href="index.html" class="brand">
-            <img src="https://raw.githubusercontent.com/YOUR-USERNAME/Foster-Gaming/main/assets/logo.png" alt="Foster Gaming Logo">
-            <div>FOSTER <span>GAMING</span></div>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Foster Gaming Logo">
+            <span>FOSTER GAMING</span>
         </a>
-
-        <div class="nav-actions">
-            <button class="icon-btn" onclick="toggleTheme()">☀️</button>
-
-            <a href="cart.html" class="cart-link">
-                🛒 Cart <span class="cart-count" id="cartCount">0</span>
-            </a>
-
-            <button class="icon-btn" onclick="toggleMenu()">☰</button>
-        </div>
-
-        <div class="menu-panel" id="menuPanel">
-            <a href="index.html">Home</a>
-            <a href="accounts.html">Marketplace</a>
-            <a href="cart.html">Shopping Cart</a>
-            <a href="about.html">About Us</a>
-            <a href="blog.html">Blog</a>
-            <a href="reviews.html">Reviews</a>
-            <a href="contact.html">Contact</a>
-
-            <button onclick="toggleTheme()">🌙 Toggle Theme</button>
-
-            <select id="languageSelect" onchange="changeLanguage()">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-                <option value="pt">Português</option>
-                <option value="it">Italiano</option>
-                <option value="ja">日本語</option>
-                <option value="zh">中文</option>
-            </select>
-        </div>
-
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="accounts.html">Accounts</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
     </nav>
+    <div class="header-actions">
+        <a href="cart.html" class="cart-link">🛒 Cart <span id="cartCount">0</span></a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </div>
+</div>
+<div class="drawer" id="drawer">
+    <a href="index.html">Home</a>
+    <a href="accounts.html">Accounts</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="cart.html">Shopping Cart</a>
+    <div class="drawer-controls">
+        <select id="languageSelect" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="pt">Português</option>
+            <option value="ar">العربية</option>
+            <option value="it">Italiano</option>
+            <option value="zh">中文</option>
+        </select>
+        <button id="themeToggle">🌙 Theme</button>
+    </div>
+</div>
 </header>
-
 <main class="container">
-
     <div class="breadcrumb">
         <a href="index.html">Home</a> /
         <a href="cart.html">Cart</a> /
         Checkout
     </div>
-
-    <div class="page-heading">
-        <h1>Checkout</h1>
-        <p>Enter your details and review your order before choosing a payment method.</p>
-    </div>
-
-    <div id="checkoutContent"></div>
-
+<div class="heading">
+    <h1>Secure Checkout</h1>
+    <p>Complete your details and choose your preferred payment method.</p>
+</div>
+<div id="checkoutArea"></div>
 </main>
-
+<!-- PAYMENT MODAL -->
+<div class="modal" id="paymentModal">
+    <div class="modal-content">
+        <button class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+        <h2 id="modalTitle">Payment Instructions</h2>
+        <p id="modalDescription">Use the payment information below to complete your order.</p>
+    <div id="paymentDetails"></div>
+    <div class="modal-note">
+        After completing payment, click the button below to open an email with your order reference and payment confirmation details.
+    </div>
+    <button class="modal-done" id="paymentDone">DONE WITH PAYMENT? PROCEED HERE</button>
+</div>
+</div>
 <footer>
-
-    <div class="footer-inner">
-
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h3>FOSTER GAMING</h3>
+                <p>Your destination for premium Pokémon GO accounts. Buy, sell and swap stacked accounts with us.</p>
+            </div>
         <div>
-            <div class="footer-brand">FOSTER <span>GAMING</span></div>
-            <p style="color:#aaa;font-size:13px;line-height:1.8;max-width:350px;">
-                Your destination for premium Pokémon GO accounts. Explore available accounts and contact us for buying and swapping enquiries.
-            </p>
+            <h3>Quick Links</h3>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="accounts.html">Available Accounts</a></p>
+            <p><a href="cart.html">Shopping Cart</a></p>
+            <p><a href="reviews.html">Customer Reviews</a></p>
         </div>
-
-        <div class="footer-column">
-            <h4>Quick Links</h4>
-            <a href="index.html">Home</a>
-            <a href="accounts.html">Marketplace</a>
-            <a href="about.html">About Us</a>
-            <a href="blog.html">Blog</a>
-            <a href="reviews.html">Reviews</a>
+        <div>
+            <h3>Connect With Us</h3>
+            <p><a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok</a></p>
+            <p><a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a></p>
+            <p><a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a></p>
+            <p><a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a></p>
         </div>
-
-        <div class="footer-column">
-            <h4>Connect With Us</h4>
-            <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok 1</a>
-            <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a>
-            <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
-            <a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
-            <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
-        </div>
-
     </div>
-
     <div class="footer-bottom">
-        © <span id="year"></span> Foster Gaming. All rights reserved.<br>
-        Powered by BITBRIDGE TECHNOLOGIES INC
+        © <span id="year"></span> Foster Gaming. All Rights Reserved.
+        <br>Developed by <strong>BITBRIDGE TECHNOLOGIES INC</strong>
     </div>
-
+</div>
 </footer>
-
-<div class="toast" id="toast"></div>
-
 <script>
-
-/* =================================
-   COUNTRY AND PAYMENT CONFIGURATION
-================================= */
-
-const countries = {
-
-    "Nigeria": {
-        currency:"NGN",
-        symbol:"₦",
-        methods:["PayPal","Bitcoin (BTC)","Gift Cards","Nigerian Bank Transfer"]
+/* =====================================================
+   FOSTER GAMING PAYMENT SETTINGS
+   Replace the placeholder values below with your real
+   payment details before publishing the website.
+===================================================== */
+const PAYMENT_DETAILS = {
+    email:"harishwilliams010@gmail.com",
+    paypal:{
+        name:"PayPal",
+        detail:"YOUR-PAYPAL-EMAIL",
+        instruction:"Send the exact USD order total to this PayPal account."
     },
-
-    "United States": {
-        currency:"USD",
-        symbol:"$",
-        methods:["PayPal","Cash App","Zelle","Bitcoin (BTC)","Gift Cards"]
+    cashapp:{
+        name:"Cash App",
+        detail:"YOUR-CASH-APP-$CASHTAG",
+        instruction:"Use this Cash App tag to send your payment."
     },
-
-    "United Kingdom": {
-        currency:"GBP",
-        symbol:"£",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
+    zelle:{
+        name:"Zelle",
+        detail:"YOUR-ZELLE-EMAIL-OR-PHONE",
+        instruction:"Send your payment using the Zelle details shown."
     },
-
-    "Canada": {
-        currency:"CAD",
-        symbol:"CA$",
-        methods:["PayPal","Interac e-Transfer","Bitcoin (BTC)","Gift Cards"]
+    bitcoin:{
+        name:"Bitcoin (BTC)",
+        detail:"YOUR-BITCOIN-WALLET-ADDRESS",
+        instruction:"Send Bitcoin only to your confirmed Bitcoin wallet address."
     },
-
-    "Australia": {
-        currency:"AUD",
-        symbol:"A$",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
+    giftcard:{
+        name:"Gift Cards",
+        detail:"CONTACT SELLER FOR ACCEPTED GIFT CARD DETAILS",
+        instruction:"Contact Foster Gaming before purchasing a gift card. Confirm the accepted brand and amount first."
     },
-
-    "Ghana": {
-        currency:"GHS",
-        symbol:"GH₵",
-        methods:["PayPal","Bitcoin (BTC)","Gift Cards","Ghana Mobile Money"]
+    bank:{
+        name:"Bank Transfer",
+        detail:"YOUR-BANK-ACCOUNT-DETAILS",
+        instruction:"Replace this placeholder with your bank name, account name and account number."
     },
-
-    "South Africa": {
-        currency:"ZAR",
-        symbol:"R",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
+    nigeria:{
+        name:"Nigerian Bank Transfer",
+        detail:"YOUR-NIGERIAN-BANK-ACCOUNT-DETAILS",
+        instruction:"Replace this placeholder with your Nigerian bank name, account name and account number."
     },
-
-    "Kenya": {
-        currency:"KES",
-        symbol:"KSh",
-        methods:["PayPal","M-Pesa","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Uganda": {
-        currency:"UGX",
-        symbol:"USh",
-        methods:["PayPal","Mobile Money","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "India": {
-        currency:"INR",
-        symbol:"₹",
-        methods:["PayPal","UPI","Bank Transfer","Gift Cards"]
-    },
-
-    "Pakistan": {
-        currency:"PKR",
-        symbol:"Rs",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Philippines": {
-        currency:"PHP",
-        symbol:"₱",
-        methods:["PayPal","GCash","Bank Transfer","Gift Cards"]
-    },
-
-    "Brazil": {
-        currency:"BRL",
-        symbol:"R$",
-        methods:["PayPal","Pix","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Mexico": {
-        currency:"MXN",
-        symbol:"$",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Germany": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","SEPA Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "France": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","SEPA Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Italy": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","SEPA Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Spain": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","SEPA Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Netherlands": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","iDEAL","SEPA Bank Transfer","Gift Cards"]
-    },
-
-    "Ireland": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","SEPA Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Portugal": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","MB WAY","SEPA Bank Transfer","Gift Cards"]
-    },
-
-    "Japan": {
-        currency:"JPY",
-        symbol:"¥",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "China": {
-        currency:"CNY",
-        symbol:"¥",
-        methods:["PayPal","Bank Transfer","Gift Cards"]
-    },
-
-    "United Arab Emirates": {
-        currency:"AED",
-        symbol:"د.إ",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Saudi Arabia": {
-        currency:"SAR",
-        symbol:"ر.س",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Turkey": {
-        currency:"TRY",
-        symbol:"₺",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "New Zealand": {
-        currency:"NZD",
-        symbol:"NZ$",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Switzerland": {
-        currency:"CHF",
-        symbol:"CHF",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Sweden": {
-        currency:"SEK",
-        symbol:"kr",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Norway": {
-        currency:"NOK",
-        symbol:"kr",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Denmark": {
-        currency:"DKK",
-        symbol:"kr",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Singapore": {
-        currency:"SGD",
-        symbol:"S$",
-        methods:["PayPal","PayNow","Bank Transfer","Gift Cards"]
-    },
-
-    "Malaysia": {
-        currency:"MYR",
-        symbol:"RM",
-        methods:["PayPal","DuitNow","Bank Transfer","Gift Cards"]
-    },
-
-    "Indonesia": {
-        currency:"IDR",
-        symbol:"Rp",
-        methods:["PayPal","Bank Transfer","Gift Cards"]
-    },
-
-    "Thailand": {
-        currency:"THB",
-        symbol:"฿",
-        methods:["PayPal","Bank Transfer","Gift Cards"]
-    },
-
-    "Vietnam": {
-        currency:"VND",
-        symbol:"₫",
-        methods:["PayPal","Bank Transfer","Gift Cards"]
-    },
-
-    "Argentina": {
-        currency:"ARS",
-        symbol:"$",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Chile": {
-        currency:"CLP",
-        symbol:"$",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Colombia": {
-        currency:"COP",
-        symbol:"$",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Poland": {
-        currency:"PLN",
-        symbol:"zł",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Belgium": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","Bancontact","SEPA Bank Transfer","Gift Cards"]
-    },
-
-    "Austria": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","SEPA Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Finland": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","SEPA Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Greece": {
-        currency:"EUR",
-        symbol:"€",
-        methods:["PayPal","SEPA Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Ukraine": {
-        currency:"UAH",
-        symbol:"₴",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Egypt": {
-        currency:"EGP",
-        symbol:"E£",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Morocco": {
-        currency:"MAD",
-        symbol:"MAD",
-        methods:["PayPal","Bank Transfer","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Tanzania": {
-        currency:"TZS",
-        symbol:"TSh",
-        methods:["PayPal","Mobile Money","Bitcoin (BTC)","Gift Cards"]
-    },
-
-    "Rwanda": {
-        currency:"RWF",
-        symbol:"RF",
-        methods:["PayPal","Mobile Money","Bitcoin (BTC)","Gift Cards"]
+    ghana:{
+        name:"Ghana Mobile Money",
+        detail:"YOUR-GHANA-MOMO-DETAILS",
+        instruction:"Replace this placeholder with your Mobile Money number and registered name."
     }
-
 };
-
-
-/* =================================
-   CART
-================================= */
-
-function getCart() {
-
-    try {
-        const cart = JSON.parse(localStorage.getItem("fg-cart")) || [];
-        return Array.isArray(cart) ? cart : [];
-    } catch(error) {
+/* =====================================================
+   CURRENCY ESTIMATES
+   These are editable reference rates, not live exchange
+   rates. Update them before publishing if needed.
+===================================================== */
+const COUNTRIES = {
+    NG:{name:"Nigeria",currency:"NGN",symbol:"₦",rate:1500},
+    US:{name:"United States",currency:"USD",symbol:"$",rate:1},
+    GB:{name:"United Kingdom",currency:"GBP",symbol:"£",rate:0.79},
+    CA:{name:"Canada",currency:"CAD",symbol:"C$",rate:1.37},
+    GH:{name:"Ghana",currency:"GHS",symbol:"GH₵",rate:15},
+    ZA:{name:"South Africa",currency:"ZAR",symbol:"R",rate:18},
+    KE:{name:"Kenya",currency:"KES",symbol:"KSh",rate:130},
+    IN:{name:"India",currency:"INR",symbol:"₹",rate:84},
+    AU:{name:"Australia",currency:"AUD",symbol:"A$",rate:1.53},
+    DE:{name:"Germany",currency:"EUR",symbol:"€",rate:0.92},
+    FR:{name:"France",currency:"EUR",symbol:"€",rate:0.92},
+    IT:{name:"Italy",currency:"EUR",symbol:"€",rate:0.92},
+    ES:{name:"Spain",currency:"EUR",symbol:"€",rate:0.92},
+    PT:{name:"Portugal",currency:"EUR",symbol:"€",rate:0.92},
+    BR:{name:"Brazil",currency:"BRL",symbol:"R$",rate:5.8},
+    CN:{name:"China",currency:"CNY",symbol:"¥",rate:7.2},
+    OTHER:{name:"Other",currency:"USD",symbol:"$",rate:1}
+};
+/* CART */
+function getCart(){
+    try{
+        const cart=JSON.parse(localStorage.getItem("foster_cart"));
+        return Array.isArray(cart)?cart:[];
+    }catch(error){
         return [];
     }
-
 }
-
-function updateCartCount() {
-
-    const cart = getCart();
-
-    const count = cart.reduce((total,item) => {
-        return total + Number(item.quantity || 1);
+function updateCartCount(){
+    const cart=getCart();
+    const count=cart.reduce((sum,item)=>sum+(Number(item.quantity)||1),0);
+    document.getElementById("cartCount").textContent=count;
+}
+function cartTotal(){
+    return getCart().reduce((sum,item)=>{
+        return sum+(Number(item.price)||0)*(Number(item.quantity)||1);
     },0);
-
-    document.getElementById("cartCount").textContent = count;
-
 }
-
-function getSubtotal() {
-
-    return getCart().reduce((total,item) => {
-
-        return total +
-            (Number(item.price) || 0) *
-            (Number(item.quantity) || 1);
-
-    },0);
-
+function money(amount){
+    return "$"+Number(amount).toFixed(2);
 }
-
-
-/* =================================
-   CHECKOUT DISPLAY
-================================= */
-
-function escapeHTML(value) {
-
-    return String(value).replace(/[&<>"']/g,function(character) {
-
-        const entities = {
-            "&":"&amp;",
-            "<":"&lt;",
-            ">":"&gt;",
-            '"':"&quot;",
-            "'":"&#039;"
-        };
-
-        return entities[character];
-
-    });
-
+function escapeHTML(value){
+    return String(value).replace(/[&<>"']/g,char=>({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+    })[char]);
 }
-
-function renderCheckout() {
-
-    const cart = getCart();
-
-    const content = document.getElementById("checkoutContent");
-
-    if(cart.length === 0) {
-
-        content.innerHTML = `
-
-            <div class="empty-checkout">
-
-                <h2>Your Cart Is Empty</h2>
-
-                <p>Add an account to your cart before checking out.</p>
-
-                <a href="accounts.html" class="shop-btn">
-                    EXPLORE MARKETPLACE
-                </a>
-
+/* ORDER REFERENCE */
+function createReference(){
+    const random=Math.random().toString(36).substring(2,8).toUpperCase();
+    return "FG-"+Date.now().toString().slice(-7)+"-"+random;
+}
+let orderReference="";
+let selectedPayment="";
+let currentOrder=null;
+/* CHECKOUT DISPLAY */
+function renderCheckout(){
+    const cart=getCart();
+    const area=document.getElementById("checkoutArea");
+    if(cart.length===0){
+        area.innerHTML=`
+            <div class="empty-cart">
+                <h2>Your cart is empty</h2>
+                <p>Add an account to your cart before proceeding to checkout.</p>
+                <a href="accounts.html">Browse Available Accounts</a>
             </div>
-
         `;
-
         return;
-
     }
-
-    const subtotal = getSubtotal();
-
-    const orderItems = cart.map(item => `
-
-        <div class="order-item">
-
-            <div class="order-image">
-                <img src="${escapeHTML(item.image || "")}" alt="">
-            </div>
-
-            <div class="order-info">
-                <h4>${escapeHTML(item.name || "Pokémon GO Account")}</h4>
-                <p>Level ${escapeHTML(String(item.level || "N/A"))}</p>
-            </div>
-
-            <div class="order-price">
-                $${(Number(item.price) || 0).toFixed(2)}
-            </div>
-
-        </div>
-
+    const subtotal=cartTotal();
+    const countryOptions=Object.entries(COUNTRIES).map(([code,country])=>`
+        <option value="${code}">${country.name}</option>
     `).join("");
-
-    const countryOptions = Object.keys(countries)
-        .sort()
-        .map(country => `
-            <option value="${escapeHTML(country)}">
-                ${escapeHTML(country)}
-            </option>
-        `).join("");
-
-    content.innerHTML = `
-
+    const orderItems=cart.map(item=>`
+        <div class="order-item">
+            <img src="${escapeHTML(item.image||'images/logo.png')}" alt="Account image" onerror="this.src='images/logo.png'">
+            <div class="order-item-info">
+                <strong>${escapeHTML(item.name||'Pokémon GO Account')}</strong>
+                <small>Level ${escapeHTML(String(item.level||'N/A'))} · Qty: ${Number(item.quantity)||1}</small>
+            </div>
+            <div class="order-item-price">${money((Number(item.price)||0)*(Number(item.quantity)||1))}</div>
+        </div>
+    `).join("");
+    area.innerHTML=`
         <div class="checkout-layout">
-
             <div class="checkout-main">
-
-                <section class="form-card">
-
-                    <h2>1. Customer Information</h2>
-
-                    <div id="errorMessage" class="error-message"></div>
-
-                    <form id="checkoutForm">
-
+                <section class="panel">
+                    <h2><span class="section-number">1</span>Customer Information</h2>
+                    <form id="customerForm">
                         <div class="form-grid">
-
-                            <div class="form-group full">
-
-                                <label for="fullName">Full Name *</label>
-
-                                <input
-                                    type="text"
-                                    id="fullName"
-                                    placeholder="Enter your full name"
-                                    required
-                                    autocomplete="name"
-                                    maxlength="100"
-                                >
-
+                            <div class="form-group">
+                                <label for="customerName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="customerName" name="name" placeholder="Enter your full name" required>
                             </div>
-
-                            <div class="form-group full">
-
-                                <label for="email">Email Address *</label>
-
-                                <input
-                                    type="email"
-                                    id="email"
-                                    placeholder="Enter your email address"
-                                    required
-                                    autocomplete="email"
-                                    maxlength="150"
-                                >
-
+                            <div class="form-group">
+                                <label for="customerEmail">Email Address <span class="required">*</span></label>
+                                <input type="email" id="customerEmail" name="email" placeholder="you@example.com" required>
+                                <small>Your account credentials will be sent to this email after approval.</small>
                             </div>
-
-                            <div class="form-group full">
-
-                                <label for="phone">
-                                    Phone Number <span class="optional">(Optional)</span>
-                                </label>
-
-                                <input
-                                    type="tel"
-                                    id="phone"
-                                    placeholder="Enter your phone number"
-                                    autocomplete="tel"
-                                    maxlength="30"
-                                >
-
+                            <div class="form-group">
+                                <label for="customerPhone">Phone Number</label>
+                                <input type="tel" id="customerPhone" name="phone" placeholder="Enter phone number">
                             </div>
-
-                            <div class="form-group full">
-
-                                <label for="country">Country *</label>
-
-                                <select id="country" required>
+                            <div class="form-group">
+                                <label for="customerCountry">Country <span class="required">*</span></label>
+                                <select id="customerCountry" name="country" required>
                                     <option value="">Select your country</option>
                                     ${countryOptions}
                                 </select>
-
-                                <p class="country-note">
-                                    Your country determines the currency display and the payment options presented at the next step.
-                                </p>
-
                             </div>
-
                         </div>
-
                     </form>
-
-                </section>
-
-
-                <section class="form-card">
-
-                    <h2>2. Available Payment Methods</h2>
-
-                    <p style="font-size:12px;color:var(--muted);line-height:1.7;">
-                        Select your country above to see the payment methods configured for your location. You will choose your preferred method on the next page.
-                    </p>
-
-                    <div class="payment-preview">
-
-                        <h3 id="paymentPreviewTitle">
-                            Select a country to view payment methods
-                        </h3>
-
-                        <div class="payment-tags" id="paymentTags">
-                            <span class="payment-tag">Choose country first</span>
-                        </div>
-
+                    <div class="currency-box" id="currencyBox">
+                        <p>Estimated total in your local currency</p>
+                        <strong id="localTotal">Select your country</strong>
+                        <small>Reference estimate only. Your actual order price remains in USD.</small>
                     </div>
-
                 </section>
-
+                <section class="panel">
+                    <h2><span class="section-number">2</span>Choose Payment Method</h2>
+                    <div class="payment-methods" id="paymentMethods">
+                        <button type="button" class="payment-option" data-method="paypal">
+                            <span class="icon">🅿️</span>
+                            <strong>PayPal</strong>
+                            <small>International payment</small>
+                        </button>
+                        <button type="button" class="payment-option" data-method="cashapp">
+                            <span class="icon">💵</span>
+                            <strong>Cash App</strong>
+                            <small>United States</small>
+                        </button>
+                        <button type="button" class="payment-option" data-method="zelle">
+                            <span class="icon">🏦</span>
+                            <strong>Zelle</strong>
+                            <small>United States</small>
+                        </button>
+                        <button type="button" class="payment-option" data-method="bitcoin">
+                            <span class="icon">₿</span>
+                            <strong>Bitcoin</strong>
+                            <small>Crypto payment</small>
+                        </button>
+                        <button type="button" class="payment-option" data-method="giftcard">
+                            <span class="icon">🎁</span>
+                            <strong>Gift Cards</strong>
+                            <small>Ask about accepted cards</small>
+                        </button>
+                        <button type="button" class="payment-option" data-method="bank">
+                            <span class="icon">🌍</span>
+                            <strong>Bank Transfer</strong>
+                            <small>International bank transfer</small>
+                        </button>
+                        <button type="button" class="payment-option" data-method="nigeria">
+                            <span class="icon">🇳🇬</span>
+                            <strong>Nigerian Bank Transfer</strong>
+                            <small>Nigeria</small>
+                        </button>
+                        <button type="button" class="payment-option" data-method="ghana">
+                            <span class="icon">🇬🇭</span>
+                            <strong>Ghana Mobile Money</strong>
+                            <small>Ghana</small>
+                        </button>
+                    </div>
+                    <div class="payment-message" id="paymentMessage">
+                        Select a payment method to view its payment instructions.
+                    </div>
+                </section>
             </div>
-
-
-            <aside class="summary-card">
-
+            <aside class="summary">
                 <h2>Your Order</h2>
-
-                <div>
-                    ${orderItems}
-                </div>
-
-                <div class="summary-row">
-                    <span>Number of accounts</span>
-                    <strong>${cart.length}</strong>
-                </div>
-
+                <div id="orderItems">${orderItems}</div>
                 <div class="summary-row">
                     <span>Subtotal</span>
-                    <strong>$${subtotal.toFixed(2)}</strong>
+                    <strong>${money(subtotal)}</strong>
                 </div>
-
                 <div class="summary-row">
                     <span>Delivery</span>
-                    <strong>Digital Delivery</strong>
+                    <strong>Digital</strong>
                 </div>
-
                 <div class="summary-total">
-                    <span>Total (USD)</span>
-                    <strong>$${subtotal.toFixed(2)}</strong>
+                    <span>Total</span>
+                    <strong>${money(subtotal)}</strong>
                 </div>
-
-                <div class="local-total">
-
-                    <small>Estimated total in your local currency</small>
-
-                    <strong id="localTotal">
-                        Select your country
-                    </strong>
-
-                    <p class="exchange-note" id="exchangeNote">
-                        Exchange-rate conversion will appear after selecting your country.
-                    </p>
-
-                </div>
-
-                <button
-                    type="button"
-                    class="place-order-btn"
-                    id="continueButton"
-                    onclick="submitCheckout()"
-                >
-                    CONTINUE TO PAYMENT →
+                <button class="place-order" id="placeOrder" type="button" disabled>
+                    SELECT PAYMENT METHOD
                 </button>
-
-                <a href="cart.html" style="display:block;text-align:center;margin-top:15px;color:var(--red);font-size:12px;font-weight:bold;">
-                    ← BACK TO CART
-                </a>
-
-                <div class="secure-note">
-                    🔒 <strong>Order Review</strong><br>
-                    Please make sure your email address is correct. It will be used for order communication and account delivery after payment approval.
-                </div>
-
-                <p class="terms-note">
-                    Continuing means you have reviewed your order details. Payment is subject to confirmation and manual order approval.
+                <p class="summary-note">
+                    Your payment and order details will be reviewed manually.
+                    Account credentials are sent after payment approval.
                 </p>
-
             </aside>
-
         </div>
-
     `;
-
-    document.getElementById("country").addEventListener("change",updateCountryDetails);
-
-    updateCartCount();
-
+    document.getElementById("customerCountry").addEventListener("change",updateLocalCurrency);
+    document.querySelectorAll(".payment-option").forEach(button=>{
+        button.addEventListener("click",()=>selectPayment(button.dataset.method,button));
+    });
+    document.getElementById("placeOrder").addEventListener("click",preparePayment);
 }
-
-
-/* =================================
-   CURRENCY CONVERSION
-================================= */
-
-let exchangeRates = {};
-let exchangeRateDate = "";
-let exchangeRateLoading = false;
-
-async function loadExchangeRates() {
-
-    if(exchangeRateLoading) return;
-
-    exchangeRateLoading = true;
-
-    try {
-
-        const response = await fetch(
-            "https://open.er-api.com/v6/latest/USD"
-        );
-
-        if(!response.ok) {
-            throw new Error("Exchange-rate request failed");
-        }
-
-        const data = await response.json();
-
-        if(data.result !== "success") {
-            throw new Error("Exchange rates unavailable");
-        }
-
-        exchangeRates = data.rates || {};
-
-        exchangeRateDate = data.time_last_update_utc || "";
-
-        const selectedCountry = document.getElementById("country");
-
-        if(selectedCountry && selectedCountry.value) {
-            updateCountryDetails();
-        }
-
-    } catch(error) {
-
-        console.error("Currency conversion error:",error);
-
-        const note = document.getElementById("exchangeNote");
-
-        if(note) {
-            note.textContent =
-                "Live exchange rates are currently unavailable. USD pricing remains the reference price.";
-        }
-
-    } finally {
-
-        exchangeRateLoading = false;
-
+/* CURRENCY DISPLAY */
+function updateLocalCurrency(){
+    const code=document.getElementById("customerCountry").value;
+    const country=COUNTRIES[code];
+    const output=document.getElementById("localTotal");
+    if(!country){
+        output.textContent="Select your country";
+        return;
     }
-
+    const converted=cartTotal()*country.rate;
+    output.textContent=country.symbol+converted.toLocaleString("en-US",{
+        maximumFractionDigits:2,
+        minimumFractionDigits:2
+    })+" "+country.currency;
 }
-
-function formatMoney(amount,currency) {
-
-    try {
-
-        return new Intl.NumberFormat(undefined,{
-            style:"currency",
-            currency:currency
-        }).format(amount);
-
-    } catch(error) {
-
-        return amount.toFixed(2) + " " + currency;
-
+/* PAYMENT METHOD */
+function selectPayment(method,button){
+    const customerName=document.getElementById("customerName").value.trim();
+    const customerEmail=document.getElementById("customerEmail").value.trim();
+    const country=document.getElementById("customerCountry").value;
+    if(!customerName||!customerEmail||!country){
+        alert("Please enter your full name, email address and country first.");
+        return;
     }
-
+    if(!document.getElementById("customerForm").reportValidity()){
+        return;
+    }
+    selectedPayment=method;
+    document.querySelectorAll(".payment-option").forEach(option=>{
+        option.classList.remove("selected");
+    });
+    button.classList.add("selected");
+    const details=PAYMENT_DETAILS[method];
+    document.getElementById("paymentMessage").textContent=
+        details.name+" selected. Click the button below to view payment instructions.";
+    const placeOrder=document.getElementById("placeOrder");
+    placeOrder.disabled=false;
+    placeOrder.textContent="VIEW PAYMENT INSTRUCTIONS";
 }
-
-function updateCurrencyDisplay(country) {
-
-    const localTotal = document.getElementById("localTotal");
-    const note = document.getElementById("exchangeNote");
-
-    if(!localTotal || !note) return;
-
-    const config = countries[country];
-
-    if(!config) {
-
-        localTotal.textContent = "Select your country";
-
-        note.textContent =
-            "Choose your country to display the estimated local currency amount.";
-
-        return;
-
-    }
-
-    const rate = exchangeRates[config.currency];
-
-    if(!rate) {
-
-        localTotal.textContent = "Rate unavailable";
-
-        note.textContent =
-            "Live conversion is unavailable at the moment. Your order will still be priced in USD.";
-
-        return;
-
-    }
-
-    const converted = getSubtotal() * rate;
-
-    localTotal.textContent =
-        formatMoney(converted,config.currency);
-
-    note.textContent =
-        "Estimated conversion using the latest available USD exchange rate. Your payment provider may use a different rate.";
-
-    if(exchangeRateDate) {
-        note.textContent += " Rate data: " + exchangeRateDate + ".";
-    }
-
-}
-
-
-/* =================================
-   COUNTRY PAYMENT METHODS
-================================= */
-
-function updateCountryDetails() {
-
-    const country = document.getElementById("country").value;
-
-    const title = document.getElementById("paymentPreviewTitle");
-
-    const tags = document.getElementById("paymentTags");
-
-    if(!country || !countries[country]) {
-
-        title.textContent =
-            "Select a country to view payment methods";
-
-        tags.innerHTML =
-            '<span class="payment-tag">Choose country first</span>';
-
-        updateCurrencyDisplay("");
-
-        return;
-
-    }
-
-    const config = countries[country];
-
-    title.textContent =
-        "Payment methods for " + country;
-
-    tags.innerHTML = config.methods.map(method => `
-
-        <span class="payment-tag">
-            ${escapeHTML(method)}
-        </span>
-
-    `).join("");
-
-    updateCurrencyDisplay(country);
-
-}
-
-
-/* =================================
-   PLACE ORDER
-================================= */
-
-function generateOrderReference() {
-
-    const date = new Date();
-
-    const datePart =
-        date.getFullYear().toString() +
-        String(date.getMonth()+1).padStart(2,"0") +
-        String(date.getDate()).padStart(2,"0");
-
-    const randomPart =
-        Math.random().toString(36).substring(2,8).toUpperCase();
-
-    return "FG-" + datePart + "-" + randomPart;
-
-}
-
-function submitCheckout() {
-
-    const cart = getCart();
-
-    if(cart.length === 0) {
-
-        showToast("Your cart is empty.");
-
-        return;
-
-    }
-
-    const form = document.getElementById("checkoutForm");
-
-    const errorBox = document.getElementById("errorMessage");
-
-    if(!form.reportValidity()) {
+/* PAYMENT MODAL */
+function preparePayment(){
+    if(!selectedPayment){
+        alert("Please select a payment method.");
         return;
     }
-
-    const fullName =
-        document.getElementById("fullName").value.trim();
-
-    const email =
-        document.getElementById("email").value.trim();
-
-    const phone =
-        document.getElementById("phone").value.trim();
-
-    const country =
-        document.getElementById("country").value;
-
-    if(!countries[country]) {
-
-        errorBox.textContent =
-            "Please select a valid country.";
-
-        errorBox.classList.add("show");
-
+    const form=document.getElementById("customerForm");
+    if(!form.reportValidity()){
         return;
-
     }
-
-    if(!fullName || !email || !country) {
-
-        errorBox.textContent =
-            "Please complete all required fields.";
-
-        errorBox.classList.add("show");
-
+    const countryCode=document.getElementById("customerCountry").value;
+    if(!countryCode){
+        alert("Please select your country.");
         return;
-
     }
-
-    const config = countries[country];
-
-    const subtotal = getSubtotal();
-
-    const rate = exchangeRates[config.currency] || null;
-
-    const localAmount = rate ? subtotal * rate : null;
-
-    const order = {
-
-        reference:generateOrderReference(),
-
-        customer:{
-
-            fullName:fullName,
-            email:email,
-            phone:phone,
-            country:country
-
-        },
-
-        items:cart,
-
-        subtotalUSD:subtotal,
-
-        currency:config.currency,
-
-        currencySymbol:config.symbol,
-
-        exchangeRate:rate,
-
-        estimatedLocalAmount:localAmount,
-
-        paymentMethods:config.methods,
-
-        selectedPaymentMethod:null,
-
-        status:"Pending Payment",
-
-        createdAt:new Date().toISOString()
-
+    orderReference=createReference();
+    const country=COUNTRIES[countryCode];
+    currentOrder={
+        reference:orderReference,
+        name:document.getElementById("customerName").value.trim(),
+        email:document.getElementById("customerEmail").value.trim(),
+        phone:document.getElementById("customerPhone").value.trim(),
+        country:country.name,
+        payment:selectedPayment,
+        paymentName:PAYMENT_DETAILS[selectedPayment].name,
+        total:cartTotal(),
+        items:getCart()
     };
-
-    localStorage.setItem("fg-current-order",JSON.stringify(order));
-
-    window.location.href = "payment.html";
-
+    showPaymentModal();
 }
-
-
-/* =================================
-   THEME
-================================= */
-
-function toggleTheme() {
-
-    document.body.classList.toggle("dark");
-
-    const theme = document.body.classList.contains("dark")
-        ? "dark"
-        : "light";
-
-    localStorage.setItem("fg-theme",theme);
-
+function showPaymentModal(){
+    const details=PAYMENT_DETAILS[selectedPayment];
+    document.getElementById("modalTitle").textContent=details.name+" Payment";
+    document.getElementById("modalDescription").textContent=details.instruction;
+    const detailBox=document.getElementById("paymentDetails");
+    detailBox.innerHTML=`
+        <div class="payment-detail">
+            <span>Payment Method</span>
+            <strong>${escapeHTML(details.name)}</strong>
+        </div>
+        <div class="payment-detail">
+            <span>Payment Details</span>
+            <strong id="copyValue">${escapeHTML(details.detail)}</strong>
+            <br>
+            <button class="copy-btn" id="copyPayment">COPY DETAILS</button>
+        </div>
+        <div class="payment-detail">
+            <span>Order Reference</span>
+            <strong id="referenceValue">${escapeHTML(currentOrder.reference)}</strong>
+            <br>
+            <button class="copy-btn" id="copyReference">COPY REFERENCE</button>
+        </div>
+        <div class="payment-detail">
+            <span>Order Total</span>
+            <strong>${money(currentOrder.total)} USD</strong>
+        </div>
+    `;
+    document.getElementById("copyPayment").addEventListener("click",()=>{
+        copyText(details.detail);
+    });
+    document.getElementById("copyReference").addEventListener("click",()=>{
+        copyText(currentOrder.reference);
+    });
+    document.getElementById("paymentModal").classList.add("show");
 }
-
-function loadTheme() {
-
-    if(localStorage.getItem("fg-theme") === "dark") {
-        document.body.classList.add("dark");
+async function copyText(value){
+    try{
+        await navigator.clipboard.writeText(value);
+        alert("Copied successfully!");
+    }catch(error){
+        const input=document.createElement("textarea");
+        input.value=value;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand("copy");
+        input.remove();
+        alert("Copied successfully!");
     }
-
 }
-
-
-/* =================================
-   MENU
-================================= */
-
-function toggleMenu() {
-
-    document.getElementById("menuPanel").classList.toggle("show");
-
-}
-
-document.addEventListener("click",function(event) {
-
-    const menu = document.getElementById("menuPanel");
-
-    if(!menu.contains(event.target) &&
-       !event.target.closest(".nav-actions")) {
-
-        menu.classList.remove("show");
-
-    }
-
+document.getElementById("closeModal").addEventListener("click",()=>{
+    document.getElementById("paymentModal").classList.remove("show");
 });
-
-
-/* =================================
-   LANGUAGE PREFERENCE
-================================= */
-
-function changeLanguage() {
-
-    const language =
-        document.getElementById("languageSelect").value;
-
-    localStorage.setItem("fg-language",language);
-
-    showToast("Language preference saved.");
-
+document.getElementById("paymentModal").addEventListener("click",event=>{
+    if(event.target.id==="paymentModal"){
+        event.currentTarget.classList.remove("show");
+    }
+});
+/* PAYMENT CONFIRMATION EMAIL */
+document.getElementById("paymentDone").addEventListener("click",()=>{
+    if(!currentOrder)return;
+    const orderLines=currentOrder.items.map(item=>{
+        const quantity=Number(item.quantity)||1;
+        const price=Number(item.price)||0;
+        return `${item.name} | Level ${item.level} | Quantity: ${quantity} | ${money(price*quantity)}`;
+    }).join("\n");
+    const subject=`Payment Confirmation - ${currentOrder.reference}`;
+    const body=
+`Hello Foster Gaming,
+I have completed payment for my order.
+ORDER REFERENCE: ${currentOrder.reference}
+CUSTOMER INFORMATION
+Name: ${currentOrder.name}
+Email: ${currentOrder.email}
+Phone: ${currentOrder.phone||"Not provided"}
+Country: ${currentOrder.country}
+ORDER DETAILS
+${orderLines}
+PAYMENT INFORMATION
+Payment Method: ${currentOrder.paymentName}
+Order Total: ${money(currentOrder.total)} USD
+I have completed the payment and would like my order reviewed.
+Please confirm my payment and send the account credentials to my email after approval.
+Thank you.
+`;
+    const mailto="mailto:"+PAYMENT_DETAILS.email+
+        "?subject="+encodeURIComponent(subject)+
+        "&body="+encodeURIComponent(body);
+    window.location.href=mailto;
+});
+/* MOBILE MENU */
+document.getElementById("menuBtn").addEventListener("click",()=>{
+    document.getElementById("drawer").classList.toggle("open");
+});
+/* THEME */
+function applyTheme(){
+    const theme=localStorage.getItem("foster_theme")||"light";
+    document.body.classList.toggle("dark",theme==="dark");
+    document.getElementById("themeToggle").textContent=theme==="dark"?"☀️ Light":"🌙 Dark";
 }
-
-function loadLanguage() {
-
-    const language =
-        localStorage.getItem("fg-language") || "en";
-
-    document.getElementById("languageSelect").value = language;
-
+document.getElementById("themeToggle").addEventListener("click",()=>{
+    const current=localStorage.getItem("foster_theme")||"light";
+    localStorage.setItem("foster_theme",current==="dark"?"light":"dark");
+    applyTheme();
+});
+/* LANGUAGE SELECTOR */
+const translations={
+    en:{home:"Home",accounts:"Accounts",blog:"Blog",about:"About",contact:"Contact",reviews:"Reviews",cart:"Shopping Cart"},
+    es:{home:"Inicio",accounts:"Cuentas",blog:"Blog",about:"Acerca de",contact:"Contacto",reviews:"Reseñas",cart:"Carrito"},
+    fr:{home:"Accueil",accounts:"Comptes",blog:"Blog",about:"À propos",contact:"Contact",reviews:"Avis",cart:"Panier"},
+    de:{home:"Startseite",accounts:"Konten",blog:"Blog",about:"Über uns",contact:"Kontakt",reviews:"Bewertungen",cart:"Warenkorb"},
+    pt:{home:"Início",accounts:"Contas",blog:"Blog",about:"Sobre",contact:"Contato",reviews:"Avaliações",cart:"Carrinho"},
+    ar:{home:"الرئيسية",accounts:"الحسابات",blog:"المدونة",about:"من نحن",contact:"اتصل بنا",reviews:"التقييمات",cart:"سلة التسوق"},
+    it:{home:"Home",accounts:"Account",blog:"Blog",about:"Chi siamo",contact:"Contatti",reviews:"Recensioni",cart:"Carrello"},
+    zh:{home:"首页",accounts:"账户",blog:"博客",about:"关于我们",contact:"联系我们",reviews:"评价",cart:"购物车"}
+};
+function applyLanguage(){
+    const lang=localStorage.getItem("foster_language")||"en";
+    const select=document.getElementById("languageSelect");
+    if(select)select.value=lang;
+    document.documentElement.lang=lang;
+    document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+    const t=translations[lang]||translations.en;
+    const links=document.querySelectorAll(".drawer a");
+    const keys=["home","accounts","blog","about","contact","reviews","cart"];
+    links.forEach((link,index)=>{
+        if(keys[index])link.textContent=t[keys[index]];
+    });
 }
-
-
-/* =================================
-   TOAST
-================================= */
-
-function showToast(message) {
-
-    const toast = document.getElementById("toast");
-
-    toast.textContent = message;
-
-    toast.classList.add("show");
-
-    setTimeout(() => {
-        toast.classList.remove("show");
-    },2500);
-
-}
-
-
-/* =================================
-   INITIALIZE
-================================= */
-
-loadTheme();
-loadLanguage();
+document.getElementById("languageSelect").addEventListener("change",event=>{
+    localStorage.setItem("foster_language",event.target.value);
+    applyLanguage();
+});
+/* INITIALIZE */
+document.getElementById("year").textContent=new Date().getFullYear();
+applyTheme();
+applyLanguage();
 updateCartCount();
 renderCheckout();
-loadExchangeRates();
-
-document.getElementById("year").textContent =
-    new Date().getFullYear();
-
 </script>
-
 </body>
 </html>
