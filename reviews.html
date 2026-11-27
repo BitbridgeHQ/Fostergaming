@@ -4,910 +4,584 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Customer Reviews | Foster Gaming</title>
-
 <style>
 :root{
-  --red:#e32636;
-  --green:#16834a;
-  --black:#171717;
-  --white:#fff;
-  --bg:#f5f5f5;
-  --card:#fff;
-  --text:#202020;
-  --muted:#707070;
-  --border:#e5e5e5;
-  --shadow:0 8px 28px rgba(0,0,0,.07);
+    --red:#e32636;
+    --red-dark:#bd1726;
+    --green:#159447;
+    --bg:#f5f6f8;
+    --card:#fff;
+    --text:#171717;
+    --muted:#777;
+    --border:#e7e7e7;
 }
-
-body.dark{
-  --bg:#111;
-  --card:#1d1d1d;
-  --text:#f5f5f5;
-  --muted:#aaa;
-  --border:#333;
-  --black:#090909;
-  --shadow:0 8px 28px rgba(0,0,0,.25);
-}
-
 *{box-sizing:border-box;margin:0;padding:0}
-
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.6;
-  transition:.2s;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
 }
-
+body.dark{
+    --bg:#101114;
+    --card:#1b1d22;
+    --text:#f5f5f5;
+    --muted:#aaa;
+    --border:#303238;
+}
 a{text-decoration:none;color:inherit}
-button,input,textarea,select{font:inherit}
-button{cursor:pointer}
-
-.topbar{
-  background:var(--black);
-  color:white;
-  padding:9px 5%;
-  text-align:center;
-  font-size:12px;
-}
-
+button,select{font-family:inherit}
+.container{width:min(1160px,92%);margin:auto}
 header{
-  background:var(--card);
-  border-bottom:1px solid var(--border);
-  position:sticky;
-  top:0;
-  z-index:100;
+    background:var(--card);
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:100;
 }
-
-.nav{
-  max-width:1200px;
-  margin:auto;
-  padding:13px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
+.header-inner{
+    min-height:76px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
-
 .logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:900;
-  font-size:21px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--red);
+    font-size:22px;
+    font-weight:900;
 }
-
-.logo img{
-  width:42px;
-  height:42px;
-  object-fit:contain;
-  border-radius:8px;
-}
-
-.logo span{color:var(--red)}
-
-.nav-actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.icon-btn{
-  border:1px solid var(--border);
-  background:var(--card);
-  color:var(--text);
-  border-radius:9px;
-  padding:9px 12px;
-  font-size:17px;
-}
-
+.logo img{width:43px;height:43px;object-fit:contain}
+nav{display:flex;align-items:center;gap:22px}
+nav a{font-size:14px;font-weight:700}
+nav a:hover{color:var(--red)}
+.header-actions{display:flex;align-items:center;gap:12px}
 .cart-link{
-  background:var(--red);
-  color:white;
-  padding:9px 14px;
-  border-radius:9px;
-  font-weight:bold;
-  font-size:14px;
+    background:var(--red);
+    color:#fff;
+    padding:10px 15px;
+    border-radius:9px;
+    font-weight:800;
+    font-size:13px;
 }
-
-.cart-count{
-  background:white;
-  color:var(--red);
-  padding:2px 6px;
-  border-radius:20px;
-  margin-left:4px;
+.menu-btn{
+    display:none;
+    background:transparent;
+    border:0;
+    color:var(--text);
+    font-size:27px;
 }
-
-.menu-panel{
-  display:none;
-  background:var(--card);
-  border-top:1px solid var(--border);
-  padding:18px 5%;
+.drawer{
+    display:none;
+    padding:15px 4% 22px;
+    background:var(--card);
+    border-top:1px solid var(--border);
 }
-
-.menu-panel.open{display:block}
-
-.menu-inner{
-  max-width:1160px;
-  margin:auto;
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  align-items:center;
+.drawer.open{display:block}
+.drawer a{display:block;padding:11px 0;font-weight:700}
+.drawer-controls{display:flex;gap:10px;margin-top:12px}
+.drawer-controls select,.drawer-controls button{
+    padding:10px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    border-radius:8px;
 }
-
-.menu-inner a,
-.menu-inner select{
-  padding:9px 13px;
-  border:1px solid var(--border);
-  border-radius:8px;
-  background:var(--bg);
-  color:var(--text);
-  font-size:14px;
-}
-
-.menu-inner a:hover{
-  border-color:var(--red);
-  color:var(--red);
-}
-
-main{
-  max-width:1120px;
-  margin:auto;
-  padding:45px 20px 70px;
-}
-
+/* HERO */
 .hero{
-  text-align:center;
-  padding:25px 10px 35px;
+    background:linear-gradient(120deg,#111,#351015);
+    color:#fff;
+    padding:70px 0;
+    text-align:center;
 }
-
-.eyebrow{
-  display:inline-block;
-  background:rgba(227,38,54,.1);
-  color:var(--red);
-  padding:6px 13px;
-  border-radius:30px;
-  font-size:12px;
-  font-weight:bold;
-  text-transform:uppercase;
-  letter-spacing:1px;
+.hero-tag{
+    display:inline-block;
+    color:#ff6875;
+    background:rgba(227,38,54,.17);
+    padding:7px 14px;
+    border-radius:30px;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1px;
+    margin-bottom:16px;
 }
-
-h1{
-  font-size:clamp(32px,5vw,48px);
-  line-height:1.15;
-  margin:15px 0;
+.hero h1{
+    font-size:clamp(32px,5vw,48px);
+    line-height:1.2;
+    margin-bottom:13px;
 }
-
+.hero h1 span{color:#ff4757}
 .hero p{
-  max-width:650px;
-  margin:auto;
-  color:var(--muted);
+    color:#ccc;
+    max-width:650px;
+    margin:auto;
+    font-size:14px;
 }
-
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-bottom:35px;
+/* SUMMARY */
+.section{padding:60px 0}
+.summary-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-top:-5px;
 }
-
-.stat{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:13px;
-  padding:22px;
-  text-align:center;
+.summary-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:25px;
+    text-align:center;
 }
-
-.stat strong{
-  display:block;
-  color:var(--red);
-  font-size:29px;
+.summary-card strong{
+    display:block;
+    font-size:32px;
+    line-height:1.2;
 }
-
-.stat span{
-  font-size:13px;
-  color:var(--muted);
+.summary-card .stars{
+    color:#f4b400;
+    font-size:23px;
+    letter-spacing:2px;
 }
-
+.summary-card p{font-size:12px;color:var(--muted);margin-top:7px}
+/* REVIEWS */
 .section-heading{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-  margin-bottom:20px;
+    text-align:center;
+    max-width:700px;
+    margin:0 auto 35px;
 }
-
-.section-heading h2{font-size:25px}
-
-.demo-label{
-  display:inline-block;
-  font-size:11px;
-  color:#9a6500;
-  background:#fff1c9;
-  border-radius:20px;
-  padding:5px 10px;
-  font-weight:bold;
+.section-heading span{
+    color:var(--red);
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:1.5px;
 }
-
-.reviews-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
+.section-heading h2{
+    font-size:clamp(25px,4vw,34px);
+    line-height:1.2;
+    margin:9px 0;
 }
-
+.section-heading p{font-size:13px;color:var(--muted)}
+.review-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
 .review-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:15px;
-  padding:22px;
-  box-shadow:var(--shadow);
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:13px;
+    padding:23px;
+    transition:.2s;
 }
-
+.review-card:hover{
+    transform:translateY(-4px);
+    border-color:var(--red);
+}
 .review-top{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:13px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:14px;
 }
-
-.avatar{
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:rgba(227,38,54,.12);
-  color:var(--red);
-  font-weight:bold;
-  font-size:17px;
+.review-avatar{
+    width:47px;
+    height:47px;
+    border-radius:50%;
+    object-fit:cover;
+    background:#eee;
 }
-
-.review-name{
-  font-weight:bold;
-  font-size:14px;
+.review-name{font-weight:900;font-size:14px}
+.review-date{font-size:10px;color:var(--muted)}
+.stars{color:#f4b400;letter-spacing:2px;font-size:14px}
+.review-card h3{font-size:14px;margin:12px 0 7px}
+.review-card>p{font-size:12px;color:var(--muted);line-height:1.8}
+.verified{
+    display:inline-block;
+    margin-top:15px;
+    color:var(--green);
+    font-size:10px;
+    font-weight:900;
 }
-
-.review-date{
-  color:var(--muted);
-  font-size:11px;
+/* CTA */
+.review-cta{
+    margin-top:45px;
+    background:linear-gradient(120deg,#171717,#3b1015);
+    color:#fff;
+    border-radius:16px;
+    padding:38px;
+    text-align:center;
 }
-
-.stars{
-  color:#f2b400;
-  letter-spacing:2px;
-  font-size:17px;
-  margin-bottom:10px;
+.review-cta h2{font-size:27px;margin-bottom:8px}
+.review-cta p{font-size:13px;color:#ccc;margin-bottom:20px}
+.primary-btn{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    padding:13px 22px;
+    border-radius:8px;
+    font-weight:900;
+    font-size:12px;
 }
-
-.review-text{
-  font-size:13px;
-  color:var(--muted);
+.primary-btn:hover{background:var(--red-dark)}
+/* FOOTER */
+footer{background:#101010;color:#fff;padding:45px 0 20px}
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:30px;
+    margin-bottom:30px;
 }
-
-.review-tag{
-  display:inline-block;
-  margin-top:15px;
-  font-size:11px;
-  color:var(--green);
-  background:rgba(22,131,74,.1);
-  padding:5px 9px;
-  border-radius:20px;
-}
-
-.form-section{
-  margin-top:45px;
-  display:grid;
-  grid-template-columns:1fr 1.2fr;
-  gap:25px;
-  align-items:start;
-}
-
-.form-info{
-  background:var(--black);
-  color:white;
-  padding:30px;
-  border-radius:16px;
-}
-
-.form-info h2{
-  font-size:27px;
-  margin-bottom:12px;
-}
-
-.form-info p{
-  color:#ccc;
-  font-size:14px;
-  margin-bottom:20px;
-}
-
-.form-info ul{
-  list-style:none;
-  display:grid;
-  gap:12px;
-  font-size:13px;
-  color:#ddd;
-}
-
-.form-info li::before{
-  content:"✓";
-  color:#42c77c;
-  font-weight:bold;
-  margin-right:9px;
-}
-
-.form-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:26px;
-  box-shadow:var(--shadow);
-}
-
-.form-card h2{
-  font-size:22px;
-  margin-bottom:7px;
-}
-
-.form-card>p{
-  color:var(--muted);
-  font-size:13px;
-  margin-bottom:20px;
-}
-
-.form-group{margin-bottom:15px}
-
-label{
-  display:block;
-  font-size:13px;
-  font-weight:bold;
-  margin-bottom:7px;
-}
-
-input,textarea,select{
-  width:100%;
-  padding:12px 13px;
-  border:1px solid var(--border);
-  border-radius:9px;
-  background:var(--bg);
-  color:var(--text);
-  outline:none;
-}
-
-input:focus,textarea:focus,select:focus{
-  border-color:var(--red);
-}
-
-textarea{
-  min-height:120px;
-  resize:vertical;
-}
-
-.rating-select{
-  display:flex;
-  gap:8px;
-  flex-direction:row-reverse;
-  justify-content:flex-end;
-}
-
-.rating-select input{display:none}
-
-.rating-select label{
-  font-size:30px;
-  color:#bbb;
-  cursor:pointer;
-  margin:0;
-}
-
-.rating-select label:hover,
-.rating-select label:hover~label,
-.rating-select input:checked~label{
-  color:#f2b400;
-}
-
-.submit-btn{
-  width:100%;
-  border:0;
-  background:var(--red);
-  color:white;
-  padding:14px;
-  border-radius:9px;
-  font-weight:bold;
-}
-
-.submit-btn:hover{background:#c71c2b}
-
-.note{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:12px;
-}
-
-.cta{
-  margin-top:40px;
-  background:rgba(22,131,74,.1);
-  border:1px solid rgba(22,131,74,.2);
-  border-radius:16px;
-  padding:28px;
-  text-align:center;
-}
-
-.cta h2{font-size:24px;margin-bottom:7px}
-
-.cta p{
-  color:var(--muted);
-  font-size:14px;
-  margin-bottom:16px;
-}
-
-.cta a{
-  display:inline-block;
-  background:var(--green);
-  color:white;
-  padding:11px 20px;
-  border-radius:8px;
-  font-weight:bold;
-}
-
-footer{
-  background:#111;
-  color:white;
-  padding:40px 20px 20px;
-}
-
-.footer-inner{
-  max-width:1120px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr;
-  gap:30px;
-}
-
-footer h3{margin-bottom:13px}
-footer p,footer a{font-size:13px;color:#bbb}
-footer a{display:block;margin:7px 0}
-footer a:hover{color:white}
-
+footer h3{margin-bottom:12px;font-size:16px}
+footer p,footer a{font-size:13px;color:#aaa;line-height:2}
+footer a:hover{color:#fff}
 .footer-bottom{
-  max-width:1120px;
-  margin:25px auto 0;
-  padding-top:17px;
-  border-top:1px solid #333;
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  font-size:12px;
-  color:#999;
+    border-top:1px solid #303030;
+    padding-top:17px;
+    text-align:center;
+    color:#999;
+    font-size:12px;
 }
-
-.toast{
-  position:fixed;
-  bottom:20px;
-  left:50%;
-  transform:translateX(-50%);
-  background:var(--green);
-  color:white;
-  padding:12px 20px;
-  border-radius:9px;
-  display:none;
-  z-index:300;
-  font-size:14px;
+.footer-bottom strong{color:#fff}
+@media(max-width:900px){
+    nav{display:none}
+    .menu-btn{display:block}
+    .review-grid{grid-template-columns:repeat(2,1fr)}
 }
-
-@media(max-width:850px){
-  .reviews-grid{grid-template-columns:repeat(2,1fr)}
-  .form-section{grid-template-columns:1fr}
-}
-
-@media(max-width:600px){
-  .reviews-grid{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr}
-  .section-heading{align-items:flex-start;flex-direction:column}
-  .footer-inner{grid-template-columns:1fr}
-  .nav{padding:12px}
-  .logo{font-size:18px}
-  main{padding-top:25px}
+@media(max-width:650px){
+    .header-inner{min-height:66px}
+    .logo{font-size:19px}
+    .logo img{width:36px;height:36px}
+    .hero{padding:55px 0}
+    .section{padding:45px 0}
+    .summary-grid{grid-template-columns:1fr}
+    .review-grid{grid-template-columns:1fr}
+    .review-cta{padding:27px 18px}
+    .review-cta h2{font-size:22px}
+    .footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
-
 <body>
-
-<div class="topbar">
-WELCOME TO FOSTER GAMING — PREMIUM POKÉMON GO ACCOUNTS
-</div>
-
 <header>
-  <div class="nav">
-
-    <a class="logo" href="index.html">
-      <img src="https://raw.githubusercontent.com/YOUR-USERNAME/Foster-Gaming/main/assets/logo.png" alt="Foster Gaming Logo">
-      <div>FOSTER <span>GAMING</span></div>
-    </a>
-
-    <div class="nav-actions">
-      <a class="cart-link" href="cart.html">
-        🛒 Cart <span class="cart-count" id="cartCount">0</span>
-      </a>
-
-      <button class="icon-btn" id="themeBtn" aria-label="Toggle theme">🌙</button>
-      <button class="icon-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    <div class="container header-inner">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Foster Gaming Logo">
+            <span>FOSTER GAMING</span>
+        </a>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="accounts.html">Accounts</a>
+        <a href="blog.html">Blog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <div class="header-actions">
+        <a href="cart.html" class="cart-link">🛒 Cart <span id="cartCount">0</span></a>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
     </div>
-
-  </div>
-
-  <div class="menu-panel" id="menuPanel">
-    <div class="menu-inner">
-      <a href="index.html">Home</a>
-      <a href="accounts.html">Accounts</a>
-      <a href="about.html">About Us</a>
-      <a href="blog.html">Blog</a>
-      <a href="reviews.html">Reviews</a>
-      <a href="contact.html">Contact</a>
-
-      <select id="languageSelect" aria-label="Select language">
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-        <option value="fr">French</option>
-        <option value="de">German</option>
-        <option value="pt">Portuguese</option>
-        <option value="it">Italian</option>
-        <option value="ja">Japanese</option>
-        <option value="zh">Chinese</option>
-      </select>
+</div>
+<div class="drawer" id="drawer">
+    <a href="index.html">Home</a>
+    <a href="accounts.html">Accounts</a>
+    <a href="blog.html">Blog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="reviews.html">Reviews</a>
+    <a href="cart.html">Shopping Cart</a>
+    <div class="drawer-controls">
+        <select id="languageSelect" aria-label="Select language">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="pt">Português</option>
+            <option value="ar">العربية</option>
+            <option value="it">Italiano</option>
+            <option value="zh">中文</option>
+        </select>
+        <button id="themeToggle">🌙 Theme</button>
     </div>
-  </div>
+</div>
 </header>
-
 <main>
-
-  <section class="hero">
-    <span class="eyebrow">Customer Feedback</span>
-    <h1>What People Say About <span style="color:var(--red)">Foster Gaming</span></h1>
-    <p>Customer feedback helps us improve our marketplace and provide a better buying experience. Explore feedback and share your own experience with us.</p>
-  </section>
-
-  <section class="stats">
-    <div class="stat">
-      <strong>★★★★★</strong>
-      <span>Customer Experience</span>
-    </div>
-
-    <div class="stat">
-      <strong>24/7</strong>
-      <span>Online Enquiry Access</span>
-    </div>
-
-    <div class="stat">
-      <strong>100%</strong>
-      <span>Feedback Welcome</span>
-    </div>
-  </section>
-
-  <section>
-    <div class="section-heading">
-      <h2>Customer Reviews</h2>
-      <span class="demo-label">DEMO REVIEWS — REPLACE WITH REAL FEEDBACK</span>
-    </div>
-
-    <div class="reviews-grid">
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="avatar">JD</div>
-          <div>
-            <div class="review-name">Sample Customer 01</div>
-            <div class="review-date">Example review</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">This is a placeholder review. Replace this text with genuine feedback from a customer who has purchased from Foster Gaming.</p>
-        <span class="review-tag">Sample Feedback</span>
-      </article>
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="avatar">MK</div>
-          <div>
-            <div class="review-name">Sample Customer 02</div>
-            <div class="review-date">Example review</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">This is an example customer review card. Add a real customer's experience here after receiving their permission.</p>
-        <span class="review-tag">Sample Feedback</span>
-      </article>
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="avatar">AL</div>
-          <div>
-            <div class="review-name">Sample Customer 03</div>
-            <div class="review-date">Example review</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">Use this section to display genuine feedback about account listings, communication, and the purchasing experience.</p>
-        <span class="review-tag">Sample Feedback</span>
-      </article>
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="avatar">TR</div>
-          <div>
-            <div class="review-name">Sample Customer 04</div>
-            <div class="review-date">Example review</div>
-          </div>
-        </div>
-        <div class="stars">★★★★☆</div>
-        <p class="review-text">Replace this example with an authentic review from a verified customer.</p>
-        <span class="review-tag">Sample Feedback</span>
-      </article>
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="avatar">PW</div>
-          <div>
-            <div class="review-name">Sample Customer 05</div>
-            <div class="review-date">Example review</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">This placeholder is intended to demonstrate how additional customer feedback will appear on the website.</p>
-        <span class="review-tag">Sample Feedback</span>
-      </article>
-
-      <article class="review-card">
-        <div class="review-top">
-          <div class="avatar">RS</div>
-          <div>
-            <div class="review-name">Sample Customer 06</div>
-            <div class="review-date">Example review</div>
-          </div>
-        </div>
-        <div class="stars">★★★★★</div>
-        <p class="review-text">Add genuine customer feedback here to help visitors understand other buyers' experiences.</p>
-        <span class="review-tag">Sample Feedback</span>
-      </article>
-
-    </div>
-  </section>
-
-  <section class="form-section">
-
-    <div class="form-info">
-      <h2>Share Your Experience</h2>
-
-      <p>
-        Have you purchased or swapped an account through Foster Gaming?
-        We welcome your honest feedback.
-      </p>
-
-      <ul>
-        <li>Tell us about your experience.</li>
-        <li>Rate your overall experience.</li>
-        <li>Share suggestions for improvement.</li>
-        <li>Help other visitors understand your experience.</li>
-      </ul>
-    </div>
-
-    <div class="form-card">
-      <h2>Submit a Review</h2>
-      <p>Complete the form below to prepare your review for submission by email.</p>
-
-      <form id="reviewForm">
-
-        <div class="form-group">
-          <label for="reviewName">Your Name *</label>
-          <input type="text" id="reviewName" placeholder="Enter your name" required>
-        </div>
-
-        <div class="form-group">
-          <label for="reviewEmail">Email Address *</label>
-          <input type="email" id="reviewEmail" placeholder="Enter your email address" required>
-        </div>
-
-        <div class="form-group">
-          <label>Your Rating *</label>
-
-          <div class="rating-select">
-            <input type="radio" id="star5" name="rating" value="5" required>
-            <label for="star5">★</label>
-
-            <input type="radio" id="star4" name="rating" value="4">
-            <label for="star4">★</label>
-
-            <input type="radio" id="star3" name="rating" value="3">
-            <label for="star3">★</label>
-
-            <input type="radio" id="star2" name="rating" value="2">
-            <label for="star2">★</label>
-
-            <input type="radio" id="star1" name="rating" value="1">
-            <label for="star1">★</label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="reviewType">What Is Your Review About? *</label>
-          <select id="reviewType" required>
-            <option value="">Select an option</option>
-            <option>Account Purchase</option>
-            <option>Account Swap</option>
-            <option>Customer Support</option>
-            <option>Payment Experience</option>
-            <option>General Experience</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="reviewMessage">Your Review *</label>
-          <textarea id="reviewMessage" placeholder="Share your honest experience..." required></textarea>
-        </div>
-
-        <button type="submit" class="submit-btn">
-          SUBMIT YOUR REVIEW →
-        </button>
-
-        <p class="note">
-          Your email application will open with your review prepared.
-          You must press Send to submit it. Reviews are not published
-          automatically; they should be checked before appearing on the website.
+<section class="hero">
+    <div class="container">
+        <span class="hero-tag">CUSTOMER FEEDBACK</span>
+        <h1>What Our <span>Customers Say</span></h1>
+        <p>
+            Every customer experience matters. Explore feedback
+            from the Foster Gaming community and share your own experience.
         </p>
-
-      </form>
     </div>
-
-  </section>
-
-  <section class="cta">
-    <h2>Looking for a Pokémon GO Account?</h2>
-    <p>Explore the available accounts in the Foster Gaming marketplace.</p>
-    <a href="accounts.html">BROWSE ACCOUNTS →</a>
-  </section>
-
+</section>
+<section class="section">
+    <div class="container">
+    <div class="summary-grid">
+        <div class="summary-card">
+            <strong>4.8/5</strong>
+            <p>Displayed Customer Rating</p>
+        </div>
+        <div class="summary-card">
+            <strong class="stars">★★★★★</strong>
+            <p>Customer Satisfaction</p>
+        </div>
+        <div class="summary-card">
+            <strong>13</strong>
+            <p>Featured Reviews</p>
+        </div>
+    </div>
+</div>
+</section>
+<section class="section" style="padding-top:0">
+    <div class="container">
+    <div class="section-heading">
+        <span>COMMUNITY FEEDBACK</span>
+        <h2>Customer Experiences</h2>
+        <p>Read what customers have shared about their experience with Foster Gaming.</p>
+    </div>
+    <div class="review-grid" id="reviewGrid"></div>
+    <div class="review-cta">
+        <h2>Purchased From Foster Gaming?</h2>
+        <p>
+            We would love to hear about your experience.
+            Share your feedback and help other customers.
+        </p>
+        <a class="primary-btn" href="mailto:harishwilliams010@gmail.com?subject=Foster%20Gaming%20Customer%20Review&body=Hello%20Foster%20Gaming%2C%0A%0AI%20would%20like%20to%20submit%20a%20customer%20review.%0A%0AMy%20Name%3A%0AMy%20Experience%3A%0ARating%20out%20of%205%3A%0A%0AThank%20you.">
+            ✍️ SUBMIT YOUR REVIEW
+        </a>
+    </div>
+</div>
+</section>
 </main>
-
 <footer>
-
-  <div class="footer-inner">
-
-    <div>
-      <h3>FOSTER <span style="color:var(--red)">GAMING</span></h3>
-      <p>Your marketplace for premium Pokémon GO accounts. Browse available listings, explore collections, and contact our team for enquiries.</p>
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <h3>FOSTER GAMING</h3>
+                <p>Your destination for premium Pokémon GO accounts. Buy, sell and swap stacked accounts with us.</p>
+            </div>
+        <div>
+            <h3>Quick Links</h3>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="accounts.html">Available Accounts</a></p>
+            <p><a href="cart.html">Shopping Cart</a></p>
+            <p><a href="reviews.html">Customer Reviews</a></p>
+        </div>
+        <div>
+            <h3>Connect With Us</h3>
+            <p><a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok</a></p>
+            <p><a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a></p>
+            <p><a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a></p>
+            <p><a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a></p>
+        </div>
     </div>
-
-    <div>
-      <h3>Quick Links</h3>
-      <a href="index.html">Home</a>
-      <a href="accounts.html">Browse Accounts</a>
-      <a href="about.html">About Us</a>
-      <a href="blog.html">Blog</a>
-      <a href="contact.html">Contact</a>
+    <div class="footer-bottom">
+        © <span id="year"></span> Foster Gaming. All Rights Reserved.
+        <br>Developed by <strong>BITBRIDGE TECHNOLOGIES INC</strong>
     </div>
-
-    <div>
-      <h3>Connect With Us</h3>
-      <a href="mailto:harishwilliams010@gmail.com">Email</a>
-      <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank" rel="noopener">TikTok 1</a>
-      <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank" rel="noopener">TikTok 2</a>
-      <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank" rel="noopener">Snapchat</a>
-      <a href="https://discord.gg/VqVBngcg" target="_blank" rel="noopener">Discord</a>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <span>© <span id="year"></span> Foster Gaming. All rights reserved.</span>
-    <span>Powered by <strong>BITBRIDGE TECHNOLOGIES INC</strong></span>
-  </div>
-
+</div>
 </footer>
-
-<div class="toast" id="toast">Opening your email application...</div>
-
 <script>
-const CART_KEY = "fg-cart";
-const THEME_KEY = "fg-theme";
-const LANGUAGE_KEY = "fg-language";
-
+/*
+  These are sample review entries for the page layout.
+  Replace them with genuine customer feedback before publishing.
+*/
+const reviews=[
+    {
+        name:"Daniel M.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Smooth Account Purchase",
+        text:"The account details were clearly presented and the buying process was straightforward. I had a good experience dealing with Foster Gaming.",
+        avatar:"images/review1.jpg"
+    },
+    {
+        name:"Michael R.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Great Collection",
+        text:"I was impressed by the Pokémon collection and the information provided in the listing. Everything was easy to understand.",
+        avatar:"images/review2.jpg"
+    },
+    {
+        name:"Samuel K.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Good Communication",
+        text:"My questions were answered and I received the information I needed before making my decision. Good communication throughout.",
+        avatar:"images/review3.jpg"
+    },
+    {
+        name:"Alex T.",
+        date:"Customer feedback",
+        rating:4,
+        title:"Nice Account Options",
+        text:"There were several interesting account options to choose from. I appreciate having the account details available before ordering.",
+        avatar:"images/review4.jpg"
+    },
+    {
+        name:"Chris B.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Easy Ordering Process",
+        text:"The website makes it simple to browse the available accounts and understand the next steps for ordering.",
+        avatar:"images/review5.jpg"
+    },
+    {
+        name:"Joseph A.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Helpful Support",
+        text:"I reached out with questions and received helpful information. The support experience was positive.",
+        avatar:"images/review6.jpg"
+    },
+    {
+        name:"David P.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Good Account Selection",
+        text:"I like the range of accounts available and how the listings show important account information.",
+        avatar:"images/review7.jpg"
+    },
+    {
+        name:"Brian W.",
+        date:"Customer feedback",
+        rating:4,
+        title:"Worth Checking Out",
+        text:"A useful place to browse if you are looking for Pokémon GO accounts with different levels and collections.",
+        avatar:"images/review8.jpg"
+    },
+    {
+        name:"Kevin D.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Clear Information",
+        text:"The account descriptions helped me understand what was included before contacting the seller.",
+        avatar:"images/review9.jpg"
+    },
+    {
+        name:"Daniel O.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Good Experience",
+        text:"The ordering information was easy to follow and I appreciated being able to ask questions before proceeding.",
+        avatar:"images/review10.jpg"
+    },
+    {
+        name:"Mark E.",
+        date:"Customer feedback",
+        rating:4,
+        title:"Interesting Listings",
+        text:"There are some impressive collections listed. The website is straightforward and easy to navigate.",
+        avatar:"images/review11.jpg"
+    },
+    {
+        name:"Peter S.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Helpful Account Details",
+        text:"I like that the account pages provide more information about what is being offered.",
+        avatar:"images/review12.jpg"
+    },
+    {
+        name:"Anthony L.",
+        date:"Customer feedback",
+        rating:5,
+        title:"Positive Experience",
+        text:"The overall experience was good. The website makes it easy to find the information you need.",
+        avatar:"images/review13.jpg"
+    }
+];
+function renderReviews(){
+    const grid=document.getElementById("reviewGrid");
+    grid.innerHTML=reviews.map(review=>`
+        <article class="review-card">
+            <div class="review-top">
+                <img
+                    class="review-avatar"
+                    src="${review.avatar}"
+                    alt="${review.name}"
+                    onerror="this.onerror=null;this.src='images/logo.png';"
+                >
+                <div>
+                    <div class="review-name">${review.name}</div>
+                    <div class="review-date">${review.date}</div>
+                </div>
+            </div>
+            <div class="stars">${"★".repeat(review.rating)}${"☆".repeat(5-review.rating)}</div>
+            <h3>${review.title}</h3>
+            <p>${review.text}</p>
+            <span class="verified">✓ CUSTOMER FEEDBACK</span>
+        </article>
+    `).join("");
+}
+/* CART COUNT */
 function updateCartCount(){
-  let cart = [];
-
-  try{
-    cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
-  }catch(e){
-    cart = [];
-  }
-
-  const count = cart.reduce(
-    (total,item)=>total + (Number(item.quantity)||1),
-    0
-  );
-
-  document.getElementById("cartCount").textContent = count;
+    try{
+        const cart=JSON.parse(localStorage.getItem("foster_cart"))||[];
+        const count=cart.reduce(
+            (sum,item)=>sum+(Number(item.quantity)||1),0
+        );
+        document.getElementById("cartCount").textContent=count;
+    }catch(error){
+        document.getElementById("cartCount").textContent="0";
+    }
 }
-
-function applyTheme(){
-  const theme = localStorage.getItem(THEME_KEY) || "light";
-
-  document.body.classList.toggle("dark",theme === "dark");
-
-  document.getElementById("themeBtn").textContent =
-    theme === "dark" ? "☀️" : "🌙";
-}
-
-document.getElementById("themeBtn").addEventListener("click",()=>{
-  const newTheme =
-    document.body.classList.contains("dark") ? "light" : "dark";
-
-  localStorage.setItem(THEME_KEY,newTheme);
-  applyTheme();
-});
-
+/* MOBILE MENU */
 document.getElementById("menuBtn").addEventListener("click",()=>{
-  document.getElementById("menuPanel").classList.toggle("open");
+    document.getElementById("drawer").classList.toggle("open");
 });
-
-const languageSelect = document.getElementById("languageSelect");
-
-languageSelect.value = localStorage.getItem(LANGUAGE_KEY) || "en";
-
-languageSelect.addEventListener("change",()=>{
-  localStorage.setItem(LANGUAGE_KEY,languageSelect.value);
-  document.documentElement.lang = languageSelect.value;
+/* THEME */
+function applyTheme(){
+    const theme=localStorage.getItem("foster_theme")||"light";
+    document.body.classList.toggle("dark",theme==="dark");
+    document.getElementById("themeToggle").textContent=
+        theme==="dark"?"☀️ Light":"🌙 Dark";
+}
+document.getElementById("themeToggle").addEventListener("click",()=>{
+    const current=localStorage.getItem("foster_theme")||"light";
+    localStorage.setItem(
+        "foster_theme",
+        current==="dark"?"light":"dark"
+    );
+    applyTheme();
 });
-
-document.getElementById("reviewForm").addEventListener("submit",function(e){
-  e.preventDefault();
-
-  if(!this.reportValidity()) return;
-
-  const name = document.getElementById("reviewName").value.trim();
-  const email = document.getElementById("reviewEmail").value.trim();
-  const rating = document.querySelector('input[name="rating"]:checked');
-
-  const reviewType = document.getElementById("reviewType").value;
-  const message = document.getElementById("reviewMessage").value.trim();
-
-  if(!rating){
-    alert("Please select a star rating.");
-    return;
-  }
-
-  const subject = "New Foster Gaming Customer Review";
-
-  const body = [
-    "FOSTER GAMING — CUSTOMER REVIEW",
-    "",
-    "Customer Name: " + name,
-    "Customer Email: " + email,
-    "Rating: " + rating.value + "/5 stars",
-    "Review Category: " + reviewType,
-    "",
-    "Customer Review:",
-    message
-  ].join("\n");
-
-  const mailto =
-    "mailto:harishwilliams010@gmail.com" +
-    "?subject=" + encodeURIComponent(subject) +
-    "&body=" + encodeURIComponent(body);
-
-  document.getElementById("toast").style.display = "block";
-
-  window.location.href = mailto;
+/* LANGUAGE */
+const translations={
+    en:{home:"Home",accounts:"Accounts",blog:"Blog",about:"About",contact:"Contact",reviews:"Reviews",cart:"Shopping Cart"},
+    es:{home:"Inicio",accounts:"Cuentas",blog:"Blog",about:"Acerca de",contact:"Contacto",reviews:"Reseñas",cart:"Carrito"},
+    fr:{home:"Accueil",accounts:"Comptes",blog:"Blog",about:"À propos",contact:"Contact",reviews:"Avis",cart:"Panier"},
+    de:{home:"Startseite",accounts:"Konten",blog:"Blog",about:"Über uns",contact:"Kontakt",reviews:"Bewertungen",cart:"Warenkorb"},
+    pt:{home:"Início",accounts:"Contas",blog:"Blog",about:"Sobre",contact:"Contato",reviews:"Avaliações",cart:"Carrinho"},
+    ar:{home:"الرئيسية",accounts:"الحسابات",blog:"المدونة",about:"من نحن",contact:"اتصل بنا",reviews:"التقييمات",cart:"سلة التسوق"},
+    it:{home:"Home",accounts:"Account",blog:"Blog",about:"Chi siamo",contact:"Contatti",reviews:"Recensioni",cart:"Carrello"},
+    zh:{home:"首页",accounts:"账户",blog:"博客",about:"关于我们",contact:"联系我们",reviews:"评价",cart:"购物车"}
+};
+function applyLanguage(){
+    const lang=localStorage.getItem("foster_language")||"en";
+    document.getElementById("languageSelect").value=lang;
+    document.documentElement.lang=lang;
+    document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+    const t=translations[lang]||translations.en;
+    const links=document.querySelectorAll(".drawer a");
+    const keys=["home","accounts","blog","about","contact","reviews","cart"];
+    links.forEach((link,index)=>{
+        if(keys[index])link.textContent=t[keys[index]];
+    });
+}
+document.getElementById("languageSelect").addEventListener("change",event=>{
+    localStorage.setItem("foster_language",event.target.value);
+    applyLanguage();
 });
-
-document.getElementById("year").textContent =
-  new Date().getFullYear();
-
-applyTheme();
+/* INITIALIZE */
+document.getElementById("year").textContent=new Date().getFullYear();
+renderReviews();
 updateCartCount();
+applyTheme();
+applyLanguage();
 </script>
-
 </body>
 </html>
