@@ -9,14 +9,12 @@
     --red:#e32636;
     --red-dark:#bd1726;
     --green:#159447;
-    --black:#111;
-    --white:#fff;
     --bg:#f5f6f8;
     --card:#fff;
     --text:#171717;
-    --muted:#737373;
+    --muted:#777;
     --border:#e7e7e7;
-    --shadow:0 12px 35px rgba(0,0,0,.06);
+    --shadow:0 10px 30px rgba(0,0,0,.05);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -31,11 +29,12 @@ body.dark{
     --text:#f5f5f5;
     --muted:#aaa;
     --border:#303238;
-    --shadow:0 12px 35px rgba(0,0,0,.25);
+    --shadow:0 10px 30px rgba(0,0,0,.25);
 }
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
-.container{width:min(1100px,92%);margin:auto}
+img{max-width:100%;display:block}
+.container{width:min(1160px,92%);margin:auto}
 /* HEADER */
 header{
     background:var(--card);
@@ -55,9 +54,9 @@ header{
     display:flex;
     align-items:center;
     gap:10px;
+    color:var(--red);
     font-size:22px;
     font-weight:900;
-    color:var(--red);
 }
 .logo img{width:43px;height:43px;object-fit:contain}
 nav{display:flex;align-items:center;gap:22px}
@@ -96,168 +95,225 @@ nav a:hover{color:var(--red)}
     border-radius:8px;
 }
 /* PAGE */
-.breadcrumb{
-    padding:24px 0;
+.page-heading{
+    padding:45px 0 25px;
+}
+.page-heading h1{
+    font-size:34px;
+    font-weight:900;
+}
+.page-heading p{
     color:var(--muted);
-    font-size:13px;
+    font-size:14px;
+    margin-top:6px;
+}
+.breadcrumb{
+    font-size:12px;
+    color:var(--muted);
+    margin-top:10px;
 }
 .breadcrumb a{color:var(--red);font-weight:700}
-.page-heading{margin-bottom:25px}
-.page-heading h1{font-size:30px;font-weight:900}
-.page-heading p{color:var(--muted);font-size:14px;margin-top:5px}
 /* CART LAYOUT */
 .cart-layout{
     display:grid;
-    grid-template-columns:1fr 340px;
+    grid-template-columns:minmax(0,1fr) 340px;
     gap:25px;
     align-items:start;
-    margin-bottom:65px;
+    padding-bottom:65px;
 }
-.cart-items{
-    display:flex;
-    flex-direction:column;
-    gap:14px;
-}
-.cart-item{
-    display:grid;
-    grid-template-columns:125px 1fr auto;
-    gap:18px;
-    align-items:center;
-    padding:17px;
+.cart-panel{
     background:var(--card);
     border:1px solid var(--border);
     border-radius:14px;
+    overflow:hidden;
     box-shadow:var(--shadow);
 }
-.item-image{
-    width:125px;
-    height:110px;
-    border-radius:10px;
-    background:var(--bg);
-    overflow:hidden;
-}
-.item-image img{width:100%;height:100%;object-fit:contain}
-.item-info h3{font-size:16px;font-weight:900;margin-bottom:5px}
-.item-info p{font-size:12px;color:var(--muted);margin-bottom:8px}
-.item-price{color:var(--red);font-weight:900;font-size:17px}
-.item-actions{
+.cart-panel-header{
     display:flex;
     align-items:center;
-    gap:10px;
-    margin-top:10px;
+    justify-content:space-between;
+    gap:15px;
+    padding:20px;
+    border-bottom:1px solid var(--border);
 }
-.quantity-control{
-    display:flex;
-    align-items:center;
-    border:1px solid var(--border);
-    border-radius:8px;
-    overflow:hidden;
-}
-.quantity-control button{
-    width:30px;
-    height:30px;
-    border:0;
-    background:var(--bg);
-    color:var(--text);
-    font-size:17px;
-}
-.quantity-control span{
-    min-width:30px;
-    text-align:center;
-    font-size:13px;
-    font-weight:800;
-}
-.remove-btn{
+.cart-panel-header h2{font-size:17px}
+.clear-btn{
     border:0;
     background:transparent;
     color:var(--red);
     font-size:12px;
-    font-weight:800;
-}
-.line-total{
     font-weight:900;
+}
+.cart-items{padding:0 20px}
+.cart-item{
+    display:grid;
+    grid-template-columns:105px minmax(0,1fr) auto;
+    gap:17px;
+    align-items:center;
+    padding:20px 0;
+    border-bottom:1px solid var(--border);
+}
+.cart-item:last-child{border-bottom:0}
+.item-image{
+    width:105px;
+    height:100px;
+    background:var(--bg);
+    border-radius:10px;
+    overflow:hidden;
+}
+.item-image img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+.item-details h3{
     font-size:15px;
+    line-height:1.4;
+    margin-bottom:5px;
+}
+.item-level{
+    font-size:12px;
+    color:var(--muted);
+}
+.item-price{
+    font-size:15px;
+    color:var(--red);
+    font-weight:900;
+    margin-top:8px;
+}
+.quantity-control{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    margin-top:11px;
+}
+.quantity-control button{
+    width:27px;
+    height:27px;
+    border:1px solid var(--border);
+    background:var(--bg);
+    color:var(--text);
+    border-radius:6px;
+    font-weight:900;
+}
+.quantity-control span{
+    font-size:13px;
+    font-weight:800;
+    min-width:15px;
+    text-align:center;
+}
+.remove-btn{
+    border:0;
+    background:transparent;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:800;
+    margin-top:10px;
+}
+.remove-btn:hover{color:var(--red)}
+.item-total{
+    text-align:right;
+    font-size:14px;
+    font-weight:900;
     white-space:nowrap;
 }
 .empty-cart{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:15px;
     padding:65px 20px;
     text-align:center;
 }
-.empty-icon{font-size:55px;margin-bottom:10px}
-.empty-cart h2{font-size:23px;margin-bottom:8px}
-.empty-cart p{color:var(--muted);font-size:14px;margin-bottom:22px}
+.empty-icon{font-size:55px;margin-bottom:15px}
+.empty-cart h2{font-size:22px;margin-bottom:8px}
+.empty-cart p{font-size:13px;color:var(--muted);margin-bottom:20px}
+.primary-btn{
+    display:inline-block;
+    background:var(--red);
+    color:#fff;
+    padding:13px 20px;
+    border:0;
+    border-radius:9px;
+    font-size:12px;
+    font-weight:900;
+}
+.primary-btn:hover{background:var(--red-dark)}
 /* SUMMARY */
-.summary{
+.summary-panel{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:15px;
+    border-radius:14px;
     padding:23px;
     box-shadow:var(--shadow);
     position:sticky;
     top:100px;
 }
-.summary h2{font-size:19px;font-weight:900;margin-bottom:18px}
+.summary-panel h2{font-size:18px;margin-bottom:20px}
 .summary-row{
     display:flex;
     justify-content:space-between;
-    gap:10px;
-    padding:11px 0;
-    border-bottom:1px solid var(--border);
+    gap:15px;
     font-size:13px;
+    margin-bottom:13px;
 }
 .summary-row span:first-child{color:var(--muted)}
+.summary-divider{
+    height:1px;
+    background:var(--border);
+    margin:18px 0;
+}
 .summary-total{
     display:flex;
     justify-content:space-between;
-    align-items:center;
-    padding:18px 0;
-    font-size:15px;
+    font-size:17px;
     font-weight:900;
+    margin-bottom:20px;
 }
-.summary-total strong{font-size:25px;color:var(--red)}
-.checkout-btn,.continue-btn{
+.summary-total strong{color:var(--red)}
+.checkout-btn{
     display:block;
     width:100%;
-    border:0;
-    border-radius:10px;
-    padding:14px;
+    padding:15px;
+    background:var(--red);
+    color:#fff;
     text-align:center;
-    font-weight:900;
+    border:0;
+    border-radius:9px;
     font-size:13px;
+    font-weight:900;
 }
-.checkout-btn{background:var(--red);color:#fff}
 .checkout-btn:hover{background:var(--red-dark)}
-.continue-btn{
-    background:var(--bg);
-    border:1px solid var(--border);
-    color:var(--text);
-    margin-top:10px;
+.continue-link{
+    display:block;
+    text-align:center;
+    color:var(--red);
+    font-size:12px;
+    font-weight:900;
+    margin-top:17px;
 }
 .summary-note{
-    margin-top:16px;
-    font-size:11px;
-    color:var(--muted);
-    text-align:center;
-    line-height:1.7;
-}
-.secure-note{
-    margin-top:14px;
     background:var(--bg);
     border-radius:9px;
-    padding:12px;
+    padding:13px;
     font-size:11px;
     color:var(--muted);
+    margin-top:20px;
+}
+/* TRUST */
+.trust-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+    padding-bottom:55px;
+}
+.trust-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    padding:17px;
+    border-radius:10px;
     text-align:center;
 }
+.trust-card strong{display:block;font-size:13px}
+.trust-card span{font-size:11px;color:var(--muted)}
 /* FOOTER */
-footer{
-    background:#101010;
-    color:#fff;
-    padding:45px 0 20px;
-}
+footer{background:#101010;color:#fff;padding:45px 0 20px}
 .footer-grid{
     display:grid;
     grid-template-columns:2fr 1fr 1fr;
@@ -275,47 +331,31 @@ footer a:hover{color:#fff}
     font-size:12px;
 }
 .footer-bottom strong{color:#fff}
-/* TOAST */
-.toast{
-    position:fixed;
-    bottom:25px;
-    left:50%;
-    transform:translateX(-50%) translateY(100px);
-    background:#171717;
-    color:#fff;
-    padding:13px 20px;
-    border-radius:9px;
-    font-size:13px;
-    font-weight:700;
-    z-index:500;
-    opacity:0;
-    transition:.3s;
-}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 @media(max-width:900px){
     nav{display:none}
     .menu-btn{display:block}
     .cart-layout{grid-template-columns:1fr}
-    .summary{position:static}
+    .summary-panel{position:static}
 }
 @media(max-width:600px){
     .header-inner{min-height:66px}
     .logo{font-size:19px}
     .logo img{width:36px;height:36px}
-    .page-heading h1{font-size:25px}
+    .page-heading{padding-top:30px}
+    .page-heading h1{font-size:28px}
     .cart-item{
-        grid-template-columns:90px 1fr;
+        grid-template-columns:80px minmax(0,1fr);
         gap:12px;
-        padding:12px;
     }
-    .item-image{width:90px;height:95px}
-    .line-total{
+    .item-image{width:80px;height:85px}
+    .item-total{
         grid-column:2;
         text-align:left;
         margin-top:-5px;
     }
-    .item-info h3{font-size:14px}
-    .item-actions{flex-wrap:wrap}
+    .cart-items{padding:0 13px}
+    .cart-panel-header{padding:16px}
+    .trust-strip{grid-template-columns:1fr}
     .footer-grid{grid-template-columns:1fr}
 }
 </style>
@@ -363,16 +403,22 @@ footer a:hover{color:#fff}
 </div>
 </header>
 <main class="container">
+<section class="page-heading">
+    <h1>Shopping Cart</h1>
+    <p>Review your selected Pokémon GO accounts before checkout.</p>
     <div class="breadcrumb">
         <a href="index.html">Home</a> / Shopping Cart
     </div>
-<div class="page-heading">
-    <h1>Your Shopping Cart 🛒</h1>
-    <p>Review your selected Pokémon GO accounts before checkout.</p>
-</div>
+</section>
 <div class="cart-layout">
-    <div id="cartItems" class="cart-items"></div>
-    <aside class="summary" id="summary">
+    <section class="cart-panel">
+        <div class="cart-panel-header">
+            <h2>Your Selected Accounts</h2>
+            <button class="clear-btn" id="clearCart">CLEAR CART</button>
+        </div>
+        <div id="cartContent"></div>
+    </section>
+    <aside class="summary-panel" id="summaryPanel">
         <h2>Order Summary</h2>
         <div class="summary-row">
             <span>Items</span>
@@ -380,28 +426,43 @@ footer a:hover{color:#fff}
         </div>
         <div class="summary-row">
             <span>Subtotal</span>
-            <strong id="subtotal">$0.00</strong>
+            <strong id="summarySubtotal">$0.00</strong>
         </div>
         <div class="summary-row">
-            <span>Delivery</span>
-            <strong>Digital</strong>
+            <span>Shipping</span>
+            <strong>Free</strong>
         </div>
+        <div class="summary-divider"></div>
         <div class="summary-total">
             <span>Total</span>
-            <strong id="total">$0.00</strong>
+            <strong id="summaryTotal">$0.00</strong>
         </div>
-        <button class="checkout-btn" id="checkoutBtn" onclick="goToCheckout()">
+        <button class="checkout-btn" id="checkoutBtn">
             PROCEED TO CHECKOUT →
         </button>
-        <a href="accounts.html" class="continue-btn">Continue Shopping</a>
-        <div class="secure-note">
-            🔒 Your order will be manually reviewed before account credentials are delivered.
+        <a href="accounts.html" class="continue-link">
+            ← CONTINUE SHOPPING
+        </a>
+        <div class="summary-note">
+            🔒 Payment instructions are provided during checkout.
+            Payments are manually reviewed before account delivery.
         </div>
-        <p class="summary-note">
-            Prices are displayed in USD. Available payment methods will be shown during checkout.
-        </p>
     </aside>
 </div>
+<section class="trust-strip">
+    <div class="trust-card">
+        <strong>🛡️ Manual Payment Review</strong>
+        <span>Orders are reviewed before approval.</span>
+    </div>
+    <div class="trust-card">
+        <strong>📩 Order Confirmation</strong>
+        <span>Confirmation follows payment review.</span>
+    </div>
+    <div class="trust-card">
+        <strong>🎮 Gaming Collection</strong>
+        <span>Browse premium Pokémon GO accounts.</span>
+    </div>
+</section>
 </main>
 <footer>
     <div class="container">
@@ -431,92 +492,23 @@ footer a:hover{color:#fff}
     </div>
 </div>
 </footer>
-<div class="toast" id="toast"></div>
 <script>
-/* CART STORAGE */
+const CART_KEY="foster_cart";
 function getCart(){
     try{
-        const cart=JSON.parse(localStorage.getItem("foster_cart"));
+        const cart=JSON.parse(localStorage.getItem(CART_KEY));
         return Array.isArray(cart)?cart:[];
     }catch(error){
         return [];
     }
 }
 function saveCart(cart){
-    localStorage.setItem("foster_cart",JSON.stringify(cart));
-    updateCartCount();
+    localStorage.setItem(CART_KEY,JSON.stringify(cart));
+    renderCart();
 }
-function updateCartCount(){
-    const cart=getCart();
-    const count=cart.reduce((sum,item)=>sum+(Number(item.quantity)||1),0);
-    document.getElementById("cartCount").textContent=count;
+function money(value){
+    return "$"+Number(value||0).toFixed(2);
 }
-function formatMoney(amount){
-    return "$"+Number(amount).toFixed(2);
-}
-/* DISPLAY CART */
-function renderCart(){
-    const cart=getCart();
-    const container=document.getElementById("cartItems");
-    if(cart.length===0){
-        container.innerHTML=`
-            <div class="empty-cart">
-                <div class="empty-icon">🛒</div>
-                <h2>Your cart is empty</h2>
-                <p>You haven't added any Pokémon GO accounts to your cart yet.</p>
-                <a href="accounts.html" class="checkout-btn" style="display:inline-block;width:auto;padding:13px 24px">
-                    Browse Accounts
-                </a>
-            </div>
-        `;
-        document.getElementById("summaryItems").textContent="0";
-        document.getElementById("subtotal").textContent="$0.00";
-        document.getElementById("total").textContent="$0.00";
-        document.getElementById("checkoutBtn").disabled=true;
-        document.getElementById("checkoutBtn").style.opacity=".45";
-        updateCartCount();
-        return;
-    }
-    document.getElementById("checkoutBtn").disabled=false;
-    document.getElementById("checkoutBtn").style.opacity="1";
-    let subtotal=0;
-    let totalItems=0;
-    container.innerHTML=cart.map((item,index)=>{
-        const price=Number(item.price)||0;
-        const quantity=Math.max(1,Number(item.quantity)||1);
-        const lineTotal=price*quantity;
-        subtotal+=lineTotal;
-        totalItems+=quantity;
-        return `
-            <div class="cart-item">
-                <div class="item-image">
-                    <img src="${escapeHTML(item.image||'images/logo.png')}"
-                         alt="${escapeHTML(item.name||'Pokémon GO account')}"
-                         onerror="this.src='images/logo.png'">
-                </div>
-                <div class="item-info">
-                    <h3>${escapeHTML(item.name||'Pokémon GO Account')}</h3>
-                    <p>Level ${escapeHTML(String(item.level||'N/A'))} · Account #${escapeHTML(String(item.id))}</p>
-                    <div class="item-price">${formatMoney(price)}</div>
-                    <div class="item-actions">
-                        <div class="quantity-control">
-                            <button onclick="changeQuantity(${index},-1)" aria-label="Decrease quantity">−</button>
-                            <span>${quantity}</span>
-                            <button onclick="changeQuantity(${index},1)" aria-label="Increase quantity">+</button>
-                        </div>
-                        <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
-                    </div>
-                </div>
-                <div class="line-total">${formatMoney(lineTotal)}</div>
-            </div>
-        `;
-    }).join("");
-    document.getElementById("summaryItems").textContent=totalItems;
-    document.getElementById("subtotal").textContent=formatMoney(subtotal);
-    document.getElementById("total").textContent=formatMoney(subtotal);
-    updateCartCount();
-}
-/* ESCAPE TEXT INSERTED INTO HTML */
 function escapeHTML(value){
     return String(value).replace(/[&<>"']/g,char=>({
         "&":"&amp;",
@@ -526,42 +518,121 @@ function escapeHTML(value){
         "'":"&#39;"
     })[char]);
 }
-/* QUANTITY */
-function changeQuantity(index,change){
+/* DISPLAY CART */
+function renderCart(){
     const cart=getCart();
-    if(!cart[index])return;
-    const current=Math.max(1,Number(cart[index].quantity)||1);
-    const next=current+change;
-    if(next<1)return;
-    cart[index].quantity=next;
-    saveCart(cart);
-    renderCart();
-}
-/* REMOVE ITEM */
-function removeItem(index){
-    const cart=getCart();
-    if(!cart[index])return;
-    cart.splice(index,1);
-    saveCart(cart);
-    renderCart();
-    showToast("Account removed from cart.");
-}
-/* CHECKOUT */
-function goToCheckout(){
-    const cart=getCart();
+    const content=document.getElementById("cartContent");
+    const itemCount=cart.reduce(
+        (sum,item)=>sum+(Number(item.quantity)||1),0
+    );
+    const subtotal=cart.reduce(
+        (sum,item)=>sum+(Number(item.price)||0)*(Number(item.quantity)||1),0
+    );
+    document.getElementById("cartCount").textContent=itemCount;
+    document.getElementById("summaryItems").textContent=itemCount;
+    document.getElementById("summarySubtotal").textContent=money(subtotal);
+    document.getElementById("summaryTotal").textContent=money(subtotal);
+    document.getElementById("clearCart").style.display=
+        cart.length?"inline-block":"none";
     if(cart.length===0){
-        showToast("Your cart is empty.");
+        content.innerHTML=`
+            <div class="empty-cart">
+                <div class="empty-icon">🛒</div>
+                <h2>Your Cart Is Empty</h2>
+                <p>You haven't added any Pokémon GO accounts yet.</p>
+                <a href="accounts.html" class="primary-btn">
+                    EXPLORE AVAILABLE ACCOUNTS
+                </a>
+            </div>
+        `;
+        document.getElementById("checkoutBtn").disabled=true;
+        document.getElementById("checkoutBtn").style.opacity=".5";
+        document.getElementById("checkoutBtn").style.cursor="not-allowed";
+        return;
+    }
+    document.getElementById("checkoutBtn").disabled=false;
+    document.getElementById("checkoutBtn").style.opacity="1";
+    document.getElementById("checkoutBtn").style.cursor="pointer";
+    content.innerHTML=`
+        <div class="cart-items">
+            ${cart.map((item,index)=>`
+                <div class="cart-item">
+                    <div class="item-image">
+                        <img
+                            src="${escapeHTML(item.image||"images/logo.png")}"
+                            alt="${escapeHTML(item.name||"Pokémon GO Account")}"
+                            onerror="this.onerror=null;this.src='images/logo.png'"
+                        >
+                    </div>
+                    <div class="item-details">
+                        <h3>${escapeHTML(item.name||"Pokémon GO Account")}</h3>
+                        <div class="item-level">
+                            Level ${escapeHTML(item.level||"N/A")}
+                        </div>
+                        <div class="item-price">
+                            ${money(item.price)}
+                        </div>
+                        <div class="quantity-control">
+                            <button data-action="decrease" data-index="${index}">−</button>
+                            <span>${Number(item.quantity)||1}</span>
+                            <button data-action="increase" data-index="${index}">+</button>
+                        </div>
+                        <button class="remove-btn"
+                                data-action="remove"
+                                data-index="${index}">
+                            REMOVE ITEM
+                        </button>
+                    </div>
+                    <div class="item-total">
+                        ${money((Number(item.price)||0)*(Number(item.quantity)||1))}
+                    </div>
+                </div>
+            `).join("")}
+        </div>
+    `;
+    content.querySelectorAll("[data-action]").forEach(button=>{
+        button.addEventListener("click",()=>{
+            changeCartItem(
+                Number(button.dataset.index),
+                button.dataset.action
+            );
+        });
+    });
+}
+/* CHANGE CART ITEMS */
+function changeCartItem(index,action){
+    const cart=getCart();
+    if(!cart[index])return;
+    if(action==="increase"){
+        cart[index].quantity=(Number(cart[index].quantity)||1)+1;
+    }
+    if(action==="decrease"){
+        cart[index].quantity=(Number(cart[index].quantity)||1)-1;
+        if(cart[index].quantity<=0){
+            cart.splice(index,1);
+        }
+    }
+    if(action==="remove"){
+        cart.splice(index,1);
+    }
+    saveCart(cart);
+}
+/* CLEAR CART */
+document.getElementById("clearCart").addEventListener("click",()=>{
+    if(!getCart().length)return;
+    if(confirm("Are you sure you want to remove all items from your cart?")){
+        localStorage.removeItem(CART_KEY);
+        renderCart();
+    }
+});
+/* CHECKOUT */
+document.getElementById("checkoutBtn").addEventListener("click",()=>{
+    if(getCart().length===0){
+        alert("Your cart is empty.");
         return;
     }
     window.location.href="checkout.html";
-}
-/* TOAST */
-function showToast(message){
-    const toast=document.getElementById("toast");
-    toast.textContent=message;
-    toast.classList.add("show");
-    setTimeout(()=>toast.classList.remove("show"),2500);
-}
+});
 /* MOBILE MENU */
 document.getElementById("menuBtn").addEventListener("click",()=>{
     document.getElementById("drawer").classList.toggle("open");
@@ -570,11 +641,15 @@ document.getElementById("menuBtn").addEventListener("click",()=>{
 function applyTheme(){
     const theme=localStorage.getItem("foster_theme")||"light";
     document.body.classList.toggle("dark",theme==="dark");
-    document.getElementById("themeToggle").textContent=theme==="dark"?"☀️ Light":"🌙 Dark";
+    document.getElementById("themeToggle").textContent=
+        theme==="dark"?"☀️ Light":"🌙 Dark";
 }
 document.getElementById("themeToggle").addEventListener("click",()=>{
     const current=localStorage.getItem("foster_theme")||"light";
-    localStorage.setItem("foster_theme",current==="dark"?"light":"dark");
+    localStorage.setItem(
+        "foster_theme",
+        current==="dark"?"light":"dark"
+    );
     applyTheme();
 });
 /* LANGUAGE */
@@ -590,8 +665,7 @@ const translations={
 };
 function applyLanguage(){
     const lang=localStorage.getItem("foster_language")||"en";
-    const select=document.getElementById("languageSelect");
-    if(select)select.value=lang;
+    document.getElementById("languageSelect").value=lang;
     document.documentElement.lang=lang;
     document.documentElement.dir=lang==="ar"?"rtl":"ltr";
     const t=translations[lang]||translations.en;
@@ -607,9 +681,9 @@ document.getElementById("languageSelect").addEventListener("change",event=>{
 });
 /* INITIALIZE */
 document.getElementById("year").textContent=new Date().getFullYear();
+renderCart();
 applyTheme();
 applyLanguage();
-renderCart();
 </script>
 </body>
 </html>
