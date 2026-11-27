@@ -3,2313 +3,1560 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="theme-color" content="#e32636">
 <title>Foster Gaming | Premium Pokémon GO Accounts</title>
-
 <meta name="description" content="Discover premium Pokémon GO accounts at Foster Gaming. Buy, sell and swap stacked Pokémon GO accounts.">
-
-<meta name="theme-color" content="#e51d2a">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
 <style>
-
-/* =========================
-   GLOBAL VARIABLES
-========================= */
-
 :root {
-    --red: #e51d2a;
-    --red-dark: #bd101c;
-    --green: #19a463;
-
-    --bg: #ffffff;
-    --surface: #f7f7f8;
-    --surface2: #eeeeef;
-
+    --red: #e32636;
+    --red-dark: #bd1726;
+    --green: #159447;
+    --black: #101010;
+    --white: #ffffff;
+    --bg: #f5f6f8;
+    --card: #ffffff;
     --text: #171717;
     --muted: #777777;
-    --border: #e6e6e6;
-
-    --card: #ffffff;
-    --header: rgba(255,255,255,0.95);
-
-    --shadow: 0 10px 35px rgba(0,0,0,0.06);
+    --border: #e8e8e8;
+    --shadow: 0 8px 30px rgba(0,0,0,.07);
 }
-
-body.dark {
-    --bg: #101010;
-    --surface: #181818;
-    --surface2: #222222;
-
-    --text: #ffffff;
-    --muted: #aaaaaa;
-    --border: #303030;
-
-    --card: #191919;
-    --header: rgba(16,16,16,0.95);
-
-    --shadow: 0 10px 35px rgba(0,0,0,0.25);
+[data-theme="dark"] {
+    --bg: #101114;
+    --card: #191b20;
+    --text: #f4f4f4;
+    --muted: #a3a3a3;
+    --border: #303238;
+    --shadow: 0 8px 30px rgba(0,0,0,.25);
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-html {
-    scroll-behavior: smooth;
-}
-
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     background: var(--bg);
     color: var(--text);
-    transition: background .3s, color .3s;
+    transition: background .25s, color .25s;
 }
-
 a {
     text-decoration: none;
     color: inherit;
 }
-
 button {
-    font-family: inherit;
     cursor: pointer;
+    font-family: inherit;
 }
-
+img {
+    max-width: 100%;
+}
 .container {
     width: 92%;
     max-width: 1250px;
     margin: auto;
 }
-
-.section {
-    padding: 85px 0;
-}
-
-.section-heading {
-    text-align: center;
-    margin-bottom: 45px;
-}
-
-.section-heading h2 {
-    font-size: clamp(27px, 4vw, 39px);
-    font-weight: 900;
-    margin-bottom: 12px;
-}
-
-.section-heading p {
-    color: var(--muted);
-    line-height: 1.7;
-    font-size: 14px;
-}
-
-.highlight {
-    color: var(--red);
-}
-
-/* =========================
-   TOP ANNOUNCEMENT
-========================= */
-
+/* ANNOUNCEMENT */
 .announcement {
-    background: var(--red);
+    background: var(--black);
     color: white;
-    padding: 10px;
     text-align: center;
+    padding: 10px;
     font-size: 12px;
-    font-weight: 700;
-    letter-spacing: .3px;
+    letter-spacing: .4px;
 }
-
-/* =========================
-   NAVIGATION
-========================= */
-
+/* HEADER */
 header {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: var(--header);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--border);
 }
-
 .navbar {
-    height: 78px;
+    min-height: 76px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    gap: 20px;
 }
-
-.logo {
+.brand {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 21px;
     font-weight: 900;
+    font-size: 21px;
+    white-space: nowrap;
 }
-
-.logo img {
+.brand img {
     width: 43px;
     height: 43px;
     object-fit: contain;
     border-radius: 10px;
 }
-
-.logo span {
+.brand span {
     color: var(--red);
 }
-
-.nav-links {
+.desktop-nav {
     display: flex;
     align-items: center;
-    gap: 28px;
+    gap: 27px;
 }
-
-.nav-links a {
+.desktop-nav a {
     font-size: 13px;
-    font-weight: 650;
-    color: var(--text);
+    font-weight: 700;
     transition: .2s;
 }
-
-.nav-links a:hover {
+.desktop-nav a:hover {
     color: var(--red);
 }
-
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 13px;
 }
-
 .icon-btn {
-    width: 40px;
-    height: 40px;
+    width: 39px;
+    height: 39px;
     border: 1px solid var(--border);
-    background: var(--surface);
+    background: var(--bg);
     color: var(--text);
-    border-radius: 11px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px;
+    border-radius: 10px;
+    font-size: 19px;
+    display: grid;
+    place-items: center;
     position: relative;
 }
-
 .cart-count {
     position: absolute;
     top: -7px;
     right: -7px;
     background: var(--red);
     color: white;
-    min-width: 19px;
-    height: 19px;
-    padding: 0 5px;
-    border-radius: 20px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
     font-size: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
+    display: grid;
+    place-items: center;
+    font-weight: bold;
 }
-
 .menu-btn {
     display: none;
 }
-
-/* =========================
-   SIDE MENU
-========================= */
-
-.menu-overlay {
+/* DRAWER */
+.drawer-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,.55);
     z-index: 2000;
-    visibility: hidden;
     opacity: 0;
+    visibility: hidden;
     transition: .3s;
 }
-
-.menu-overlay.active {
-    visibility: visible;
+.drawer-overlay.active {
     opacity: 1;
+    visibility: visible;
 }
-
-.side-menu {
+.drawer {
     position: fixed;
     top: 0;
-    right: -340px;
+    right: -350px;
     width: 320px;
     max-width: 85%;
-    height: 100vh;
-    background: var(--bg);
+    height: 100%;
+    background: var(--card);
     z-index: 2001;
     padding: 25px;
-    transition: .35s;
+    transition: .3s;
     overflow-y: auto;
 }
-
-.side-menu.active {
+.drawer.active {
     right: 0;
 }
-
-.menu-header {
+.drawer-head {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding-bottom: 25px;
-    border-bottom: 1px solid var(--border);
+    align-items: center;
+    margin-bottom: 30px;
 }
-
-.menu-header h3 {
-    font-size: 20px;
-}
-
-.close-menu {
+.drawer-close {
     border: none;
-    background: var(--surface2);
+    background: var(--bg);
     color: var(--text);
-    width: 35px;
-    height: 35px;
+    padding: 9px 13px;
     border-radius: 8px;
     font-size: 20px;
 }
-
-.menu-section {
-    padding: 23px 0;
+.drawer-links {
+    display: grid;
+    gap: 5px;
+}
+.drawer-links a {
+    padding: 14px 10px;
     border-bottom: 1px solid var(--border);
-}
-
-.menu-section h4 {
-    font-size: 11px;
-    color: var(--muted);
-    letter-spacing: 1.3px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-.menu-section a {
-    display: block;
-    padding: 12px 0;
     font-size: 14px;
     font-weight: 600;
 }
-
-.menu-section a:hover {
+.drawer-links a:hover {
     color: var(--red);
 }
-
-.language-select {
+.drawer-section {
+    margin-top: 28px;
+}
+.drawer-section h4 {
+    font-size: 13px;
+    margin-bottom: 13px;
+}
+.setting-select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+}
+.theme-toggle {
     width: 100%;
     padding: 13px;
     border: 1px solid var(--border);
-    background: var(--surface);
+    background: var(--bg);
     color: var(--text);
     border-radius: 9px;
-    outline: none;
-    font-family: inherit;
+    text-align: left;
+    font-weight: bold;
 }
-
-/* =========================
-   HERO
-========================= */
-
+/* HERO */
 .hero {
-    padding: 85px 0;
+    padding: 75px 0;
     background:
-    radial-gradient(circle at 85% 20%, rgba(229,29,42,.13), transparent 30%),
-    var(--bg);
-    overflow: hidden;
+        radial-gradient(circle at 85% 20%, rgba(227,38,54,.2), transparent 35%),
+        linear-gradient(120deg, var(--bg), var(--card));
 }
-
-.hero-grid {
+.hero-content {
     display: grid;
-    grid-template-columns: 1.05fr .95fr;
-    gap: 45px;
+    grid-template-columns: 1.1fr .9fr;
     align-items: center;
+    gap: 50px;
 }
-
-.hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(25,164,99,.12);
-    color: var(--green);
-    padding: 9px 14px;
+.hero-label {
+    display: inline-block;
+    background: rgba(227,38,54,.12);
+    color: var(--red);
+    padding: 9px 15px;
     border-radius: 30px;
-    font-size: 11px;
-    font-weight: 800;
+    font-size: 12px;
+    font-weight: bold;
     margin-bottom: 22px;
 }
-
 .hero h1 {
-    font-size: clamp(39px, 5.5vw, 65px);
-    line-height: 1.1;
+    font-size: clamp(38px, 5vw, 62px);
+    line-height: 1.08;
     font-weight: 900;
-    letter-spacing: -2.5px;
-    margin-bottom: 23px;
+    margin-bottom: 22px;
 }
-
 .hero h1 span {
     color: var(--red);
 }
-
-.hero-description {
+.hero p {
     color: var(--muted);
-    font-size: 15px;
-    line-height: 1.9;
+    line-height: 1.8;
     max-width: 530px;
-    margin-bottom: 30px;
+    font-size: 15px;
 }
-
 .hero-buttons {
     display: flex;
     gap: 13px;
+    margin-top: 30px;
     flex-wrap: wrap;
 }
-
 .btn {
-    padding: 15px 24px;
+    padding: 15px 23px;
     border-radius: 9px;
+    font-weight: bold;
     font-size: 13px;
-    font-weight: 800;
+    display: inline-block;
     border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 9px;
     transition: .25s;
 }
-
-.btn-primary {
+.btn-red {
     background: var(--red);
     color: white;
 }
-
-.btn-primary:hover {
+.btn-red:hover {
     background: var(--red-dark);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
-
 .btn-outline {
     border: 1px solid var(--border);
-    color: var(--text);
     background: var(--card);
+    color: var(--text);
 }
-
-.btn-outline:hover {
-    border-color: var(--red);
-    color: var(--red);
-}
-
 .hero-image {
     position: relative;
 }
-
 .hero-image img {
     width: 100%;
-    max-height: 420px;
+    height: 390px;
     object-fit: cover;
-    border-radius: 24px;
+    border-radius: 20px;
     box-shadow: var(--shadow);
 }
-
-.hero-floating {
+.hero-badge {
     position: absolute;
     bottom: 20px;
-    left: -20px;
+    left: -15px;
     background: var(--card);
-    padding: 17px 20px;
-    border-radius: 13px;
+    padding: 17px 22px;
+    border-radius: 12px;
     box-shadow: var(--shadow);
-    border: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: bold;
 }
-
-.hero-floating strong {
-    font-size: 20px;
-    color: var(--red);
-}
-
-.hero-floating p {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 4px;
-}
-
-/* =========================
-   STATISTICS
-========================= */
-
+/* STATS */
 .stats {
-    background: var(--surface);
+    background: var(--card);
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
 }
-
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    padding: 30px 0;
-    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
 }
-
 .stat {
     text-align: center;
+    padding: 27px 10px;
+    border-right: 1px solid var(--border);
 }
-
+.stat:last-child {
+    border-right: none;
+}
 .stat h3 {
-    font-size: 29px;
     color: var(--red);
-    font-weight: 900;
+    font-size: 27px;
+    margin-bottom: 6px;
 }
-
 .stat p {
     color: var(--muted);
-    font-size: 11px;
-    margin-top: 6px;
-    font-weight: 650;
+    font-size: 12px;
 }
-
-/* =========================
-   CATEGORIES
-========================= */
-
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 17px;
+/* SECTIONS */
+section.content-section {
+    padding: 75px 0;
 }
-
-.category-card {
-    padding: 25px 18px;
-    border-radius: 14px;
-    background: var(--card);
-    border: 1px solid var(--border);
-    transition: .25s;
+.section-heading {
     text-align: center;
+    margin-bottom: 40px;
 }
-
-.category-card:hover {
-    border-color: var(--red);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
+.section-heading span {
+    color: var(--red);
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
-
-.category-icon {
-    font-size: 30px;
-    margin-bottom: 15px;
+.section-heading h2 {
+    font-size: 32px;
+    margin: 12px 0;
 }
-
-.category-card h3 {
-    font-size: 17px;
-    margin-bottom: 7px;
-}
-
-.category-card p {
+.section-heading p {
     color: var(--muted);
-    font-size: 11px;
+    font-size: 14px;
 }
-
-/* =========================
-   PRODUCT CARDS
-========================= */
-
-.products-grid {
+/* ACCOUNTS */
+.account-grid {
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
 }
-
-.product-card {
+.account-card {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 15px;
     overflow: hidden;
-    transition: .25s;
+    transition: .3s;
 }
-
-.product-card:hover {
+.account-card:hover {
     transform: translateY(-6px);
     box-shadow: var(--shadow);
 }
-
-.product-image {
-    height: 190px;
+.account-image {
     position: relative;
-    background: var(--surface2);
+    height: 185px;
+    background: #222;
 }
-
-.product-image img {
+.account-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
-.product-status {
+.available-tag {
     position: absolute;
     top: 12px;
     left: 12px;
     background: var(--green);
     color: white;
     padding: 7px 11px;
-    border-radius: 20px;
-    font-size: 9px;
-    font-weight: 800;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 5px;
 }
-
-.product-info {
-    padding: 18px;
+.sold-tag {
+    background: #777;
 }
-
-.product-info h3 {
-    font-size: 15px;
-    margin-bottom: 8px;
+.account-info {
+    padding: 17px;
 }
-
-.product-info p {
-    font-size: 11px;
-    color: var(--muted);
+.account-info h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.account-info p {
+    font-size: 12px;
     line-height: 1.7;
+    color: var(--muted);
     margin-bottom: 15px;
-    min-height: 38px;
 }
-
-.product-bottom {
+.account-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 15px;
+}
+.price {
+    font-size: 21px;
+    color: var(--red);
+    font-weight: 900;
+}
+.level {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 6px 9px;
+    border-radius: 6px;
+    font-size: 11px;
+}
+.account-actions {
+    display: flex;
     gap: 8px;
 }
-
-.product-price {
-    font-size: 19px;
-    font-weight: 900;
-    color: var(--red);
+.account-actions a,
+.account-actions button {
+    flex: 1;
+    text-align: center;
+    padding: 11px 5px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: bold;
 }
-
-.product-button {
+.view-btn {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+}
+.order-btn {
     background: var(--red);
     color: white;
     border: none;
-    border-radius: 7px;
-    padding: 10px 12px;
-    font-size: 10px;
-    font-weight: 800;
 }
-
-.product-button:hover {
-    background: var(--red-dark);
+.sold-card {
+    opacity: .8;
 }
-
-/* =========================
-   WHY CHOOSE US
-========================= */
-
+.center-btn {
+    text-align: center;
+    margin-top: 35px;
+}
+/* WHY US */
 .why-section {
-    background: var(--surface);
+    background: var(--card);
 }
-
 .why-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
-
 .why-card {
-    background: var(--card);
     border: 1px solid var(--border);
-    padding: 30px;
-    border-radius: 15px;
+    padding: 30px 24px;
+    border-radius: 14px;
 }
-
 .why-icon {
-    width: 50px;
-    height: 50px;
-    background: rgba(229,29,42,.1);
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    background: rgba(227,38,54,.12);
     color: var(--red);
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 12px;
     font-size: 23px;
     margin-bottom: 20px;
 }
-
 .why-card h3 {
-    font-size: 16px;
+    font-size: 17px;
     margin-bottom: 12px;
 }
-
 .why-card p {
-    font-size: 12px;
     color: var(--muted);
-    line-height: 1.9;
+    line-height: 1.8;
+    font-size: 13px;
 }
-
-/* =========================
-   REVIEWS
-========================= */
-
-.reviews-grid {
+/* REVIEWS */
+.review-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
 }
-
 .review-card {
-    border: 1px solid var(--border);
     background: var(--card);
-    border-radius: 14px;
+    border: 1px solid var(--border);
+    border-radius: 13px;
     padding: 23px;
 }
-
 .review-stars {
-    color: #f5ad24;
-    font-size: 16px;
-    letter-spacing: 2px;
+    color: #f4ae18;
+    letter-spacing: 3px;
     margin-bottom: 15px;
 }
-
 .review-card > p {
-    font-size: 12px;
     color: var(--muted);
-    line-height: 1.9;
-    margin-bottom: 22px;
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 20px;
 }
-
-.review-user {
+.reviewer {
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 12px;
 }
-
-.review-user img {
-    width: 39px;
-    height: 39px;
+.reviewer img {
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     object-fit: cover;
 }
-
-.review-user h4 {
-    font-size: 12px;
+.reviewer h4 {
+    font-size: 13px;
 }
-
-.review-user span {
-    font-size: 10px;
-    color: var(--green);
+.reviewer small {
+    color: var(--muted);
+    font-size: 11px;
 }
-
-/* =========================
-   BLOG
-========================= */
-
+/* BLOG */
 .blog-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 22px;
 }
-
 .blog-card {
-    border: 1px solid var(--border);
     background: var(--card);
-    border-radius: 15px;
+    border: 1px solid var(--border);
     overflow: hidden;
+    border-radius: 14px;
 }
-
 .blog-card img {
-    width: 100%;
     height: 190px;
+    width: 100%;
     object-fit: cover;
 }
-
-.blog-content {
-    padding: 21px;
+.blog-info {
+    padding: 20px;
 }
-
-.blog-tag {
+.blog-info small {
     color: var(--red);
-    font-size: 10px;
-    font-weight: 800;
-    margin-bottom: 12px;
-    display: block;
-}
-
-.blog-content h3 {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 10px;
-}
-
-.blog-content p {
+    font-weight: bold;
     font-size: 11px;
+}
+.blog-info h3 {
+    font-size: 17px;
+    margin: 12px 0;
+    line-height: 1.4;
+}
+.blog-info p {
     color: var(--muted);
+    font-size: 12px;
     line-height: 1.8;
+}
+.blog-info a {
+    display: inline-block;
+    color: var(--red);
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 15px;
+}
+/* CTA */
+.cta {
+    background: var(--red);
+    color: white;
+    padding: 55px 25px;
+    text-align: center;
+    border-radius: 17px;
+}
+.cta h2 {
+    font-size: 30px;
     margin-bottom: 15px;
 }
-
-.blog-content a {
-    font-size: 11px;
-    color: var(--red);
-    font-weight: 800;
-}
-
-/* =========================
-   CTA
-========================= */
-
-.cta {
-    background: linear-gradient(120deg,#e51d2a,#a80e19);
-    padding: 65px 25px;
-    text-align: center;
-    color: white;
-    border-radius: 20px;
-}
-
-.cta h2 {
-    font-size: clamp(25px,4vw,37px);
-    font-weight: 900;
-    margin-bottom: 13px;
-}
-
 .cta p {
-    font-size: 13px;
-    opacity: .85;
+    font-size: 14px;
+    opacity: .9;
     margin-bottom: 25px;
-    line-height: 1.8;
 }
-
 .cta .btn {
     background: white;
     color: var(--red);
 }
-
-/* =========================
-   FOOTER
-========================= */
-
+/* FOOTER */
 footer {
     background: #101010;
     color: white;
-    margin-top: 80px;
+    margin-top: 75px;
 }
-
-.footer-main {
-    padding: 65px 0;
+.footer-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
-    gap: 40px;
+    gap: 35px;
+    padding: 60px 0;
 }
-
-.footer-brand img {
-    width: 48px;
-    height: 48px;
-    object-fit: contain;
-    border-radius: 10px;
+.footer-brand {
+    font-size: 23px;
+    font-weight: 900;
     margin-bottom: 15px;
 }
-
-.footer-brand h3 {
-    font-size: 22px;
-    margin-bottom: 13px;
-}
-
-.footer-brand h3 span {
+.footer-brand span {
     color: var(--red);
 }
-
-.footer-brand p {
-    color: #999;
-    font-size: 12px;
-    line-height: 1.9;
-    max-width: 270px;
-}
-
-.footer-column h4 {
+.footer-about {
+    color: #aaa;
     font-size: 13px;
+    line-height: 1.9;
+    max-width: 300px;
+}
+.footer-column h3 {
+    font-size: 14px;
     margin-bottom: 20px;
 }
-
 .footer-column a {
     display: block;
-    color: #999;
+    color: #aaa;
     font-size: 12px;
-    margin-bottom: 15px;
-    transition: .2s;
+    margin-bottom: 14px;
 }
-
 .footer-column a:hover {
     color: white;
 }
-
 .footer-bottom {
-    border-top: 1px solid #292929;
-    padding: 23px 0;
+    border-top: 1px solid #303030;
+    padding: 22px 0;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
     gap: 15px;
-}
-
-.footer-bottom p {
+    flex-wrap: wrap;
+    color: #aaa;
     font-size: 11px;
-    color: #888;
 }
-
 .footer-bottom strong {
     color: white;
 }
-
-/* =========================
-   RESPONSIVENESS
-========================= */
-
-@media(max-width:1000px) {
-
-    .nav-links {
-        display: none;
+/* RTL */
+[dir="rtl"] body {
+    direction: rtl;
+}
+[dir="rtl"] .drawer {
+    right: auto;
+    left: -350px;
+}
+[dir="rtl"] .drawer.active {
+    left: 0;
+}
+[dir="rtl"] .hero-badge {
+    left: auto;
+    right: -15px;
+}
+[dir="rtl"] .available-tag {
+    left: auto;
+    right: 12px;
+}
+/* RESPONSIVE */
+@media(max-width: 1000px) {
+    .desktop-nav {
+        gap: 14px;
     }
-
-    .menu-btn {
-        display: flex;
+    .desktop-nav a {
+        font-size: 11px;
     }
-
-    .products-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .categories-grid {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .footer-main {
-        grid-template-columns: repeat(2,1fr);
+    .account-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
-
-@media(max-width:750px) {
-
+@media(max-width: 750px) {
+    .desktop-nav {
+        display: none;
+    }
+    .menu-btn {
+        display: grid;
+    }
     .hero {
-        padding: 55px 0;
+        padding: 48px 0;
     }
-
-    .hero-grid {
+    .hero-content {
         grid-template-columns: 1fr;
+        gap: 35px;
     }
-
-    .hero-image {
-        margin-top: 20px;
+    .hero-image img {
+        height: 270px;
     }
-
-    .hero-floating {
-        left: 10px;
-    }
-
     .stats-grid {
-        grid-template-columns: repeat(2,1fr);
-        row-gap: 25px;
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    .why-grid {
-        grid-template-columns: 1fr;
+    .stat:nth-child(2) {
+        border-right: none;
     }
-
-    .reviews-grid {
-        grid-template-columns: 1fr;
+    .stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--border);
     }
-
+    .why-grid,
+    .review-grid,
     .blog-grid {
         grid-template-columns: 1fr;
     }
-
-    .section {
-        padding: 65px 0;
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .section-heading h2 {
+        font-size: 26px;
     }
 }
-
-@media(max-width:480px) {
-
-    .logo {
+@media(max-width: 450px) {
+    .brand {
         font-size: 17px;
     }
-
-    .logo img {
+    .brand img {
         width: 36px;
         height: 36px;
     }
-
-    .navbar {
-        height: 68px;
-    }
-
     .nav-actions {
         gap: 7px;
     }
-
     .icon-btn {
-        width: 36px;
-        height: 36px;
+        width: 35px;
+        height: 35px;
     }
-
-    .products-grid {
+    .account-grid {
         grid-template-columns: 1fr;
     }
-
-    .product-image {
-        height: 220px;
-    }
-
-    .footer-main {
+    .footer-grid {
         grid-template-columns: 1fr;
-        gap: 30px;
     }
-
     .hero h1 {
-        letter-spacing: -1.5px;
-    }
-
-    .hero-buttons .btn {
-        width: 100%;
+        font-size: 39px;
     }
 }
-
 </style>
 </head>
-
 <body>
-
-<!-- ANNOUNCEMENT -->
-
-<div class="announcement">
-    🔥 WELCOME TO FOSTER GAMING — YOUR PREMIUM POKÉMON GO MARKETPLACE
+<div class="announcement" data-i18n="announcement">
+    Premium Pokémon GO Accounts | Buy • Sell • Swap
 </div>
-
-
-<!-- NAVIGATION -->
-
 <header>
-
 <div class="container navbar">
-
-    <a href="index.html" class="logo">
-
-        <img
-        src="images/IMG_2833.jpeg"
-        alt="Foster Gaming Logo"
-        onerror="this.style.display='none'">
-
-        FOSTER <span>GAMING</span>
-
+<a href="index.html" class="brand">
+    <img src="images/logo.png" alt="Foster Gaming Logo">
+    <div>FOSTER <span>GAMING</span></div>
+</a>
+<nav class="desktop-nav">
+    <a href="index.html" data-i18n="home">Home</a>
+    <a href="accounts.html" data-i18n="accounts">Accounts</a>
+    <a href="blog.html" data-i18n="blog">Blog</a>
+    <a href="about.html" data-i18n="about">About Us</a>
+    <a href="contact.html" data-i18n="contact">Contact</a>
+</nav>
+<div class="nav-actions">
+    <a href="cart.html" class="icon-btn" aria-label="Shopping cart">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
     </a>
-
-
-    <nav class="nav-links">
-
-        <a href="index.html">Home</a>
-
-        <a href="accounts.html">Marketplace</a>
-
-        <a href="blog.html">Blog</a>
-
-        <a href="about.html">About</a>
-
-        <a href="contact.html">Contact</a>
-
-    </nav>
-
-
-    <div class="nav-actions">
-
-        <button class="icon-btn" onclick="toggleTheme()" title="Change theme">
-            <span id="themeIcon">☀️</span>
-        </button>
-
-        <a href="cart.html" class="icon-btn" title="Shopping cart">
-            🛒
-            <span class="cart-count" id="cartCount">0</span>
-        </a>
-
-        <button class="icon-btn menu-btn" onclick="openMenu()" title="Menu">
-            ☰
-        </button>
-
-    </div>
-
+    <button class="icon-btn menu-btn" onclick="openDrawer()" aria-label="Open menu">☰</button>
 </div>
-
+</div>
 </header>
-
-
-<!-- SIDE MENU -->
-
-<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
-
-<div class="side-menu" id="sideMenu">
-
-    <div class="menu-header">
-
-        <h3>Foster Gaming</h3>
-
-        <button class="close-menu" onclick="closeMenu()">×</button>
-
-    </div>
-
-
-    <div class="menu-section">
-
-        <h4>Navigation</h4>
-
-        <a href="index.html">🏠 Home</a>
-
-        <a href="accounts.html">🎮 Marketplace</a>
-
-        <a href="cart.html">🛒 Shopping Cart</a>
-
-        <a href="blog.html">📰 Blog</a>
-
-        <a href="about.html">👥 About Us</a>
-
-        <a href="contact.html">📞 Contact</a>
-
-        <a href="reviews.html">⭐ Customer Reviews</a>
-
-    </div>
-
-
-    <div class="menu-section">
-
-        <h4>Appearance</h4>
-
-        <a href="#" onclick="toggleTheme();return false;">
-            🌙 Change Theme
-        </a>
-
-    </div>
-
-
-    <div class="menu-section">
-
-        <h4>Language / Idioma</h4>
-
-        <select class="language-select" id="languageSelect" onchange="changeLanguage()">
-
-            <option value="en">🇬🇧 English</option>
-
-            <option value="es">🇪🇸 Spanish</option>
-
-            <option value="fr">🇫🇷 French</option>
-
-            <option value="de">🇩🇪 German</option>
-
-            <option value="pt">🇵🇹 Portuguese</option>
-
-            <option value="it">🇮🇹 Italian</option>
-
-            <option value="ja">🇯🇵 Japanese</option>
-
-            <option value="zh">🇨🇳 Chinese</option>
-
-        </select>
-
-    </div>
-
-
-    <div class="menu-section">
-
-        <h4>Follow Us</h4>
-
-        <a href="https://www.tiktok.com/@williamfoster83" target="_blank">TikTok 1</a>
-
-        <a href="https://www.tiktok.com/@fostergames5" target="_blank">TikTok 2</a>
-
-        <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
-
-        <a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
-
-    </div>
-
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer">
+<div class="drawer-head">
+    <div class="brand">FOSTER <span>GAMING</span></div>
+    <button class="drawer-close" onclick="closeDrawer()">×</button>
 </div>
-
-
-
-<!-- HERO SECTION -->
-
+<nav class="drawer-links">
+    <a href="index.html" data-i18n="home">Home</a>
+    <a href="accounts.html" data-i18n="accounts">Accounts</a>
+    <a href="cart.html" data-i18n="cart">Shopping Cart</a>
+    <a href="blog.html" data-i18n="blog">Blog</a>
+    <a href="about.html" data-i18n="about">About Us</a>
+    <a href="contact.html" data-i18n="contact">Contact</a>
+    <a href="reviews.html" data-i18n="reviews">Customer Reviews</a>
+</nav>
+<div class="drawer-section">
+    <h4 data-i18n="language">🌐 Language</h4>
+    <select class="setting-select" id="languageSelect" onchange="changeLanguage(this.value)">
+        <option value="en">🇬🇧 English</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="pt">🇵🇹 Português</option>
+        <option value="ar">🇸🇦 العربية</option>
+        <option value="it">🇮🇹 Italiano</option>
+        <option value="zh">🇨🇳 中文</option>
+    </select>
+</div>
+<div class="drawer-section">
+    <h4 data-i18n="appearance">Appearance</h4>
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeButton">
+        🌙 Dark Mode
+    </button>
+</div>
+</aside>
+<!-- HERO -->
 <section class="hero">
-
-<div class="container hero-grid">
-
-    <div>
-
-        <div class="hero-badge">
-            🟢 PREMIUM POKÉMON GO MARKETPLACE
-        </div>
-
-
-        <h1>
-            Find Your Next
-            <span>Pokémon GO</span>
-            Account.
-        </h1>
-
-
-        <p class="hero-description">
-
-            Welcome to Foster Gaming, your destination for premium,
-            stacked and carefully developed Pokémon GO accounts.
-
-            Explore our marketplace, discover amazing collections
-            and find an account that matches your gaming goals.
-
-        </p>
-
-
-        <div class="hero-buttons">
-
-            <a href="accounts.html" class="btn btn-primary">
-                Explore Accounts →
-            </a>
-
-            <a href="about.html" class="btn btn-outline">
-                Discover Foster Gaming
-            </a>
-
-        </div>
-
+<div class="container hero-content">
+<div>
+    <span class="hero-label" data-i18n="heroLabel">WELCOME TO FOSTER GAMING</span>
+    <h1 data-i18n="heroTitle">
+        Find Your Next <span>Legendary</span> Pokémon GO Account.
+    </h1>
+    <p data-i18n="heroDescription">
+        Explore premium, stacked and carefully developed Pokémon GO accounts.
+        Discover your next collection and find the account that matches your
+        gaming ambitions.
+    </p>
+    <div class="hero-buttons">
+        <a href="accounts.html" class="btn btn-red" data-i18n="exploreAccounts">
+            Explore Accounts →
+        </a>
+        <a href="about.html" class="btn btn-outline" data-i18n="learnMore">
+            Learn More
+        </a>
     </div>
-
-
-    <div class="hero-image">
-
-        <img
-        src="images/87b3d8cd-ea97-8886-3c16-b5a36e0b9564.jpeg"
-        alt="Gaming setup">
-
-        <div class="hero-floating">
-
-            <strong>Premium Collection</strong>
-
-            <p>Explore our available accounts</p>
-
-        </div>
-
-    </div>
-
 </div>
-
+<div class="hero-image">
+    <img src="images/hero.png" alt="Foster Gaming Pokémon GO Collection">
+    <div class="hero-badge">
+        🟢 <span data-i18n="premiumCollection">Premium Account Collection</span>
+    </div>
+</div>
+</div>
 </section>
-
-
-
-<!-- STATISTICS -->
-
-<section class="stats">
-
+<!-- STATS -->
+<div class="stats">
 <div class="container stats-grid">
-
-    <div class="stat">
-
-        <h3>20+</h3>
-
-        <p>Available Accounts</p>
-
-    </div>
-
-
-    <div class="stat">
-
-        <h3>10+</h3>
-
-        <p>Sold Accounts</p>
-
-    </div>
-
-
-    <div class="stat">
-
-        <h3>65–80</h3>
-
-        <p>Account Levels</p>
-
-    </div>
-
-
-    <div class="stat">
-
-        <h3>24/7</h3>
-
-        <p>Online Enquiries</p>
-
-    </div>
-
+<div class="stat">
+    <h3>20+</h3>
+    <p data-i18n="availableAccounts">Available Accounts</p>
 </div>
-
-</section>
-
-
-
-<!-- CATEGORIES -->
-
-<section class="section">
-
-<div class="container">
-
-    <div class="section-heading">
-
-        <h2>Explore Account <span class="highlight">Categories</span></h2>
-
-        <p>Find the account level that matches your preferences.</p>
-
-    </div>
-
-
-    <div class="categories-grid">
-
-
-        <a href="accounts.html?level=65" class="category-card">
-
-            <div class="category-icon">🎮</div>
-
-            <h3>Level 65–67</h3>
-
-            <p>Explore available collections</p>
-
-        </a>
-
-
-        <a href="accounts.html?level=68" class="category-card">
-
-            <div class="category-icon">⚡</div>
-
-            <h3>Level 68–70</h3>
-
-            <p>Discover premium accounts</p>
-
-        </a>
-
-
-        <a href="accounts.html?level=71" class="category-card">
-
-            <div class="category-icon">🔥</div>
-
-            <h3>Level 71–75</h3>
-
-            <p>Explore advanced collections</p>
-
-        </a>
-
-
-        <a href="accounts.html?level=76" class="category-card">
-
-            <div class="category-icon">💎</div>
-
-            <h3>Level 76–80</h3>
-
-            <p>Discover high-level accounts</p>
-
-        </a>
-
-
-    </div>
-
+<div class="stat">
+    <h3>10+</h3>
+    <p data-i18n="soldAccounts">Successfully Sold</p>
 </div>
-
-</section>
-
-
-
+<div class="stat">
+    <h3>24/7</h3>
+    <p data-i18n="customerSupport">Customer Support</p>
+</div>
+<div class="stat">
+    <h3>100%</h3>
+    <p data-i18n="dedication">Customer Dedication</p>
+</div>
+</div>
+</div>
 <!-- FEATURED ACCOUNTS -->
-
-<section class="section" style="background:var(--surface);">
-
+<section class="content-section">
 <div class="container">
-
-    <div class="section-heading">
-
-        <h2>Featured <span class="highlight">Accounts</span></h2>
-
-        <p>Explore some of the accounts available in our marketplace.</p>
-
-    </div>
-
-
-    <div class="products-grid" id="featuredProducts">
-
-
-        <!-- ACCOUNT 1 -->
-
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                src="images/IMG_2869.jpeg"
-                alt="Level 65 account">
-
-                <span class="product-status">AVAILABLE</span>
-
-            </div>
-
-
-            <div class="product-info">
-
-                <h3>Premium Level 65 Account</h3>
-
-                <p>Explore a developed Pokémon GO collection with exciting Pokémon and items.</p>
-
-
-                <div class="product-bottom">
-
-                    <span class="product-price">$65</span>
-
-                    <button class="product-button" onclick="addToCart('FG-DEMO-001')">
-                        Add to Cart
-                    </button>
-
-                </div>
-
-                <br>
-
-                <a href="account.html?id=FG-DEMO-001" style="font-size:11px;color:var(--red);font-weight:800;">
-                    View Details →
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ACCOUNT 2 -->
-
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=700"
-                alt="Level 70 account">
-
-                <span class="product-status">AVAILABLE</span>
-
-            </div>
-
-
-            <div class="product-info">
-
-                <h3>Stacked Level 70 Account</h3>
-
-                <p>A premium demonstration listing with a developed collection and exciting features.</p>
-
-
-                <div class="product-bottom">
-
-                    <span class="product-price">$65</span>
-
-                    <button class="product-button" onclick="addToCart('FG-DEMO-002')">
-                        Add to Cart
-                    </button>
-
-                </div>
-
-                <br>
-
-                <a href="account.html?id=FG-DEMO-002" style="font-size:11px;color:var(--red);font-weight:800;">
-                    View Details →
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ACCOUNT 3 -->
-
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700"
-                alt="Level 75 account">
-
-                <span class="product-status">AVAILABLE</span>
-
-            </div>
-
-
-            <div class="product-info">
-
-                <h3>Premium Level 75 Account</h3>
-
-                <p>Discover an advanced account with a variety of Pokémon and exciting features.</p>
-
-
-                <div class="product-bottom">
-
-                    <span class="product-price">$78</span>
-
-                    <button class="product-button" onclick="addToCart('FG-DEMO-003')">
-                        Add to Cart
-                    </button>
-
-                </div>
-
-                <br>
-
-                <a href="account.html?id=FG-DEMO-003" style="font-size:11px;color:var(--red);font-weight:800;">
-                    View Details →
-                </a>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- ACCOUNT 4 -->
-
-        <div class="product-card">
-
-            <div class="product-image">
-
-                <img
-                src="https://images.unsplash.com/photo-1511882150382-421056c89033?w=700"
-                alt="Level 80 account">
-
-                <span class="product-status">AVAILABLE</span>
-
-            </div>
-
-
-            <div class="product-info">
-
-                <h3>Ultimate Level 80 Account</h3>
-
-                <p>Premium demonstration listing for customers exploring higher-level accounts.</p>
-
-
-                <div class="product-bottom">
-
-                    <span class="product-price">$78</span>
-
-                    <button class="product-button" onclick="addToCart('FG-DEMO-004')">
-                        Add to Cart
-                    </button>
-
-                </div>
-
-                <br>
-
-                <a href="account.html?id=FG-DEMO-004" style="font-size:11px;color:var(--red);font-weight:800;">
-                    View Details →
-                </a>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <div style="text-align:center;margin-top:40px;">
-
-        <a href="accounts.html" class="btn btn-primary">
-            View All Accounts →
-        </a>
-
-    </div>
-
+<div class="section-heading">
+    <span data-i18n="marketplace">OUR MARKETPLACE</span>
+    <h2 data-i18n="featuredTitle">Featured Accounts</h2>
+    <p data-i18n="featuredDescription">Explore some of our available Pokémon GO accounts.</p>
 </div>
-
+<div class="account-grid">
+    <article class="account-card">
+        <div class="account-image">
+            <img src="images/account1.png" alt="Level 65 Pokémon GO account">
+            <span class="available-tag" data-i18n="available">AVAILABLE</span>
+        </div>
+        <div class="account-info">
+            <h3>Premium Level 65 Account</h3>
+            <p>Stacked collection, rare Pokémon and exciting items to explore.</p>
+            <div class="account-bottom">
+                <span class="price">$65</span>
+                <span class="level">LEVEL 65</span>
+            </div>
+            <div class="account-actions">
+                <a href="account-details.html?id=demo65" class="view-btn" data-i18n="viewDetails">View Details</a>
+                <button class="order-btn" onclick="addToCart('demo65')" data-i18n="addCart">Add to Cart</button>
+            </div>
+        </div>
+    </article>
+    <article class="account-card">
+        <div class="account-image">
+            <img src="images/account2.png" alt="Level 70 Pokémon GO account">
+            <span class="available-tag" data-i18n="available">AVAILABLE</span>
+        </div>
+        <div class="account-info">
+            <h3>Stacked Level 70 Account</h3>
+            <p>High CP Pokémon, legendary collection and multiple shinies.</p>
+            <div class="account-bottom">
+                <span class="price">$65</span>
+                <span class="level">LEVEL 70</span>
+            </div>
+            <div class="account-actions">
+                <a href="account-details.html?id=demo70" class="view-btn" data-i18n="viewDetails">View Details</a>
+                <button class="order-btn" onclick="addToCart('demo70')" data-i18n="addCart">Add to Cart</button>
+            </div>
+        </div>
+    </article>
+    <article class="account-card">
+        <div class="account-image">
+            <img src="images/account3.png" alt="Level 75 Pokémon GO account">
+            <span class="available-tag" data-i18n="available">AVAILABLE</span>
+        </div>
+        <div class="account-info">
+            <h3>Premium Level 75 Account</h3>
+            <p>Powerful collection, event Pokémon and premium account features.</p>
+            <div class="account-bottom">
+                <span class="price">$78</span>
+                <span class="level">LEVEL 75</span>
+            </div>
+            <div class="account-actions">
+                <a href="account-details.html?id=demo75" class="view-btn" data-i18n="viewDetails">View Details</a>
+                <button class="order-btn" onclick="addToCart('demo75')" data-i18n="addCart">Add to Cart</button>
+            </div>
+        </div>
+    </article>
+    <article class="account-card">
+        <div class="account-image">
+            <img src="images/account4.png" alt="Level 80 Pokémon GO account">
+            <span class="available-tag" data-i18n="available">AVAILABLE</span>
+        </div>
+        <div class="account-info">
+            <h3>Elite Level 80 Account</h3>
+            <p>Advanced account with an impressive Pokémon collection.</p>
+            <div class="account-bottom">
+                <span class="price">$78</span>
+                <span class="level">LEVEL 80</span>
+            </div>
+            <div class="account-actions">
+                <a href="account-details.html?id=demo80" class="view-btn" data-i18n="viewDetails">View Details</a>
+                <button class="order-btn" onclick="addToCart('demo80')" data-i18n="addCart">Add to Cart</button>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="center-btn">
+    <a href="accounts.html" class="btn btn-red" data-i18n="viewAllAccounts">
+        View All Accounts →
+    </a>
+</div>
+</div>
 </section>
-
-
-
 <!-- WHY BUY FROM US -->
-
-<section class="section why-section">
-
+<section class="content-section why-section">
 <div class="container">
-
-    <div class="section-heading">
-
-        <h2>Why Buy From <span class="highlight">Foster Gaming?</span></h2>
-
-        <p>Discover what makes our marketplace a destination for Pokémon GO enthusiasts.</p>
-
-    </div>
-
-
-    <div class="why-grid">
-
-
-        <div class="why-card">
-
-            <div class="why-icon">💎</div>
-
-            <h3>Premium Collections</h3>
-
-            <p>
-                Explore different account levels and collections
-                with detailed descriptions and account previews.
-            </p>
-
-        </div>
-
-
-        <div class="why-card">
-
-            <div class="why-icon">🔍</div>
-
-            <h3>Detailed Previews</h3>
-
-            <p>
-                Review account information, available screenshots,
-                descriptions and other important details before ordering.
-            </p>
-
-        </div>
-
-
-        <div class="why-card">
-
-            <div class="why-icon">💳</div>
-
-            <h3>Multiple Payment Options</h3>
-
-            <p>
-                Choose from supported payment methods and
-                submit your payment information for manual verification.
-            </p>
-
-        </div>
-
-
-        <div class="why-card">
-
-            <div class="why-icon">🔄</div>
-
-            <h3>Buying & Swapping</h3>
-
-            <p>
-                Browse our marketplace and contact us
-                for enquiries about buying or swapping accounts.
-            </p>
-
-        </div>
-
-
-        <div class="why-card">
-
-            <div class="why-icon">📩</div>
-
-            <h3>Customer Support</h3>
-
-            <p>
-                Contact our team through our available
-                social media channels for assistance.
-            </p>
-
-        </div>
-
-
-        <div class="why-card">
-
-            <div class="why-icon">⚡</div>
-
-            <h3>Simple Ordering</h3>
-
-            <p>
-                Browse listings, add accounts to your cart
-                and submit your order through our checkout process.
-            </p>
-
-        </div>
-
-
-    </div>
-
+<div class="section-heading">
+    <span data-i18n="whyLabel">THE FOSTER GAMING DIFFERENCE</span>
+    <h2 data-i18n="whyTitle">Why Buy From Us?</h2>
+    <p data-i18n="whyDescription">We aim to make your account shopping experience straightforward and convenient.</p>
 </div>
-
+<div class="why-grid">
+    <div class="why-card">
+        <div class="why-icon">💎</div>
+        <h3 data-i18n="why1Title">Premium Collections</h3>
+        <p data-i18n="why1Text">Explore carefully developed accounts featuring exciting Pokémon collections, shinies and more.</p>
+    </div>
+    <div class="why-card">
+        <div class="why-icon">🔒</div>
+        <h3 data-i18n="why2Title">Manual Order Review</h3>
+        <p data-i18n="why2Text">Orders are reviewed manually before account delivery to help ensure the correct order is processed.</p>
+    </div>
+    <div class="why-card">
+        <div class="why-icon">🌍</div>
+        <h3 data-i18n="why3Title">International Customers</h3>
+        <p data-i18n="why3Text">We welcome customers from different countries with multiple payment options.</p>
+    </div>
+    <div class="why-card">
+        <div class="why-icon">💬</div>
+        <h3 data-i18n="why4Title">Direct Communication</h3>
+        <p data-i18n="why4Text">Reach our team through our social platforms and get assistance with your enquiries.</p>
+    </div>
+    <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3 data-i18n="why5Title">Simple Ordering</h3>
+        <p data-i18n="why5Text">Browse accounts, add your selections to the cart and submit your order conveniently.</p>
+    </div>
+    <div class="why-card">
+        <div class="why-icon">🤝</div>
+        <h3 data-i18n="why6Title">Customer Commitment</h3>
+        <p data-i18n="why6Text">We value our customers and strive to provide a smooth shopping experience.</p>
+    </div>
+</div>
+</div>
 </section>
-
-
-
 <!-- CUSTOMER REVIEWS -->
-
-<section class="section">
-
+<section class="content-section">
 <div class="container">
-
-    <div class="section-heading">
-
-        <h2>Customer <span class="highlight">Reviews</span></h2>
-
-        <p>See what customers have to say about their experience.</p>
-
-    </div>
-
-
-    <div class="reviews-grid">
-
-
-        <div class="review-card">
-
-            <div class="review-stars">★★★★★</div>
-
-            <p>
-                "The account information was clear and the ordering
-                process was straightforward. Great experience."
-            </p>
-
-            <div class="review-user">
-
-                <img src="https://i.pravatar.cc/100?img=12" alt="Customer">
-
-                <div>
-
-                    <h4>Daniel M.</h4>
-
-                    <span>Sample review</span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="review-card">
-
-            <div class="review-stars">★★★★★</div>
-
-            <p>
-                "I really liked how the account details were
-                presented. The communication was helpful."
-            </p>
-
-            <div class="review-user">
-
-                <img src="https://i.pravatar.cc/100?img=33" alt="Customer">
-
-                <div>
-
-                    <h4>Michael R.</h4>
-
-                    <span>Sample review</span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="review-card">
-
-            <div class="review-stars">★★★★☆</div>
-
-            <p>
-                "A nice marketplace for exploring different
-                Pokémon GO account collections."
-            </p>
-
-            <div class="review-user">
-
-                <img src="https://i.pravatar.cc/100?img=47" alt="Customer">
-
-                <div>
-
-                    <h4>Alex T.</h4>
-
-                    <span>Sample review</span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <div style="text-align:center;margin-top:35px;">
-
-        <a href="reviews.html" class="btn btn-outline">
-            View All Reviews
-        </a>
-
-        <a href="reviews.html" class="btn btn-primary">
-            Submit Your Review
-        </a>
-
-    </div>
-
+<div class="section-heading">
+    <span data-i18n="testimonials">CUSTOMER FEEDBACK</span>
+    <h2 data-i18n="reviewsTitle">What Customers Say</h2>
+    <p data-i18n="reviewsDescription">Customer feedback and shopping experiences.</p>
 </div>
-
+<div class="review-grid">
+    <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"The account description was detailed and the ordering process was straightforward."</p>
+        <div class="reviewer">
+            <img src="images/review1.jpg" alt="Customer profile">
+            <div>
+                <h4>Customer Demo 01</h4>
+                <small>5.0 / 5.0</small>
+            </div>
+        </div>
+    </div>
+    <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p>"I really liked the account collection. Communication throughout the order was helpful."</p>
+        <div class="reviewer">
+            <img src="images/review2.jpg" alt="Customer profile">
+            <div>
+                <h4>Customer Demo 02</h4>
+                <small>5.0 / 5.0</small>
+            </div>
+        </div>
+    </div>
+    <div class="review-card">
+        <div class="review-stars">★★★★☆</div>
+        <p>"Good experience browsing the available accounts. The information was easy to understand."</p>
+        <div class="reviewer">
+            <img src="images/review3.jpg" alt="Customer profile">
+            <div>
+                <h4>Customer Demo 03</h4>
+                <small>4.0 / 5.0</small>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="center-btn">
+    <a href="reviews.html" class="btn btn-outline" data-i18n="readReviews">Read All Reviews</a>
+</div>
+</div>
 </section>
-
-
-
-<!-- BLOG PREVIEW -->
-
-<section class="section" style="background:var(--surface);">
-
+<!-- BLOG -->
+<section class="content-section">
 <div class="container">
-
-    <div class="section-heading">
-
-        <h2>Latest From Our <span class="highlight">Blog</span></h2>
-
-        <p>Gaming news, Pokémon GO insights and marketplace updates.</p>
-
-    </div>
-
-
-    <div class="blog-grid">
-
-
-        <div class="blog-card">
-
-            <img
-            src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800"
-            alt="Gaming">
-
-            <div class="blog-content">
-
-                <span class="blog-tag">GAMING</span>
-
-                <h3>Exploring the World of Pokémon GO</h3>
-
-                <p>
-                    Discover more about the Pokémon GO experience
-                    and what makes the game exciting.
-                </p>
-
-                <a href="blog-post.html?id=1">Read Article →</a>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="blog-card">
-
-            <img
-            src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800"
-            alt="Gaming collection">
-
-            <div class="blog-content">
-
-                <span class="blog-tag">GUIDES</span>
-
-                <h3>Understanding Pokémon GO Account Levels</h3>
-
-                <p>
-                    Learn about account levels and the different
-                    features associated with progressing in the game.
-                </p>
-
-                <a href="blog-post.html?id=2">Read Article →</a>
-
-            </div>
-
-        </div>
-
-
-
-        <div class="blog-card">
-
-            <img
-            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800"
-            alt="Gaming setup">
-
-            <div class="blog-content">
-
-                <span class="blog-tag">FOSTER GAMING</span>
-
-                <h3>Welcome to the Foster Gaming Community</h3>
-
-                <p>
-                    Get to know our marketplace, available collections
-                    and the latest updates.
-                </p>
-
-                <a href="blog-post.html?id=3">Read Article →</a>
-
-            </div>
-
-        </div>
-
-
-    </div>
-
-
-    <div style="text-align:center;margin-top:35px;">
-
-        <a href="blog.html" class="btn btn-primary">
-            Explore Our Blog →
-        </a>
-
-    </div>
-
+<div class="section-heading">
+    <span data-i18n="latestNews">LATEST NEWS & ARTICLES</span>
+    <h2 data-i18n="blogTitle">From Our Blog</h2>
+    <p data-i18n="blogDescription">Gaming discussions, account guides and Pokémon GO content.</p>
 </div>
-
+<div class="blog-grid">
+    <article class="blog-card">
+        <img src="images/blog1.jpg" alt="Pokémon GO collection">
+        <div class="blog-info">
+            <small>POKÉMON GO</small>
+            <h3>Exploring the World of Pokémon GO Collections</h3>
+            <p>Discover different Pokémon collections and what makes them interesting to trainers.</p>
+            <a href="blog-details.html?id=article1" data-i18n="readMore">Read More →</a>
+        </div>
+    </article>
+    <article class="blog-card">
+        <img src="images/blog2.jpg" alt="Pokémon GO gameplay">
+        <div class="blog-info">
+            <small>GAMING GUIDE</small>
+            <h3>Understanding Pokémon GO Account Levels</h3>
+            <p>A closer look at account progression and the different levels available.</p>
+            <a href="blog-details.html?id=article2" data-i18n="readMore">Read More →</a>
+        </div>
+    </article>
+    <article class="blog-card">
+        <img src="images/blog3.jpg" alt="Gaming news">
+        <div class="blog-info">
+            <small>GAMING NEWS</small>
+            <h3>What Makes a Pokémon GO Collection Special?</h3>
+            <p>Explore shinies, legendary Pokémon, costumes and other collection highlights.</p>
+            <a href="blog-details.html?id=article3" data-i18n="readMore">Read More →</a>
+        </div>
+    </article>
+</div>
+<div class="center-btn">
+    <a href="blog.html" class="btn btn-red" data-i18n="visitBlog">Visit Our Blog</a>
+</div>
+</div>
 </section>
-
-
-
 <!-- CTA -->
-
-<section class="section">
-
-<div class="container">
-
-    <div class="cta">
-
-        <h2>Ready to Explore Our Marketplace?</h2>
-
-        <p>
-            Discover premium Pokémon GO accounts and find
-            your next gaming collection at Foster Gaming.
-        </p>
-
-        <a href="accounts.html" class="btn">
-            Browse Available Accounts →
-        </a>
-
-    </div>
-
+<section class="container">
+<div class="cta">
+<h2 data-i18n="ctaTitle">Ready to Find Your Next Account?</h2>
+<p data-i18n="ctaDescription">Explore our available Pokémon GO accounts and discover your next collection.</p>
+<a href="accounts.html" class="btn" data-i18n="shopNow">Explore Marketplace →</a>
 </div>
-
 </section>
-
-
-
 <!-- FOOTER -->
-
 <footer>
-
-<div class="container footer-main">
-
-
-    <div class="footer-brand">
-
-        <img
-        src="images/IMG_2833.jpeg"
-        alt="Foster Gaming Logo"
-        onerror="this.style.display='none'">
-
-        <h3>FOSTER <span>GAMING</span></h3>
-
-        <p>
-            Your destination for premium Pokémon GO accounts.
-            Explore, discover and find your next gaming collection
-            with Foster Gaming.
-        </p>
-
-    </div>
-
-
-
-    <div class="footer-column">
-
-        <h4>Quick Links</h4>
-
-        <a href="index.html">Home</a>
-
-        <a href="accounts.html">Marketplace</a>
-
-        <a href="about.html">About Us</a>
-
-        <a href="blog.html">Our Blog</a>
-
-        <a href="reviews.html">Customer Reviews</a>
-
-    </div>
-
-
-
-    <div class="footer-column">
-
-        <h4>Customer Support</h4>
-
-        <a href="contact.html">Contact Us</a>
-
-        <a href="cart.html">Shopping Cart</a>
-
-        <a href="reviews.html">Submit a Review</a>
-
-        <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
-
-    </div>
-
-
-
-    <div class="footer-column">
-
-        <h4>Connect With Us</h4>
-
-        <a href="https://www.tiktok.com/@williamfoster83" target="_blank">TikTok</a>
-
-        <a href="https://www.tiktok.com/@fostergames5" target="_blank">TikTok 2</a>
-
-        <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
-
-        <a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
-
-    </div>
-
-
+<div class="container footer-grid">
+<div>
+    <div class="footer-brand">FOSTER <span>GAMING</span></div>
+    <p class="footer-about" data-i18n="footerDescription">
+        Your destination for premium Pokémon GO accounts. Explore, discover and find your next gaming collection.
+    </p>
 </div>
-
-
-
+<div class="footer-column">
+    <h3 data-i18n="quickLinks">Quick Links</h3>
+    <a href="index.html" data-i18n="home">Home</a>
+    <a href="accounts.html" data-i18n="accounts">Accounts</a>
+    <a href="blog.html" data-i18n="blog">Blog</a>
+    <a href="about.html" data-i18n="about">About Us</a>
+</div>
+<div class="footer-column">
+    <h3 data-i18n="customerService">Customer Service</h3>
+    <a href="contact.html" data-i18n="contact">Contact Us</a>
+    <a href="reviews.html" data-i18n="reviews">Customer Reviews</a>
+    <a href="cart.html" data-i18n="cart">Shopping Cart</a>
+    <a href="checkout.html" data-i18n="checkout">Checkout</a>
+</div>
+<div class="footer-column">
+    <h3 data-i18n="connect">Connect With Us</h3>
+    <a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok 01</a>
+    <a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 02</a>
+    <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
+    <a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
+    <a href="mailto:harishwilliams010@gmail.com">Email Us</a>
+</div>
+</div>
 <div class="container footer-bottom">
-
-    <p>
-        © <span id="year"></span> Foster Gaming. All rights reserved.
-    </p>
-
-    <p>
-        Developed by <strong>BITBRIDGE TECHNOLOGIES INC</strong>
-    </p>
-
+<p>© <span id="year"></span> Foster Gaming. <span data-i18n="rights">All Rights Reserved.</span></p>
+<p><span data-i18n="developed">Developed by</span> <strong>BITBRIDGE TECHNOLOGIES INC</strong></p>
 </div>
-
 </footer>
-
-
-
-<!-- JAVASCRIPT -->
-
 <script>
-
-/* =========================
-   THEME MANAGEMENT
-========================= */
-
+/* =====================================
+   FOSTER GAMING GLOBAL SETTINGS
+===================================== */
+/* THEME */
 function applyTheme() {
-
-    const theme = localStorage.getItem("fg-theme") || "light";
-
-    document.body.classList.toggle("dark", theme === "dark");
-
-    document.getElementById("themeIcon").textContent =
-        theme === "dark" ? "☀️" : "🌙";
-
+    const theme = localStorage.getItem("foster_theme") || "light";
+    document.documentElement.setAttribute("data-theme", theme);
+    const button = document.getElementById("themeButton");
+    if(button) {
+        button.innerHTML = theme === "dark"
+            ? "☀️ Light Mode"
+            : "🌙 Dark Mode";
+    }
 }
-
 function toggleTheme() {
-
-    const current = localStorage.getItem("fg-theme") || "light";
-
+    const current = localStorage.getItem("foster_theme") || "light";
     const next = current === "dark" ? "light" : "dark";
-
-    localStorage.setItem("fg-theme", next);
-
+    localStorage.setItem("foster_theme", next);
     applyTheme();
-
 }
-
-applyTheme();
-
-
-/* =========================
-   LANGUAGE MANAGEMENT
-========================= */
-
+/* LANGUAGE TRANSLATIONS */
 const translations = {
-
-    en: {
-        home: "Home",
-        marketplace: "Marketplace",
-        blog: "Blog",
-        about: "About",
-        contact: "Contact",
-        explore: "Explore Accounts",
-        cart: "Shopping Cart"
-    },
-
-    es: {
-        home: "Inicio",
-        marketplace: "Mercado",
-        blog: "Blog",
-        about: "Nosotros",
-        contact: "Contacto",
-        explore: "Explorar cuentas",
-        cart: "Carrito"
-    },
-
-    fr: {
-        home: "Accueil",
-        marketplace: "Marché",
-        blog: "Blog",
-        about: "À propos",
-        contact: "Contact",
-        explore: "Explorer les comptes",
-        cart: "Panier"
-    },
-
-    de: {
-        home: "Startseite",
-        marketplace: "Marktplatz",
-        blog: "Blog",
-        about: "Über uns",
-        contact: "Kontakt",
-        explore: "Konten entdecken",
-        cart: "Warenkorb"
-    },
-
-    pt: {
-        home: "Início",
-        marketplace: "Mercado",
-        blog: "Blog",
-        about: "Sobre",
-        contact: "Contato",
-        explore: "Explorar contas",
-        cart: "Carrinho"
-    },
-
-    it: {
-        home: "Home",
-        marketplace: "Mercato",
-        blog: "Blog",
-        about: "Chi siamo",
-        contact: "Contatti",
-        explore: "Esplora account",
-        cart: "Carrello"
-    },
-
-    ja: {
-        home: "ホーム",
-        marketplace: "マーケット",
-        blog: "ブログ",
-        about: "会社概要",
-        contact: "お問い合わせ",
-        explore: "アカウントを見る",
-        cart: "カート"
-    },
-
-    zh: {
-        home: "首页",
-        marketplace: "市场",
-        blog: "博客",
-        about: "关于我们",
-        contact: "联系我们",
-        explore: "浏览账户",
-        cart: "购物车"
-    }
-
+en: {
+announcement:"Premium Pokémon GO Accounts | Buy • Sell • Swap",
+home:"Home",accounts:"Accounts",blog:"Blog",about:"About Us",
+contact:"Contact",cart:"Shopping Cart",reviews:"Customer Reviews",
+language:"🌐 Language",appearance:"Appearance",
+heroLabel:"WELCOME TO FOSTER GAMING",
+heroTitle:'Find Your Next <span>Legendary</span> Pokémon GO Account.',
+heroDescription:"Explore premium, stacked and carefully developed Pokémon GO accounts. Discover your next collection and find the account that matches your gaming ambitions.",
+exploreAccounts:"Explore Accounts →",learnMore:"Learn More",
+premiumCollection:"Premium Account Collection",
+availableAccounts:"Available Accounts",soldAccounts:"Successfully Sold",
+customerSupport:"Customer Support",dedication:"Customer Dedication",
+marketplace:"OUR MARKETPLACE",featuredTitle:"Featured Accounts",
+featuredDescription:"Explore some of our available Pokémon GO accounts.",
+available:"AVAILABLE",viewDetails:"View Details",addCart:"Add to Cart",
+viewAllAccounts:"View All Accounts →",
+whyLabel:"THE FOSTER GAMING DIFFERENCE",whyTitle:"Why Buy From Us?",
+whyDescription:"We aim to make your account shopping experience straightforward and convenient.",
+why1Title:"Premium Collections",
+why1Text:"Explore carefully developed accounts featuring exciting Pokémon collections, shinies and more.",
+why2Title:"Manual Order Review",
+why2Text:"Orders are reviewed manually before account delivery to help ensure the correct order is processed.",
+why3Title:"International Customers",
+why3Text:"We welcome customers from different countries with multiple payment options.",
+why4Title:"Direct Communication",
+why4Text:"Reach our team through our social platforms and get assistance with your enquiries.",
+why5Title:"Simple Ordering",
+why5Text:"Browse accounts, add your selections to the cart and submit your order conveniently.",
+why6Title:"Customer Commitment",
+why6Text:"We value our customers and strive to provide a smooth shopping experience.",
+testimonials:"CUSTOMER FEEDBACK",reviewsTitle:"What Customers Say",
+reviewsDescription:"Customer feedback and shopping experiences.",
+readReviews:"Read All Reviews",latestNews:"LATEST NEWS & ARTICLES",
+blogTitle:"From Our Blog",
+blogDescription:"Gaming discussions, account guides and Pokémon GO content.",
+readMore:"Read More →",visitBlog:"Visit Our Blog",
+ctaTitle:"Ready to Find Your Next Account?",
+ctaDescription:"Explore our available Pokémon GO accounts and discover your next collection.",
+shopNow:"Explore Marketplace →",
+footerDescription:"Your destination for premium Pokémon GO accounts. Explore, discover and find your next gaming collection.",
+quickLinks:"Quick Links",customerService:"Customer Service",
+connect:"Connect With Us",rights:"All Rights Reserved.",
+developed:"Developed by",checkout:"Checkout"
+},
+es: {
+announcement:"Cuentas premium de Pokémon GO | Comprar • Vender • Intercambiar",
+home:"Inicio",accounts:"Cuentas",blog:"Blog",about:"Sobre nosotros",
+contact:"Contacto",cart:"Carrito",reviews:"Opiniones de clientes",
+language:"🌐 Idioma",appearance:"Apariencia",
+heroLabel:"BIENVENIDO A FOSTER GAMING",
+heroTitle:'Encuentra tu próxima cuenta <span>Legendaria</span> de Pokémon GO.',
+heroDescription:"Explora cuentas premium de Pokémon GO, completas y cuidadosamente desarrolladas. Descubre tu próxima colección y encuentra la cuenta ideal para ti.",
+exploreAccounts:"Explorar cuentas →",learnMore:"Más información",
+premiumCollection:"Colección de cuentas premium",
+availableAccounts:"Cuentas disponibles",soldAccounts:"Cuentas vendidas",
+customerSupport:"Atención al cliente",dedication:"Compromiso con el cliente",
+marketplace:"NUESTRO MERCADO",featuredTitle:"Cuentas destacadas",
+featuredDescription:"Explora algunas de nuestras cuentas disponibles de Pokémon GO.",
+available:"DISPONIBLE",viewDetails:"Ver detalles",addCart:"Añadir al carrito",
+viewAllAccounts:"Ver todas las cuentas →",
+whyLabel:"LA DIFERENCIA DE FOSTER GAMING",whyTitle:"¿Por qué comprarnos?",
+whyDescription:"Queremos que comprar tu cuenta sea una experiencia sencilla y cómoda.",
+why1Title:"Colecciones premium",
+why1Text:"Explora cuentas desarrolladas con colecciones Pokémon, shinies y mucho más.",
+why2Title:"Revisión manual de pedidos",
+why2Text:"Revisamos los pedidos manualmente antes de entregar las cuentas.",
+why3Title:"Clientes internacionales",
+why3Text:"Recibimos clientes de diferentes países con varias opciones de pago.",
+why4Title:"Comunicación directa",
+why4Text:"Contacta con nuestro equipo a través de nuestras redes sociales.",
+why5Title:"Pedido sencillo",
+why5Text:"Explora las cuentas, añádelas al carrito y realiza tu pedido fácilmente.",
+why6Title:"Compromiso con el cliente",
+why6Text:"Valoramos a nuestros clientes y buscamos ofrecer una buena experiencia.",
+testimonials:"OPINIONES DE CLIENTES",reviewsTitle:"Lo que dicen nuestros clientes",
+reviewsDescription:"Opiniones y experiencias de compra.",
+readReviews:"Leer todas las opiniones",latestNews:"NOTICIAS Y ARTÍCULOS",
+blogTitle:"Nuestro blog",blogDescription:"Noticias, guías y contenido de Pokémon GO.",
+readMore:"Leer más →",visitBlog:"Visitar el blog",
+ctaTitle:"¿Listo para encontrar tu próxima cuenta?",
+ctaDescription:"Explora nuestras cuentas disponibles de Pokémon GO.",
+shopNow:"Explorar mercado →",
+footerDescription:"Tu destino para cuentas premium de Pokémon GO. Explora y encuentra tu próxima colección.",
+quickLinks:"Enlaces rápidos",customerService:"Atención al cliente",
+connect:"Conéctate con nosotros",rights:"Todos los derechos reservados.",
+developed:"Desarrollado por",checkout:"Finalizar compra"
+},
+fr: {
+announcement:"Comptes Pokémon GO Premium | Acheter • Vendre • Échanger",
+home:"Accueil",accounts:"Comptes",blog:"Blog",about:"À propos",
+contact:"Contact",cart:"Panier",reviews:"Avis clients",
+language:"🌐 Langue",appearance:"Apparence",
+heroLabel:"BIENVENUE CHEZ FOSTER GAMING",
+heroTitle:'Trouvez votre prochain compte Pokémon GO <span>Légendaire</span>.',
+heroDescription:"Découvrez des comptes Pokémon GO premium, développés avec soin et riches en Pokémon.",
+exploreAccounts:"Explorer les comptes →",learnMore:"En savoir plus",
+premiumCollection:"Collection de comptes premium",
+availableAccounts:"Comptes disponibles",soldAccounts:"Comptes vendus",
+customerSupport:"Service client",dedication:"Engagement client",
+marketplace:"NOTRE MARCHÉ",featuredTitle:"Comptes en vedette",
+featuredDescription:"Découvrez quelques-uns de nos comptes Pokémon GO disponibles.",
+available:"DISPONIBLE",viewDetails:"Voir les détails",addCart:"Ajouter au panier",
+viewAllAccounts:"Voir tous les comptes →",
+whyLabel:"LA DIFFÉRENCE FOSTER GAMING",whyTitle:"Pourquoi nous choisir ?",
+whyDescription:"Nous souhaitons rendre votre expérience d'achat simple et agréable.",
+why1Title:"Collections premium",why1Text:"Découvrez des comptes avec des collections Pokémon, des shiny et plus encore.",
+why2Title:"Vérification manuelle",why2Text:"Les commandes sont vérifiées manuellement avant la livraison.",
+why3Title:"Clients internationaux",why3Text:"Nous accueillons des clients de différents pays.",
+why4Title:"Communication directe",why4Text:"Contactez notre équipe sur nos réseaux sociaux.",
+why5Title:"Commande simple",why5Text:"Parcourez les comptes et ajoutez vos choix au panier.",
+why6Title:"Engagement client",why6Text:"Nous accordons de l'importance à nos clients.",
+testimonials:"AVIS CLIENTS",reviewsTitle:"Ce que disent nos clients",
+reviewsDescription:"Avis et expériences des clients.",
+readReviews:"Lire tous les avis",latestNews:"ACTUALITÉS ET ARTICLES",
+blogTitle:"Notre blog",blogDescription:"Actualités et guides Pokémon GO.",
+readMore:"Lire la suite →",visitBlog:"Visiter le blog",
+ctaTitle:"Prêt à trouver votre prochain compte ?",
+ctaDescription:"Découvrez nos comptes Pokémon GO disponibles.",
+shopNow:"Explorer la boutique →",
+footerDescription:"Votre destination pour les comptes Pokémon GO premium.",
+quickLinks:"Liens rapides",customerService:"Service client",
+connect:"Nous contacter",rights:"Tous droits réservés.",
+developed:"Développé par",checkout:"Paiement"
+},
+de: {
+announcement:"Premium Pokémon GO Konten | Kaufen • Verkaufen • Tauschen",
+home:"Startseite",accounts:"Konten",blog:"Blog",about:"Über uns",
+contact:"Kontakt",cart:"Warenkorb",reviews:"Kundenbewertungen",
+language:"🌐 Sprache",appearance:"Darstellung",
+heroLabel:"WILLKOMMEN BEI FOSTER GAMING",
+heroTitle:'Finde deinen nächsten <span>legendären</span> Pokémon GO Account.',
+heroDescription:"Entdecke hochwertige und sorgfältig entwickelte Pokémon GO Accounts.",
+exploreAccounts:"Konten entdecken →",learnMore:"Mehr erfahren",
+premiumCollection:"Premium Account Sammlung",
+availableAccounts:"Verfügbare Konten",soldAccounts:"Verkaufte Konten",
+customerSupport:"Kundendienst",dedication:"Kundenengagement",
+marketplace:"UNSER MARKTPLATZ",featuredTitle:"Ausgewählte Konten",
+featuredDescription:"Entdecke einige unserer verfügbaren Pokémon GO Konten.",
+available:"VERFÜGBAR",viewDetails:"Details ansehen",addCart:"In den Warenkorb",
+viewAllAccounts:"Alle Konten ansehen →",
+whyLabel:"DER FOSTER GAMING UNTERSCHIED",whyTitle:"Warum bei uns kaufen?",
+whyDescription:"Wir möchten deinen Einkauf einfach und angenehm gestalten.",
+why1Title:"Premium Sammlungen",why1Text:"Entdecke Konten mit Pokémon-Sammlungen, Shinys und mehr.",
+why2Title:"Manuelle Bestellprüfung",why2Text:"Bestellungen werden vor der Lieferung manuell geprüft.",
+why3Title:"Internationale Kunden",why3Text:"Wir begrüßen Kunden aus verschiedenen Ländern.",
+why4Title:"Direkte Kommunikation",why4Text:"Kontaktiere unser Team über unsere sozialen Netzwerke.",
+why5Title:"Einfache Bestellung",why5Text:"Durchsuche Konten und lege deine Auswahl in den Warenkorb.",
+why6Title:"Kundenorientierung",why6Text:"Unsere Kunden und ihre Erfahrungen sind uns wichtig.",
+testimonials:"KUNDENFEEDBACK",reviewsTitle:"Was Kunden sagen",
+reviewsDescription:"Kundenmeinungen und Einkaufserfahrungen.",
+readReviews:"Alle Bewertungen lesen",latestNews:"NEUIGKEITEN UND ARTIKEL",
+blogTitle:"Unser Blog",blogDescription:"Gaming-News und Pokémon GO Ratgeber.",
+readMore:"Weiterlesen →",visitBlog:"Blog besuchen",
+ctaTitle:"Bereit für deinen nächsten Account?",
+ctaDescription:"Entdecke unsere verfügbaren Pokémon GO Konten.",
+shopNow:"Marktplatz entdecken →",
+footerDescription:"Deine Anlaufstelle für Premium Pokémon GO Konten.",
+quickLinks:"Schnelllinks",customerService:"Kundenservice",
+connect:"Verbinde dich mit uns",rights:"Alle Rechte vorbehalten.",
+developed:"Entwickelt von",checkout:"Kasse"
+},
+pt: {
+announcement:"Contas Premium Pokémon GO | Comprar • Vender • Trocar",
+home:"Início",accounts:"Contas",blog:"Blog",about:"Sobre nós",
+contact:"Contato",cart:"Carrinho",reviews:"Avaliações",
+language:"🌐 Idioma",appearance:"Aparência",
+heroLabel:"BEM-VINDO À FOSTER GAMING",
+heroTitle:'Encontre sua próxima conta <span>Lendária</span> de Pokémon GO.',
+heroDescription:"Explore contas premium de Pokémon GO, completas e cuidadosamente desenvolvidas.",
+exploreAccounts:"Explorar contas →",learnMore:"Saiba mais",
+premiumCollection:"Coleção de contas premium",
+availableAccounts:"Contas disponíveis",soldAccounts:"Contas vendidas",
+customerSupport:"Suporte ao cliente",dedication:"Compromisso com clientes",
+marketplace:"NOSSO MERCADO",featuredTitle:"Contas em destaque",
+featuredDescription:"Explore algumas das nossas contas disponíveis de Pokémon GO.",
+available:"DISPONÍVEL",viewDetails:"Ver detalhes",addCart:"Adicionar ao carrinho",
+viewAllAccounts:"Ver todas as contas →",
+whyLabel:"A DIFERENÇA FOSTER GAMING",whyTitle:"Por que comprar conosco?",
+whyDescription:"Queremos tornar sua experiência de compra simples e conveniente.",
+why1Title:"Coleções premium",why1Text:"Explore contas com coleções Pokémon, shinies e muito mais.",
+why2Title:"Revisão manual",why2Text:"Os pedidos são revisados manualmente antes da entrega.",
+why3Title:"Clientes internacionais",why3Text:"Recebemos clientes de diferentes países.",
+why4Title:"Comunicação direta",why4Text:"Entre em contato com nossa equipe pelas redes sociais.",
+why5Title:"Pedido simples",why5Text:"Explore contas e adicione suas escolhas ao carrinho.",
+why6Title:"Compromisso com clientes",why6Text:"Valorizamos nossos clientes e sua experiência.",
+testimonials:"OPINIÕES DOS CLIENTES",reviewsTitle:"O que dizem nossos clientes",
+reviewsDescription:"Opiniões e experiências de compra.",
+readReviews:"Ver todas as avaliações",latestNews:"NOTÍCIAS E ARTIGOS",
+blogTitle:"Nosso blog",blogDescription:"Guias e conteúdos sobre Pokémon GO.",
+readMore:"Leia mais →",visitBlog:"Visitar blog",
+ctaTitle:"Pronto para encontrar sua próxima conta?",
+ctaDescription:"Explore nossas contas Pokémon GO disponíveis.",
+shopNow:"Explorar mercado →",
+footerDescription:"Seu destino para contas premium de Pokémon GO.",
+quickLinks:"Links rápidos",customerService:"Atendimento",
+connect:"Conecte-se conosco",rights:"Todos os direitos reservados.",
+developed:"Desenvolvido por",checkout:"Finalizar compra"
+},
+ar: {
+announcement:"حسابات بوكيمون جو المميزة | شراء • بيع • تبادل",
+home:"الرئيسية",accounts:"الحسابات",blog:"المدونة",about:"من نحن",
+contact:"اتصل بنا",cart:"سلة التسوق",reviews:"آراء العملاء",
+language:"🌐 اللغة",appearance:"المظهر",
+heroLabel:"مرحباً بك في فوستر جيمينج",
+heroTitle:'اعثر على حساب بوكيمون جو <span>الأسطوري</span> القادم.',
+heroDescription:"اكتشف حسابات بوكيمون جو المميزة والمطورة بعناية.",
+exploreAccounts:"استكشف الحسابات ←",learnMore:"اعرف المزيد",
+premiumCollection:"مجموعة الحسابات المميزة",
+availableAccounts:"الحسابات المتاحة",soldAccounts:"الحسابات المباعة",
+customerSupport:"دعم العملاء",dedication:"الاهتمام بالعملاء",
+marketplace:"سوقنا",featuredTitle:"الحسابات المميزة",
+featuredDescription:"اكتشف بعض حسابات بوكيمون جو المتاحة لدينا.",
+available:"متاح",viewDetails:"عرض التفاصيل",addCart:"أضف إلى السلة",
+viewAllAccounts:"عرض جميع الحسابات ←",
+whyLabel:"ما يميز فوستر جيمينج",whyTitle:"لماذا تشتري منا؟",
+whyDescription:"نسعى إلى جعل تجربة شراء الحسابات سهلة ومريحة.",
+why1Title:"مجموعات مميزة",why1Text:"اكتشف حسابات تحتوي على مجموعات بوكيمون متنوعة.",
+why2Title:"مراجعة الطلبات",why2Text:"تتم مراجعة الطلبات يدوياً قبل تسليم الحسابات.",
+why3Title:"عملاء دوليون",why3Text:"نرحب بالعملاء من مختلف البلدان.",
+why4Title:"تواصل مباشر",why4Text:"تواصل مع فريقنا عبر منصات التواصل الاجتماعي.",
+why5Title:"طلب سهل",why5Text:"تصفح الحسابات وأضف اختياراتك إلى السلة.",
+why6Title:"الاهتمام بالعملاء",why6Text:"نقدر عملاءنا ونسعى لتقديم تجربة جيدة.",
+testimonials:"آراء العملاء",reviewsTitle:"ماذا يقول عملاؤنا",
+reviewsDescription:"آراء العملاء وتجارب الشراء.",
+readReviews:"عرض جميع التقييمات",latestNews:"آخر الأخبار والمقالات",
+blogTitle:"مدونتنا",blogDescription:"أخبار وإرشادات ومحتوى بوكيمون جو.",
+readMore:"اقرأ المزيد ←",visitBlog:"زيارة المدونة",
+ctaTitle:"هل أنت مستعد للعثور على حسابك القادم؟",
+ctaDescription:"اكتشف حسابات بوكيمون جو المتاحة لدينا.",
+shopNow:"استكشف المتجر ←",
+footerDescription:"وجهتك للحسابات المميزة في بوكيمون جو.",
+quickLinks:"روابط سريعة",customerService:"خدمة العملاء",
+connect:"تواصل معنا",rights:"جميع الحقوق محفوظة.",
+developed:"تم التطوير بواسطة",checkout:"إتمام الشراء"
+},
+it: {
+announcement:"Account Pokémon GO Premium | Compra • Vendi • Scambia",
+home:"Home",accounts:"Account",blog:"Blog",about:"Chi siamo",
+contact:"Contatti",cart:"Carrello",reviews:"Recensioni",
+language:"🌐 Lingua",appearance:"Aspetto",
+heroLabel:"BENVENUTO SU FOSTER GAMING",
+heroTitle:'Trova il tuo prossimo account Pokémon GO <span>Leggendario</span>.',
+heroDescription:"Esplora account Pokémon GO premium, completi e sviluppati con cura.",
+exploreAccounts:"Esplora account →",learnMore:"Scopri di più",
+premiumCollection:"Collezione account premium",
+availableAccounts:"Account disponibili",soldAccounts:"Account venduti",
+customerSupport:"Assistenza clienti",dedication:"Impegno verso i clienti",
+marketplace:"IL NOSTRO MERCATO",featuredTitle:"Account in evidenza",
+featuredDescription:"Esplora alcuni dei nostri account Pokémon GO disponibili.",
+available:"DISPONIBILE",viewDetails:"Visualizza dettagli",addCart:"Aggiungi al carrello",
+viewAllAccounts:"Visualizza tutti gli account →",
+whyLabel:"LA DIFFERENZA FOSTER GAMING",whyTitle:"Perché acquistare da noi?",
+whyDescription:"Vogliamo rendere la tua esperienza di acquisto semplice e comoda.",
+why1Title:"Collezioni premium",why1Text:"Esplora account con collezioni Pokémon, shiny e molto altro.",
+why2Title:"Controllo manuale degli ordini",why2Text:"Gli ordini vengono controllati manualmente prima della consegna.",
+why3Title:"Clienti internazionali",why3Text:"Accogliamo clienti da diversi paesi.",
+why4Title:"Comunicazione diretta",why4Text:"Contatta il nostro team tramite i social.",
+why5Title:"Ordini semplici",why5Text:"Esplora gli account e aggiungi le tue scelte al carrello.",
+why6Title:"Impegno verso i clienti",why6Text:"I nostri clienti sono importanti per noi.",
+testimonials:"FEEDBACK CLIENTI",reviewsTitle:"Cosa dicono i clienti",
+reviewsDescription:"Opinioni ed esperienze di acquisto.",
+readReviews:"Leggi tutte le recensioni",latestNews:"ULTIME NOTIZIE E ARTICOLI",
+blogTitle:"Dal nostro blog",blogDescription:"Guide e contenuti su Pokémon GO.",
+readMore:"Leggi di più →",visitBlog:"Visita il blog",
+ctaTitle:"Pronto a trovare il tuo prossimo account?",
+ctaDescription:"Scopri i nostri account Pokémon GO disponibili.",
+shopNow:"Esplora il mercato →",
+footerDescription:"La tua destinazione per account Pokémon GO premium.",
+quickLinks:"Link rapidi",customerService:"Servizio clienti",
+connect:"Seguici",rights:"Tutti i diritti riservati.",
+developed:"Sviluppato da",checkout:"Checkout"
+},
+zh: {
+announcement:"高级 Pokémon GO 账号 | 购买 • 出售 • 交换",
+home:"首页",accounts:"账号",blog:"博客",about:"关于我们",
+contact:"联系我们",cart:"购物车",reviews:"客户评价",
+language:"🌐 语言",appearance:"外观",
+heroLabel:"欢迎来到 FOSTER GAMING",
+heroTitle:'寻找你的下一款<span>传奇</span> Pokémon GO 账号。',
+heroDescription:"探索优质、精心培养的 Pokémon GO 账号，发现适合你的游戏收藏。",
+exploreAccounts:"浏览账号 →",learnMore:"了解更多",
+premiumCollection:"高级账号收藏",
+availableAccounts:"可用账号",soldAccounts:"已售账号",
+customerSupport:"客户支持",dedication:"客户服务",
+marketplace:"我们的市场",featuredTitle:"精选账号",
+featuredDescription:"浏览我们部分可购买的 Pokémon GO 账号。",
+available:"有货",viewDetails:"查看详情",addCart:"加入购物车",
+viewAllAccounts:"查看全部账号 →",
+whyLabel:"FOSTER GAMING 的优势",whyTitle:"为什么选择我们？",
+whyDescription:"我们希望让你的账号购物体验更加简单方便。",
+why1Title:"高级收藏",why1Text:"探索拥有丰富宝可梦收藏和闪光宝可梦的账号。",
+why2Title:"人工订单审核",why2Text:"账号交付前会进行人工订单审核。",
+why3Title:"国际客户",why3Text:"欢迎来自不同国家的客户。",
+why4Title:"直接沟通",why4Text:"通过我们的社交平台联系我们。",
+why5Title:"简单下单",why5Text:"浏览账号并将选择加入购物车。",
+why6Title:"客户承诺",why6Text:"我们重视客户并努力提供良好的体验。",
+testimonials:"客户反馈",reviewsTitle:"客户怎么说",
+reviewsDescription:"客户评价和购物体验。",
+readReviews:"查看全部评价",latestNews:"最新新闻和文章",
+blogTitle:"我们的博客",blogDescription:"游戏讨论、指南和 Pokémon GO 内容。",
+readMore:"阅读更多 →",visitBlog:"访问博客",
+ctaTitle:"准备好寻找你的下一个账号了吗？",
+ctaDescription:"探索我们可购买的 Pokémon GO 账号。",
+shopNow:"探索市场 →",
+footerDescription:"你购买高级 Pokémon GO 账号的理想选择。",
+quickLinks:"快速链接",customerService:"客户服务",
+connect:"联系我们",rights:"版权所有。",
+developed:"开发者",checkout:"结账"
+}
 };
-
-
-function changeLanguage() {
-
-    const language = document.getElementById("languageSelect").value;
-
-    localStorage.setItem("fg-language", language);
-
-    applyLanguage();
-
-}
-
-
+/* APPLY LANGUAGE */
 function applyLanguage() {
-
-    const language = localStorage.getItem("fg-language") || "en";
-
-    document.getElementById("languageSelect").value = language;
-
-    document.documentElement.lang = language;
-
-    const t = translations[language] || translations.en;
-
-    const nav = document.querySelectorAll(".nav-links a");
-
-    if(nav.length >= 5) {
-
-        nav[0].textContent = t.home;
-
-        nav[1].textContent = t.marketplace;
-
-        nav[2].textContent = t.blog;
-
-        nav[3].textContent = t.about;
-
-        nav[4].textContent = t.contact;
-
-    }
-
-}
-
-applyLanguage();
-
-
-/* =========================
-   CART MANAGEMENT
-========================= */
-
-function getCart() {
-
-    try {
-
-        return JSON.parse(localStorage.getItem("fg-cart")) || [];
-
-    } catch(error) {
-
-        return [];
-
-    }
-
-}
-
-
-function updateCartCount() {
-
-    const cart = getCart();
-
-    const count = cart.reduce((total,item) => {
-
-        return total + (Number(item.quantity) || 1);
-
-    },0);
-
-    document.getElementById("cartCount").textContent = count;
-
-}
-
-
-function addToCart(id) {
-
-    const products = {
-
-        "FG-DEMO-001": {
-            id: "FG-DEMO-001",
-            name: "Premium Level 65 Account",
-            price: 65,
-            image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=700",
-            level: 65,
-            quantity: 1
-        },
-
-        "FG-DEMO-002": {
-            id: "FG-DEMO-002",
-            name: "Stacked Level 70 Account",
-            price: 65,
-            image: "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=700",
-            level: 70,
-            quantity: 1
-        },
-
-        "FG-DEMO-003": {
-            id: "FG-DEMO-003",
-            name: "Premium Level 75 Account",
-            price: 78,
-            image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=700",
-            level: 75,
-            quantity: 1
-        },
-
-        "FG-DEMO-004": {
-            id: "FG-DEMO-004",
-            name: "Ultimate Level 80 Account",
-            price: 78,
-            image: "https://images.unsplash.com/photo-1511882150382-421056c89033?w=700",
-            level: 80,
-            quantity: 1
+    const lang = localStorage.getItem("foster_language") || "en";
+    const dictionary = translations[lang] || translations.en;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+    document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.getAttribute("data-i18n");
+        if(dictionary[key]) {
+            element.innerHTML = dictionary[key];
         }
-
-    };
-
-
-    const product = products[id];
-
-    if(!product) {
-
-        alert("This demonstration listing is unavailable.");
-
-        return;
-
+    });
+    const selector = document.getElementById("languageSelect");
+    if(selector) {
+        selector.value = lang;
     }
-
-
+}
+function changeLanguage(lang) {
+    localStorage.setItem("foster_language", lang);
+    applyLanguage();
+}
+/* CART */
+function getCart() {
+    return JSON.parse(localStorage.getItem("foster_cart") || "[]");
+}
+function updateCartCount() {
+    const cart = getCart();
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    const badge = document.getElementById("cartCount");
+    if(badge) {
+        badge.textContent = count;
+    }
+}
+const homepageAccounts = {
+    demo65: {
+        id:"demo65",
+        name:"Premium Level 65 Account",
+        level:65,
+        price:65,
+        image:"images/account1.png",
+        quantity:1
+    },
+    demo70: {
+        id:"demo70",
+        name:"Stacked Level 70 Account",
+        level:70,
+        price:65,
+        image:"images/account2.png",
+        quantity:1
+    },
+    demo75: {
+        id:"demo75",
+        name:"Premium Level 75 Account",
+        level:75,
+        price:78,
+        image:"images/account3.png",
+        quantity:1
+    },
+    demo80: {
+        id:"demo80",
+        name:"Elite Level 80 Account",
+        level:80,
+        price:78,
+        image:"images/account4.png",
+        quantity:1
+    }
+};
+function addToCart(id) {
+    const product = homepageAccounts[id];
+    if(!product) return;
     let cart = getCart();
-
     const existing = cart.find(item => item.id === id);
-
-
     if(existing) {
-
         alert("This account is already in your cart.");
-
         return;
-
     }
-
-
     cart.push(product);
-
-    localStorage.setItem("fg-cart", JSON.stringify(cart));
-
+    localStorage.setItem("foster_cart", JSON.stringify(cart));
     updateCartCount();
-
     alert("Account successfully added to your cart!");
-
 }
-
-
-updateCartCount();
-
-
-/* =========================
-   MENU MANAGEMENT
-========================= */
-
-function openMenu() {
-
-    document.getElementById("sideMenu").classList.add("active");
-
-    document.getElementById("menuOverlay").classList.add("active");
-
-    document.body.style.overflow = "hidden";
-
+/* NAVIGATION DRAWER */
+function openDrawer() {
+    document.getElementById("drawer").classList.add("active");
+    document.getElementById("overlay").classList.add("active");
 }
-
-
-function closeMenu() {
-
-    document.getElementById("sideMenu").classList.remove("active");
-
-    document.getElementById("menuOverlay").classList.remove("active");
-
-    document.body.style.overflow = "";
-
+function closeDrawer() {
+    document.getElementById("drawer").classList.remove("active");
+    document.getElementById("overlay").classList.remove("active");
 }
-
-
-/* =========================
-   FOOTER YEAR
-========================= */
-
+/* INITIALIZE */
 document.getElementById("year").textContent = new Date().getFullYear();
-
-
+applyTheme();
+applyLanguage();
+updateCartCount();
 </script>
-
 </body>
 </html>
