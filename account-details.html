@@ -9,14 +9,12 @@
     --red:#e32636;
     --red-dark:#bd1726;
     --green:#159447;
-    --black:#111;
-    --white:#fff;
     --bg:#f5f6f8;
     --card:#fff;
     --text:#171717;
-    --muted:#737373;
-    --border:#e7e7e7;
-    --shadow:0 12px 35px rgba(0,0,0,.07);
+    --muted:#777;
+    --border:#e8e8e8;
+    --shadow:0 10px 30px rgba(0,0,0,.06);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{
@@ -24,7 +22,6 @@ body{
     background:var(--bg);
     color:var(--text);
     line-height:1.6;
-    transition:.2s;
 }
 body.dark{
     --bg:#101114;
@@ -32,7 +29,7 @@ body.dark{
     --text:#f5f5f5;
     --muted:#aaa;
     --border:#303238;
-    --shadow:0 12px 35px rgba(0,0,0,.25);
+    --shadow:0 10px 30px rgba(0,0,0,.25);
 }
 a{text-decoration:none;color:inherit}
 button{font-family:inherit;cursor:pointer}
@@ -57,9 +54,9 @@ header{
     display:flex;
     align-items:center;
     gap:10px;
+    color:var(--red);
     font-size:22px;
     font-weight:900;
-    color:var(--red);
 }
 .logo img{width:43px;height:43px;object-fit:contain}
 nav{display:flex;align-items:center;gap:22px}
@@ -97,190 +94,192 @@ nav a:hover{color:var(--red)}
     color:var(--text);
     border-radius:8px;
 }
-/* PAGE */
+/* BREADCRUMB */
 .breadcrumb{
-    padding:22px 0;
+    padding:25px 0;
     color:var(--muted);
     font-size:13px;
 }
 .breadcrumb a{color:var(--red);font-weight:700}
-.page-title{font-size:27px;font-weight:900;margin-bottom:20px}
-.details-layout{
+/* PRODUCT */
+.product-layout{
     display:grid;
     grid-template-columns:1.05fr .95fr;
-    gap:28px;
+    gap:35px;
     align-items:start;
-    margin-bottom:65px;
+    margin-bottom:45px;
 }
-/* GALLERY */
-.gallery-card,.details-card{
+.gallery{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:17px;
+    padding:15px;
+    border-radius:16px;
     box-shadow:var(--shadow);
-    overflow:hidden;
 }
-.main-image-wrap{
-    background:#eceef1;
-    min-height:360px;
+.main-image{
+    width:100%;
+    height:420px;
+    border-radius:11px;
+    background:var(--bg);
+    overflow:hidden;
     display:flex;
     align-items:center;
     justify-content:center;
-    position:relative;
 }
-body.dark .main-image-wrap{background:#25272d}
-.main-image{
+.main-image img{
     width:100%;
-    height:390px;
+    height:100%;
     object-fit:contain;
-    cursor:zoom-in;
 }
-.image-count{
-    position:absolute;
-    bottom:14px;
-    right:14px;
-    background:rgba(0,0,0,.75);
-    color:#fff;
-    padding:6px 11px;
-    border-radius:20px;
-    font-size:12px;
+.thumbnails{
+    display:flex;
+    gap:10px;
+    margin-top:13px;
+    overflow-x:auto;
+    padding-bottom:5px;
 }
-.gallery-thumbs{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:9px;
-    padding:13px;
-}
-.thumb{
-    height:76px;
-    background:var(--bg);
-    border:2px solid transparent;
-    border-radius:9px;
+.thumbnail{
+    flex:0 0 75px;
+    height:70px;
+    border:2px solid var(--border);
+    border-radius:8px;
     overflow:hidden;
-    padding:3px;
+    background:var(--bg);
+    cursor:pointer;
 }
-.thumb img{width:100%;height:100%;object-fit:contain}
-.thumb.active{border-color:var(--red)}
-/* DETAILS */
-.details-card{padding:25px}
-.account-badge{
+.thumbnail.active{border-color:var(--red)}
+.thumbnail img{width:100%;height:100%;object-fit:cover}
+.product-info{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:16px;
+    padding:30px;
+    box-shadow:var(--shadow);
+}
+.availability{
     display:inline-block;
-    background:#e7f7ed;
-    color:#117638;
-    padding:6px 11px;
+    background:rgba(21,148,71,.12);
+    color:var(--green);
+    padding:6px 12px;
     border-radius:30px;
     font-size:11px;
     font-weight:900;
-    margin-bottom:13px;
+    text-transform:uppercase;
 }
-.account-title{font-size:28px;line-height:1.25;font-weight:900;margin-bottom:9px}
-.account-subtitle{color:var(--muted);font-size:14px;margin-bottom:19px}
+.product-info h1{
+    font-size:30px;
+    line-height:1.25;
+    margin:15px 0 10px;
+    font-weight:900;
+}
+.product-subtitle{
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:20px;
+}
 .price-box{
     background:var(--bg);
     border:1px solid var(--border);
-    border-radius:13px;
-    padding:17px;
-    margin-bottom:20px;
-}
-.price-label{color:var(--muted);font-size:12px;font-weight:700}
-.price{font-size:32px;color:var(--red);font-weight:900}
-.price-note{font-size:12px;color:var(--muted)}
-.stats-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:11px;
-    margin:20px 0;
-}
-.stat{
-    border:1px solid var(--border);
-    background:var(--bg);
-    padding:13px;
+    padding:18px;
     border-radius:11px;
+    margin-bottom:22px;
 }
-.stat strong{display:block;font-size:20px;font-weight:900}
-.stat span{font-size:11px;color:var(--muted);font-weight:700}
-.description-title{font-size:17px;font-weight:900;margin:20px 0 8px}
-.description{font-size:14px;color:var(--muted);line-height:1.8}
-.feature-list{list-style:none;margin:14px 0}
-.feature-list li{
-    font-size:13px;
-    padding:7px 0;
-    border-bottom:1px solid var(--border);
-}
-.feature-list li::before{content:"✓";color:var(--green);font-weight:900;margin-right:9px}
-.action-buttons{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:22px}
-.btn{
-    border:0;
-    border-radius:10px;
-    padding:14px 12px;
-    font-size:13px;
-    font-weight:900;
-    text-align:center;
-}
-.btn-red{background:var(--red);color:#fff}
-.btn-red:hover{background:var(--red-dark)}
-.btn-dark{background:var(--black);color:#fff}
-.btn-green{background:var(--green);color:#fff}
-.trust-note{
-    margin-top:17px;
-    background:var(--bg);
-    padding:13px;
-    border-radius:10px;
+.price-label{
     color:var(--muted);
     font-size:12px;
-    text-align:center;
+    font-weight:700;
 }
-/* MORE INFO */
-.info-section{margin:0 0 60px}
-.section-heading{font-size:23px;font-weight:900;margin-bottom:18px}
-.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.info-box{
+.price{
+    color:var(--red);
+    font-size:32px;
+    font-weight:900;
+    margin-top:3px;
+}
+.price-note{font-size:11px;color:var(--muted)}
+.details-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:20px 0;
+}
+.detail-item{
+    padding:13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+}
+.detail-item span{
+    display:block;
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:4px;
+}
+.detail-item strong{font-size:14px}
+.description{
+    margin:22px 0;
+}
+.description h3{font-size:17px;margin-bottom:9px}
+.description p{color:var(--muted);font-size:13px}
+.action-buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-top:22px;
+}
+.action-buttons button{
+    padding:14px 10px;
+    border:0;
+    border-radius:9px;
+    font-size:13px;
+    font-weight:900;
+}
+.add-cart{background:var(--bg);color:var(--red);border:1px solid var(--red)!important}
+.order-now{background:var(--red);color:#fff}
+.add-cart:hover{background:rgba(227,38,54,.08)}
+.order-now:hover{background:var(--red-dark)}
+.secure-note{
+    text-align:center;
+    color:var(--muted);
+    font-size:11px;
+    margin-top:15px;
+}
+/* INFORMATION */
+.information-section{margin-bottom:55px}
+.section-heading{font-size:23px;margin-bottom:17px}
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:17px;
+}
+.info-card{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:13px;
-    padding:20px;
+    padding:22px;
+    border-radius:12px;
 }
-.info-box h3{font-size:15px;margin-bottom:7px}
-.info-box p{font-size:13px;color:var(--muted);line-height:1.7}
-/* EMPTY */
+.info-card .icon{font-size:25px;margin-bottom:9px}
+.info-card h3{font-size:15px;margin-bottom:6px}
+.info-card p{font-size:12px;color:var(--muted)}
+/* NOT FOUND */
 .not-found{
-    text-align:center;
-    padding:70px 20px;
     background:var(--card);
     border:1px solid var(--border);
     border-radius:15px;
+    padding:60px 20px;
+    text-align:center;
     margin-bottom:60px;
 }
-.not-found h2{margin-bottom:10px}
+.not-found h1{font-size:28px;margin-bottom:10px}
 .not-found p{color:var(--muted);margin-bottom:20px}
-/* ZOOM */
-.zoom-overlay{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.92);
-    z-index:500;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-}
-.zoom-overlay.show{display:flex}
-.zoom-overlay img{max-width:95%;max-height:90vh;object-fit:contain}
-.zoom-close{
-    position:absolute;
-    top:20px;
-    right:25px;
-    background:none;
-    border:0;
+.not-found a{
+    display:inline-block;
+    padding:12px 20px;
+    background:var(--red);
     color:#fff;
-    font-size:35px;
+    border-radius:8px;
+    font-weight:900;
 }
 /* FOOTER */
-footer{
-    background:#101010;
-    color:#fff;
-    padding:45px 0 20px;
-}
+footer{background:#101010;color:#fff;padding:45px 0 20px}
 .footer-grid{
     display:grid;
     grid-template-columns:2fr 1fr 1fr;
@@ -298,40 +297,20 @@ footer a:hover{color:#fff}
     font-size:12px;
 }
 .footer-bottom strong{color:#fff}
-/* TOAST */
-.toast{
-    position:fixed;
-    bottom:25px;
-    left:50%;
-    transform:translateX(-50%) translateY(100px);
-    background:#171717;
-    color:#fff;
-    padding:13px 20px;
-    border-radius:9px;
-    font-size:13px;
-    font-weight:700;
-    z-index:600;
-    opacity:0;
-    transition:.3s;
-}
-.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 @media(max-width:900px){
     nav{display:none}
     .menu-btn{display:block}
-    .details-layout{grid-template-columns:1fr}
+    .product-layout{grid-template-columns:1fr}
 }
 @media(max-width:600px){
     .header-inner{min-height:66px}
     .logo{font-size:19px}
     .logo img{width:36px;height:36px}
-    .details-card{padding:19px}
-    .main-image{height:300px}
-    .main-image-wrap{min-height:300px}
-    .gallery-thumbs{grid-template-columns:repeat(4,1fr)}
-    .thumb{height:68px}
-    .account-title{font-size:24px}
-    .stats-grid{gap:8px}
-    .stat{padding:11px}
+    .main-image{height:290px}
+    .product-info{padding:21px}
+    .product-info h1{font-size:25px}
+    .details-list{gap:8px}
+    .detail-item{padding:10px}
     .action-buttons{grid-template-columns:1fr}
     .info-grid{grid-template-columns:1fr}
     .footer-grid{grid-template-columns:1fr}
@@ -384,27 +363,30 @@ footer a:hover{color:#fff}
     <div class="breadcrumb">
         <a href="index.html">Home</a> /
         <a href="accounts.html">Accounts</a> /
-        <span>Account Details</span>
+        Account Details
     </div>
-<div id="accountContent"></div>
-</main>
-<section class="container info-section">
+<div id="productArea"></div>
+<section class="information-section">
     <h2 class="section-heading">Shopping With Foster Gaming</h2>
     <div class="info-grid">
-        <div class="info-box">
-            <h3>🔒 Secure Process</h3>
-            <p>Your order is reviewed manually before account credentials are delivered.</p>
+        <div class="info-card">
+            <div class="icon">📋</div>
+            <h3>Review Account Details</h3>
+            <p>Check the account description, price and available images before placing your order.</p>
         </div>
-        <div class="info-box">
-            <h3>⚡ Order Assistance</h3>
-            <p>Contact us if you need assistance with your order or account details.</p>
+        <div class="info-card">
+            <div class="icon">💳</div>
+            <h3>Payment Instructions</h3>
+            <p>Continue to checkout to see the available payment methods and instructions.</p>
         </div>
-        <div class="info-box">
-            <h3>🎮 Premium Accounts</h3>
-            <p>Explore our available collection of Pokémon GO accounts and choose the one you want.</p>
+        <div class="info-card">
+            <div class="icon">📩</div>
+            <h3>Order Confirmation</h3>
+            <p>Payments are manually reviewed. Account delivery follows approval and confirmation.</p>
         </div>
     </div>
 </section>
+</main>
 <footer>
     <div class="container">
         <div class="footer-grid">
@@ -412,159 +394,194 @@ footer a:hover{color:#fff}
                 <h3>FOSTER GAMING</h3>
                 <p>Your destination for premium Pokémon GO accounts. Buy, sell and swap stacked accounts with us.</p>
             </div>
-            <div>
-                <h3>Quick Links</h3>
-                <p><a href="index.html">Home</a></p>
-                <p><a href="accounts.html">Available Accounts</a></p>
-                <p><a href="cart.html">Shopping Cart</a></p>
-                <p><a href="reviews.html">Customer Reviews</a></p>
-            </div>
-            <div>
-                <h3>Connect With Us</h3>
-                <p><a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok</a></p>
-                <p><a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a></p>
-                <p><a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a></p>
-                <p><a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a></p>
-            </div>
+        <div>
+            <h3>Quick Links</h3>
+            <p><a href="index.html">Home</a></p>
+            <p><a href="accounts.html">Available Accounts</a></p>
+            <p><a href="cart.html">Shopping Cart</a></p>
+            <p><a href="reviews.html">Customer Reviews</a></p>
         </div>
+        <div>
+            <h3>Connect With Us</h3>
+            <p><a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok</a></p>
+            <p><a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 2</a></p>
+            <p><a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a></p>
+            <p><a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a></p>
+        </div>
+    </div>
     <div class="footer-bottom">
         © <span id="year"></span> Foster Gaming. All Rights Reserved.
         <br>Developed by <strong>BITBRIDGE TECHNOLOGIES INC</strong>
     </div>
 </div>
 </footer>
-<div class="zoom-overlay" id="zoomOverlay">
-    <button class="zoom-close" id="zoomClose">&times;</button>
-    <img src="" alt="Account screenshot preview" id="zoomImage">
-</div>
-<div class="toast" id="toast"></div>
 <script>
-/* ACCOUNT DATA
-   Keep these IDs and main image paths aligned with accounts.html.
-   Add or change gallery images inside the images array.
+/*
+  ACCOUNT DETAILS
+  These IDs correspond to account1 through account20
+  in the accounts.html listings.
+  Images:
+  Main image: images/account1.png
+  Optional extra images:
+  images/account1-2.png
+  images/account1-3.png
+  images/account1-4.png
+  Repeat the naming pattern for other accounts.
 */
-const accounts = [
-    {id:1,level:74,price:78,image:"images/account1.png",images:["images/account1.png","images/account1-2.png","images/account1-3.png"],shiny:764,legendary:283,hundo:26,shadow:21,costume:41,dual:35},
-    {id:2,level:73,price:78,image:"images/account2.png",images:["images/account2.png","images/account2-2.png","images/account2-3.png"],shiny:620,legendary:245,hundo:19,shadow:15,costume:30,dual:27},
-    {id:3,level:72,price:78,image:"images/account3.png",images:["images/account3.png","images/account3-2.png","images/account3-3.png"],shiny:590,legendary:230,hundo:18,shadow:13,costume:25,dual:24},
-    {id:4,level:75,price:78,image:"images/account4.png",images:["images/account4.png","images/account4-2.png","images/account4-3.png"],shiny:680,legendary:260,hundo:22,shadow:17,costume:32,dual:29},
-    {id:5,level:70,price:65,image:"images/account5.png",images:["images/account5.png","images/account5-2.png","images/account5-3.png"],shiny:510,legendary:190,hundo:15,shadow:10,costume:20,dual:18},
-    {id:6,level:71,price:78,image:"images/account6.png",images:["images/account6.png","images/account6-2.png","images/account6-3.png"],shiny:570,legendary:215,hundo:17,shadow:12,costume:23,dual:22},
-    {id:7,level:68,price:65,image:"images/account7.png",images:["images/account7.png","images/account7-2.png","images/account7-3.png"],shiny:430,legendary:170,hundo:12,shadow:9,costume:18,dual:16},
-    {id:8,level:76,price:78,image:"images/account8.png",images:["images/account8.png","images/account8-2.png","images/account8-3.png"],shiny:710,legendary:270,hundo:24,shadow:19,costume:36,dual:31},
-    {id:9,level:69,price:65,image:"images/account9.png",images:["images/account9.png","images/account9-2.png","images/account9-3.png"],shiny:470,legendary:180,hundo:13,shadow:10,costume:20,dual:17},
-    {id:10,level:80,price:78,image:"images/account10.png",images:["images/account10.png","images/account10-2.png","images/account10-3.png"],shiny:850,legendary:320,hundo:32,shadow:25,costume:48,dual:40},
-    {id:11,level:67,price:65,image:"images/account11.png",images:["images/account11.png","images/account11-2.png","images/account11-3.png"],shiny:410,legendary:160,hundo:11,shadow:8,costume:16,dual:15},
-    {id:12,level:74,price:78,image:"images/account12.png",images:["images/account12.png","images/account12-2.png","images/account12-3.png"],shiny:640,legendary:250,hundo:20,shadow:16,costume:29,dual:26},
-    {id:13,level:65,price:65,image:"images/account13.png",images:["images/account13.png","images/account13-2.png","images/account13-3.png"],shiny:380,legendary:145,hundo:9,shadow:7,costume:14,dual:12},
-    {id:14,level:78,price:78,image:"images/account14.png",images:["images/account14.png","images/account14-2.png","images/account14-3.png"],shiny:790,legendary:300,hundo:29,shadow:22,costume:43,dual:37},
-    {id:15,level:70,price:65,image:"images/account15.png",images:["images/account15.png","images/account15-2.png","images/account15-3.png"],shiny:490,legendary:185,hundo:14,shadow:9,costume:19,dual:17},
-    {id:16,level:72,price:78,image:"images/account16.png",images:["images/account16.png","images/account16-2.png","images/account16-3.png"],shiny:610,legendary:235,hundo:19,shadow:14,costume:27,dual:25},
-    {id:17,level:66,price:65,image:"images/account17.png",images:["images/account17.png","images/account17-2.png","images/account17-3.png"],shiny:400,legendary:155,hundo:10,shadow:8,costume:15,dual:13},
-    {id:18,level:79,price:78,image:"images/account18.png",images:["images/account18.png","images/account18-2.png","images/account18-3.png"],shiny:820,legendary:310,hundo:30,shadow:24,costume:45,dual:39},
-    {id:19,level:73,price:78,image:"images/account19.png",images:["images/account19.png","images/account19-2.png","images/account19-3.png"],shiny:650,legendary:245,hundo:21,shadow:16,costume:30,dual:27},
-    {id:20,level:68,price:65,image:"images/account20.png",images:["images/account20.png","images/account20-2.png","images/account20-3.png"],shiny:440,legendary:175,hundo:12,shadow:9,costume:18,dual:16}
+const accountLevels=[
+    65,66,67,68,69,70,71,72,73,74,
+    75,76,78,80,70,72,74,76,78,80
 ];
-const params = new URLSearchParams(window.location.search);
-const accountId = Number(params.get("id"));
-const account = accounts.find(item => item.id === accountId);
-const content = document.getElementById("accountContent");
+function getAccount(id){
+    const number=Number(id);
+    if(!Number.isInteger(number)||number<1||number>20){
+        return null;
+    }
+    const level=accountLevels[number-1];
+    const price=level>=71?78:65;
+    return {
+        id:number,
+        name:"Premium Pokémon GO Account #"+number,
+        level:level,
+        price:price,
+        image:"images/account"+number+".png",
+        description:"This Pokémon GO account is listed by Foster Gaming. Review the available account images and collection information before ordering. Contact us if you need additional details about this listing.",
+        status:"Available",
+        images:[
+            "images/account"+number+".png",
+            "images/account"+number+"-2.png",
+            "images/account"+number+"-3.png",
+            "images/account"+number+"-4.png"
+        ]
+    };
+}
+function escapeHTML(value){
+    return String(value).replace(/[&<>"']/g,char=>({
+        "&":"&amp;",
+        "<":"&lt;",
+        ">":"&gt;",
+        '"':"&quot;",
+        "'":"&#39;"
+    })[char]);
+}
+const params=new URLSearchParams(window.location.search);
+const accountId=params.get("id");
+const account=getAccount(accountId);
 function renderAccount(){
+    const area=document.getElementById("productArea");
     if(!account){
-        content.innerHTML = `
+        area.innerHTML=`
             <div class="not-found">
-                <h2>Account Not Found</h2>
-                <p>This account could not be found. It may have been removed or the link may be incorrect.</p>
-                <a href="accounts.html" class="btn btn-red">Browse Available Accounts</a>
-            </div>`;
+                <h1>Account Not Found</h1>
+                <p>This account does not exist or its listing ID is invalid.</p>
+                <a href="accounts.html">Browse Available Accounts</a>
+            </div>
+        `;
+        document.title="Account Not Found | Foster Gaming";
         return;
     }
-    const gallery = account.images.map((src,index)=>`
-        <button class="thumb ${index===0?'active':''}" onclick="changeImage('${src}',this)" aria-label="View image ${index+1}">
-            <img src="${src}" alt="Account ${account.id} screenshot ${index+1}" onerror="this.parentElement.style.display='none'">
-        </button>
-    `).join("");
-    content.innerHTML = `
-        <h1 class="page-title">Account Details</h1>
-        <div class="details-layout">
-            <div class="gallery-card">
-                <div class="main-image-wrap">
-                    <img class="main-image" id="mainImage" src="${account.image}" alt="Level ${account.level} Pokémon GO account" onclick="openZoom()" onerror="this.src='images/logo.png'">
-                    <span class="image-count" id="imageCount">Image 1 of ${account.images.length}</span>
+    document.title=account.name+" | Foster Gaming";
+    area.innerHTML=`
+        <section class="product-layout">
+            <div class="gallery">
+                <div class="main-image">
+                    <img id="mainProductImage"
+                         src="${escapeHTML(account.image)}"
+                         alt="${escapeHTML(account.name)}"
+                         onerror="this.onerror=null;this.src='images/logo.png'">
                 </div>
-                <div class="gallery-thumbs">${gallery}</div>
+                <div class="thumbnails" id="thumbnails">
+                    ${account.images.map((image,index)=>`
+                        <div class="thumbnail ${index===0?"active":""}"
+                             data-image="${escapeHTML(image)}">
+                            <img src="${escapeHTML(image)}"
+                                 alt="Account image ${index+1}"
+                                 onerror="this.parentElement.style.display='none'">
+                        </div>
+                    `).join("")}
+                </div>
             </div>
-            <div class="details-card">
-                <span class="account-badge">✓ AVAILABLE FOR SALE</span>
-                <h2 class="account-title">Premium Level ${account.level} Pokémon GO Account</h2>
-                <p class="account-subtitle">Foster Gaming Account #${String(account.id).padStart(3,"0")}</p>
+            <div class="product-info">
+                <span class="availability">● ${account.status}</span>
+                <h1>${escapeHTML(account.name)}</h1>
+                <p class="product-subtitle">
+                    Premium • Stacked • Pokémon GO
+                </p>
                 <div class="price-box">
                     <div class="price-label">ACCOUNT PRICE</div>
-                    <div class="price">$${account.price} USD</div>
-                    <div class="price-note">One-time payment</div>
+                    <div class="price">$${account.price.toFixed(2)}</div>
+                    <div class="price-note">USD</div>
                 </div>
-                <h3 class="description-title">Account Statistics</h3>
-                <div class="stats-grid">
-                    <div class="stat"><strong>${account.shiny}</strong><span>SHINY POKÉMON</span></div>
-                    <div class="stat"><strong>${account.legendary}</strong><span>LEGENDARY POKÉMON</span></div>
-                    <div class="stat"><strong>${account.hundo}</strong><span>HUNDOS</span></div>
-                    <div class="stat"><strong>${account.shadow}</strong><span>SHADOW SHINIES</span></div>
-                    <div class="stat"><strong>${account.costume}</strong><span>COSTUME SHINIES</span></div>
-                    <div class="stat"><strong>${account.dual}</strong><span>DUAL-MOVE POKÉMON</span></div>
+                <div class="details-list">
+                    <div class="detail-item">
+                        <span>Trainer Level</span>
+                        <strong>Level ${account.level}</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Account ID</span>
+                        <strong>#${account.id}</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Account Type</span>
+                        <strong>Premium</strong>
+                    </div>
+                    <div class="detail-item">
+                        <span>Availability</span>
+                        <strong style="color:var(--green)">Available</strong>
+                    </div>
                 </div>
-                <h3 class="description-title">Account Description</h3>
-                <p class="description">
-                    This Level ${account.level} Pokémon GO account comes with a collection of Pokémon,
-                    including Shinies, Legendary Pokémon, Hundos and other valuable Pokémon.
-                    Check the screenshots in the gallery to view the account before placing your order.
-                </p>
-                <ul class="feature-list">
-                    <li>Premium Pokémon GO account</li>
-                    <li>Account screenshots available for preview</li>
-                    <li>Manual order and payment review</li>
-                    <li>Credentials delivered after payment approval</li>
-                    <li>Customer assistance available</li>
-                </ul>
+                <div class="description">
+                    <h3>Account Description</h3>
+                    <p>${escapeHTML(account.description)}</p>
+                </div>
                 <div class="action-buttons">
-                    <button class="btn btn-dark" onclick="addToCart()">🛒 Add to Cart</button>
-                    <button class="btn btn-red" onclick="orderNow()">ORDER NOW</button>
+                    <button class="add-cart" id="addCart">
+                        🛒 ADD TO CART
+                    </button>
+                    <button class="order-now" id="orderNow">
+                        ORDER NOW →
+                    </button>
                 </div>
-                <div class="trust-note">
-                    🔐 After payment, your order will be reviewed manually.
-                    Account credentials are emailed after approval.
-                </div>
+                <p class="secure-note">
+                    Orders are subject to manual payment review and confirmation.
+                </p>
             </div>
-        </div>
+        </section>
     `;
+    document.querySelectorAll(".thumbnail").forEach(thumbnail=>{
+        thumbnail.addEventListener("click",()=>{
+            const image=thumbnail.dataset.image;
+            document.getElementById("mainProductImage").src=image;
+            document.querySelectorAll(".thumbnail").forEach(item=>{
+                item.classList.remove("active");
+            });
+            thumbnail.classList.add("active");
+        });
+    });
+    document.getElementById("addCart").addEventListener("click",addToCart);
+    document.getElementById("orderNow").addEventListener("click",orderNow);
 }
-function changeImage(src,button){
-    const mainImage = document.getElementById("mainImage");
-    if(!mainImage)return;
-    mainImage.src = src;
-    document.querySelectorAll(".thumb").forEach(item=>item.classList.remove("active"));
-    if(button)button.classList.add("active");
-    const visibleThumbs = [...document.querySelectorAll(".thumb")].filter(item=>item.style.display!=="none");
-    const index = visibleThumbs.indexOf(button);
-    document.getElementById("imageCount").textContent = `Image ${index+1} of ${visibleThumbs.length}`;
-}
+/* CART */
 function getCart(){
-    try{return JSON.parse(localStorage.getItem("foster_cart"))||[]}
-    catch(e){return []}
+    try{
+        return JSON.parse(localStorage.getItem("foster_cart"))||[];
+    }catch(error){
+        return [];
+    }
 }
 function saveCart(cart){
     localStorage.setItem("foster_cart",JSON.stringify(cart));
     updateCartCount();
 }
 function addToCart(){
-    if(!account)return;
-    const cart = getCart();
-    const existing = cart.find(item=>Number(item.id)===account.id);
+    const cart=getCart();
+    const existing=cart.find(item=>String(item.id)===String(account.id));
     if(existing){
-        existing.quantity = (Number(existing.quantity)||1)+1;
+        existing.quantity=(Number(existing.quantity)||1)+1;
     }else{
         cart.push({
             id:account.id,
-            name:`Level ${account.level} Pokémon GO Account`,
+            name:account.name,
             level:account.level,
             price:account.price,
             image:account.image,
@@ -572,39 +589,30 @@ function addToCart(){
         });
     }
     saveCart(cart);
-    showToast("Account added to your cart!");
+    alert("Account added to your cart successfully!");
 }
 function orderNow(){
-    if(!account)return;
-    addToCart();
+    const cart=getCart();
+    const existing=cart.find(item=>String(item.id)===String(account.id));
+    if(!existing){
+        cart.push({
+            id:account.id,
+            name:account.name,
+            level:account.level,
+            price:account.price,
+            image:account.image,
+            quantity:1
+        });
+    }
+    saveCart(cart);
     window.location.href="checkout.html";
 }
 function updateCartCount(){
-    const cart = getCart();
-    const count = cart.reduce((sum,item)=>sum+(Number(item.quantity)||1),0);
+    const cart=getCart();
+    const count=cart.reduce((sum,item)=>sum+(Number(item.quantity)||1),0);
     document.getElementById("cartCount").textContent=count;
 }
-function showToast(message){
-    const toast=document.getElementById("toast");
-    toast.textContent=message;
-    toast.classList.add("show");
-    setTimeout(()=>toast.classList.remove("show"),2600);
-}
-function openZoom(){
-    const image=document.getElementById("mainImage");
-    if(!image)return;
-    document.getElementById("zoomImage").src=image.src;
-    document.getElementById("zoomOverlay").classList.add("show");
-}
-document.getElementById("zoomClose").addEventListener("click",()=>{
-    document.getElementById("zoomOverlay").classList.remove("show");
-});
-document.getElementById("zoomOverlay").addEventListener("click",e=>{
-    if(e.target.id==="zoomOverlay"){
-        e.currentTarget.classList.remove("show");
-    }
-});
-/* MENU */
+/* MOBILE MENU */
 document.getElementById("menuBtn").addEventListener("click",()=>{
     document.getElementById("drawer").classList.toggle("open");
 });
@@ -612,14 +620,18 @@ document.getElementById("menuBtn").addEventListener("click",()=>{
 function applyTheme(){
     const theme=localStorage.getItem("foster_theme")||"light";
     document.body.classList.toggle("dark",theme==="dark");
-    document.getElementById("themeToggle").textContent=theme==="dark"?"☀️ Light":"🌙 Dark";
+    document.getElementById("themeToggle").textContent=
+        theme==="dark"?"☀️ Light":"🌙 Dark";
 }
 document.getElementById("themeToggle").addEventListener("click",()=>{
     const current=localStorage.getItem("foster_theme")||"light";
-    localStorage.setItem("foster_theme",current==="dark"?"light":"dark");
+    localStorage.setItem(
+        "foster_theme",
+        current==="dark"?"light":"dark"
+    );
     applyTheme();
 });
-/* LANGUAGE SELECTION */
+/* LANGUAGE */
 const translations={
     en:{home:"Home",accounts:"Accounts",blog:"Blog",about:"About",contact:"Contact",reviews:"Reviews",cart:"Shopping Cart"},
     es:{home:"Inicio",accounts:"Cuentas",blog:"Blog",about:"Acerca de",contact:"Contacto",reviews:"Reseñas",cart:"Carrito"},
@@ -632,21 +644,21 @@ const translations={
 };
 function applyLanguage(){
     const lang=localStorage.getItem("foster_language")||"en";
-    const select=document.getElementById("languageSelect");
-    if(select)select.value=lang;
+    document.getElementById("languageSelect").value=lang;
     document.documentElement.lang=lang;
     document.documentElement.dir=lang==="ar"?"rtl":"ltr";
     const t=translations[lang]||translations.en;
     const links=document.querySelectorAll(".drawer a");
     const keys=["home","accounts","blog","about","contact","reviews","cart"];
     links.forEach((link,index)=>{
-        if(keys[index]&&t[keys[index]])link.textContent=t[keys[index]];
+        if(keys[index])link.textContent=t[keys[index]];
     });
 }
-document.getElementById("languageSelect").addEventListener("change",e=>{
-    localStorage.setItem("foster_language",e.target.value);
+document.getElementById("languageSelect").addEventListener("change",event=>{
+    localStorage.setItem("foster_language",event.target.value);
     applyLanguage();
 });
+/* INITIALIZE */
 document.getElementById("year").textContent=new Date().getFullYear();
 renderAccount();
 updateCartCount();
