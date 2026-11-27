@@ -3,1175 +3,1204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pokémon GO Accounts Marketplace | Foster Gaming</title>
-<meta name="description" content="Explore premium Pokémon GO accounts at Foster Gaming. Browse levels 65 to 80, compare listings and add accounts to your cart.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#e32636">
+<title>Pokémon GO Accounts | Foster Gaming</title>
 <style>
 :root {
-    --red:#e51d2a;
-    --red-dark:#bd101c;
-    --green:#19a463;
-    --bg:#ffffff;
-    --surface:#f7f7f8;
-    --surface2:#eeeeef;
-    --text:#171717;
-    --muted:#777;
-    --border:#e6e6e6;
-    --card:#fff;
-    --header:rgba(255,255,255,.95);
-    --shadow:0 10px 35px rgba(0,0,0,.06);
+--red:#e32636;
+--red-dark:#bd1726;
+--green:#159447;
+--bg:#f5f6f8;
+--card:#ffffff;
+--text:#171717;
+--muted:#777;
+--border:#e8e8e8;
+--black:#101010;
+--shadow:0 8px 30px rgba(0,0,0,.07);
 }
-body.dark {
-    --bg:#101010;
-    --surface:#181818;
-    --surface2:#222;
-    --text:#fff;
-    --muted:#aaa;
-    --border:#303030;
-    --card:#191919;
-    --header:rgba(16,16,16,.95);
-    --shadow:0 10px 35px rgba(0,0,0,.25);
+[data-theme="dark"] {
+--bg:#101114;
+--card:#191b20;
+--text:#f4f4f4;
+--muted:#aaa;
+--border:#303238;
+--shadow:0 8px 30px rgba(0,0,0,.25);
 }
-* {
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--text);
+transition:.25s;
 }
-html {
-    scroll-behavior:smooth;
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer}
+img{max-width:100%}
+.container{
+width:92%;
+max-width:1250px;
+margin:auto;
 }
-body {
-    font-family:Inter,sans-serif;
-    background:var(--bg);
-    color:var(--text);
-    transition:.3s;
+/* HEADER */
+header{
+background:var(--card);
+border-bottom:1px solid var(--border);
+position:sticky;
+top:0;
+z-index:1000;
 }
-a {
-    color:inherit;
-    text-decoration:none;
+.navbar{
+min-height:75px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
 }
-button,select,input {
-    font-family:inherit;
+.brand{
+display:flex;
+align-items:center;
+gap:10px;
+font-weight:900;
+font-size:20px;
+white-space:nowrap;
 }
-button {
-    cursor:pointer;
+.brand img{
+width:40px;
+height:40px;
+object-fit:contain;
+border-radius:8px;
 }
-.container {
-    width:92%;
-    max-width:1250px;
-    margin:auto;
+.brand span{color:var(--red)}
+.desktop-nav{
+display:flex;
+gap:25px;
 }
-.highlight {
-    color:var(--red);
+.desktop-nav a{
+font-size:13px;
+font-weight:bold;
 }
-/* ANNOUNCEMENT */
-.announcement {
-    background:var(--red);
-    color:white;
-    padding:10px;
-    text-align:center;
-    font-size:12px;
-    font-weight:800;
+.desktop-nav a:hover{color:var(--red)}
+.nav-actions{
+display:flex;
+gap:10px;
+align-items:center;
 }
-/* NAVIGATION */
-header {
-    position:sticky;
-    top:0;
-    z-index:1000;
-    background:var(--header);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid var(--border);
+.icon-btn{
+width:39px;
+height:39px;
+border:1px solid var(--border);
+background:var(--bg);
+color:var(--text);
+border-radius:9px;
+font-size:18px;
+display:grid;
+place-items:center;
+position:relative;
 }
-.navbar {
-    height:78px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+.cart-count{
+position:absolute;
+top:-7px;
+right:-7px;
+width:18px;
+height:18px;
+border-radius:50%;
+background:var(--red);
+color:white;
+display:grid;
+place-items:center;
+font-size:10px;
+font-weight:bold;
 }
-.logo {
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-size:21px;
-    font-weight:900;
+.menu-btn{display:none}
+/* DRAWER */
+.drawer-overlay{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+z-index:2000;
+opacity:0;
+visibility:hidden;
+transition:.3s;
 }
-.logo img {
-    width:43px;
-    height:43px;
-    object-fit:contain;
-    border-radius:10px;
+.drawer-overlay.active{
+opacity:1;
+visibility:visible;
 }
-.logo span {
-    color:var(--red);
+.drawer{
+position:fixed;
+right:-350px;
+top:0;
+width:320px;
+max-width:85%;
+height:100%;
+background:var(--card);
+z-index:2001;
+padding:25px;
+transition:.3s;
+overflow-y:auto;
 }
-.nav-links {
-    display:flex;
-    gap:28px;
+.drawer.active{right:0}
+.drawer-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
 }
-.nav-links a {
-    font-size:13px;
-    font-weight:650;
+.drawer-close{
+border:none;
+background:var(--bg);
+color:var(--text);
+padding:9px 14px;
+border-radius:8px;
+font-size:20px;
 }
-.nav-links a:hover {
-    color:var(--red);
+.drawer-links{
+display:grid;
 }
-.nav-actions {
-    display:flex;
-    align-items:center;
-    gap:12px;
+.drawer-links a{
+padding:14px 5px;
+border-bottom:1px solid var(--border);
+font-size:14px;
+font-weight:bold;
 }
-.icon-btn {
-    width:40px;
-    height:40px;
-    border:1px solid var(--border);
-    background:var(--surface);
-    color:var(--text);
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:18px;
-    position:relative;
+.drawer-section{margin-top:27px}
+.drawer-section h4{
+font-size:13px;
+margin-bottom:12px;
 }
-.cart-count {
-    position:absolute;
-    top:-7px;
-    right:-7px;
-    background:var(--red);
-    color:white;
-    min-width:19px;
-    height:19px;
-    padding:0 5px;
-    border-radius:20px;
-    font-size:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:800;
+.setting-select,.theme-toggle{
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+background:var(--bg);
+color:var(--text);
+border-radius:9px;
 }
-.menu-btn {
-    display:none;
-}
-/* SIDE MENU */
-.menu-overlay {
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.55);
-    z-index:2000;
-    visibility:hidden;
-    opacity:0;
-    transition:.3s;
-}
-.menu-overlay.active {
-    visibility:visible;
-    opacity:1;
-}
-.side-menu {
-    position:fixed;
-    top:0;
-    right:-340px;
-    width:320px;
-    max-width:85%;
-    height:100vh;
-    background:var(--bg);
-    z-index:2001;
-    padding:25px;
-    transition:.35s;
-    overflow-y:auto;
-}
-.side-menu.active {
-    right:0;
-}
-.menu-header {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding-bottom:25px;
-    border-bottom:1px solid var(--border);
-}
-.menu-header h3 {
-    font-size:20px;
-}
-.close-menu {
-    border:none;
-    background:var(--surface2);
-    color:var(--text);
-    width:35px;
-    height:35px;
-    border-radius:8px;
-    font-size:20px;
-}
-.menu-section {
-    padding:23px 0;
-    border-bottom:1px solid var(--border);
-}
-.menu-section h4 {
-    font-size:11px;
-    color:var(--muted);
-    letter-spacing:1.3px;
-    margin-bottom:15px;
-}
-.menu-section a {
-    display:block;
-    padding:12px 0;
-    font-size:14px;
-    font-weight:600;
-}
-.menu-section a:hover {
-    color:var(--red);
-}
-.language-select {
-    width:100%;
-    padding:13px;
-    border:1px solid var(--border);
-    background:var(--surface);
-    color:var(--text);
-    border-radius:9px;
-}
+.theme-toggle{text-align:left;font-weight:bold}
 /* PAGE HERO */
-.page-hero {
-    padding:75px 0;
-    background:
-    radial-gradient(circle at 85% 20%,rgba(229,29,42,.13),transparent 30%),
-    var(--surface);
+.page-hero{
+background:
+radial-gradient(circle at 85% 20%,rgba(227,38,54,.2),transparent 35%),
+var(--card);
+padding:65px 0;
+text-align:center;
 }
-.breadcrumb {
-    color:var(--muted);
-    font-size:12px;
-    margin-bottom:25px;
+.page-hero span{
+color:var(--red);
+font-size:12px;
+font-weight:bold;
+letter-spacing:1px;
 }
-.breadcrumb a {
-    color:var(--red);
+.page-hero h1{
+font-size:clamp(32px,5vw,48px);
+margin:15px 0;
+font-weight:900;
 }
-.page-hero h1 {
-    font-size:clamp(34px,5vw,52px);
-    font-weight:900;
-    margin-bottom:15px;
-    letter-spacing:-1.5px;
-}
-.page-hero p {
-    color:var(--muted);
-    font-size:14px;
-    line-height:1.9;
-    max-width:650px;
-}
-/* MARKETPLACE STATS */
-.market-stats {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin-top:-25px;
-    position:relative;
-}
-.market-stat {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:13px;
-    padding:22px;
-    text-align:center;
-    box-shadow:var(--shadow);
-}
-.market-stat h3 {
-    color:var(--red);
-    font-size:27px;
-    font-weight:900;
-}
-.market-stat p {
-    font-size:11px;
-    color:var(--muted);
-    margin-top:6px;
-    font-weight:650;
+.page-hero p{
+color:var(--muted);
+font-size:14px;
+line-height:1.8;
+max-width:650px;
+margin:auto;
 }
 /* MARKETPLACE */
-.marketplace {
-    padding:65px 0 90px;
+.marketplace{
+padding:55px 0 80px;
 }
-.market-heading {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:15px;
-    margin-bottom:30px;
+.market-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:25px;
 }
-.market-heading h2 {
-    font-size:27px;
-    font-weight:900;
+.market-top h2{font-size:23px}
+.market-top p{
+color:var(--muted);
+font-size:12px;
+margin-top:7px;
 }
-.market-heading p {
-    color:var(--muted);
-    font-size:12px;
-    margin-top:7px;
+.search-box{
+width:280px;
+max-width:100%;
+padding:13px 15px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+border-radius:9px;
+outline:none;
 }
-.search-box {
-    width:280px;
-    max-width:100%;
-    position:relative;
+.filters{
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+margin-bottom:25px;
 }
-.search-box input {
-    width:100%;
-    padding:14px 16px;
-    border:1px solid var(--border);
-    border-radius:10px;
-    outline:none;
-    background:var(--card);
-    color:var(--text);
-    font-size:12px;
-}
-.search-box input:focus {
-    border-color:var(--red);
-}
-/* FILTERS */
-.filters {
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    margin-bottom:30px;
-    align-items:center;
-}
-.filter-btn {
-    padding:11px 16px;
-    border-radius:8px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    font-size:11px;
-    font-weight:750;
-    transition:.2s;
+.filter-btn{
+padding:10px 15px;
+border:1px solid var(--border);
+background:var(--card);
+color:var(--text);
+border-radius:8px;
+font-size:12px;
+font-weight:bold;
+transition:.2s;
 }
 .filter-btn:hover,
-.filter-btn.active {
-    background:var(--red);
-    color:white;
-    border-color:var(--red);
+.filter-btn.active{
+background:var(--red);
+color:white;
+border-color:var(--red);
 }
-.sort-select {
-    margin-left:auto;
-    padding:11px 13px;
-    border-radius:8px;
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    font-size:11px;
-    outline:none;
+.account-grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:22px;
 }
-/* PRODUCT GRID */
-.products-grid {
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+.account-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:14px;
+overflow:hidden;
+transition:.3s;
 }
-.product-card {
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:15px;
-    overflow:hidden;
-    transition:.25s;
+.account-card:hover{
+transform:translateY(-5px);
+box-shadow:var(--shadow);
 }
-.product-card:hover {
-    transform:translateY(-5px);
-    box-shadow:var(--shadow);
+.account-image{
+height:185px;
+position:relative;
+background:#222;
 }
-.product-image {
-    height:190px;
-    background:var(--surface2);
-    position:relative;
-    overflow:hidden;
+.account-image img{
+width:100%;
+height:100%;
+object-fit:cover;
 }
-.product-image img {
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.3s;
+.status{
+position:absolute;
+top:12px;
+left:12px;
+padding:7px 11px;
+font-size:10px;
+font-weight:bold;
+border-radius:5px;
+color:white;
 }
-.product-card:hover .product-image img {
-    transform:scale(1.05);
+.available{background:var(--green)}
+.sold{background:#777}
+.account-info{padding:17px}
+.account-info h3{
+font-size:15px;
+margin-bottom:10px;
 }
-.status {
-    position:absolute;
-    top:12px;
-    left:12px;
-    padding:7px 11px;
-    border-radius:20px;
-    font-size:9px;
-    font-weight:850;
-    color:white;
+.account-info p{
+font-size:12px;
+color:var(--muted);
+line-height:1.7;
+min-height:42px;
 }
-.available {
-    background:var(--green);
+.account-meta{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:15px 0;
 }
-.sold {
-    background:#777;
+.price{
+font-size:21px;
+color:var(--red);
+font-weight:900;
 }
-.level-label {
-    position:absolute;
-    top:12px;
-    right:12px;
-    background:rgba(0,0,0,.75);
-    color:white;
-    padding:7px 10px;
-    border-radius:20px;
-    font-size:10px;
-    font-weight:800;
+.level{
+background:var(--bg);
+border:1px solid var(--border);
+padding:6px 9px;
+border-radius:6px;
+font-size:10px;
+font-weight:bold;
 }
-.product-info {
-    padding:18px;
+.card-actions{
+display:flex;
+gap:8px;
 }
-.product-info h3 {
-    font-size:14px;
-    font-weight:850;
-    margin-bottom:9px;
+.card-actions a,
+.card-actions button{
+flex:1;
+padding:11px 5px;
+border-radius:7px;
+text-align:center;
+font-size:11px;
+font-weight:bold;
 }
-.product-info p {
-    font-size:11px;
-    line-height:1.8;
-    color:var(--muted);
-    min-height:58px;
+.view-btn{
+background:var(--bg);
+border:1px solid var(--border);
+color:var(--text);
 }
-.product-bottom {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:8px;
-    margin-top:17px;
+.order-btn{
+background:var(--red);
+color:white;
+border:none;
 }
-.price {
-    color:var(--red);
-    font-size:20px;
-    font-weight:900;
+.order-btn:hover{background:var(--red-dark)}
+.sold-card{opacity:.82}
+.sold-card .order-btn{
+background:#777;
+cursor:not-allowed;
 }
-.price-label {
-    font-size:9px;
-    color:var(--muted);
+.no-results{
+display:none;
+text-align:center;
+padding:50px 15px;
+color:var(--muted);
+background:var(--card);
+border:1px solid var(--border);
+border-radius:12px;
+margin-top:20px;
 }
-.product-actions {
-    display:flex;
-    gap:8px;
-    margin-top:15px;
+.no-results h3{
+color:var(--text);
+margin-bottom:10px;
 }
-.details-btn,
-.add-btn {
-    flex:1;
-    padding:11px 5px;
-    border-radius:7px;
-    border:none;
-    font-size:10px;
-    font-weight:850;
-    text-align:center;
+/* PRICE INFORMATION */
+.price-banner{
+margin-top:55px;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:13px;
+padding:25px;
 }
-.details-btn {
-    background:var(--surface2);
-    color:var(--text);
+.price-banner h3{
+margin-bottom:15px;
+font-size:17px;
 }
-.add-btn {
-    background:var(--red);
-    color:white;
+.price-row{
+display:flex;
+justify-content:space-between;
+padding:13px 0;
+border-bottom:1px solid var(--border);
+font-size:13px;
 }
-.add-btn:hover {
-    background:var(--red-dark);
-}
-.add-btn:disabled {
-    background:#777;
-    cursor:not-allowed;
-}
-/* EMPTY RESULTS */
-.empty-state {
-    text-align:center;
-    padding:70px 20px;
-    background:var(--surface);
-    border-radius:15px;
-    display:none;
-}
-.empty-state h3 {
-    font-size:22px;
-    margin-bottom:10px;
-}
-.empty-state p {
-    color:var(--muted);
-    font-size:13px;
-}
-/* CTA */
-.cta {
-    background:linear-gradient(120deg,#e51d2a,#a80e19);
-    padding:60px 25px;
-    text-align:center;
-    color:white;
-    border-radius:18px;
-    margin-bottom:70px;
-}
-.cta h2 {
-    font-size:clamp(25px,4vw,36px);
-    margin-bottom:13px;
-}
-.cta p {
-    font-size:13px;
-    line-height:1.8;
-    margin-bottom:23px;
-    opacity:.9;
-}
-.cta a {
-    display:inline-block;
-    background:white;
-    color:var(--red);
-    padding:14px 22px;
-    border-radius:8px;
-    font-size:12px;
-    font-weight:850;
-}
+.price-row:last-child{border:none}
+.price-row strong{color:var(--red)}
 /* FOOTER */
-footer {
-    background:#101010;
-    color:white;
+footer{
+background:#101010;
+color:white;
+margin-top:20px;
 }
-.footer-main {
-    padding:60px 0;
-    display:grid;
-    grid-template-columns:1.5fr 1fr 1fr 1fr;
-    gap:40px;
+.footer-grid{
+display:grid;
+grid-template-columns:1.5fr 1fr 1fr 1fr;
+gap:35px;
+padding:55px 0;
 }
-.footer-brand img {
-    width:48px;
-    height:48px;
-    object-fit:contain;
-    margin-bottom:15px;
+.footer-brand{
+font-size:22px;
+font-weight:900;
+margin-bottom:15px;
 }
-.footer-brand h3 {
-    font-size:21px;
-    margin-bottom:12px;
+.footer-brand span{color:var(--red)}
+.footer-about{
+color:#aaa;
+font-size:12px;
+line-height:1.9;
 }
-.footer-brand h3 span {
-    color:var(--red);
+.footer-column h3{
+font-size:14px;
+margin-bottom:20px;
 }
-.footer-brand p {
-    color:#999;
-    font-size:12px;
-    line-height:1.9;
+.footer-column a{
+display:block;
+font-size:12px;
+color:#aaa;
+margin-bottom:14px;
 }
-.footer-column h4 {
-    font-size:13px;
-    margin-bottom:20px;
+.footer-column a:hover{color:white}
+.footer-bottom{
+border-top:1px solid #303030;
+padding:22px 0;
+display:flex;
+justify-content:space-between;
+gap:15px;
+flex-wrap:wrap;
+color:#aaa;
+font-size:11px;
 }
-.footer-column a {
-    display:block;
-    color:#999;
-    font-size:12px;
-    margin-bottom:15px;
+.footer-bottom strong{color:white}
+/* RTL */
+[dir="rtl"] .drawer{
+right:auto;
+left:-350px;
 }
-.footer-column a:hover {
-    color:white;
+[dir="rtl"] .drawer.active{
+left:0;
 }
-.footer-bottom {
-    border-top:1px solid #292929;
-    padding:23px 0;
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-    flex-wrap:wrap;
-}
-.footer-bottom p {
-    color:#888;
-    font-size:11px;
-}
-.footer-bottom strong {
-    color:white;
+[dir="rtl"] .status{
+left:auto;
+right:12px;
 }
 /* RESPONSIVE */
-@media(max-width:1050px) {
-    .nav-links {
-        display:none;
-    }
-    .menu-btn {
-        display:flex;
-    }
-    .products-grid {
-        grid-template-columns:repeat(3,1fr);
-    }
-    .footer-main {
-        grid-template-columns:repeat(2,1fr);
-    }
+@media(max-width:1050px){
+.account-grid{grid-template-columns:repeat(3,1fr)}
+.desktop-nav{gap:13px}
 }
-@media(max-width:750px) {
-    .products-grid {
-        grid-template-columns:repeat(2,1fr);
-    }
-    .market-heading {
-        flex-direction:column;
-        align-items:flex-start;
-    }
-    .search-box {
-        width:100%;
-    }
-    .market-stats {
-        grid-template-columns:repeat(3,1fr);
-    }
+@media(max-width:750px){
+.desktop-nav{display:none}
+.menu-btn{display:grid}
+.account-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:repeat(2,1fr)}
+.page-hero{padding:45px 0}
 }
-@media(max-width:480px) {
-    .logo {
-        font-size:16px;
-    }
-    .logo img {
-        width:36px;
-        height:36px;
-    }
-    .navbar {
-        height:68px;
-    }
-    .nav-actions {
-        gap:7px;
-    }
-    .icon-btn {
-        width:36px;
-        height:36px;
-    }
-    .products-grid {
-        grid-template-columns:1fr;
-    }
-    .product-image {
-        height:225px;
-    }
-    .market-stats {
-        gap:7px;
-    }
-    .market-stat {
-        padding:15px 5px;
-    }
-    .market-stat h3 {
-        font-size:21px;
-    }
-    .market-stat p {
-        font-size:9px;
-    }
-    .footer-main {
-        grid-template-columns:1fr;
-        gap:30px;
-    }
-    .sort-select {
-        margin-left:0;
-        width:100%;
-    }
-    .page-hero {
-        padding:50px 0;
-    }
+@media(max-width:480px){
+.account-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr}
+.market-top{align-items:stretch}
+.search-box{width:100%}
+.brand{font-size:16px}
 }
 </style>
 </head>
 <body>
-<div class="announcement">
-🔥 WELCOME TO FOSTER GAMING — PREMIUM POKÉMON GO ACCOUNTS
-</div>
-<!-- NAVIGATION -->
 <header>
 <div class="container navbar">
-<a href="index.html" class="logo">
-<img
-src="https://raw.githubusercontent.com/YOUR-USERNAME/Foster-Gaming/main/assets/logo.png"
-alt="Foster Gaming Logo"
-onerror="this.style.display='none'">
-FOSTER <span>GAMING</span>
+<a href="index.html" class="brand">
+<img src="images/logo.png" alt="Foster Gaming Logo">
+<div>FOSTER <span>GAMING</span></div>
 </a>
-<nav class="nav-links">
-<a href="index.html">Home</a>
-<a href="accounts.html">Marketplace</a>
-<a href="blog.html">Blog</a>
-<a href="about.html">About</a>
-<a href="contact.html">Contact</a>
+<nav class="desktop-nav">
+<a href="index.html" data-i18n="home">Home</a>
+<a href="accounts.html" data-i18n="accounts">Accounts</a>
+<a href="blog.html" data-i18n="blog">Blog</a>
+<a href="about.html" data-i18n="about">About Us</a>
+<a href="contact.html" data-i18n="contact">Contact</a>
 </nav>
 <div class="nav-actions">
-<button class="icon-btn" onclick="toggleTheme()">
-<span id="themeIcon">🌙</span>
-</button>
 <a href="cart.html" class="icon-btn">
 🛒
 <span class="cart-count" id="cartCount">0</span>
 </a>
-<button class="icon-btn menu-btn" onclick="openMenu()">
+
 ☰
-</button>
+
 </div>
 </div>
 </header>
-<!-- SIDE MENU -->
-<div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
-<div class="side-menu" id="sideMenu">
-<div class="menu-header">
-<h3>Foster Gaming</h3>
-<button class="close-menu" onclick="closeMenu()">×</button>
+<div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+<aside class="drawer" id="drawer">
+<div class="drawer-head">
+<div class="brand">FOSTER <span>GAMING</span></div>
+<button class="drawer-close" onclick="closeDrawer()">×</button>
 </div>
-<div class="menu-section">
-<h4>Navigation</h4>
-<a href="index.html">🏠 Home</a>
-<a href="accounts.html">🎮 Marketplace</a>
-<a href="cart.html">🛒 Shopping Cart</a>
-<a href="blog.html">📰 Blog</a>
-<a href="about.html">👥 About Us</a>
-<a href="contact.html">📞 Contact</a>
-<a href="reviews.html">⭐ Customer Reviews</a>
-</div>
-<div class="menu-section">
-<h4>Appearance</h4>
-<a href="#" onclick="toggleTheme();return false;">🌙 Change Theme</a>
-</div>
-<div class="menu-section">
-<h4>Language / Idioma</h4>
-<select class="language-select" id="languageSelect" onchange="changeLanguage()">
+<nav class="drawer-links">
+<a href="index.html" data-i18n="home">Home</a>
+<a href="accounts.html" data-i18n="accounts">Accounts</a>
+<a href="cart.html" data-i18n="cart">Shopping Cart</a>
+<a href="blog.html" data-i18n="blog">Blog</a>
+<a href="about.html" data-i18n="about">About Us</a>
+<a href="contact.html" data-i18n="contact">Contact</a>
+<a href="reviews.html" data-i18n="reviews">Customer Reviews</a>
+</nav>
+<div class="drawer-section">
+<h4 data-i18n="language">🌐 Language</h4>
+<select class="setting-select" id="languageSelect" onchange="changeLanguage(this.value)">
 <option value="en">🇬🇧 English</option>
-<option value="es">🇪🇸 Spanish</option>
-<option value="fr">🇫🇷 French</option>
-<option value="de">🇩🇪 German</option>
-<option value="pt">🇵🇹 Portuguese</option>
-<option value="it">🇮🇹 Italian</option>
-<option value="ja">🇯🇵 Japanese</option>
-<option value="zh">🇨🇳 Chinese</option>
+<option value="es">🇪🇸 Español</option>
+<option value="fr">🇫🇷 Français</option>
+<option value="de">🇩🇪 Deutsch</option>
+<option value="pt">🇵🇹 Português</option>
+<option value="ar">🇸🇦 العربية</option>
+<option value="it">🇮🇹 Italiano</option>
+<option value="zh">🇨🇳 中文</option>
 </select>
 </div>
-<div class="menu-section">
-<h4>Follow Us</h4>
-<a href="https://www.tiktok.com/@williamfoster83" target="_blank">TikTok 1</a>
-<a href="https://www.tiktok.com/@fostergames5" target="_blank">TikTok 2</a>
-<a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
-<a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
+<div class="drawer-section">
+<h4 data-i18n="appearance">Appearance</h4>
+<button class="theme-toggle" id="themeButton" onclick="toggleTheme()">🌙 Dark Mode</button>
 </div>
-</div>
+</aside>
 <!-- PAGE HERO -->
 <section class="page-hero">
 <div class="container">
-<div class="breadcrumb">
-<a href="index.html">Home</a> / Marketplace
-</div>
-<h1>Pokémon GO <span class="highlight">Marketplace</span></h1>
-<p>
-Explore our collection of Pokémon GO accounts.
-Browse different account levels, view detailed listings,
-check prices and discover accounts available for purchase.
+
+FOSTER GAMING MARKETPLACE
+
+<h1 data-i18n="pageTitle">Explore Our Pokémon GO Accounts</h1>
+<p data-i18n="pageDescription">
+Discover premium Pokémon GO accounts across different levels.
+Browse our available collection and find your next account.
 </p>
 </div>
 </section>
-<!-- MARKET STATS -->
-<div class="container">
-<div class="market-stats">
-<div class="market-stat">
-<h3 id="availableCount">20</h3>
-<p>Available Accounts</p>
-</div>
-<div class="market-stat">
-<h3 id="soldCount">10</h3>
-<p>Sold Accounts</p>
-</div>
-<div class="market-stat">
-<h3>65–80</h3>
-<p>Account Levels</p>
-</div>
-</div>
-</div>
 <!-- MARKETPLACE -->
 <section class="marketplace">
 <div class="container">
-<div class="market-heading">
+<div class="market-top">
 <div>
-<h2>Explore <span class="highlight">Accounts</span></h2>
-<p id="resultCount">Showing 30 accounts</p>
+<h2 data-i18n="availableTitle">Available Accounts</h2>
+<p><span id="availableTotal">20</span> <span data-i18n="accountsAvailable">accounts available for purchase</span></p>
 </div>
-<div class="search-box">
+
 <input
-type="search"
-id="searchInput"
-placeholder="Search account level or name..."
-oninput="renderProducts()">
-</div>
+type=“search”
+class=“search-box”
+id=“searchInput”
+placeholder=“Search accounts…”
+data-i18n-placeholder=“searchPlaceholder”
+oninput=“renderAccounts()”
+
 </div>
 <!-- FILTERS -->
-<div class="filters">
-<button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">
+<div class="filters" id="filters">
+
 All Accounts
-</button>
-<button class="filter-btn" data-filter="available" onclick="setFilter('available',this)">
-Available
-</button>
-<button class="filter-btn" data-filter="sold" onclick="setFilter('sold',this)">
-Sold
-</button>
-<button class="filter-btn" data-filter="65" onclick="setFilter('65',this)">
+
 Level 65
-</button>
-<button class="filter-btn" data-filter="66" onclick="setFilter('66',this)">
 Level 66
-</button>
-<button class="filter-btn" data-filter="67" onclick="setFilter('67',this)">
 Level 67
-</button>
-<button class="filter-btn" data-filter="68" onclick="setFilter('68',this)">
 Level 68
-</button>
-<button class="filter-btn" data-filter="69" onclick="setFilter('69',this)">
 Level 69
-</button>
-<button class="filter-btn" data-filter="70" onclick="setFilter('70',this)">
 Level 70
-</button>
-<button class="filter-btn" data-filter="71" onclick="setFilter('71',this)">
 Level 71
-</button>
-<button class="filter-btn" data-filter="72" onclick="setFilter('72',this)">
 Level 72
-</button>
-<button class="filter-btn" data-filter="73" onclick="setFilter('73',this)">
 Level 73
-</button>
-<button class="filter-btn" data-filter="74" onclick="setFilter('74',this)">
 Level 74
-</button>
-<button class="filter-btn" data-filter="75" onclick="setFilter('75',this)">
 Level 75
-</button>
-<button class="filter-btn" data-filter="76" onclick="setFilter('76',this)">
 Level 76
-</button>
-<button class="filter-btn" data-filter="77" onclick="setFilter('77',this)">
 Level 77
-</button>
-<button class="filter-btn" data-filter="78" onclick="setFilter('78',this)">
 Level 78
-</button>
-<button class="filter-btn" data-filter="79" onclick="setFilter('79',this)">
 Level 79
-</button>
-<button class="filter-btn" data-filter="80" onclick="setFilter('80',this)">
 Level 80
-</button>
-<select class="sort-select" id="sortSelect" onchange="renderProducts()">
-<option value="default">Sort: Default</option>
-<option value="low">Price: Low to High</option>
-<option value="high">Price: High to Low</option>
-<option value="level">Level: Low to High</option>
-</select>
+
+Sold Accounts
+
 </div>
-<!-- PRODUCTS -->
-<div class="products-grid" id="productsGrid"></div>
-<div class="empty-state" id="emptyState">
-<h3>No Accounts Found</h3>
-<p>Try another category or search term.</p>
+<div class="account-grid" id="accountGrid"></div>
+<div class="no-results" id="noResults">
+<h3 data-i18n="noResults">No accounts found</h3>
+<p data-i18n="noResultsDescription">Try another search or category.</p>
+</div>
+<!-- PRICING -->
+<div class="price-banner">
+<h3 data-i18n="pricingTitle">Account Pricing</h3>
+<div class="price-row">
+<span data-i18n="level65to70">Level 65 – Level 70</span>
+<strong>$65 USD</strong>
+</div>
+<div class="price-row">
+<span data-i18n="level71to80">Level 71 – Level 80</span>
+<strong>$78 USD</strong>
+</div>
 </div>
 </div>
 </section>
-<!-- CTA -->
-<div class="container">
-<div class="cta">
-<h2>Looking for Something Special?</h2>
-<p>
-Explore our account collections or contact Foster Gaming
-for buying and swapping enquiries.
-</p>
-<a href="contact.html">Contact Foster Gaming →</a>
-</div>
-</div>
 <!-- FOOTER -->
 <footer>
-<div class="container footer-main">
-<div class="footer-brand">
-<img
-src="https://raw.githubusercontent.com/YOUR-USERNAME/Foster-Gaming/main/assets/logo.png"
-alt="Foster Gaming Logo"
-onerror="this.style.display='none'">
-<h3>FOSTER <span>GAMING</span></h3>
-<p>
+<div class="container footer-grid">
+<div>
+<div class="footer-brand">FOSTER <span>GAMING</span></div>
+<p class="footer-about" data-i18n="footerDescription">
 Your destination for premium Pokémon GO accounts.
-Explore, discover and find your next gaming collection.
 </p>
 </div>
 <div class="footer-column">
-<h4>Quick Links</h4>
-<a href="index.html">Home</a>
-<a href="accounts.html">Marketplace</a>
-<a href="about.html">About Us</a>
-<a href="blog.html">Our Blog</a>
-<a href="reviews.html">Customer Reviews</a>
+<h3 data-i18n="quickLinks">Quick Links</h3>
+<a href="index.html" data-i18n="home">Home</a>
+<a href="accounts.html" data-i18n="accounts">Accounts</a>
+<a href="blog.html" data-i18n="blog">Blog</a>
+<a href="about.html" data-i18n="about">About Us</a>
 </div>
 <div class="footer-column">
-<h4>Customer Support</h4>
-<a href="contact.html">Contact Us</a>
-<a href="cart.html">Shopping Cart</a>
-<a href="reviews.html">Submit a Review</a>
-<a href="mailto:harishwilliams010@gmail.com">Email Us</a>
+<h3 data-i18n="customerService">Customer Service</h3>
+<a href="contact.html" data-i18n="contact">Contact Us</a>
+<a href="reviews.html" data-i18n="reviews">Reviews</a>
+<a href="cart.html" data-i18n="cart">Shopping Cart</a>
+<a href="checkout.html" data-i18n="checkout">Checkout</a>
 </div>
 <div class="footer-column">
-<h4>Connect With Us</h4>
-<a href="https://www.tiktok.com/@williamfoster83" target="_blank">TikTok</a>
-<a href="https://www.tiktok.com/@fostergames5" target="_blank">TikTok 2</a>
+<h3 data-i18n="connect">Connect With Us</h3>
+<a href="https://www.tiktok.com/@williamfoster83?_r=1&_t=ZS-9Bfmz8P26ce" target="_blank">TikTok 01</a>
+<a href="https://www.tiktok.com/@fostergames5?_r=1&_t=ZS-9Bfn20iFRp6" target="_blank">TikTok 02</a>
 <a href="https://snapchat.com/t/Ua0aZSS4" target="_blank">Snapchat</a>
 <a href="https://discord.gg/VqVBngcg" target="_blank">Discord</a>
+<a href="mailto:harishwilliams010@gmail.com">Email Us</a>
 </div>
 </div>
 <div class="container footer-bottom">
-<p>© <span id="year"></span> Foster Gaming. All rights reserved.</p>
-<p>Developed by <strong>BITBRIDGE TECHNOLOGIES INC</strong></p>
+<p>© <span id="year"></span> Foster Gaming. <span data-i18n="rights">All Rights Reserved.</span></p>
+<p><span data-i18n="developed">Developed by</span> <strong>BITBRIDGE TECHNOLOGIES INC</strong></p>
 </div>
 </footer>
 <script>
-/* ==================================
-   ACCOUNT DATABASE
-================================== */
-const imagePool = [
-    "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800",
-    "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800",
-    "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=800",
-    "https://images.unsplash.com/photo-1511882150382-421056c89033?w=800",
-    "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=800",
-    "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=800"
-];
-const availableLevels = [
-    65,65,66,66,67,
-    67,68,68,69,69,
-    70,70,71,71,72,
-    73,74,75,78,80
-];
-const soldLevels = [
-    65,66,67,68,69,
-    70,72,74,76,80
-];
-const products = [];
-let activeFilter = "all";
-function accountPrice(level) {
-    return level <= 70 ? 65 : 78;
-}
-function createAccount(id,level,status,index) {
-    const price = accountPrice(level);
-    const available = status === "available";
-    return {
-        id:id,
-        name:(available ? "Premium" : "Previously Sold") +
-             " Level " + level + " Pokémon GO Account",
-        level:level,
-        price:price,
-        status:status,
-        image:imagePool[index % imagePool.length],
-        description: available
-            ? "Explore this Level " + level + " account. Detailed account information and screenshots are available on the product page."
-            : "This Level " + level + " account has already been sold. Browse other available accounts in our marketplace."
-    };
-}
+/* =====================================
+   FOSTER GAMING ACCOUNT DATABASE
+===================================== */
+/*
+Each account has its own image path.
+Replace the image paths and descriptions
+with your actual account information.
+*/
+const accounts = [
 /* 20 AVAILABLE ACCOUNTS */
-availableLevels.forEach((level,index) => {
-    products.push(
-        createAccount(
-            "FG-AVAILABLE-" + String(index + 1).padStart(3,"0"),
-            level,
-            "available",
-            index
-        )
-    );
-});
+{
+id:"FG-001",level:65,price:65,status:"available",
+name:"Premium Level 65 Account",
+description:"A developed Pokémon GO account with a growing Pokémon collection.",
+image:"images/account1.png"
+},
+{
+id:"FG-002",level:65,price:65,status:"available",
+name:"Stacked Level 65 Account",
+description:"Explore a collection of Pokémon and exciting account features.",
+image:"images/account2.png"
+},
+{
+id:"FG-003",level:66,price:65,status:"available",
+name:"Premium Level 66 Account",
+description:"A carefully developed account with interesting Pokémon.",
+image:"images/account3.png"
+},
+{
+id:"FG-004",level:66,price:65,status:"available",
+name:"Elite Level 66 Account",
+description:"A Pokémon GO account with a developing collection.",
+image:"images/account4.png"
+},
+{
+id:"FG-005",level:67,price:65,status:"available",
+name:"Premium Level 67 Account",
+description:"Explore this account's Pokémon collection and features.",
+image:"images/account5.png"
+},
+{
+id:"FG-006",level:67,price:65,status:"available",
+name:"Stacked Level 67 Account",
+description:"A developed account with interesting Pokémon collections.",
+image:"images/account6.png"
+},
+{
+id:"FG-007",level:68,price:65,status:"available",
+name:"Premium Level 68 Account",
+description:"Discover this Pokémon GO account and its collection.",
+image:"images/account7.png"
+},
+{
+id:"FG-008",level:68,price:65,status:"available",
+name:"Elite Level 68 Account",
+description:"A developed Pokémon GO account with exciting features.",
+image:"images/account8.png"
+},
+{
+id:"FG-009",level:69,price:65,status:"available",
+name:"Premium Level 69 Account",
+description:"An interesting account with a growing Pokémon collection.",
+image:"images/account9.png"
+},
+{
+id:"FG-010",level:69,price:65,status:"available",
+name:"Stacked Level 69 Account",
+description:"Explore this account's available Pokémon collection.",
+image:"images/account10.png"
+},
+{
+id:"FG-011",level:70,price:65,status:"available",
+name:"Premium Level 70 Account",
+description:"A developed account with exciting Pokémon and items.",
+image:"images/account11.png"
+},
+{
+id:"FG-012",level:70,price:65,status:"available",
+name:"Elite Level 70 Account",
+description:"Explore a Pokémon GO account with a developed collection.",
+image:"images/account12.png"
+},
+{
+id:"FG-013",level:71,price:78,status:"available",
+name:"Premium Level 71 Account",
+description:"Discover this account's collection and available features.",
+image:"images/account13.png"
+},
+{
+id:"FG-014",level:72,price:78,status:"available",
+name:"Stacked Level 72 Account",
+description:"A developed account with interesting Pokémon collections.",
+image:"images/account14.png"
+},
+{
+id:"FG-015",level:73,price:78,status:"available",
+name:"Premium Level 73 Account",
+description:"Explore this account's Pokémon and collection highlights.",
+image:"images/account15.png"
+},
+{
+id:"FG-016",level:74,price:78,status:"available",
+name:"Elite Level 74 Account",
+description:"A Pokémon GO account with exciting collection features.",
+image:"images/account16.png"
+},
+{
+id:"FG-017",level:75,price:78,status:"available",
+name:"Premium Level 75 Account",
+description:"Discover this developed account and its Pokémon collection.",
+image:"images/account17.png"
+},
+{
+id:"FG-018",level:76,price:78,status:"available",
+name:"Stacked Level 76 Account",
+description:"Explore this account's Pokémon GO collection.",
+image:"images/account18.png"
+},
+{
+id:"FG-019",level:78,price:78,status:"available",
+name:"Premium Level 78 Account",
+description:"An exciting Pokémon GO account with a developed collection.",
+image:"images/account19.png"
+},
+{
+id:"FG-020",level:80,price:78,status:"available",
+name:"Elite Level 80 Account",
+description:"A high-level Pokémon GO account with interesting features.",
+image:"images/account20.png"
+},
 /* 10 SOLD ACCOUNTS */
-soldLevels.forEach((level,index) => {
-    products.push(
-        createAccount(
-            "FG-SOLD-" + String(index + 1).padStart(3,"0"),
-            level,
-            "sold",
-            index + 2
-        )
-    );
+{
+id:"FG-021",level:65,price:65,status:"sold",
+name:"Premium Level 65 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold1.png"
+},
+{
+id:"FG-022",level:66,price:65,status:"sold",
+name:"Stacked Level 66 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold2.png"
+},
+{
+id:"FG-023",level:67,price:65,status:"sold",
+name:"Premium Level 67 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold3.png"
+},
+{
+id:"FG-024",level:68,price:65,status:"sold",
+name:"Elite Level 68 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold4.png"
+},
+{
+id:"FG-025",level:69,price:65,status:"sold",
+name:"Premium Level 69 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold5.png"
+},
+{
+id:"FG-026",level:70,price:65,status:"sold",
+name:"Stacked Level 70 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold6.png"
+},
+{
+id:"FG-027",level:72,price:78,status:"sold",
+name:"Premium Level 72 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold7.png"
+},
+{
+id:"FG-028",level:75,price:78,status:"sold",
+name:"Elite Level 75 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold8.png"
+},
+{
+id:"FG-029",level:78,price:78,status:"sold",
+name:"Stacked Level 78 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold9.png"
+},
+{
+id:"FG-030",level:80,price:78,status:"sold",
+name:"Elite Level 80 Account",
+description:"Previously sold Pokémon GO account.",
+image:"images/sold10.png"
+}
+];
+/* =====================================
+   LANGUAGE SYSTEM
+===================================== */
+const translations = {
+en:{
+home:"Home",accounts:"Accounts",blog:"Blog",about:"About Us",
+contact:"Contact",cart:"Shopping Cart",reviews:"Customer Reviews",
+language:"🌐 Language",appearance:"Appearance",
+marketplace:"FOSTER GAMING MARKETPLACE",
+pageTitle:"Explore Our Pokémon GO Accounts",
+pageDescription:"Discover premium Pokémon GO accounts across different levels. Browse our available collection and find your next account.",
+availableTitle:"Available Accounts",
+accountsAvailable:"accounts available for purchase",
+searchPlaceholder:"Search accounts...",
+allAccounts:"All Accounts",soldAccounts:"Sold Accounts",
+available:"AVAILABLE",sold:"SOLD",
+viewDetails:"View Details",addCart:"Add to Cart",
+unavailable:"SOLD OUT",
+noResults:"No accounts found",
+noResultsDescription:"Try another search or category.",
+pricingTitle:"Account Pricing",
+level65to70:"Level 65 – Level 70",
+level71to80:"Level 71 – Level 80",
+footerDescription:"Your destination for premium Pokémon GO accounts.",
+quickLinks:"Quick Links",customerService:"Customer Service",
+connect:"Connect With Us",rights:"All Rights Reserved.",
+developed:"Developed by",checkout:"Checkout",
+added:"Account added to cart successfully!",
+alreadyAdded:"This account is already in your cart."
+},
+es:{
+home:"Inicio",accounts:"Cuentas",blog:"Blog",about:"Sobre nosotros",
+contact:"Contacto",cart:"Carrito",reviews:"Opiniones de clientes",
+language:"🌐 Idioma",appearance:"Apariencia",
+marketplace:"MERCADO FOSTER GAMING",
+pageTitle:"Explora nuestras cuentas de Pokémon GO",
+pageDescription:"Descubre cuentas premium de Pokémon GO de diferentes niveles. Explora nuestra colección y encuentra tu próxima cuenta.",
+availableTitle:"Cuentas disponibles",
+accountsAvailable:"cuentas disponibles para comprar",
+searchPlaceholder:"Buscar cuentas...",
+allAccounts:"Todas las cuentas",soldAccounts:"Cuentas vendidas",
+available:"DISPONIBLE",sold:"VENDIDO",
+viewDetails:"Ver detalles",addCart:"Añadir al carrito",
+unavailable:"AGOTADO",
+noResults:"No se encontraron cuentas",
+noResultsDescription:"Prueba otra búsqueda o categoría.",
+pricingTitle:"Precios de las cuentas",
+level65to70:"Nivel 65 – Nivel 70",
+level71to80:"Nivel 71 – Nivel 80",
+footerDescription:"Tu destino para cuentas premium de Pokémon GO.",
+quickLinks:"Enlaces rápidos",customerService:"Atención al cliente",
+connect:"Conéctate con nosotros",rights:"Todos los derechos reservados.",
+developed:"Desarrollado por",checkout:"Finalizar compra",
+added:"¡Cuenta añadida al carrito!",
+alreadyAdded:"Esta cuenta ya está en tu carrito."
+},
+fr:{
+home:"Accueil",accounts:"Comptes",blog:"Blog",about:"À propos",
+contact:"Contact",cart:"Panier",reviews:"Avis clients",
+language:"🌐 Langue",appearance:"Apparence",
+marketplace:"MARCHÉ FOSTER GAMING",
+pageTitle:"Explorez nos comptes Pokémon GO",
+pageDescription:"Découvrez des comptes Pokémon GO premium de différents niveaux.",
+availableTitle:"Comptes disponibles",
+accountsAvailable:"comptes disponibles à l'achat",
+searchPlaceholder:"Rechercher des comptes...",
+allAccounts:"Tous les comptes",soldAccounts:"Comptes vendus",
+available:"DISPONIBLE",sold:"VENDU",
+viewDetails:"Voir les détails",addCart:"Ajouter au panier",
+unavailable:"ÉPUISÉ",
+noResults:"Aucun compte trouvé",
+noResultsDescription:"Essayez une autre recherche ou catégorie.",
+pricingTitle:"Tarifs des comptes",
+level65to70:"Niveau 65 – Niveau 70",
+level71to80:"Niveau 71 – Niveau 80",
+footerDescription:"Votre destination pour les comptes Pokémon GO premium.",
+quickLinks:"Liens rapides",customerService:"Service client",
+connect:"Nous contacter",rights:"Tous droits réservés.",
+developed:"Développé par",checkout:"Paiement",
+added:"Compte ajouté au panier !",
+alreadyAdded:"Ce compte est déjà dans votre panier."
+},
+de:{
+home:"Startseite",accounts:"Konten",blog:"Blog",about:"Über uns",
+contact:"Kontakt",cart:"Warenkorb",reviews:"Kundenbewertungen",
+language:"🌐 Sprache",appearance:"Darstellung",
+marketplace:"FOSTER GAMING MARKTPLATZ",
+pageTitle:"Entdecke unsere Pokémon GO Konten",
+pageDescription:"Entdecke hochwertige Pokémon GO Konten verschiedener Level.",
+availableTitle:"Verfügbare Konten",
+accountsAvailable:"Konten zum Kauf verfügbar",
+searchPlaceholder:"Konten suchen...",
+allAccounts:"Alle Konten",soldAccounts:"Verkaufte Konten",
+available:"VERFÜGBAR",sold:"VERKAUFT",
+viewDetails:"Details ansehen",addCart:"In den Warenkorb",
+unavailable:"AUSVERKAUFT",
+noResults:"Keine Konten gefunden",
+noResultsDescription:"Versuche eine andere Suche oder Kategorie.",
+pricingTitle:"Kontopreise",
+level65to70:"Level 65 – Level 70",
+level71to80:"Level 71 – Level 80",
+footerDescription:"Deine Anlaufstelle für Premium Pokémon GO Konten.",
+quickLinks:"Schnelllinks",customerService:"Kundenservice",
+connect:"Verbinde dich mit uns",rights:"Alle Rechte vorbehalten.",
+developed:"Entwickelt von",checkout:"Kasse",
+added:"Konto erfolgreich hinzugefügt!",
+alreadyAdded:"Dieses Konto befindet sich bereits im Warenkorb."
+},
+pt:{
+home:"Início",accounts:"Contas",blog:"Blog",about:"Sobre nós",
+contact:"Contato",cart:"Carrinho",reviews:"Avaliações",
+language:"🌐 Idioma",appearance:"Aparência",
+marketplace:"MERCADO FOSTER GAMING",
+pageTitle:"Explore nossas contas Pokémon GO",
+pageDescription:"Descubra contas premium de Pokémon GO em diferentes níveis.",
+availableTitle:"Contas disponíveis",
+accountsAvailable:"contas disponíveis para compra",
+searchPlaceholder:"Pesquisar contas...",
+allAccounts:"Todas as contas",soldAccounts:"Contas vendidas",
+available:"DISPONÍVEL",sold:"VENDIDO",
+viewDetails:"Ver detalhes",addCart:"Adicionar ao carrinho",
+unavailable:"ESGOTADO",
+noResults:"Nenhuma conta encontrada",
+noResultsDescription:"Tente outra pesquisa ou categoria.",
+pricingTitle:"Preços das contas",
+level65to70:"Nível 65 – Nível 70",
+level71to80:"Nível 71 – Nível 80",
+footerDescription:"Seu destino para contas premium de Pokémon GO.",
+quickLinks:"Links rápidos",customerService:"Atendimento",
+connect:"Conecte-se conosco",rights:"Todos os direitos reservados.",
+developed:"Desenvolvido por",checkout:"Finalizar compra",
+added:"Conta adicionada ao carrinho!",
+alreadyAdded:"Esta conta já está no seu carrinho."
+},
+ar:{
+home:"الرئيسية",accounts:"الحسابات",blog:"المدونة",about:"من نحن",
+contact:"اتصل بنا",cart:"سلة التسوق",reviews:"آراء العملاء",
+language:"🌐 اللغة",appearance:"المظهر",
+marketplace:"سوق فوستر جيمينج",
+pageTitle:"استكشف حسابات بوكيمون جو",
+pageDescription:"اكتشف حسابات بوكيمون جو المميزة بمستويات مختلفة.",
+availableTitle:"الحسابات المتاحة",
+accountsAvailable:"حسابات متاحة للشراء",
+searchPlaceholder:"ابحث عن الحسابات...",
+allAccounts:"جميع الحسابات",soldAccounts:"الحسابات المباعة",
+available:"متاح",sold:"مباع",
+viewDetails:"عرض التفاصيل",addCart:"أضف إلى السلة",
+unavailable:"نفد",
+noResults:"لم يتم العثور على حسابات",
+noResultsDescription:"جرب بحثاً أو فئة أخرى.",
+pricingTitle:"أسعار الحسابات",
+level65to70:"المستوى 65 – المستوى 70",
+level71to80:"المستوى 71 – المستوى 80",
+footerDescription:"وجهتك للحسابات المميزة في بوكيمون جو.",
+quickLinks:"روابط سريعة",customerService:"خدمة العملاء",
+connect:"تواصل معنا",rights:"جميع الحقوق محفوظة.",
+developed:"تم التطوير بواسطة",checkout:"إتمام الشراء",
+added:"تمت إضافة الحساب إلى السلة!",
+alreadyAdded:"هذا الحساب موجود بالفعل في سلة التسوق."
+},
+it:{
+home:"Home",accounts:"Account",blog:"Blog",about:"Chi siamo",
+contact:"Contatti",cart:"Carrello",reviews:"Recensioni",
+language:"🌐 Lingua",appearance:"Aspetto",
+marketplace:"MERCATO FOSTER GAMING",
+pageTitle:"Esplora i nostri account Pokémon GO",
+pageDescription:"Scopri account Pokémon GO premium di diversi livelli.",
+availableTitle:"Account disponibili",
+accountsAvailable:"account disponibili per l'acquisto",
+searchPlaceholder:"Cerca account...",
+allAccounts:"Tutti gli account",soldAccounts:"Account venduti",
+available:"DISPONIBILE",sold:"VENDUTO",
+viewDetails:"Visualizza dettagli",addCart:"Aggiungi al carrello",
+unavailable:"ESAURITO",
+noResults:"Nessun account trovato",
+noResultsDescription:"Prova un'altra ricerca o categoria.",
+pricingTitle:"Prezzi degli account",
+level65to70:"Livello 65 – Livello 70",
+level71to80:"Livello 71 – Livello 80",
+footerDescription:"La tua destinazione per account Pokémon GO premium.",
+quickLinks:"Link rapidi",customerService:"Servizio clienti",
+connect:"Seguici",rights:"Tutti i diritti riservati.",
+developed:"Sviluppato da",checkout:"Checkout",
+added:"Account aggiunto al carrello!",
+alreadyAdded:"Questo account è già nel carrello."
+},
+zh:{
+home:"首页",accounts:"账号",blog:"博客",about:"关于我们",
+contact:"联系我们",cart:"购物车",reviews:"客户评价",
+language:"🌐 语言",appearance:"外观",
+marketplace:"FOSTER GAMING 市场",
+pageTitle:"探索我们的 Pokémon GO 账号",
+pageDescription:"发现不同等级的优质 Pokémon GO 账号。",
+availableTitle:"可购买账号",
+accountsAvailable:"个账号可供购买",
+searchPlaceholder:"搜索账号...",
+allAccounts:"全部账号",soldAccounts:"已售账号",
+available:"有货",sold:"已售",
+viewDetails:"查看详情",addCart:"加入购物车",
+unavailable:"售罄",
+noResults:"未找到账号",
+noResultsDescription:"请尝试其他搜索或分类。",
+pricingTitle:"账号价格",
+level65to70:"65级 – 70级",
+level71to80:"71级 – 80级",
+footerDescription:"购买优质 Pokémon GO 账号的理想选择。",
+quickLinks:"快速链接",customerService:"客户服务",
+connect:"联系我们",rights:"版权所有。",
+developed:"开发者",checkout:"结账",
+added:"账号已成功加入购物车！",
+alreadyAdded:"此账号已经在购物车中。"
+}
+};
+function t(key){
+const lang=localStorage.getItem("foster_language")||"en";
+return (translations[lang]||translations.en)[key]||translations.en[key]||key;
+}
+function applyLanguage(){
+const lang=localStorage.getItem("foster_language")||"en";
+document.documentElement.lang=lang;
+document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+document.querySelectorAll("[data-i18n]").forEach(el=>{
+const key=el.dataset.i18n;
+if(t(key))el.innerHTML=t(key);
 });
-/* ==================================
-   RENDER PRODUCTS
-================================== */
-function renderProducts() {
-    const grid = document.getElementById("productsGrid");
-    const search = document.getElementById("searchInput").value.toLowerCase();
-    const sort = document.getElementById("sortSelect").value;
-    let filtered = products.filter(product => {
-        const matchesSearch =
-            product.name.toLowerCase().includes(search) ||
-            String(product.level).includes(search) ||
-            product.id.toLowerCase().includes(search);
-        let matchesFilter = true;
-        if(activeFilter === "available" || activeFilter === "sold") {
-            matchesFilter = product.status === activeFilter;
-        } else if(activeFilter !== "all") {
-            matchesFilter = product.level === Number(activeFilter);
-        }
-        return matchesSearch && matchesFilter;
-    });
-    if(sort === "low") {
-        filtered.sort((a,b) => a.price - b.price);
-    }
-    if(sort === "high") {
-        filtered.sort((a,b) => b.price - a.price);
-    }
-    if(sort === "level") {
-        filtered.sort((a,b) => a.level - b.level);
-    }
-    document.getElementById("resultCount").textContent =
-        "Showing " + filtered.length + " accounts";
-    grid.innerHTML = "";
-    document.getElementById("emptyState").style.display =
-        filtered.length ? "none" : "block";
-    filtered.forEach(product => {
-        const isAvailable = product.status === "available";
-        const card = document.createElement("div");
-        card.className = "product-card";
-        card.innerHTML = `
-            <div class="product-image">
-                <img src="${product.image}"
-                     alt="${product.name}"
-                     loading="lazy">
-                <span class="status ${isAvailable ? "available" : "sold"}">
-                    ${isAvailable ? "AVAILABLE" : "SOLD"}
-                </span>
-                <span class="level-label">
-                    LEVEL ${product.level}
-                </span>
-            </div>
-            <div class="product-info">
-                <h3>${product.name}</h3>
-                <p>${product.description}</p>
-                <div class="product-bottom">
-                    <div>
-                        <div class="price">$${product.price}</div>
-                        <div class="price-label">USD</div>
-                    </div>
-                    <span style="font-size:10px;color:${isAvailable ? "var(--green)" : "var(--muted)"};font-weight:800;">
-                        ${isAvailable ? "● In Stock" : "● Sold Out"}
-                    </span>
-                </div>
-                <div class="product-actions">
-                    <a class="details-btn"
-                       href="account.html?id=${encodeURIComponent(product.id)}">
-                        View Details
-                    </a>
-                    <button
-                        class="add-btn"
-                        ${!isAvailable ? "disabled" : ""}
-                        onclick="addToCart('${product.id}')">
-                        ${isAvailable ? "Add to Cart" : "Sold Out"}
-                    </button>
-                </div>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
+document.querySelectorAll("[data-i18n-placeholder]").forEach(el=>{
+el.placeholder=t(el.dataset.i18nPlaceholder);
+});
+const selector=document.getElementById("languageSelect");
+if(selector)selector.value=lang;
+renderAccounts();
 }
-/* ==================================
-   FILTERS
-================================== */
-function setFilter(filter,button) {
-    activeFilter = filter;
-    document.querySelectorAll(".filter-btn").forEach(btn => {
-        btn.classList.remove("active");
-    });
-    button.classList.add("active");
-    renderProducts();
-}
-/* ==================================
-   CART MANAGEMENT
-================================== */
-function getCart() {
-    try {
-        return JSON.parse(localStorage.getItem("fg-cart")) || [];
-    } catch(error) {
-        return [];
-    }
-}
-function updateCartCount() {
-    const cart = getCart();
-    const count = cart.reduce((total,item) => {
-        return total + (Number(item.quantity) || 1);
-    },0);
-    document.getElementById("cartCount").textContent = count;
-}
-function addToCart(id) {
-    const product = products.find(item => item.id === id);
-    if(!product || product.status !== "available") {
-        alert("This account is not available.");
-        return;
-    }
-    let cart = getCart();
-    if(cart.some(item => item.id === id)) {
-        alert("This account is already in your cart.");
-        return;
-    }
-    cart.push({
-        id:product.id,
-        name:product.name,
-        level:product.level,
-        price:product.price,
-        image:product.image,
-        quantity:1
-    });
-    localStorage.setItem("fg-cart",JSON.stringify(cart));
-    updateCartCount();
-    alert(product.name + " has been added to your cart!");
-}
-/* ==================================
-   THEME MANAGEMENT
-================================== */
-function applyTheme() {
-    const theme = localStorage.getItem("fg-theme") || "light";
-    document.body.classList.toggle("dark",theme === "dark");
-    document.getElementById("themeIcon").textContent =
-        theme === "dark" ? "☀️" : "🌙";
-}
-function toggleTheme() {
-    const current = localStorage.getItem("fg-theme") || "light";
-    localStorage.setItem(
-        "fg-theme",
-        current === "dark" ? "light" : "dark"
-    );
-    applyTheme();
-}
-applyTheme();
-/* ==================================
-   LANGUAGE MANAGEMENT
-================================== */
-function changeLanguage() {
-    localStorage.setItem(
-        "fg-language",
-        document.getElementById("languageSelect").value
-    );
-    applyLanguage();
-}
-function applyLanguage() {
-    const language = localStorage.getItem("fg-language") || "en";
-    document.getElementById("languageSelect").value = language;
-    document.documentElement.lang = language;
-}
+function changeLanguage(lang){
+localStorage.setItem("foster_language",lang);
 applyLanguage();
-/* ==================================
-   MENU
-================================== */
-function openMenu() {
-    document.getElementById("sideMenu").classList.add("active");
-    document.getElementById("menuOverlay").classList.add("active");
-    document.body.style.overflow = "hidden";
 }
-function closeMenu() {
-    document.getElementById("sideMenu").classList.remove("active");
-    document.getElementById("menuOverlay").classList.remove("active");
-    document.body.style.overflow = "";
+/* =====================================
+   THEME
+===================================== */
+function applyTheme(){
+const theme=localStorage.getItem("foster_theme")||"light";
+document.documentElement.setAttribute("data-theme",theme);
+const button=document.getElementById("themeButton");
+if(button){
+button.innerHTML=theme==="dark"?"☀️ Light Mode":"🌙 Dark Mode";
 }
-/* ==================================
-   INITIALIZATION
-================================== */
-document.getElementById("year").textContent =
-    new Date().getFullYear();
+}
+function toggleTheme(){
+const current=localStorage.getItem("foster_theme")||"light";
+localStorage.setItem(
+"foster_theme",
+current==="dark"?"light":"dark"
+);
+applyTheme();
+}
+/* =====================================
+   CART SYSTEM
+===================================== */
+function getCart(){
+return JSON.parse(localStorage.getItem("foster_cart")||"[]");
+}
+function updateCartCount(){
+const cart=getCart();
+const count=cart.reduce((sum,item)=>sum+(Number(item.quantity)||1),0);
+document.getElementById("cartCount").textContent=count;
+}
+function addToCart(id){
+const product=accounts.find(a=>a.id===id);
+if(!product||product.status!=="available")return;
+let cart=getCart();
+if(cart.some(item=>item.id===id)){
+alert(t("alreadyAdded"));
+return;
+}
+cart.push({
+id:product.id,
+name:product.name,
+level:product.level,
+price:product.price,
+image:product.image,
+quantity:1
+});
+localStorage.setItem("foster_cart",JSON.stringify(cart));
 updateCartCount();
-renderProducts();
-/* READ CATEGORY FROM HOMEPAGE URL */
-const params = new URLSearchParams(window.location.search);
-const requestedLevel = params.get("level");
-if(requestedLevel && /^\d+$/.test(requestedLevel)) {
-    const level = Number(requestedLevel);
-    if(level >= 65 && level <= 80) {
-        activeFilter = String(level);
-        document.querySelectorAll(".filter-btn").forEach(btn => {
-            btn.classList.toggle(
-                "active",
-                btn.dataset.filter === activeFilter
-            );
-        });
-        renderProducts();
-    }
+alert(t("added"));
 }
+/* =====================================
+   ACCOUNT DISPLAY
+===================================== */
+let currentFilter="all";
+function renderAccounts(){
+const grid=document.getElementById("accountGrid");
+if(!grid)return;
+const search=document.getElementById("searchInput").value.toLowerCase().trim();
+let filtered=accounts.filter(account=>{
+let matchesFilter=false;
+if(currentFilter==="all"){
+matchesFilter=account.status==="available";
+}
+else if(currentFilter==="sold"){
+matchesFilter=account.status==="sold";
+}
+else{
+matchesFilter=account.level===Number(currentFilter)&&account.status==="available";
+}
+const matchesSearch=(
+account.name+" "+
+account.description+" "+
+account.level+" "+
+account.id
+).toLowerCase().includes(search);
+return matchesFilter&&matchesSearch;
+});
+grid.innerHTML="";
+filtered.forEach(account=>{
+const isSold=account.status==="sold";
+const card=document.createElement("article");
+card.className="account-card"+(isSold?" sold-card":"");
+card.innerHTML=`
+<div class="account-image">
+<img src="${account.image}" alt="${account.name}" loading="lazy">
+<span class="status ${isSold?"sold":"available"}">
+${isSold?t("sold"):t("available")}
+</span>
+</div>
+<div class="account-info">
+<h3>${account.name}</h3>
+<p>${account.description}</p>
+<div class="account-meta">
+<span class="price">$${account.price}</span>
+<span class="level">LEVEL ${account.level}</span>
+</div>
+<div class="card-actions">
+<a class="view-btn" href="account-details.html?id=${encodeURIComponent(account.id)}">
+${t("viewDetails")}
+</a>
+<button
+class="order-btn"
+${isSold?"disabled":""}
+onclick="addToCart('${account.id}')">
+${isSold?t("unavailable"):t("addCart")}
+</button>
+</div>
+</div>
+`;
+grid.appendChild(card);
+});
+document.getElementById("noResults").style.display=
+filtered.length?"none":"block";
+}
+/* FILTER BUTTONS */
+document.querySelectorAll(".filter-btn").forEach(button=>{
+button.addEventListener("click",function(){
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+btn.classList.remove("active");
+});
+this.classList.add("active");
+currentFilter=this.dataset.filter;
+renderAccounts();
+});
+});
+/* DRAWER */
+function openDrawer(){
+document.getElementById("drawer").classList.add("active");
+document.getElementById("overlay").classList.add("active");
+}
+function closeDrawer(){
+document.getElementById("drawer").classList.remove("active");
+document.getElementById("overlay").classList.remove("active");
+}
+/* INITIALIZE */
+document.getElementById("year").textContent=new Date().getFullYear();
+applyTheme();
+applyLanguage();
+updateCartCount();
 </script>
 </body>
 </html>
