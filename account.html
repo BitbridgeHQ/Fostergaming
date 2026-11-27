@@ -224,7 +224,7 @@ header {
 
 .thumbnails {
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:10px;
     margin-top:13px;
 }
@@ -687,7 +687,7 @@ footer {
             <div class="thumbnails" id="thumbnails"></div>
 
             <p class="gallery-note">
-                Demonstration listing images. Replace these with the actual screenshots for each account.
+                Account screenshots. Replace the placeholder filenames with your actual images.
             </p>
 
         </section>
@@ -759,20 +759,43 @@ footer {
 <div class="toast" id="toast"></div>
 
 <script>
+
+/* ============================
+   ACCOUNT IMAGE SYSTEM
+============================ */
+
+/*
+   Every account automatically gets six image paths.
+
+   Example:
+   FG-DEMO-001 gets:
+   images/FG-DEMO-001-1.jpg
+   images/FG-DEMO-001-2.jpg
+   images/FG-DEMO-001-3.jpg
+   images/FG-DEMO-001-4.jpg
+   images/FG-DEMO-001-5.jpg
+   images/FG-DEMO-001-6.jpg
+
+   Replace the placeholder filenames with your actual image filenames
+   when you upload your screenshots.
+*/
+
+function getAccountImages(accountId) {
+
+    return [
+        `images/${accountId}-1.jpg`,
+        `images/${accountId}-2.jpg`,
+        `images/${accountId}-3.jpg`,
+        `images/${accountId}-4.jpg`,
+        `images/${accountId}-5.jpg`,
+        `images/${accountId}-6.jpg`
+    ];
+
+}
+
 /* ============================
    ACCOUNT CATALOGUE
 ============================ */
-
-const imagePool = [
-    "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1000",
-    "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1000",
-    "https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000",
-    "https://images.unsplash.com/photo-1511882150382-421056c89033?w=1000",
-    "https://images.unsplash.com/photo-1548484352-ea579e5233a8?w=1000",
-    "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1000",
-    "https://images.unsplash.com/photo-1603481546238-487240415921?w=1000",
-    "https://images.unsplash.com/photo-1593305841991-05c297ba4575?w=1000"
-];
 
 const availableLevels = [
     65,65,66,66,67,67,68,68,69,69,
@@ -784,12 +807,13 @@ const soldLevels = [
 ];
 
 const featuredAccounts = {
+
     "FG-DEMO-001": {
         id:"FG-DEMO-001",
         name:"Premium Pokémon GO Account",
         level:65,
         price:65,
-        image:"https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1000",
+        images:getAccountImages("FG-DEMO-001"),
         status:"Available",
         description:"Demonstration featured listing. Replace this description with the actual account collection, Pokémon statistics, items and other account information."
     },
@@ -799,7 +823,7 @@ const featuredAccounts = {
         name:"Stacked Level 70 Account",
         level:70,
         price:65,
-        image:"https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=1000",
+        images:getAccountImages("FG-DEMO-002"),
         status:"Available",
         description:"Demonstration featured listing. Add the real account information, screenshots and collection highlights here."
     },
@@ -809,7 +833,7 @@ const featuredAccounts = {
         name:"Premium Level 75 Account",
         level:75,
         price:78,
-        image:"https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1000",
+        images:getAccountImages("FG-DEMO-003"),
         status:"Available",
         description:"Demonstration featured listing. Replace this write-up with the actual account statistics and collection details."
     },
@@ -819,10 +843,11 @@ const featuredAccounts = {
         name:"Elite Level 80 Account",
         level:80,
         price:78,
-        image:"https://images.unsplash.com/photo-1511882150382-421056c89033?w=1000",
+        images:getAccountImages("FG-DEMO-004"),
         status:"Available",
         description:"Demonstration featured listing. Add the actual account features, Pokémon collection and other relevant information."
     }
+
 };
 
 const accounts = {...featuredAccounts};
@@ -838,14 +863,12 @@ availableLevels.forEach((level,index) => {
     const number = String(index+1).padStart(3,"0");
     const id = "FG-AVAILABLE-" + number;
 
-    const imageIndex = index % imagePool.length;
-
     accounts[id] = {
         id:id,
         name:"Premium Level " + level + " Pokémon GO Account",
         level:level,
         price:getPrice(level),
-        image:imagePool[imageIndex],
+        images:getAccountImages(id),
         status:"Available",
         description:"Demonstration listing. Replace this write-up with the actual account statistics, Pokémon collection, CP highlights, shiny Pokémon, legendary Pokémon, special Pokémon, items and other account details."
     };
@@ -859,20 +882,17 @@ soldLevels.forEach((level,index) => {
     const number = String(index+1).padStart(3,"0");
     const id = "FG-SOLD-" + number;
 
-    const imageIndex = (index+2) % imagePool.length;
-
     accounts[id] = {
         id:id,
         name:"Level " + level + " Pokémon GO Account",
         level:level,
         price:getPrice(level),
-        image:imagePool[imageIndex],
+        images:getAccountImages(id),
         status:"Sold",
         description:"This is a demonstration sold listing. Replace this description with the original account information if you want to display its previous listing details."
     };
 
 });
-
 
 /* ============================
    LOAD ACCOUNT FROM URL
@@ -883,12 +903,7 @@ const accountId = params.get("id");
 
 const account = accounts[accountId];
 
-const galleryImages = account ? [
-    account.image,
-    imagePool[(imagePool.indexOf(account.image)+1) % imagePool.length],
-    imagePool[(imagePool.indexOf(account.image)+2) % imagePool.length],
-    imagePool[(imagePool.indexOf(account.image)+3) % imagePool.length]
-] : [];
+const galleryImages = account ? account.images : [];
 
 function renderAccount() {
 
@@ -908,7 +923,7 @@ function renderAccount() {
         `;
 
         document.getElementById("mainImage").src =
-            imagePool[0];
+            "images/account-not-found.jpg";
 
         document.getElementById("extraDescription").textContent =
             "The requested listing could not be found.";
@@ -1007,7 +1022,6 @@ function renderAccount() {
     renderGallery();
 }
 
-
 /* ============================
    IMAGE GALLERY
 ============================ */
@@ -1067,7 +1081,6 @@ function closeLightbox(event) {
 
 }
 
-
 /* ============================
    CART FUNCTIONALITY
 ============================ */
@@ -1116,7 +1129,7 @@ function addToCart() {
         name:account.name,
         level:account.level,
         price:account.price,
-        image:account.image,
+        image:account.images[0],
         quantity:1
 
     });
@@ -1142,7 +1155,6 @@ function updateCartCount() {
     document.getElementById("cartCount").textContent = count;
 
 }
-
 
 /* ============================
    THEME
@@ -1170,7 +1182,6 @@ function loadTheme() {
 
 }
 
-
 /* ============================
    MENU
 ============================ */
@@ -1194,7 +1205,6 @@ document.addEventListener("click",function(event) {
 
 });
 
-
 /* ============================
    LANGUAGE PREFERENCE
 ============================ */
@@ -1217,7 +1227,6 @@ function loadLanguage() {
 
 }
 
-
 /* ============================
    TOAST MESSAGE
 ============================ */
@@ -1235,7 +1244,6 @@ function showToast(message) {
     },2500);
 
 }
-
 
 /* ============================
    INITIALIZE PAGE
